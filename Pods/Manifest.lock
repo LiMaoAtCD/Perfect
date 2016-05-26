@@ -1,4 +1,13 @@
 PODS:
+  - Alamofire (3.4.0)
+  - Kingfisher (2.4.1)
+  - MJRefresh (3.1.0)
+  - ObjectMapper (1.3.0)
+  - Realm (1.0.0):
+    - Realm/Headers (= 1.0.0)
+  - Realm/Headers (1.0.0)
+  - RealmSwift (1.0.0):
+    - Realm (= 1.0.0)
   - SDCycleScrollView (1.64):
     - SDWebImage (~> 3.7)
   - SDWebImage (3.7.6):
@@ -6,9 +15,20 @@ PODS:
   - SDWebImage/Core (3.7.6)
 
 DEPENDENCIES:
+  - Alamofire
+  - Kingfisher
+  - MJRefresh
+  - ObjectMapper (~> 1.3)
+  - RealmSwift
   - SDCycleScrollView (~> 1.64)
 
 SPEC CHECKSUMS:
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
+  Realm: e15cd8e7c11d3e576f628ba0b7cb855269b4991c
+  RealmSwift: 3229306d020d96f83b335f87a0dcbf2cef0e6a2b
   SDCycleScrollView: 806fedb9342ab03b58b84442f985517b42c7cbb7
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
 

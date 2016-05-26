@@ -82,3 +82,24 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Perfect/Alamofire.framework"
+  install_framework "Pods-Perfect/Kingfisher.framework"
+  install_framework "Pods-Perfect/MJRefresh.framework"
+  install_framework "Pods-Perfect/ObjectMapper.framework"
+  install_framework "Pods-Perfect/Realm.framework"
+  install_framework "Pods-Perfect/RealmSwift.framework"
+  install_framework "Pods-Perfect/SDCycleScrollView.framework"
+  install_framework "Pods-Perfect/SDWebImage.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Perfect/Alamofire.framework"
+  install_framework "Pods-Perfect/Kingfisher.framework"
+  install_framework "Pods-Perfect/MJRefresh.framework"
+  install_framework "Pods-Perfect/ObjectMapper.framework"
+  install_framework "Pods-Perfect/Realm.framework"
+  install_framework "Pods-Perfect/RealmSwift.framework"
+  install_framework "Pods-Perfect/SDCycleScrollView.framework"
+  install_framework "Pods-Perfect/SDWebImage.framework"
+fi

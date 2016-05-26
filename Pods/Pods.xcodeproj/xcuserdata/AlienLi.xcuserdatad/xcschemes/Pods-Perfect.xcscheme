@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F0691CA2793317A5B1071854'
+               BlueprintIdentifier = '6059D716DE369DB8254EF552'
                BlueprintName = 'Pods-Perfect'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-Perfect.a'>
+               BuildableName = 'Pods_Perfect.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

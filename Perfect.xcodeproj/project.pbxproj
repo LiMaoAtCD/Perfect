@@ -14,7 +14,7 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>634B6E0B19171CEE76317FCF</string>
+				<string>BF9E5424DB7E274389F4126E</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -82,19 +82,6 @@ fi
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>634B6E0B19171CEE76317FCF</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libPods-Perfect.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>95707E534D59FAC07DEA6703</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -157,6 +144,19 @@ fi
 </string>
 			<key>showEnvVarsInLog</key>
 			<string>0</string>
+		</dict>
+		<key>BF9E5424DB7E274389F4126E</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_Perfect.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>DA417B491CF5EDD100F61304</key>
 		<dict>
@@ -273,7 +273,7 @@ fi
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>F8F4CEC5A21047D699CF5F21</string>
+				<string>F417D554CD143DFAA2CFA261</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
@@ -1103,10 +1103,10 @@ fi
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>F8F4CEC5A21047D699CF5F21</key>
+		<key>F417D554CD143DFAA2CFA261</key>
 		<dict>
 			<key>fileRef</key>
-			<string>634B6E0B19171CEE76317FCF</string>
+			<string>BF9E5424DB7E274389F4126E</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
