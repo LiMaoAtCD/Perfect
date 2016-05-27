@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDCycleScrollView
 
 class ViewController: UIViewController {
 

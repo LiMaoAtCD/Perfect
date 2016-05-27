@@ -92,6 +92,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Perfect/RealmSwift.framework"
   install_framework "Pods-Perfect/SDCycleScrollView.framework"
   install_framework "Pods-Perfect/SDWebImage.framework"
+  install_framework "Pods-Perfect/SnapKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Perfect/Alamofire.framework"
@@ -102,4 +103,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Perfect/RealmSwift.framework"
   install_framework "Pods-Perfect/SDCycleScrollView.framework"
   install_framework "Pods-Perfect/SDWebImage.framework"
+  install_framework "Pods-Perfect/SnapKit.framework"
 fi

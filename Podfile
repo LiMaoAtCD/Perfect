@@ -10,6 +10,7 @@ target 'Perfect' do
     pod 'ObjectMapper', '~> 1.3'
     pod 'Kingfisher'
     pod 'MJRefresh'
+    pod 'SnapKit'
 end
 
 target 'PerfectTests' do
