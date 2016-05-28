@@ -8,56 +8,87 @@
 
 import UIKit
 
-class PeronalViewController: UIViewController {
+class PeronalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var items: [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        items = ["姓名","性别","生日","手机号"]
+
         
-        let upperView = UIView()
-        view.addSubview(upperView)
-        upperView.snp_makeConstraints { (make) in
-            make.left.right.top.equalTo(view)
-            make.height.equalTo(150)
+        let tableView = UITableView.init(frame: CGRectZero, style: UITableViewStyle.Grouped)
+        
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.snp_makeConstraints { (make) in
+            make.edges.equalTo(view)
+            
         }
+        tableView.registerClass(PersonalCell.self, forCellReuseIdentifier: "Personal")
+        tableView.scrollEnabled = false
+        
+        
+        let upperView = UIView.init(frame: CGRectMake(0, 0, Tools.width, 150))
         
         let avatarImageView = UIImageView()
         upperView.addSubview(avatarImageView)
+        avatarImageView.image = UIImage.init(named: "fourtag")
         avatarImageView.snp_makeConstraints { (make) in
             make.center.equalTo(upperView)
             make.height.width.equalTo(100)
         }
+        tableView.tableHeaderView = upperView
         
-        let centerView = UIView()
-        view.addSubview(centerView)
-        centerView.snp_makeConstraints { (make) in
-            make.top.equalTo(upperView.snp_bottom).offset(20)
-            make.left.right.equalTo(view)
-            make.height.equalTo(200)
+        
+        
+        let footerView = UIView.init(frame: CGRectMake(0, 0, Tools.width, 50))
+        
+        let saveButton = UIButton.init(type: .Custom)
+        saveButton.addTarget(self, action: #selector(self.save), forControlEvents: .TouchUpInside)
+        saveButton.setTitle("保存", forState: .Normal)
+        saveButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        saveButton.backgroundColor = UIColor.brownColor()
+        saveButton.layer.cornerRadius = 3.0
+        saveButton.layer.masksToBounds = true
+        footerView.addSubview(saveButton)
+        saveButton.snp_makeConstraints { (make) in
+            make.left.equalTo(14)
+            make.right.equalTo(-14)
+            make.center.equalTo(footerView)
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        tableView.tableFooterView = footerView
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Personal", forIndexPath: indexPath) as! PersonalCell
+        cell.title.text = items[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func save() {
+        
     }
     
 
