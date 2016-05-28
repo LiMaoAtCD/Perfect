@@ -22,6 +22,8 @@
 		870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38301CF988C100AFF1AF /* AddressViewController.swift */; };
 		870F38331CF988D500AFF1AF /* FellbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38321CF988D500AFF1AF /* FellbackViewController.swift */; };
 		870F38351CF988DD00AFF1AF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38341CF988DD00AFF1AF /* SettingViewController.swift */; };
+		870F38381CF98CF600AFF1AF /* SettingNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38371CF98CF600AFF1AF /* SettingNormalCell.swift */; };
+		870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38391CF98D0E00AFF1AF /* SettingPushCell.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
 		DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* Assets.xcassets */; };
@@ -72,6 +74,8 @@
 		870F38301CF988C100AFF1AF /* AddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
 		870F38321CF988D500AFF1AF /* FellbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FellbackViewController.swift; sourceTree = "<group>"; };
 		870F38341CF988DD00AFF1AF /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		870F38371CF98CF600AFF1AF /* SettingNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNormalCell.swift; sourceTree = "<group>"; };
+		870F38391CF98D0E00AFF1AF /* SettingPushCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPushCell.swift; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +164,7 @@
 		870F38171CF9332D00AFF1AF /* FourTh */ = {
 			isa = PBXGroup;
 			children = (
+				870F38361CF98B8300AFF1AF /* Setting */,
 				DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */,
 				870F38181CF9336400AFF1AF /* FourthTableViewController.swift */,
 				870F381C1CF9415200AFF1AF /* FourthTableViewCell.swift */,
@@ -167,7 +172,6 @@
 				870F382E1CF987C900AFF1AF /* PeronalViewController.swift */,
 				870F38301CF988C100AFF1AF /* AddressViewController.swift */,
 				870F38321CF988D500AFF1AF /* FellbackViewController.swift */,
-				870F38341CF988DD00AFF1AF /* SettingViewController.swift */,
 			);
 			name = FourTh;
 			sourceTree = "<group>";
@@ -189,6 +193,16 @@
 				870F382A1CF97AF600AFF1AF /* ProtocolViewController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		870F38361CF98B8300AFF1AF /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				870F38341CF988DD00AFF1AF /* SettingViewController.swift */,
+				870F38371CF98CF600AFF1AF /* SettingNormalCell.swift */,
+				870F38391CF98D0E00AFF1AF /* SettingPushCell.swift */,
+			);
+			name = Setting;
 			sourceTree = "<group>";
 		};
 		DA417B491CF5EDD100F61304 = {
@@ -445,6 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				870F38231CF9489400AFF1AF /* LoginViewController.swift in Sources */,
+				870F38381CF98CF600AFF1AF /* SettingNormalCell.swift in Sources */,
 				DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */,
 				870F38331CF988D500AFF1AF /* FellbackViewController.swift in Sources */,
 				870F38151CF92BCA00AFF1AF /* SecondInfoCell.swift in Sources */,
@@ -463,6 +478,7 @@
 				870F38271CF973D500AFF1AF /* ForgetViewController.swift in Sources */,
 				870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */,
 				870F38351CF988DD00AFF1AF /* SettingViewController.swift in Sources */,
+				870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */,
 				DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */,
 				DA57ED171CF7D57B00A8083A /* FirstTableViewController.swift in Sources */,
 				870F382F1CF987C900AFF1AF /* PeronalViewController.swift in Sources */,

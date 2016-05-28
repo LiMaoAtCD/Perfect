@@ -14,6 +14,45 @@ class PeronalViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let upperView = UIView()
+        view.addSubview(upperView)
+        upperView.snp_makeConstraints { (make) in
+            make.left.right.top.equalTo(view)
+            make.height.equalTo(150)
+        }
+        
+        let avatarImageView = UIImageView()
+        upperView.addSubview(avatarImageView)
+        avatarImageView.snp_makeConstraints { (make) in
+            make.center.equalTo(upperView)
+            make.height.width.equalTo(100)
+        }
+        
+        let centerView = UIView()
+        view.addSubview(centerView)
+        centerView.snp_makeConstraints { (make) in
+            make.top.equalTo(upperView.snp_bottom).offset(20)
+            make.left.right.equalTo(view)
+            make.height.equalTo(200)
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
