@@ -24,6 +24,11 @@ class FourthViewController: UIViewController {
         }
         
         
+        if !Utils.isLogin {
+            let nav = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
+            self.presentViewController(nav, animated: true, completion: nil)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
