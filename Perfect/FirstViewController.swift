@@ -68,7 +68,7 @@ class FirstViewController: UIViewController {
         leftTableViewController.view.snp_makeConstraints { (make) in
             make.top.equalTo(topSelectionView.snp_bottom)
             make.left.right.equalTo(view)
-            make.bottom.equalTo(view)
+            make.bottom.equalTo(self.snp_bottomLayoutGuideTop)
         }
 
         rightTableViewController = FirstTableViewController.viewController()
@@ -77,7 +77,7 @@ class FirstViewController: UIViewController {
         rightTableViewController.view.snp_makeConstraints { (make) in
             make.top.equalTo(topSelectionView.snp_bottom)
             make.left.right.equalTo(view)
-            make.bottom.equalTo(view)
+            make.bottom.equalTo(self.snp_bottomLayoutGuideTop)
         }
         rightTableViewController.view.hidden = true
       

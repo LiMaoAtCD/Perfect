@@ -10,10 +10,20 @@ import UIKit
 
 class FourthViewController: UIViewController {
 
+    var fourthTableViewController : FourthTableViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        fourthTableViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FourthTableViewController") as! FourthTableViewController
+        self.addChildViewController(fourthTableViewController)
+        view.addSubview(fourthTableViewController.view)
+        fourthTableViewController.view.snp_makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

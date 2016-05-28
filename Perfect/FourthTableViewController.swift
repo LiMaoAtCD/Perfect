@@ -1,5 +1,5 @@
 //
-//  SecondTableViewController.swift
+//  FourthTableViewController.swift
 //  Perfect
 //
 //  Created by AlienLi on 16/5/28.
@@ -8,12 +8,9 @@
 
 import UIKit
 
-class SecondTableViewController: UITableViewController, UISearchBarDelegate {
+class FourthTableViewController: UITableViewController {
 
     
-    var searchBar: UISearchBar!
-    
-    var items: [[String: String]]!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,26 +19,7 @@ class SecondTableViewController: UITableViewController, UISearchBarDelegate {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        items = [
-            ["title": "学习定制","content": "30秒学会定制","date":"2016-05-01"],
-            ["title": "系统公告","content": "新掌柜俗称指南","date":"2016-05-01"],
-            ["title": "促销通知","content": "各种优惠","date":"2016-05-03"]]
-        
-        self.tableView.registerClass(SecondInfoCell.self, forCellReuseIdentifier: SecondInfoCell.identifier)
-        
-        searchBar = UISearchBar.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 50))
-        searchBar.delegate = self
-        searchBar.placeholder = "搜索"
-        self.tableView.tableHeaderView = searchBar
-        self.tableView.tableFooterView = UIView()
-
-    }
-    
-    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-        
-        
-        
-        return false
+        self.tableView.registerClass(FourthTableViewCell.self, forCellReuseIdentifier: FourthTableViewCell.identifier)
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,26 +36,18 @@ class SecondTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return items.count
+        return 5
     }
 
-    
+    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(SecondInfoCell.identifier, forIndexPath: indexPath) as! SecondInfoCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
         // Configure the cell...
-        cell.titleLabel.text = items[indexPath.row]["title"]
-        cell.contentLabel.text = items[indexPath.row]["content"]
-        cell.dateLabel.text = items[indexPath.row]["date"]
-
 
         return cell
     }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60
-    }
- 
+    */
 
     /*
     // Override to support conditional editing of the table view.
