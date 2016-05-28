@@ -26,6 +26,12 @@ extension UIViewController {
     }
 }
 
+struct Tools {
+    static let width = UIScreen.mainScreen().bounds.size.width
+    static let height = UIScreen.mainScreen().bounds.size.height
+
+}
+
 class BaseViewController: UIViewController {
 
     override func viewDidLoad() {

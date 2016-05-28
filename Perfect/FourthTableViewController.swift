@@ -8,18 +8,80 @@
 
 import UIKit
 
+
+
 class FourthTableViewController: UITableViewController {
 
+    var items:[String]?
     
+    var header: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        items = ["全部订单", "收货地址","联系客服","设置"]
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.tableView.registerClass(FourthTableViewCell.self, forCellReuseIdentifier: FourthTableViewCell.identifier)
+        self.tableView.tableFooterView = UIView()
+        
+        
+        header = UIView.init(frame: CGRectMake(0, 0, Tools.width, 200))
+        header.backgroundColor = UIColor.brownColor()
+        
+        let avatarImageView = UIImageView()
+        avatarImageView.image = UIImage.init(named: "fourtag")
+        header.addSubview(avatarImageView)
+        
+        avatarImageView.snp_makeConstraints { (make) in
+            make.width.height.equalTo(50)
+            make.top.equalTo(20)
+            make.centerX.equalTo(header)
+        }
+        
+        let nickNameLabel = UILabel()
+        nickNameLabel.text = "超人"
+        nickNameLabel.textColor = UIColor.blackColor()
+        header.addSubview(nickNameLabel)
+        
+        nickNameLabel.snp_makeConstraints { (make) in
+            make.centerX.equalTo(avatarImageView)
+            make.top.equalTo(avatarImageView.snp_bottom).offset(10)
+        }
+        
+        let bottomBackGroundView = UIView()
+        header.addSubview(bottomBackGroundView)
+        bottomBackGroundView.snp_makeConstraints { (make) in
+            make.left.right.bottom.equalTo(header)
+            make.height.equalTo(35)
+        }
+        bottomBackGroundView.backgroundColor = UIColor.whiteColor()
+        
+        let needPaybutton = UIButton.init(type: .Custom)
+        
+        let needDeliverButton = UIButton.init(type: .Custom)
+
+        bottomBackGroundView.addSubview(needPaybutton)
+        bottomBackGroundView.addSubview(needDeliverButton)
+
+        needPaybutton.snp_makeConstraints { (make) in
+            make.left.height.top.equalTo(bottomBackGroundView)
+            make.right.equalTo(bottomBackGroundView.snp_centerX)
+        }
+        
+        needDeliverButton.snp_makeConstraints { (make) in
+            make.right.height.top.equalTo(bottomBackGroundView)
+            make.left.equalTo(bottomBackGroundView.snp_centerX)
+        }
+
+        needPaybutton.setTitle("待支付", forState: .Normal)
+        needPaybutton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+
+        needDeliverButton.setTitle("待收货", forState: .Normal)
+        needDeliverButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+
+        
+        
+        
+        
+        self.tableView.tableHeaderView = header
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,7 +98,7 @@ class FourthTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return items!.count
     }
 
     
@@ -44,6 +106,10 @@ class FourthTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(FourthTableViewCell.identifier, forIndexPath: indexPath) as! FourthTableViewCell
 
         // Configure the cell...
+        
+        cell.tagImageView.image = UIImage.init(named: "fourtag")
+        cell.title.text = items![indexPath.row]
+        
 
         return cell
     }
