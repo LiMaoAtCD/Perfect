@@ -111,6 +111,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		870F38111CF91A5500AFF1AF /* Second */ = {
+			isa = PBXGroup;
+			children = (
+				DA57ED0B1CF7D3F700A8083A /* SecondViewController.swift */,
+			);
+			name = Second;
+			sourceTree = "<group>";
+		};
 		DA417B491CF5EDD100F61304 = {
 			isa = PBXGroup;
 			children = (
@@ -136,10 +144,10 @@
 		DA417B541CF5EDD100F61304 /* Perfect */ = {
 			isa = PBXGroup;
 			children = (
+				870F38111CF91A5500AFF1AF /* Second */,
 				DA57ED151CF7D56500A8083A /* First */,
 				DA417B551CF5EDD100F61304 /* AppDelegate.swift */,
 				DA417B571CF5EDD100F61304 /* ViewController.swift */,
-				DA57ED0B1CF7D3F700A8083A /* SecondViewController.swift */,
 				DA57ED0D1CF7D3FD00A8083A /* ThirdViewController.swift */,
 				DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */,
 				DA417B591CF5EDD100F61304 /* Main.storyboard */,
