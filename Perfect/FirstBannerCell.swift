@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import SDCycleScrollView
+import SnapKit
 
-class FirstBannerCell: UITableViewCell {
+class FirstBannerCell: UITableViewCell, SDCycleScrollViewDelegate {
 
+    static let identifier = "FirstBannerCell"
+    var banner: SDCycleScrollView!
+    var titles: [String]?
+    var imageURLs: [String]?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +25,24 @@ class FirstBannerCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        banner = SDCycleScrollView.init(frame: self.bounds, delegate: self, placeholderImage: UIImage.init(named: "placeholder")!)
+        self.addSubview(banner)
+        
+        banner.pageControlAliment = SDCycleScrollViewPageContolAlimentRight
+        banner.currentPageDotColor = UIColor.whiteColor()
+        
+        banner.snp_makeConstraints { (make) in
+            make.edges.equalTo(self)
+        }
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
 }

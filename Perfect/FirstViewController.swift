@@ -16,7 +16,7 @@ class FirstViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        tableViewController = FirstTableViewController.viewController
+        tableViewController = FirstTableViewController.viewController()
         self.addChildViewController(tableViewController)
         view.addSubview(tableViewController.view)
         tableViewController.view.frame = view.bounds

@@ -9,20 +9,23 @@
 import UIKit
 import SDCycleScrollView
 class FirstTableViewController: UITableViewController {
+    
+    class func viewController() -> FirstTableViewController {
+        let viewController =  UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstTableViewController") as! FirstTableViewController
+        return viewController
+    }
 
-    static let viewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstTableViewController") as! FirstTableViewController
-    
-    
-    
+    let imageURLs = ["https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg", "https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
+                     "http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg"
+                     ]
+    let titles = ["1", "2", "3", "4"]
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        tableView.registerClass(FirstBannerCell.self, forCellReuseIdentifier: FirstBannerCell.identifier)
+        tableView.registerClass(FirstNormalCell.self, forCellReuseIdentifier: FirstNormalCell.identifier)
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,14 +51,38 @@ class FirstTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
         // Configure the cell...
-        
-
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(FirstBannerCell.identifier, forIndexPath: indexPath) as! FirstBannerCell
+            cell.banner.clickItemOperationBlock = {
+               [weak self] currentIndex in
+                self?.gotoDetail()
+            }
+            cell.banner.imageURLStringsGroup = imageURLs
+            cell.banner.titlesGroup = titles
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(FirstNormalCell.identifier, forIndexPath: indexPath) as! FirstNormalCell
+            
+            
+            return cell
+        }
     }
     
+    func gotoDetail() {
+        
+    }
+    
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 200
+        } else {
+            return 200
+            
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
