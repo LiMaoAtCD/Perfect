@@ -28,14 +28,16 @@ class FourthTableViewController: UITableViewController {
         
         let avatarImageView = UIImageView()
         avatarImageView.image = UIImage.init(named: "fourtag")
+        avatarImageView.userInteractionEnabled = true
         header.addSubview(avatarImageView)
         
         avatarImageView.snp_makeConstraints { (make) in
-            make.width.height.equalTo(50)
+            make.width.height.equalTo(100)
             make.top.equalTo(20)
             make.centerX.equalTo(header)
         }
-        
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.profile))
+        avatarImageView.addGestureRecognizer(tap)
         let nickNameLabel = UILabel()
         nickNameLabel.text = "超人"
         nickNameLabel.textColor = UIColor.blackColor()
@@ -79,9 +81,24 @@ class FourthTableViewController: UITableViewController {
 
         
         
-        
+        needPaybutton.addTarget(self, action: #selector(self.goToOrder), forControlEvents: .TouchUpInside)
+        needDeliverButton.addTarget(self, action: #selector(self.goToOrder), forControlEvents: .TouchUpInside)
         
         self.tableView.tableHeaderView = header
+    }
+    
+    func goToOrder() {
+        let orderVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OrderViewController") as! OrderViewController
+        
+        orderVC.hidesBottomBarWhenPushed = true
+
+        self.navigationController?.pushViewController(orderVC, animated: true)
+    }
+    
+    func profile() {
+        let profileVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PeronalViewController") as! PeronalViewController
+            profileVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -114,6 +131,26 @@ class FourthTableViewController: UITableViewController {
         return cell
     }
  
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 0 {
+            self.goToOrder()
+        } else if indexPath.row == 1 {
+            let addressVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AddressViewController") as! AddressViewController
+            addressVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(addressVC, animated: true)
+        } else if indexPath.row == 2 {
+            let fellbackVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FellbackViewController") as! FellbackViewController
+            fellbackVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(fellbackVC, animated: true)
+        } else if indexPath.row == 3 {
+            let settingVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SettingViewController") as! SettingViewController
+            settingVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(settingVC, animated: true)
+        } else {
+            
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
