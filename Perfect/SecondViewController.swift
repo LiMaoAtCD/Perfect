@@ -10,10 +10,20 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
+    var secondTableViewController: SecondTableViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        secondTableViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SecondTableViewController") as! SecondTableViewController
+        
+        self.addChildViewController(secondTableViewController)
+        
+        self.view.addSubview(secondTableViewController.view)
+        secondTableViewController.view.snp_makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
     }
 
     override func didReceiveMemoryWarning() {

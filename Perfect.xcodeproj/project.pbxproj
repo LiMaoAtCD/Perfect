@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38121CF9296800AFF1AF /* SecondTableViewController.swift */; };
+		870F38151CF92BCA00AFF1AF /* SecondInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38141CF92BCA00AFF1AF /* SecondInfoCell.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B581CF5EDD100F61304 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B571CF5EDD100F61304 /* ViewController.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		41057C964BB9260F6FA956DA /* Pods-Perfect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.release.xcconfig"; sourceTree = "<group>"; };
+		870F38121CF9296800AFF1AF /* SecondTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTableViewController.swift; sourceTree = "<group>"; };
+		870F38141CF92BCA00AFF1AF /* SecondInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondInfoCell.swift; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				DA57ED0B1CF7D3F700A8083A /* SecondViewController.swift */,
+				870F38121CF9296800AFF1AF /* SecondTableViewController.swift */,
+				870F38141CF92BCA00AFF1AF /* SecondInfoCell.swift */,
 			);
 			name = Second;
 			sourceTree = "<group>";
@@ -371,12 +377,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */,
+				870F38151CF92BCA00AFF1AF /* SecondInfoCell.swift in Sources */,
 				DA57ED0C1CF7D3F700A8083A /* SecondViewController.swift in Sources */,
 				DA57ED0A1CF7D3EF00A8083A /* FirstViewController.swift in Sources */,
 				DA57ED1B1CF7D6EE00A8083A /* FirstNormalCell.swift in Sources */,
 				DA57ED0E1CF7D3FD00A8083A /* ThirdViewController.swift in Sources */,
 				DA417B581CF5EDD100F61304 /* ViewController.swift in Sources */,
 				DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */,
+				870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */,
 				DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */,
 				DA57ED171CF7D57B00A8083A /* FirstTableViewController.swift in Sources */,
 			);
