@@ -15,11 +15,9 @@ class FirstTableViewController: UITableViewController {
         let viewController =  UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstTableViewController") as! FirstTableViewController
         return viewController
     }
-
     
     var imageURLs: [String]?
     var titles: [String]?
-    
     var itemImageURLs: [String]?
     
     override func viewDidLoad() {
@@ -27,8 +25,6 @@ class FirstTableViewController: UITableViewController {
 
         tableView.registerClass(FirstBannerCell.self, forCellReuseIdentifier: FirstBannerCell.identifier)
         tableView.registerClass(FirstNormalCell.self, forCellReuseIdentifier: FirstNormalCell.identifier)
-
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,7 +56,7 @@ class FirstTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier(FirstBannerCell.identifier, forIndexPath: indexPath) as! FirstBannerCell
             cell.banner.clickItemOperationBlock = {
                [weak self] currentIndex in
-                self?.gotoDetail()
+                self?.gotoDetail(currentIndex)
             }
             cell.banner.imageURLStringsGroup = imageURLs
             return cell
@@ -71,10 +67,20 @@ class FirstTableViewController: UITableViewController {
         }
     }
     
-    func gotoDetail() {
-        
+    func gotoDetail(index: Int) {
+        let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
+        detail.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(detail, animated: true)
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section != 0 {
+            
+            let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
+            detail.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(detail, animated: true)
+        }
+    }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {

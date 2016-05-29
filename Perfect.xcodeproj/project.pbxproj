@@ -25,9 +25,13 @@
 		870F38381CF98CF600AFF1AF /* SettingNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38371CF98CF600AFF1AF /* SettingNormalCell.swift */; };
 		870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38391CF98D0E00AFF1AF /* SettingPushCell.swift */; };
 		870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */; };
+		8763BC131CF9DC7700FAB8D7 /* ThirdGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */; };
+		8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */; };
+		8763BC181CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC171CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift */; };
+		8763BC1A1CFB379C00FAB8D7 /* FirstGoodsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC191CFB379C00FAB8D7 /* FirstGoodsDetailViewController.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
-		DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* Assets.xcassets */; };
+		DA417B5D1CF5EDD100F61304 /*  .xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /*  .xcassets */; };
 		DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5E1CF5EDD100F61304 /* LaunchScreen.storyboard */; };
 		DA417B6B1CF5EDD100F61304 /* PerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B6A1CF5EDD100F61304 /* PerfectTests.swift */; };
 		DA417B761CF5EDD100F61304 /* PerfectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B751CF5EDD100F61304 /* PerfectUITests.swift */; };
@@ -78,12 +82,16 @@
 		870F38371CF98CF600AFF1AF /* SettingNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNormalCell.swift; sourceTree = "<group>"; };
 		870F38391CF98D0E00AFF1AF /* SettingPushCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPushCell.swift; sourceTree = "<group>"; };
 		870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCell.swift; sourceTree = "<group>"; };
+		8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdGoodsCell.swift; sourceTree = "<group>"; };
+		8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDetailViewController.swift; sourceTree = "<group>"; };
+		8763BC171CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDetailCollectionCell.swift; sourceTree = "<group>"; };
+		8763BC191CFB379C00FAB8D7 /* FirstGoodsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstGoodsDetailViewController.swift; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B551CF5EDD100F61304 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA417B5A1CF5EDD100F61304 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DA417B5C1CF5EDD100F61304 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DA417B5C1CF5EDD100F61304 /*  .xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = " .xcassets"; sourceTree = "<group>"; };
 		DA417B5F1CF5EDD100F61304 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA417B611CF5EDD100F61304 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA417B661CF5EDD100F61304 /* PerfectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerfectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				DA57ED0D1CF7D3FD00A8083A /* ThirdViewController.swift */,
+				8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */,
 			);
 			name = Third;
 			sourceTree = "<group>";
@@ -216,6 +225,16 @@
 			name = Personal;
 			sourceTree = "<group>";
 		};
+		8763BC141CFB32A700FAB8D7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */,
+				8763BC171CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift */,
+				8763BC191CFB379C00FAB8D7 /* FirstGoodsDetailViewController.swift */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
 		DA417B491CF5EDD100F61304 = {
 			isa = PBXGroup;
 			children = (
@@ -245,7 +264,7 @@
 				870F381E1CF944EA00AFF1AF /* Utils */,
 				DA417B551CF5EDD100F61304 /* AppDelegate.swift */,
 				DA417B591CF5EDD100F61304 /* Main.storyboard */,
-				DA417B5C1CF5EDD100F61304 /* Assets.xcassets */,
+				DA417B5C1CF5EDD100F61304 /*  .xcassets */,
 				DA417B5E1CF5EDD100F61304 /* LaunchScreen.storyboard */,
 				DA417B611CF5EDD100F61304 /* Info.plist */,
 				DA57ED111CF7D53F00A8083A /* Perfect-Bridging-Header.h */,
@@ -279,6 +298,7 @@
 		DA57ED151CF7D56500A8083A /* First */ = {
 			isa = PBXGroup;
 			children = (
+				8763BC141CFB32A700FAB8D7 /* Detail */,
 				DA57ED091CF7D3EF00A8083A /* FirstViewController.swift */,
 				DA57ED161CF7D57B00A8083A /* FirstTableViewController.swift */,
 				DA57ED181CF7D6DC00A8083A /* FirstBannerCell.swift */,
@@ -395,7 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
-				DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */,
+				DA417B5D1CF5EDD100F61304 /*  .xcassets in Resources */,
 				DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +492,7 @@
 				870F38231CF9489400AFF1AF /* LoginViewController.swift in Sources */,
 				870F38381CF98CF600AFF1AF /* SettingNormalCell.swift in Sources */,
 				DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */,
+				8763BC1A1CFB379C00FAB8D7 /* FirstGoodsDetailViewController.swift in Sources */,
 				870F38331CF988D500AFF1AF /* FellbackViewController.swift in Sources */,
 				870F38151CF92BCA00AFF1AF /* SecondInfoCell.swift in Sources */,
 				870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */,
@@ -481,7 +502,9 @@
 				870F38291CF9757C00AFF1AF /* BaseViewController.swift in Sources */,
 				870F38201CF9450500AFF1AF /* Utils.swift in Sources */,
 				DA57ED1B1CF7D6EE00A8083A /* FirstNormalCell.swift in Sources */,
+				8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */,
 				870F382D1CF9876100AFF1AF /* OrderViewController.swift in Sources */,
+				8763BC131CF9DC7700FAB8D7 /* ThirdGoodsCell.swift in Sources */,
 				870F382B1CF97AF600AFF1AF /* ProtocolViewController.swift in Sources */,
 				870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */,
 				870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */,
@@ -489,6 +512,7 @@
 				DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */,
 				870F38271CF973D500AFF1AF /* ForgetViewController.swift in Sources */,
 				870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */,
+				8763BC181CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift in Sources */,
 				870F38351CF988DD00AFF1AF /* SettingViewController.swift in Sources */,
 				870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */,
 				DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */,
