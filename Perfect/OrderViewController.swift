@@ -8,12 +8,90 @@
 
 import UIKit
 
-class OrderViewController: UIViewController {
+class OrderViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
+    var items: [String]!
+    var titleButton: UIButton!
+    var titleView: UIView!
+    
+    var expanded: Bool = false
+    
+    var titleList: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        items = ["全部订单","未完成","待付款","已关闭","待收货","已完成"]
+        
+        
+        titleView = UIView.init(frame: CGRectMake(0, 0, 200, 40))
+        self.navigationItem.titleView = titleView
+        
+        titleButton = UIButton.init(type: .Custom)
+        titleButton.addTarget(self, action: #selector(self.searchType), forControlEvents: .TouchUpInside)
+        titleView.addSubview(titleButton)
+        
+        titleButton.snp_makeConstraints { (make) in
+            make.center.equalTo(titleView)
+            make.width.equalTo(80)
+            make.height.equalTo(35)
+        }
+        
+        titleList = UITableView.init(frame: view.bounds, style: .Plain)
+        view.addSubview(titleList)
+        titleList.snp_makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+        titleList.delegate = self
+        titleList.dataSource = self
+        titleList.tableFooterView = UIView()
+        
+        titleList.registerClass(OrderTypeCell.self, forCellReuseIdentifier: "OrderTypeCell")
+        
+        searchType()
+    }
+    
+    
+    
+    func searchType() {
+        if expanded {
+            titleList.snp_remakeConstraints { (make) in
+                make.top.right.left.equalTo(view)
+                make.height.equalTo(44 * items.count)
+            }
+        } else  {
+            titleList.snp_remakeConstraints { (make) in
+                make.top.right.left.equalTo(view)
+                make.height.equalTo(0)
+            }
+        }
+        expanded = !expanded
+
+    }
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView === titleList {
+            return items.count
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if tableView === titleList {
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("OrderTypeCell", forIndexPath: indexPath)
+            cell.textLabel?.text = items[indexPath.row]
+            return cell
+            
+        } else {
+            return UITableViewCell()
+        }
     }
 
     override func didReceiveMemoryWarning() {

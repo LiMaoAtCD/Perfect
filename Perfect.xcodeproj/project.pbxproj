@@ -32,6 +32,11 @@
 		8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */; };
 		8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */; };
 		8763BC261CFC7E9B00FAB8D7 /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */; };
+		8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */; };
+		8763BC2E1CFC853E00FAB8D7 /* AddressAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC2C1CFC853E00FAB8D7 /* AddressAddViewController.swift */; };
+		8763BC2F1CFC853E00FAB8D7 /* AddressAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC2D1CFC853E00FAB8D7 /* AddressAddViewController.xib */; };
+		8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */; };
+		8763BC341CFC91D100FAB8D7 /* OrderTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
 		DA417B5D1CF5EDD100F61304 /* image .xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* image .xcassets */; };
@@ -95,6 +100,11 @@
 		8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideViewController.xib; sourceTree = "<group>"; };
 		8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
+		8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
+		8763BC2C1CFC853E00FAB8D7 /* AddressAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressAddViewController.swift; sourceTree = "<group>"; };
+		8763BC2D1CFC853E00FAB8D7 /* AddressAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressAddViewController.xib; sourceTree = "<group>"; };
+		8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTypeCell.swift; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,13 +199,13 @@
 		870F38171CF9332D00AFF1AF /* FourTh */ = {
 			isa = PBXGroup;
 			children = (
+				8763BC301CFC890700FAB8D7 /* Order */,
+				8763BC271CFC82A900FAB8D7 /* address */,
 				870F383B1CF9CC6000AFF1AF /* Personal */,
 				870F38361CF98B8300AFF1AF /* Setting */,
 				DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */,
 				870F38181CF9336400AFF1AF /* FourthTableViewController.swift */,
 				870F381C1CF9415200AFF1AF /* FourthTableViewCell.swift */,
-				870F382C1CF9876100AFF1AF /* OrderViewController.swift */,
-				870F38301CF988C100AFF1AF /* AddressViewController.swift */,
 				870F38321CF988D500AFF1AF /* FellbackViewController.swift */,
 			);
 			name = FourTh;
@@ -265,6 +275,27 @@
 				8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */,
 			);
 			name = GuideViewController;
+			sourceTree = "<group>";
+		};
+		8763BC271CFC82A900FAB8D7 /* address */ = {
+			isa = PBXGroup;
+			children = (
+				870F38301CF988C100AFF1AF /* AddressViewController.swift */,
+				8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */,
+				8763BC2C1CFC853E00FAB8D7 /* AddressAddViewController.swift */,
+				8763BC2D1CFC853E00FAB8D7 /* AddressAddViewController.xib */,
+			);
+			name = address;
+			sourceTree = "<group>";
+		};
+		8763BC301CFC890700FAB8D7 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				870F382C1CF9876100AFF1AF /* OrderViewController.swift */,
+				8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */,
+				8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */,
+			);
+			name = Order;
 			sourceTree = "<group>";
 		};
 		DA417B491CF5EDD100F61304 = {
@@ -466,6 +497,7 @@
 			files = (
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */,
+				8763BC2F1CFC853E00FAB8D7 /* AddressAddViewController.xib in Resources */,
 				DA417B5D1CF5EDD100F61304 /* image .xcassets in Resources */,
 				DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */,
 			);
@@ -546,7 +578,9 @@
 				870F38331CF988D500AFF1AF /* FellbackViewController.swift in Sources */,
 				870F38151CF92BCA00AFF1AF /* SecondInfoCell.swift in Sources */,
 				870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */,
+				8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */,
 				DA57ED0C1CF7D3F700A8083A /* SecondViewController.swift in Sources */,
+				8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */,
 				DA57ED0A1CF7D3EF00A8083A /* FirstViewController.swift in Sources */,
 				870F38251CF973CC00AFF1AF /* RegisterViewController.swift in Sources */,
 				870F38291CF9757C00AFF1AF /* BaseViewController.swift in Sources */,
@@ -561,7 +595,9 @@
 				DA57ED401CFC3A6200A8083A /* SecondDetailViewController.swift in Sources */,
 				870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */,
 				DA57ED3D1CFC2A5300A8083A /* GoodsScanViewController.swift in Sources */,
+				8763BC2E1CFC853E00FAB8D7 /* AddressAddViewController.swift in Sources */,
 				870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */,
+				8763BC341CFC91D100FAB8D7 /* OrderTypeCell.swift in Sources */,
 				8763BC261CFC7E9B00FAB8D7 /* GuideTableViewCell.swift in Sources */,
 				DA57ED0E1CF7D3FD00A8083A /* ThirdViewController.swift in Sources */,
 				DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */,
