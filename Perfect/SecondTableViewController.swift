@@ -34,6 +34,9 @@ class SecondTableViewController: UITableViewController, UISearchBarDelegate {
         searchBar.placeholder = "搜索"
         self.tableView.tableHeaderView = searchBar
         self.tableView.tableFooterView = UIView()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 60
+
 
     }
     
@@ -74,9 +77,6 @@ class SecondTableViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60
-    }
  
 
     /*

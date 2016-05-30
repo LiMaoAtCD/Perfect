@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xdm-L1-QGS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xdm-L1-QGS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -416,10 +416,10 @@
             </objects>
             <point key="canvasLocation" x="-480" y="6764"/>
         </scene>
-        <!--First Goods Detail View Controller-->
+        <!--Goods Scan View Controller-->
         <scene sceneID="Onr-XQ-HK3">
             <objects>
-                <viewController storyboardIdentifier="FirstGoodsDetailViewController" id="ZFi-Jx-l6Y" customClass="FirstGoodsDetailViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GoodsScanViewController" id="ZFi-Jx-l6Y" customClass="GoodsScanViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xO5-lU-Hln"/>
                         <viewControllerLayoutGuide type="bottom" id="n78-WD-SeT"/>

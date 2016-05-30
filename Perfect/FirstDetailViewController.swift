@@ -58,7 +58,7 @@ class FirstDetailViewController: UIViewController, UICollectionViewDelegate, UIC
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstGoodsDetailViewController") as! FirstGoodsDetailViewController
+        let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodsScanViewController") as! GoodsScanViewController
         detail.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(detail, animated: true)
 

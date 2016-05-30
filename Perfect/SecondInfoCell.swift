@@ -33,17 +33,23 @@ class SecondInfoCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         typeImageView = UIImageView()
+        typeImageView.image = UIImage.init(named: "perfect")
         self.addSubview(typeImageView)
         titleLabel = UILabel()
+        titleLabel.font = UIFont.systemFontOfSize(14.0)
         contentLabel = UILabel()
+        contentLabel.font = UIFont.systemFontOfSize(12.0)
+        contentLabel.textColor = UIColor.lightGrayColor()
         dateLabel = UILabel()
+        dateLabel.textColor = UIColor.lightGrayColor()
+        dateLabel.font = UIFont.systemFontOfSize(12.0)
         
         self.addSubview(titleLabel)
         self.addSubview(contentLabel)
         self.addSubview(dateLabel)
         
         typeImageView.snp_makeConstraints { (make) in
-            make.width.height.equalTo(40)
+            make.width.height.equalTo(30)
             make.left.equalTo(10)
             make.centerY.equalTo(self)
         }
@@ -56,7 +62,7 @@ class SecondInfoCell: UITableViewCell {
         contentLabel.snp_makeConstraints { (make) in
             make.left.equalTo(titleLabel)
             make.top.equalTo(titleLabel.snp_bottom).offset(8)
-            make.bottom.equalTo(30)
+            make.bottom.equalTo(self).offset(-8)
         }
         
         dateLabel.snp_makeConstraints { (make) in

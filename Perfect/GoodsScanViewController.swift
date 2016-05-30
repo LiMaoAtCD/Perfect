@@ -1,21 +1,20 @@
 //
-//  FirstGoodsDetailViewController.swift
+//  GoodsScanViewController.swift
 //  Perfect
 //
-//  Created by AlienLi on 16/5/29.
+//  Created by limao on 16/5/30.
 //  Copyright © 2016年 limao. All rights reserved.
 //
 
 import UIKit
 
-class FirstGoodsDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class GoodsScanViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var compositionButton: UIButton!
     var bottleButton: UIButton!
     var boxButton: UIButton!
     
     var tableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,7 +44,7 @@ class FirstGoodsDetailViewController: UIViewController, UITableViewDelegate, UIT
         bottleButton = UIButton()
         bottleButton.setTitle("酒瓶", forState: .Normal)
         bottleButton.backgroundColor = UIColor.brownColor()
-
+        
         header.addSubview(bottleButton)
         
         boxButton = UIButton()
@@ -73,6 +72,7 @@ class FirstGoodsDetailViewController: UIViewController, UITableViewDelegate, UIT
             make.centerY.equalTo(view.snp_top).offset(50)
             make.centerX.equalTo(view.snp_centerX).multipliedBy(1.5)
         }
+
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
