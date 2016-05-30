@@ -16,15 +16,18 @@ class SecondDetailViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        items = [""]
+
         
         tableView = UITableView.init(frame: view.bounds, style: .Plain)
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(SecondDetailTableViewCell.self, forCellReuseIdentifier: "SecondDetailTableViewCell")
-        
-        items = [""]
+        tableView.estimatedRowHeight = 200
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .None
         
     }
     
@@ -33,7 +36,7 @@ class SecondDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return 10
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
