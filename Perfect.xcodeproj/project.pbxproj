@@ -28,6 +28,10 @@
 		8763BC131CF9DC7700FAB8D7 /* ThirdGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */; };
 		8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */; };
 		8763BC181CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC171CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift */; };
+		8763BC1F1CFC770A00FAB8D7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC1E1CFC770A00FAB8D7 /* SearchViewController.swift */; };
+		8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */; };
+		8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */; };
+		8763BC261CFC7E9B00FAB8D7 /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
 		DA417B5D1CF5EDD100F61304 /* image .xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* image .xcassets */; };
@@ -87,6 +91,10 @@
 		8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdGoodsCell.swift; sourceTree = "<group>"; };
 		8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDetailViewController.swift; sourceTree = "<group>"; };
 		8763BC171CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDetailCollectionCell.swift; sourceTree = "<group>"; };
+		8763BC1E1CFC770A00FAB8D7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideViewController.xib; sourceTree = "<group>"; };
+		8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +168,7 @@
 		870F38111CF91A5500AFF1AF /* Second */ = {
 			isa = PBXGroup;
 			children = (
+				8763BC1B1CFC76CB00FAB8D7 /* search */,
 				DA57ED3E1CFC3A5000A8083A /* Detail */,
 				DA57ED0B1CF7D3F700A8083A /* SecondViewController.swift */,
 				870F38121CF9296800AFF1AF /* SecondTableViewController.swift */,
@@ -238,6 +247,24 @@
 				8763BC171CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift */,
 			);
 			name = Detail;
+			sourceTree = "<group>";
+		};
+		8763BC1B1CFC76CB00FAB8D7 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				8763BC1E1CFC770A00FAB8D7 /* SearchViewController.swift */,
+			);
+			name = search;
+			sourceTree = "<group>";
+		};
+		8763BC201CFC7D4D00FAB8D7 /* GuideViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */,
+				8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */,
+				8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */,
+			);
+			name = GuideViewController;
 			sourceTree = "<group>";
 		};
 		DA417B491CF5EDD100F61304 = {
@@ -323,6 +350,7 @@
 		DA57ED3E1CFC3A5000A8083A /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				8763BC201CFC7D4D00FAB8D7 /* GuideViewController */,
 				DA57ED3F1CFC3A6200A8083A /* SecondDetailViewController.swift */,
 				DA57ED411CFC3F0600A8083A /* SecondDetailTableViewCell.swift */,
 			);
@@ -437,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
+				8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */,
 				DA417B5D1CF5EDD100F61304 /* image .xcassets in Resources */,
 				DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */,
 			);
@@ -523,6 +552,7 @@
 				870F38291CF9757C00AFF1AF /* BaseViewController.swift in Sources */,
 				870F38201CF9450500AFF1AF /* Utils.swift in Sources */,
 				DA57ED1B1CF7D6EE00A8083A /* FirstNormalCell.swift in Sources */,
+				8763BC1F1CFC770A00FAB8D7 /* SearchViewController.swift in Sources */,
 				DA57ED421CFC3F0600A8083A /* SecondDetailTableViewCell.swift in Sources */,
 				8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */,
 				870F382D1CF9876100AFF1AF /* OrderViewController.swift in Sources */,
@@ -532,11 +562,13 @@
 				870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */,
 				DA57ED3D1CFC2A5300A8083A /* GoodsScanViewController.swift in Sources */,
 				870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */,
+				8763BC261CFC7E9B00FAB8D7 /* GuideTableViewCell.swift in Sources */,
 				DA57ED0E1CF7D3FD00A8083A /* ThirdViewController.swift in Sources */,
 				DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */,
 				870F38271CF973D500AFF1AF /* ForgetViewController.swift in Sources */,
 				870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */,
 				8763BC181CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift in Sources */,
+				8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */,
 				870F38351CF988DD00AFF1AF /* SettingViewController.swift in Sources */,
 				870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */,
 				DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */,

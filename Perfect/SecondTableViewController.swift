@@ -42,6 +42,10 @@ class SecondTableViewController: UITableViewController, UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
         
+        let search = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
+        search.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(search, animated: false)
+        
         
         
         return false

@@ -1,55 +1,51 @@
 //
-//  SecondDetailViewController.swift
+//  GuideViewController.swift
 //  Perfect
 //
-//  Created by limao on 16/5/30.
+//  Created by AlienLi on 16/5/30.
 //  Copyright © 2016年 limao. All rights reserved.
 //
 
 import UIKit
 
-class SecondDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class GuideViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
+    
     var tableView: UITableView!
     var items: [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        items = [""]
-
         
         tableView = UITableView.init(frame: view.bounds, style: .Plain)
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerClass(SecondDetailTableViewCell.self, forCellReuseIdentifier: "SecondDetailTableViewCell")
+        tableView.registerClass(GuideTableViewCell.self, forCellReuseIdentifier: "GuideTableViewCell")
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .None
-        
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        tableView.snp_makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 100
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("GuideTableViewCell", forIndexPath: indexPath) as! GuideTableViewCell
+        return cell
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 150
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SecondDetailTableViewCell", forIndexPath: indexPath) as! SecondDetailTableViewCell
-        
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let guide = GuideViewController.init(nibName: "GuideViewController", bundle: nil)
-        self.navigationController?.pushViewController(guide, animated: true)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
