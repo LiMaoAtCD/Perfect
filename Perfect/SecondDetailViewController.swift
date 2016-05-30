@@ -8,14 +8,40 @@
 
 import UIKit
 
-class SecondDetailViewController: UIViewController {
+class SecondDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var tableView: UITableView!
+    var items: [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
+        tableView = UITableView.init(frame: view.bounds, style: .Plain)
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.registerClass(SecondDetailTableViewCell.self, forCellReuseIdentifier: "SecondDetailTableViewCell")
+        
+        items = [""]
+        
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
     }
 
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("SecondDetailTableViewCell", forIndexPath: indexPath) as! SecondDetailTableViewCell
+        
+        return cell
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

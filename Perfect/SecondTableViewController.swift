@@ -77,6 +77,12 @@ class SecondTableViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SecondDetailViewController") as! SecondDetailViewController
+        detail.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(detail, animated: true)
+    }
+    
  
 
     /*
