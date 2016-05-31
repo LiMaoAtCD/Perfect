@@ -37,6 +37,7 @@
 		8763BC2F1CFC853E00FAB8D7 /* AddressAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC2D1CFC853E00FAB8D7 /* AddressAddViewController.xib */; };
 		8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */; };
 		8763BC341CFC91D100FAB8D7 /* OrderTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */; };
+		8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
 		DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* Assets.xcassets */; };
@@ -108,6 +109,7 @@
 		8763BC2D1CFC853E00FAB8D7 /* AddressAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressAddViewController.xib; sourceTree = "<group>"; };
 		8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTypeCell.swift; sourceTree = "<group>"; };
+		8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderGoodsCell.swift; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -305,6 +307,7 @@
 				870F382C1CF9876100AFF1AF /* OrderViewController.swift */,
 				8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */,
 				8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */,
+				8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */,
 			);
 			name = Order;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				870F38151CF92BCA00AFF1AF /* SecondInfoCell.swift in Sources */,
 				870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */,
 				8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */,
+				8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */,
 				DA57ED0C1CF7D3F700A8083A /* SecondViewController.swift in Sources */,
 				8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */,
 				DA57ED0A1CF7D3EF00A8083A /* FirstViewController.swift in Sources */,
@@ -777,6 +781,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Perfect/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.cover.Perfect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -792,6 +797,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Perfect/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.cover.Perfect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
