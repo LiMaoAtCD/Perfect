@@ -65,15 +65,13 @@ class OrderViewController: UIViewController,UITableViewDelegate, UITableViewData
         searchType()
     }
     
-    
-    
     func searchType() {
         if expanded {
             titleList.snp_remakeConstraints { (make) in
                 make.top.right.left.equalTo(view)
                 make.height.equalTo(44 * items.count)
             }
-        } else  {
+        } else {
             titleList.snp_remakeConstraints { (make) in
                 make.top.right.left.equalTo(view)
                 make.height.equalTo(0)
