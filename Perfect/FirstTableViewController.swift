@@ -62,7 +62,8 @@ class FirstTableViewController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(FirstNormalCell.identifier, forIndexPath: indexPath) as! FirstNormalCell
-            cell.contentImageView?.kf_setImageWithURL(NSURL.init(string: itemImageURLs![indexPath.row])!, placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+//            cell.contentImageView?.kf_setImageWithURL(NSURL.init(string: itemImageURLs![indexPath.row])!, placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+            cell.contentImageView.image = UIImage.init(named: "banner_goods")
             return cell
         }
     }
@@ -87,7 +88,6 @@ class FirstTableViewController: UITableViewController {
             return 200
         } else {
             return 200
-            
         }
     }
 

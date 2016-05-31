@@ -12,7 +12,7 @@ class Guide2ViewController: UIViewController {
 
     var scrollView: UIScrollView!
     
-    let ImageHeight = 100
+    let ImageHeight = 400
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,7 +42,7 @@ class Guide2ViewController: UIViewController {
                 })
             }
             
-            contentImageView.image = UIImage.init(named: "h8")
+            contentImageView.image = UIImage.init(named: "introduce")
         }
         
     }

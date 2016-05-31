@@ -39,7 +39,7 @@
 		8763BC341CFC91D100FAB8D7 /* OrderTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
-		DA417B5D1CF5EDD100F61304 /* image .xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* image .xcassets */; };
+		DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* Assets.xcassets */; };
 		DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5E1CF5EDD100F61304 /* LaunchScreen.storyboard */; };
 		DA417B6B1CF5EDD100F61304 /* PerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B6A1CF5EDD100F61304 /* PerfectTests.swift */; };
 		DA417B761CF5EDD100F61304 /* PerfectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B751CF5EDD100F61304 /* PerfectUITests.swift */; };
@@ -113,7 +113,7 @@
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B551CF5EDD100F61304 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA417B5A1CF5EDD100F61304 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DA417B5C1CF5EDD100F61304 /* image .xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "image .xcassets"; sourceTree = "<group>"; };
+		DA417B5C1CF5EDD100F61304 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA417B5F1CF5EDD100F61304 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA417B611CF5EDD100F61304 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA417B661CF5EDD100F61304 /* PerfectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerfectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -339,7 +339,7 @@
 				870F381E1CF944EA00AFF1AF /* Utils */,
 				DA417B551CF5EDD100F61304 /* AppDelegate.swift */,
 				DA417B591CF5EDD100F61304 /* Main.storyboard */,
-				DA417B5C1CF5EDD100F61304 /* image .xcassets */,
+				DA417B5C1CF5EDD100F61304 /* Assets.xcassets */,
 				DA417B5E1CF5EDD100F61304 /* LaunchScreen.storyboard */,
 				DA417B611CF5EDD100F61304 /* Info.plist */,
 				DA57ED111CF7D53F00A8083A /* Perfect-Bridging-Header.h */,
@@ -518,7 +518,7 @@
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */,
 				8763BC2F1CFC853E00FAB8D7 /* AddressAddViewController.xib in Resources */,
-				DA417B5D1CF5EDD100F61304 /* image .xcassets in Resources */,
+				DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */,
 				DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
