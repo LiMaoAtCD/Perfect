@@ -46,7 +46,7 @@ class SecondDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let guide = GuideViewController.init(nibName: "GuideViewController", bundle: nil)
+        let guide = Guide2ViewController.init(nibName: "Guide2ViewController", bundle: nil)
         self.navigationController?.pushViewController(guide, animated: true)
     }
     

@@ -8,79 +8,107 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate, UISearchControllerDelegate,UISearchResultsUpdating {
+class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate {
 
-    var searchController: UISearchController!
+    var searchBar: UISearchBar!
     var tableView: UITableView!
+    var results: [String]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.hidesBackButton = true
+        
+        searchBar = UISearchBar.init()
+        searchBar.showsCancelButton = true
+        self.navigationItem.titleView = searchBar
+        searchBar.delegate = self
+        
+        searchBar.setCancelButtonTitle("取消")
+        searchBar.tintColor = UIColor.greenColor()
+        let searchField = searchBar.valueForKey("searchField") as! UITextField
+        searchField.tintColor = UIColor.redColor()
         
         
-        searchController = UISearchController.init(searchResultsController: nil)
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchResultsUpdater = self
-        searchController.delegate = self
-        searchController.searchBar.delegate = self
-        searchController.searchBar.sizeToFit()
-        self.definesPresentationContext = true
-        
-        tableView = UITableView.init(frame: view.bounds, style: .Plain)
+        tableView = UITableView.init(frame: view.bounds)
         view.addSubview(tableView)
-        tableView.tableFooterView = UIView()
-        tableView.tableHeaderView = searchController.searchBar
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        tableView.registerClass(ResultCell.self, forCellReuseIdentifier: "Cell")
         
+        
+        results = [String]()
+    }
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        results.append(searchBar.text!)
+        self.tableView.reloadData()
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.searchController.active = true
-        self.searchController.searchBar.becomeFirstResponder()
-    }
-    
-//    - (void)initializeSearchController {
-//    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-//    self.searchController.searchResultsUpdater = self;
-//    self.searchController.dimsBackgroundDuringPresentation = NO;
-//    self.searchController.delegate = self;
-//    self.searchController.searchBar.delegate = self;
-//    [self.searchController.searchBar sizeToFit];
-//    
-//    [self.tableView setTableHeaderView:self.searchController.searchBar];
-//    self.definesPresentationContext = YES;
-//    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return results.count
     }
-    */
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        cell.textLabel?.text = results[indexPath.row]
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SecondDetailViewController") as! SecondDetailViewController
+        detail.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(detail, animated: true)
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        searchBar.text = ""
+        searchBar.becomeFirstResponder()
+    }
+    
+    
+    
+}
 
+class ResultCell: UITableViewCell {
+    
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension UISearchBar {
+    func setCancelButtonTitle(title: String) {
+        if #available(iOS 9.0, *) {
+            UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).title = title
+        } else {
+            UIBarButtonItem.appearanceWhenContainedWithin(UISearchBar.self).title = title
+        }
+    }
+    
+    func setTextColor(textColor: UIColor) {
+        if #available(iOS 9.0, *) {
+            UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = textColor
+        } else {
+            UITextField.appearanceWhenContainedWithin(UISearchBar.self).textColor = textColor
+        }
+    }
 }

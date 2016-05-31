@@ -8,6 +8,16 @@
 
 import UIKit
 
+enum OrderType: Int {
+    case All = 0
+    case NoFinished
+    case WaitPayed
+    case Payed
+    case Closed
+    case Delivering
+    case Finished
+}
+
 class OrderViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
     var items: [String]!
@@ -15,6 +25,8 @@ class OrderViewController: UIViewController,UITableViewDelegate, UITableViewData
     var titleView: UIView!
     
     var expanded: Bool = false
+    
+    var currentType: OrderType = .All
     
     var titleList: UITableView!
     override func viewDidLoad() {
@@ -28,6 +40,8 @@ class OrderViewController: UIViewController,UITableViewDelegate, UITableViewData
         self.navigationItem.titleView = titleView
         
         titleButton = UIButton.init(type: .Custom)
+        titleButton.setTitle(items[currentType.rawValue], forState: .Normal)
+        titleButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         titleButton.addTarget(self, action: #selector(self.searchType), forControlEvents: .TouchUpInside)
         titleView.addSubview(titleButton)
         
@@ -94,6 +108,14 @@ class OrderViewController: UIViewController,UITableViewDelegate, UITableViewData
         }
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView === titleList {
+            self.currentType = OrderType(rawValue: indexPath.row)!
+            titleButton.setTitle(items[currentType.rawValue], forState: .Normal)
+            searchType()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

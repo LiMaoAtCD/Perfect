@@ -53,6 +53,9 @@
 		DA57ED3D1CFC2A5300A8083A /* GoodsScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */; };
 		DA57ED401CFC3A6200A8083A /* SecondDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED3F1CFC3A6200A8083A /* SecondDetailViewController.swift */; };
 		DA57ED421CFC3F0600A8083A /* SecondDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED411CFC3F0600A8083A /* SecondDetailTableViewCell.swift */; };
+		DA57ED561CFD6C9D00A8083A /* Guide2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED541CFD6C9D00A8083A /* Guide2ViewController.swift */; };
+		DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */; };
+		DA57ED5B1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED5A1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m */; };
 		F417D554CD143DFAA2CFA261 /* Pods_Perfect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +133,10 @@
 		DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsScanViewController.swift; sourceTree = "<group>"; };
 		DA57ED3F1CFC3A6200A8083A /* SecondDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondDetailViewController.swift; sourceTree = "<group>"; };
 		DA57ED411CFC3F0600A8083A /* SecondDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondDetailTableViewCell.swift; sourceTree = "<group>"; };
+		DA57ED541CFD6C9D00A8083A /* Guide2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide2ViewController.swift; sourceTree = "<group>"; };
+		DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Guide2ViewController.xib; sourceTree = "<group>"; };
+		DA57ED591CFD704C00A8083A /* NSObject+UIAppearanceSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UIAppearanceSwift.h"; sourceTree = "<group>"; };
+		DA57ED5A1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UIAppearanceSwift.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +269,8 @@
 		8763BC1B1CFC76CB00FAB8D7 /* search */ = {
 			isa = PBXGroup;
 			children = (
+				DA57ED591CFD704C00A8083A /* NSObject+UIAppearanceSwift.h */,
+				DA57ED5A1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m */,
 				8763BC1E1CFC770A00FAB8D7 /* SearchViewController.swift */,
 			);
 			name = search;
@@ -273,6 +282,8 @@
 				8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */,
 				8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */,
 				8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */,
+				DA57ED541CFD6C9D00A8083A /* Guide2ViewController.swift */,
+				DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */,
 			);
 			name = GuideViewController;
 			sourceTree = "<group>";
@@ -323,6 +334,7 @@
 		DA417B541CF5EDD100F61304 /* Perfect */ = {
 			isa = PBXGroup;
 			children = (
+				DA57ED441CFD308C00A8083A /* Vendor */,
 				870F38211CF9488700AFF1AF /* Login */,
 				870F381E1CF944EA00AFF1AF /* Utils */,
 				DA417B551CF5EDD100F61304 /* AppDelegate.swift */,
@@ -386,6 +398,13 @@
 				DA57ED411CFC3F0600A8083A /* SecondDetailTableViewCell.swift */,
 			);
 			name = Detail;
+			sourceTree = "<group>";
+		};
+		DA57ED441CFD308C00A8083A /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Vendor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,6 +514,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */,
 				8763BC2F1CFC853E00FAB8D7 /* AddressAddViewController.xib in Resources */,
@@ -601,6 +621,7 @@
 				8763BC261CFC7E9B00FAB8D7 /* GuideTableViewCell.swift in Sources */,
 				DA57ED0E1CF7D3FD00A8083A /* ThirdViewController.swift in Sources */,
 				DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */,
+				DA57ED5B1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m in Sources */,
 				870F38271CF973D500AFF1AF /* ForgetViewController.swift in Sources */,
 				870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */,
 				8763BC181CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift in Sources */,
@@ -608,6 +629,7 @@
 				870F38351CF988DD00AFF1AF /* SettingViewController.swift in Sources */,
 				870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */,
 				DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */,
+				DA57ED561CFD6C9D00A8083A /* Guide2ViewController.swift in Sources */,
 				DA57ED171CF7D57B00A8083A /* FirstTableViewController.swift in Sources */,
 				870F382F1CF987C900AFF1AF /* PeronalViewController.swift in Sources */,
 				870F381D1CF9415200AFF1AF /* FourthTableViewCell.swift in Sources */,
