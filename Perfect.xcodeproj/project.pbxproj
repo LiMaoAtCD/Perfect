@@ -53,6 +53,8 @@
 		DA57ED3D1CFC2A5300A8083A /* GoodsScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */; };
 		DA57ED401CFC3A6200A8083A /* SecondDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED3F1CFC3A6200A8083A /* SecondDetailViewController.swift */; };
 		DA57ED421CFC3F0600A8083A /* SecondDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED411CFC3F0600A8083A /* SecondDetailTableViewCell.swift */; };
+		DA57ED561CFD6C9D00A8083A /* Guide2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED541CFD6C9D00A8083A /* Guide2ViewController.swift */; };
+		DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */; };
 		F417D554CD143DFAA2CFA261 /* Pods_Perfect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +132,8 @@
 		DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsScanViewController.swift; sourceTree = "<group>"; };
 		DA57ED3F1CFC3A6200A8083A /* SecondDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondDetailViewController.swift; sourceTree = "<group>"; };
 		DA57ED411CFC3F0600A8083A /* SecondDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondDetailTableViewCell.swift; sourceTree = "<group>"; };
+		DA57ED541CFD6C9D00A8083A /* Guide2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide2ViewController.swift; sourceTree = "<group>"; };
+		DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Guide2ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +277,8 @@
 				8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */,
 				8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */,
 				8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */,
+				DA57ED541CFD6C9D00A8083A /* Guide2ViewController.swift */,
+				DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */,
 			);
 			name = GuideViewController;
 			sourceTree = "<group>";
@@ -503,6 +509,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */,
 				8763BC2F1CFC853E00FAB8D7 /* AddressAddViewController.xib in Resources */,
@@ -616,6 +623,7 @@
 				870F38351CF988DD00AFF1AF /* SettingViewController.swift in Sources */,
 				870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */,
 				DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */,
+				DA57ED561CFD6C9D00A8083A /* Guide2ViewController.swift in Sources */,
 				DA57ED171CF7D57B00A8083A /* FirstTableViewController.swift in Sources */,
 				870F382F1CF987C900AFF1AF /* PeronalViewController.swift in Sources */,
 				870F381D1CF9415200AFF1AF /* FourthTableViewCell.swift in Sources */,
