@@ -38,6 +38,8 @@
 		8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */; };
 		8763BC341CFC91D100FAB8D7 /* OrderTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */; };
 		8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */; };
+		8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */; };
+		8763BC3A1CFDEC6F00FAB8D7 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
 		DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* Assets.xcassets */; };
@@ -110,6 +112,8 @@
 		8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTypeCell.swift; sourceTree = "<group>"; };
 		8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderGoodsCell.swift; sourceTree = "<group>"; };
+		8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
+		8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +205,8 @@
 			children = (
 				DA57ED0D1CF7D3FD00A8083A /* ThirdViewController.swift */,
 				8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */,
+				8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */,
+				8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */,
 			);
 			name = Third;
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8763BC3A1CFDEC6F00FAB8D7 /* PayViewController.xib in Resources */,
 				DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */,
@@ -630,6 +637,7 @@
 				870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */,
 				8763BC181CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift in Sources */,
 				8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */,
+				8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */,
 				870F38351CF988DD00AFF1AF /* SettingViewController.swift in Sources */,
 				870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */,
 				DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */,
