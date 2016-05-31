@@ -134,6 +134,8 @@ class GoodsScanViewController: UIViewController {
         }
         
         let payButton = UIButton.init(type: .Custom)
+        
+        payButton.addTarget(self, action: #selector(self.alertGoCar), forControlEvents: .TouchUpInside)
         payButton.setTitle("加入购物车", forState: .Normal)
         payButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         payButton.backgroundColor = UIColor.brownColor()
@@ -147,6 +149,30 @@ class GoodsScanViewController: UIViewController {
             make.height.equalTo(30)
             make.centerY.equalTo(bottomView)
         }
+    }
+    
+    func alertGoCar() {
+        
+        let alertController = UIAlertController.init(title: "", message: "是否去购物车", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction.init(title: "取消", style: .Default) { (_) in
+            
+        }
+        
+        let goAction = UIAlertAction.init(title: "去购物车", style: .Default) { (_) in
+            
+            let navigationController = UIApplication.sharedApplication().keyWindow?.rootViewController as! UINavigationController
+            
+            let tabbar = navigationController.viewControllers.first as! UITabBarController
+            tabbar.selectedIndex = 2
+            self.navigationController?.popToRootViewControllerAnimated(false)
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(goAction)
+
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     
