@@ -37,9 +37,12 @@
 		8763BC2F1CFC853E00FAB8D7 /* AddressAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC2D1CFC853E00FAB8D7 /* AddressAddViewController.xib */; };
 		8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */; };
 		8763BC341CFC91D100FAB8D7 /* OrderTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */; };
+		8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */; };
+		8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */; };
+		8763BC3A1CFDEC6F00FAB8D7 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
-		DA417B5D1CF5EDD100F61304 /* image .xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* image .xcassets */; };
+		DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* Assets.xcassets */; };
 		DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5E1CF5EDD100F61304 /* LaunchScreen.storyboard */; };
 		DA417B6B1CF5EDD100F61304 /* PerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B6A1CF5EDD100F61304 /* PerfectTests.swift */; };
 		DA417B761CF5EDD100F61304 /* PerfectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B751CF5EDD100F61304 /* PerfectUITests.swift */; };
@@ -108,12 +111,15 @@
 		8763BC2D1CFC853E00FAB8D7 /* AddressAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressAddViewController.xib; sourceTree = "<group>"; };
 		8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTypeCell.swift; sourceTree = "<group>"; };
+		8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderGoodsCell.swift; sourceTree = "<group>"; };
+		8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
+		8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B551CF5EDD100F61304 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA417B5A1CF5EDD100F61304 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DA417B5C1CF5EDD100F61304 /* image .xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "image .xcassets"; sourceTree = "<group>"; };
+		DA417B5C1CF5EDD100F61304 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA417B5F1CF5EDD100F61304 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA417B611CF5EDD100F61304 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA417B661CF5EDD100F61304 /* PerfectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerfectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +205,8 @@
 			children = (
 				DA57ED0D1CF7D3FD00A8083A /* ThirdViewController.swift */,
 				8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */,
+				8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */,
+				8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */,
 			);
 			name = Third;
 			sourceTree = "<group>";
@@ -305,6 +313,7 @@
 				870F382C1CF9876100AFF1AF /* OrderViewController.swift */,
 				8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */,
 				8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */,
+				8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */,
 			);
 			name = Order;
 			sourceTree = "<group>";
@@ -339,7 +348,7 @@
 				870F381E1CF944EA00AFF1AF /* Utils */,
 				DA417B551CF5EDD100F61304 /* AppDelegate.swift */,
 				DA417B591CF5EDD100F61304 /* Main.storyboard */,
-				DA417B5C1CF5EDD100F61304 /* image .xcassets */,
+				DA417B5C1CF5EDD100F61304 /* Assets.xcassets */,
 				DA417B5E1CF5EDD100F61304 /* LaunchScreen.storyboard */,
 				DA417B611CF5EDD100F61304 /* Info.plist */,
 				DA57ED111CF7D53F00A8083A /* Perfect-Bridging-Header.h */,
@@ -514,11 +523,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8763BC3A1CFDEC6F00FAB8D7 /* PayViewController.xib in Resources */,
 				DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */,
 				8763BC2F1CFC853E00FAB8D7 /* AddressAddViewController.xib in Resources */,
-				DA417B5D1CF5EDD100F61304 /* image .xcassets in Resources */,
+				DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */,
 				DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -599,6 +609,7 @@
 				870F38151CF92BCA00AFF1AF /* SecondInfoCell.swift in Sources */,
 				870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */,
 				8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */,
+				8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */,
 				DA57ED0C1CF7D3F700A8083A /* SecondViewController.swift in Sources */,
 				8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */,
 				DA57ED0A1CF7D3EF00A8083A /* FirstViewController.swift in Sources */,
@@ -626,6 +637,7 @@
 				870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */,
 				8763BC181CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift in Sources */,
 				8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */,
+				8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */,
 				870F38351CF988DD00AFF1AF /* SettingViewController.swift in Sources */,
 				870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */,
 				DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */,
@@ -777,6 +789,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Perfect/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.cover.Perfect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -792,6 +805,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Perfect/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.cover.Perfect;
 				PRODUCT_NAME = "$(TARGET_NAME)";

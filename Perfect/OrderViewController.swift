@@ -27,13 +27,15 @@ class OrderViewController: UIViewController,UITableViewDelegate, UITableViewData
     var expanded: Bool = false
     
     var currentType: OrderType = .All
-    
     var titleList: UITableView!
+    
+    var goodsList: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        items = ["全部订单","未完成","待付款","已关闭","待收货","已完成"]
+        items = ["全部订单","未完成","待付款","已付款","已关闭","待收货","已完成"]
         
         
         titleView = UIView.init(frame: CGRectMake(0, 0, 200, 40))
@@ -51,6 +53,23 @@ class OrderViewController: UIViewController,UITableViewDelegate, UITableViewData
             make.height.equalTo(35)
         }
         
+        
+        
+        goodsList = UITableView.init(frame: view.bounds, style: .Plain)
+        view.addSubview(goodsList)
+        goodsList.snp_makeConstraints { (make) in
+            make.left.bottom.right.equalTo(view)
+            make.top.equalTo(self.snp_topLayoutGuideBottom)
+        }
+        goodsList.delegate = self
+        goodsList.dataSource = self
+        goodsList.tableFooterView = UIView()
+        goodsList.registerClass(OrderGoodsCell.self, forCellReuseIdentifier: "OrderGoodsCell")
+        goodsList.estimatedRowHeight = 200
+        goodsList.rowHeight = UITableViewAutomaticDimension
+        
+        
+        
         titleList = UITableView.init(frame: view.bounds, style: .Plain)
         view.addSubview(titleList)
         titleList.snp_makeConstraints { (make) in
@@ -65,22 +84,19 @@ class OrderViewController: UIViewController,UITableViewDelegate, UITableViewData
         searchType()
     }
     
-    
-    
     func searchType() {
         if expanded {
             titleList.snp_remakeConstraints { (make) in
                 make.top.right.left.equalTo(view)
                 make.height.equalTo(44 * items.count)
             }
-        } else  {
+        } else {
             titleList.snp_remakeConstraints { (make) in
                 make.top.right.left.equalTo(view)
                 make.height.equalTo(0)
             }
         }
         expanded = !expanded
-
     }
     
     
@@ -92,7 +108,7 @@ class OrderViewController: UIViewController,UITableViewDelegate, UITableViewData
         if tableView === titleList {
             return items.count
         } else {
-            return 0
+            return 1
         }
     }
     
@@ -104,7 +120,9 @@ class OrderViewController: UIViewController,UITableViewDelegate, UITableViewData
             return cell
             
         } else {
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCellWithIdentifier("OrderGoodsCell", forIndexPath: indexPath)
+            
+            return cell
         }
     }
 
@@ -113,6 +131,14 @@ class OrderViewController: UIViewController,UITableViewDelegate, UITableViewData
             self.currentType = OrderType(rawValue: indexPath.row)!
             titleButton.setTitle(items[currentType.rawValue], forState: .Normal)
             searchType()
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if tableView === titleList {
+            return 44
+        } else {
+            return UITableViewAutomaticDimension
         }
     }
     

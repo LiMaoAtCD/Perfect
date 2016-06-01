@@ -109,8 +109,7 @@ class FirstViewController: UIViewController {
             //
             leftButton.setTitleColor(UIColor.redColor(), forState: .Normal)
             rightButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-            
-            
+    
             rightTableViewController.view.hidden = true
             leftTableViewController.view.hidden = false
             

@@ -81,16 +81,33 @@ class FourthTableViewController: UITableViewController {
 
         
         
-        needPaybutton.addTarget(self, action: #selector(self.goToOrder), forControlEvents: .TouchUpInside)
-        needDeliverButton.addTarget(self, action: #selector(self.goToOrder), forControlEvents: .TouchUpInside)
+        needPaybutton.addTarget(self, action: #selector(self.needPay), forControlEvents: .TouchUpInside)
+        needDeliverButton.addTarget(self, action: #selector(self.needDeliver), forControlEvents: .TouchUpInside)
         
         self.tableView.tableHeaderView = header
     }
     
-    func goToOrder() {
+    func needPay() {
+        self.goToOrder(.WaitPayed)
+    }
+    
+    func needDeliver() {
+        self.goToOrder(.Delivering)
+
+    }
+    
+    func showAllOrder() {
+        self.goToOrder(.All)
+    }
+    
+    func goToOrder(type: OrderType) {
+        
         let orderVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OrderViewController") as! OrderViewController
         
         orderVC.hidesBottomBarWhenPushed = true
+
+        orderVC.currentType = type
+
 
         self.navigationController?.pushViewController(orderVC, animated: true)
     }
@@ -134,7 +151,7 @@ class FourthTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 {
-            self.goToOrder()
+            self.showAllOrder()
         } else if indexPath.row == 1 {
             let addressVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AddressViewController") as! AddressViewController
             addressVC.hidesBottomBarWhenPushed = true
