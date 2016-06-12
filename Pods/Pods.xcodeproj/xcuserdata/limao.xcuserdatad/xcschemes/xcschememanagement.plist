@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AlamofireObjectMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ChameleonFramework.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,17 +67,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0D895098FC7225A73CB5B018F312075D</key>
+		<key>2674561E600EB461068ED37060AA3CC2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2F9D3739F381316D7107E314E97077D6</key>
+		<key>47B93E2556EBD05FBAF7588B40BA233D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3064755A4AC5C8927786007F0A679143</key>
+		<key>4EB544612A0A9B9FF8FB48C7797F2824</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5172ACAB7FEA22813859DC97CA0AA16F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,27 +97,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>95A972615C221ABDE721F7552E4B4EF3</key>
+		<key>8BB2D336516F7026DF9ABFFED929C926</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A5E2B5254B3A9AFA4AE0D1071ACA27E3</key>
+		<key>AF8CB2A16FC2DE4156F79AAFCA9ACBEE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C1E8E8FC47520C015FA63C5CDB5F8B65</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D5D6200D4BE741574DBD4FB768A6F55B</key>
+		<key>C5CBCAA97E951CC882334464FBDF983D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E96E13C4D3B5B5FC0651440734C2BF4D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB4F12E51D36AA2ABD0A7BF324CDC019</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FBD082A0D35F7917EAB9DD9D3CCA9976</key>
 		<dict>
 			<key>primary</key>
 			<true/>

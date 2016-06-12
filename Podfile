@@ -5,12 +5,14 @@ use_frameworks!
 
 target 'Perfect' do
 	pod 'SDCycleScrollView','~> 1.64'
-    pod 'Alamofire'
-    pod 'RealmSwift'
-    pod 'ObjectMapper', '~> 1.3'
-    pod 'Kingfisher'
-    pod 'MJRefresh'
-    pod 'SnapKit'
+	pod 'Alamofire'
+	pod 'RealmSwift'
+	pod 'ObjectMapper', '~> 1.3'
+	pod 'Kingfisher'
+	pod 'MJRefresh'
+	pod 'SnapKit'
+	pod 'ChameleonFramework/Swift'
+	pod 'AlamofireObjectMapper', '~> 3.0'
 end
 
 target 'PerfectTests' do

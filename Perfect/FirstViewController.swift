@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class FirstViewController: UIViewController {
 
@@ -27,8 +28,8 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage.init(named: "title"), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
-
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage.init(named: "title"), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
+        
         topSelectionView = UIView()
         view.addSubview(topSelectionView)
         topSelectionView.snp_makeConstraints { (make) in

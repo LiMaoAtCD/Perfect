@@ -108,7 +108,8 @@ extension UISearchBar {
         if #available(iOS 9.0, *) {
             UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = textColor
         } else {
-            UITextField.appearanceWhenContainedWithin(UISearchBar.self).textColor = textColor
+            UITextField.appearanceWhenContainedWithin([UISearchBar.self]).textColor = textColor
+//            UITextField.appearanceWhenContainedWithin(UISearchBar.self).textColor = textColor
         }
     }
 }

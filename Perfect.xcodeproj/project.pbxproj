@@ -59,6 +59,8 @@
 		DA57ED561CFD6C9D00A8083A /* Guide2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED541CFD6C9D00A8083A /* Guide2ViewController.swift */; };
 		DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */; };
 		DA57ED5B1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED5A1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m */; };
+		DAE24CCA1D0D3EDC00B4A2B1 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE24CC91D0D3EDC00B4A2B1 /* WeatherResponse.swift */; };
+		DAE24CCC1D0D4BA300B4A2B1 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */; };
 		F417D554CD143DFAA2CFA261 /* Pods_Perfect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +145,8 @@
 		DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Guide2ViewController.xib; sourceTree = "<group>"; };
 		DA57ED591CFD704C00A8083A /* NSObject+UIAppearanceSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UIAppearanceSwift.h"; sourceTree = "<group>"; };
 		DA57ED5A1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UIAppearanceSwift.m"; sourceTree = "<group>"; };
+		DAE24CC91D0D3EDC00B4A2B1 /* WeatherResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
+		DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +347,7 @@
 		DA417B541CF5EDD100F61304 /* Perfect */ = {
 			isa = PBXGroup;
 			children = (
+				DAE24CC81D0D3EC800B4A2B1 /* Data */,
 				DA57ED441CFD308C00A8083A /* Vendor */,
 				870F38211CF9488700AFF1AF /* Login */,
 				870F381E1CF944EA00AFF1AF /* Utils */,
@@ -414,6 +419,15 @@
 			children = (
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		DAE24CC81D0D3EC800B4A2B1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DAE24CC91D0D3EDC00B4A2B1 /* WeatherResponse.swift */,
+				DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -605,6 +619,7 @@
 				870F38231CF9489400AFF1AF /* LoginViewController.swift in Sources */,
 				870F38381CF98CF600AFF1AF /* SettingNormalCell.swift in Sources */,
 				DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */,
+				DAE24CCA1D0D3EDC00B4A2B1 /* WeatherResponse.swift in Sources */,
 				870F38331CF988D500AFF1AF /* FellbackViewController.swift in Sources */,
 				870F38151CF92BCA00AFF1AF /* SecondInfoCell.swift in Sources */,
 				870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */,
@@ -638,6 +653,7 @@
 				8763BC181CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift in Sources */,
 				8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */,
 				8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */,
+				DAE24CCC1D0D4BA300B4A2B1 /* NetworkHelper.swift in Sources */,
 				870F38351CF988DD00AFF1AF /* SettingViewController.swift in Sources */,
 				870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */,
 				DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */,

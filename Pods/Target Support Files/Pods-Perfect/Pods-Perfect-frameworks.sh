@@ -85,6 +85,8 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Perfect/Alamofire.framework"
+  install_framework "Pods-Perfect/AlamofireObjectMapper.framework"
+  install_framework "Pods-Perfect/ChameleonFramework.framework"
   install_framework "Pods-Perfect/Kingfisher.framework"
   install_framework "Pods-Perfect/MJRefresh.framework"
   install_framework "Pods-Perfect/ObjectMapper.framework"
@@ -96,6 +98,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Perfect/Alamofire.framework"
+  install_framework "Pods-Perfect/AlamofireObjectMapper.framework"
+  install_framework "Pods-Perfect/ChameleonFramework.framework"
   install_framework "Pods-Perfect/Kingfisher.framework"
   install_framework "Pods-Perfect/MJRefresh.framework"
   install_framework "Pods-Perfect/ObjectMapper.framework"

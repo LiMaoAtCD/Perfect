@@ -7,6 +7,9 @@
 //
 
 import XCTest
+import Alamofire
+import AlamofireObjectMapper
+
 @testable import Perfect
 
 class PerfectTests: XCTestCase {
