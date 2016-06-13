@@ -15,11 +15,15 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate {
 
     
     var scrollView: UIScrollView!
+    
+    var topperBackGroundView: UIView!
+    
+    
     var banner: SDCycleScrollView!
     
     var customButtonsView: UIView!
     
-//    var 
+    var tipView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +39,16 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate {
             make.edges.equalTo(view)
         }
         
+        topperBackGroundView = UIView()
+        scrollView.addSubview(topperBackGroundView)
+        topperBackGroundView.snp_makeConstraints { (make) in
+            make.left.right.top.equalTo(scrollView)
+            make.height.equalTo(500)
+        }
+        
+        
         banner = SDCycleScrollView.init(frame: self.view.bounds, delegate: self, placeholderImage: UIImage.init(named: "placeholder")!)
-        scrollView.addSubview(banner)
+        topperBackGroundView.addSubview(banner)
         
         banner.pageControlAliment = SDCycleScrollViewPageContolAlimentRight
         banner.currentPageDotColor = UIColor.whiteColor()
@@ -46,7 +58,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate {
             make.height.equalTo(200)
         }
         banner.clickItemOperationBlock = {
-            [weak self] currentIndex in
+             currentIndex in
         }
         
         let imageURLs = [
@@ -56,8 +68,22 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate {
         ]
 
         banner.imageURLStringsGroup = imageURLs
-
         
+        customButtonsView = UIView()
+        
+        topperBackGroundView.addSubview(customButtonsView)
+        
+        
+        let layout = UICollectionViewFlowLayout.init()
+        
+        
+        let collectionView = UICollectionView.init(frame: CGRectZero, collectionViewLayout: layout)
+        
+        
+        NetworkHelper.instance.request(.GET, url:  URLConstant.FirstPage.contant, parameters: nil) { (res: FirstPageResponse?) in
+            print(res?.retObj?.topBanners?.first?.imgUrl)
+        }
+
         
 
     }

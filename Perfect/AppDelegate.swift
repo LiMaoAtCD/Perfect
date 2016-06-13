@@ -18,9 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        NetworkHelper.instance.request(.GET, url:  URLConstant.FirstPage.contant, parameters: nil) { (res: FirstPageResponse?) in
-            print(res?.retObj?.topBanners?.first?.imgUrl)
-        }
 
         return true
     }
