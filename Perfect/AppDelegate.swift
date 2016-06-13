@@ -17,37 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        let URL = "https://raw.githubusercontent.com/tristanhimmelman/AlamofireObjectMapper/d8bb95982be8a11a2308e779bb9a9707ebe42ede/sample_json"
-        Alamofire.request(.GET, URL).responseObject { (response: Response<WeatherResponse, NSError>) in
-            let weatherResponse = response.result.value
-            print(weatherResponse?.location)
+
+        NetworkHelper.instance.request(.GET, url:  URLConstant.FirstPage.contant, parameters: nil) { (res: FirstPageResponse?) in
+            print(res?.retObj?.topBanners?.first?.imgUrl)
             
-            if let threeDayForecast = weatherResponse?.threeDayForecast {
-                for forecast in threeDayForecast {
-                    print(forecast.day)
-                    print(forecast.temperature)
-                }
             }
-        }
-        
-        let URL2 = "https://raw.githubusercontent.com/tristanhimmelman/AlamofireObjectMapper/2ee8f34d21e8febfdefb2b3a403f18a43818d70a/sample_keypath_json"
-//        let expectation = expectationWithDescription("\(URL)")
-        
-        Alamofire.request(.GET, URL2).responseObject(keyPath: "data") { (response: Response<WeatherResponse, NSError>) in
-//            expectation.fulfill()
-            
-            let weatherResponse = response.result.value
-            print(weatherResponse?.location)
-            
-            if let threeDayForecast = weatherResponse?.threeDayForecast {
-                for forecast in threeDayForecast {
-                    print(forecast.day)
-                    print(forecast.temperature)           
-                }
-            }
-        }
-        
+//        Alamofire.request(.GET, "http://101.200.131.198:8090/custwine/gw?cmd=queryAppIndexStaticContent", parameters: nil, encoding: .URL, headers: nil).responseString { (res) in
+//            print(res)
+//        }
 
         return true
     }

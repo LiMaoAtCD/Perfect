@@ -40,6 +40,7 @@
 		8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */; };
 		8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */; };
 		8763BC3A1CFDEC6F00FAB8D7 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */; };
+		87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA561D0EEDAF000A1B41 /* Response.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
 		DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* Assets.xcassets */; };
@@ -59,7 +60,6 @@
 		DA57ED561CFD6C9D00A8083A /* Guide2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED541CFD6C9D00A8083A /* Guide2ViewController.swift */; };
 		DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */; };
 		DA57ED5B1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED5A1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m */; };
-		DAE24CCA1D0D3EDC00B4A2B1 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE24CC91D0D3EDC00B4A2B1 /* WeatherResponse.swift */; };
 		DAE24CCC1D0D4BA300B4A2B1 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */; };
 		F417D554CD143DFAA2CFA261 /* Pods_Perfect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */; };
 /* End PBXBuildFile section */
@@ -116,6 +116,7 @@
 		8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderGoodsCell.swift; sourceTree = "<group>"; };
 		8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
+		87A5AA561D0EEDAF000A1B41 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,7 +146,6 @@
 		DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Guide2ViewController.xib; sourceTree = "<group>"; };
 		DA57ED591CFD704C00A8083A /* NSObject+UIAppearanceSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UIAppearanceSwift.h"; sourceTree = "<group>"; };
 		DA57ED5A1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UIAppearanceSwift.m"; sourceTree = "<group>"; };
-		DAE24CC91D0D3EDC00B4A2B1 /* WeatherResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -424,7 +424,7 @@
 		DAE24CC81D0D3EC800B4A2B1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				DAE24CC91D0D3EDC00B4A2B1 /* WeatherResponse.swift */,
+				87A5AA561D0EEDAF000A1B41 /* Response.swift */,
 				DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */,
 			);
 			name = Data;
@@ -619,7 +619,6 @@
 				870F38231CF9489400AFF1AF /* LoginViewController.swift in Sources */,
 				870F38381CF98CF600AFF1AF /* SettingNormalCell.swift in Sources */,
 				DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */,
-				DAE24CCA1D0D3EDC00B4A2B1 /* WeatherResponse.swift in Sources */,
 				870F38331CF988D500AFF1AF /* FellbackViewController.swift in Sources */,
 				870F38151CF92BCA00AFF1AF /* SecondInfoCell.swift in Sources */,
 				870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */,
@@ -636,6 +635,7 @@
 				DA57ED421CFC3F0600A8083A /* SecondDetailTableViewCell.swift in Sources */,
 				8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */,
 				870F382D1CF9876100AFF1AF /* OrderViewController.swift in Sources */,
+				87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */,
 				8763BC131CF9DC7700FAB8D7 /* ThirdGoodsCell.swift in Sources */,
 				870F382B1CF97AF600AFF1AF /* ProtocolViewController.swift in Sources */,
 				DA57ED401CFC3A6200A8083A /* SecondDetailViewController.swift in Sources */,
