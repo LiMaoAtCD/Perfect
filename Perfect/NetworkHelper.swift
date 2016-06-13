@@ -10,4 +10,7 @@ import UIKit
 
 class NetworkHelper: NSObject {
     static let constant = "http://sss.com"
+//    http://101.200.131.198:8090/custwine/gw?cmd=queryAppIndexStaticContent
+    
+    
 }

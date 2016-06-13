@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FDFullscreenPopGesture.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,22 +72,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2674561E600EB461068ED37060AA3CC2</key>
+		<key>303B3AC6DD17B1EE7D98EF8BF8898BEB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>47B93E2556EBD05FBAF7588B40BA233D</key>
+		<key>42352A786224E58BC6A8B69B0565928B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4EB544612A0A9B9FF8FB48C7797F2824</key>
+		<key>4814B33ED256F308126A0BF3DF65EC18</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4905DAF0CAAD2805C9CA20F1569F9994</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>5172ACAB7FEA22813859DC97CA0AA16F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5311DE675B71D92412A33D8298ED50A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,16 +112,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8BB2D336516F7026DF9ABFFED929C926</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AF8CB2A16FC2DE4156F79AAFCA9ACBEE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>C5CBCAA97E951CC882334464FBDF983D</key>
 		<dict>
 			<key>primary</key>
@@ -117,7 +122,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FB4F12E51D36AA2ABD0A7BF324CDC019</key>
+		<key>EC0730736BC960EE7F07BB640B681509</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F50FA25F797D36C388C901800F7FDCE4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
