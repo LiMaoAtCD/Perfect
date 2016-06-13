@@ -8,7 +8,7 @@
 
 import UIKit
 import ChameleonFramework
-
+import FDFullscreenPopGesture
 class FirstViewController: UIViewController {
 
     var leftTableViewController: FirstTableViewController!
@@ -28,8 +28,10 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage.init(named: "title"), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
         
+        self.navigationController?.navigationBar.hidden = true
+        fd_prefersNavigationBarHidden = true
+    
         topSelectionView = UIView()
         view.addSubview(topSelectionView)
         topSelectionView.snp_makeConstraints { (make) in

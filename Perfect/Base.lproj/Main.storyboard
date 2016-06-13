@@ -83,10 +83,10 @@
             </objects>
             <point key="canvasLocation" x="100" y="878"/>
         </scene>
-        <!--First View Controller-->
+        <!--First Page View Controller-->
         <scene sceneID="lCP-uS-Ei7">
             <objects>
-                <viewController storyboardIdentifier="FirstViewController" id="7CB-Ba-ceI" customClass="FirstViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstPageViewController" id="7CB-Ba-ceI" customClass="FirstPageViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f4N-KN-Pz9"/>
                         <viewControllerLayoutGuide type="bottom" id="gao-gN-2mU"/>
