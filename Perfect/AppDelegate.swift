@@ -20,11 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         NetworkHelper.instance.request(.GET, url:  URLConstant.FirstPage.contant, parameters: nil) { (res: FirstPageResponse?) in
             print(res?.retObj?.topBanners?.first?.imgUrl)
-            
-            }
-//        Alamofire.request(.GET, "http://101.200.131.198:8090/custwine/gw?cmd=queryAppIndexStaticContent", parameters: nil, encoding: .URL, headers: nil).responseString { (res) in
-//            print(res)
-//        }
+        }
 
         return true
     }
