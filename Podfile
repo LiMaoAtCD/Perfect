@@ -14,6 +14,9 @@ target 'Perfect' do
 	pod 'ChameleonFramework/Swift'
 	pod 'AlamofireObjectMapper', '~> 3.0'
     pod 'FDFullscreenPopGesture', '~> 1.1'
+    pod 'SwiftyUserDefaults'
+    pod 'AsyncSwift'
+
 end
 
 target 'PerfectTests' do
