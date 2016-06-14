@@ -19,6 +19,9 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
     var customButtons: [FirstButtonItem]?
     var goodTypes: [FirstGoodsTypeItem]?
     var goods: [String]?
+    
+    var selectionSection = 0
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +60,16 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
                 self?.topBanners = res?.retObj?.topBanners
                 self?.customButtons = res?.retObj?.buttons
                 self?.goodTypes = res?.retObj?.types
+            
+                if let _ = self?.goodTypes where self?.goodTypes!.count > 0 {
+                    
+                    for i in 0...self!.goodTypes!.count - 1 {
+                        if self!.goodTypes![i].opened == true {
+                            self!.selectionSection = i
+                        }
+                    }
+                }
+
             
             
                 self?.collection.reloadData()
@@ -161,22 +174,20 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(Header.kind, withReuseIdentifier: Header.identifier, forIndexPath: indexPath) as! Header
             
             var types = ["","",""]
-            var selectionSection = 0
             if let _ = goodTypes where goodTypes!.count > 0 {
-                
                 for i in 0...goodTypes!.count - 1 {
                     types[i] = goodTypes![i].title!
-                    if goodTypes![i].opened == true {
-                        selectionSection = i
-                    }
                 }
             }
             
             
             header.segmentControl.titles = types
             header.segmentControl.currentIndex = selectionSection
+            //MARK: 切换种类
             header.segmentControl.selectionHandler = { index in
                 print("index: \(index)")
+                self.selectionSection = index
+                self.collection.reloadSections(NSIndexSet.init(index: 3))
             }
 
             return header
