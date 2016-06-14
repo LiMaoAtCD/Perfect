@@ -43,6 +43,7 @@
 		87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA561D0EEDAF000A1B41 /* Response.swift */; };
 		87A5AA591D0F0948000A1B41 /* ResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */; };
 		87A5AA5B1D0F11BB000A1B41 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */; };
+		87A5AA5D1D1052A8000A1B41 /* FirstItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5C1D1052A8000A1B41 /* FirstItems.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
 		DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* Assets.xcassets */; };
@@ -121,6 +122,7 @@
 		87A5AA561D0EEDAF000A1B41 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEntity.swift; sourceTree = "<group>"; };
 		87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
+		87A5AA5C1D1052A8000A1B41 /* FirstItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstItems.swift; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -392,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */,
+				87A5AA5C1D1052A8000A1B41 /* FirstItems.swift */,
 				8763BC141CFB32A700FAB8D7 /* Detail */,
 				DA57ED091CF7D3EF00A8083A /* FirstViewController.swift */,
 				DA57ED161CF7D57B00A8083A /* FirstTableViewController.swift */,
@@ -643,6 +646,7 @@
 				8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */,
 				870F382D1CF9876100AFF1AF /* OrderViewController.swift in Sources */,
 				87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */,
+				87A5AA5D1D1052A8000A1B41 /* FirstItems.swift in Sources */,
 				8763BC131CF9DC7700FAB8D7 /* ThirdGoodsCell.swift in Sources */,
 				870F382B1CF97AF600AFF1AF /* ProtocolViewController.swift in Sources */,
 				DA57ED401CFC3A6200A8083A /* SecondDetailViewController.swift in Sources */,

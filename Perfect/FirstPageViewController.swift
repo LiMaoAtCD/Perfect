@@ -66,6 +66,8 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
 
     }
     
+    
+    //MARK: Datasource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 4
     }
@@ -99,10 +101,20 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
         if indexPath.section == 0 {
             
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewBannerCell.identifier, forIndexPath: indexPath) as! CollectionViewBannerCell
-            
+            //MARK: 处理banner 跳转
             cell.banner.clickItemOperationBlock = {
                 currentIndex in
                 
+                let item = self.topBanners![currentIndex]
+                let id = item.id
+                let action  = item.action!
+                
+                print("id:\(id) & action: \(action)")
+                
+                
+//                let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
+//                detail.hidesBottomBarWhenPushed = true
+//                self.navigationController?.pushViewController(detail, animated: true)
             }
             
             var imageUrl = [String]()
@@ -173,6 +185,8 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
         }
     }
     
+    //MARK: Delegate
+
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
             return CGSizeMake(Tool.width, 250)
@@ -192,6 +206,19 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             return CGSizeZero
         }
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            //MARK: 处理button 点击
+            let item = self.customButtons![indexPath.row]
+            let action = item.action
+            print("action: \(action)")
+        } else if indexPath.section == 3 {
+            //MARK: 处理普通商品
+//            let good = self.goods!
+            
+        }
+    }
 
 
     override func didReceiveMemoryWarning() {
@@ -202,6 +229,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
 
 }
 
+//MARK: Layout
 class CollectionLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
@@ -218,7 +246,7 @@ class CollectionLayout: UICollectionViewFlowLayout {
     }
 }
 
-//普通
+//MARK: CollectionViewCells
 class CollectionViewCell: UICollectionViewCell {
     static let identifier = "cell"
     
@@ -301,9 +329,7 @@ class CollectionViewFootCell: UICollectionViewCell {
     
 }
 
-
-
-
+//MARK: Header
 class Header: UICollectionReusableView {
     
     static let identifier = "header"
@@ -330,6 +356,7 @@ class Header: UICollectionReusableView {
     }
 }
 
+//MARK: 选择列表
 class SegmentControlView : UIView {
     
     var buttons:[UIButton]?
