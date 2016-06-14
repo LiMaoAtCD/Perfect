@@ -18,7 +18,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
     var topBanners: [FirstBannerItem]?
     var customButtons: [FirstButtonItem]?
     var goodTypes: [FirstGoodsTypeItem]?
-    var goods: [String]?
+    var goods: [[String]]?
     
     var selectionSection = 0
 
@@ -27,7 +27,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBar.hidden = true
+//        self.navigationController?.navigationBar.hidden = true
         fd_prefersNavigationBarHidden = true
         edgesForExtendedLayout = UIRectEdge.None
 
@@ -35,7 +35,6 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
         topBanners = [FirstBannerItem]()
         customButtons = [FirstButtonItem]()
         goodTypes = [FirstGoodsTypeItem]()
-        goods = [String]()
 
         
         
@@ -102,10 +101,10 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             return 1
         } else {
             if let _ = goods {
-//                return goods!.count
-                return 100
+                return goods![selectionSection].count
+//                return 100
             } else {
-                return 100
+                return 0
             }
         }
     }
@@ -125,9 +124,9 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
                 print("id:\(id) & action: \(action)")
                 
                 
-//                let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
-//                detail.hidesBottomBarWhenPushed = true
-//                self.navigationController?.pushViewController(detail, animated: true)
+                let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
+                detail.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(detail, animated: true)
             }
             
             var imageUrl = [String]()
@@ -163,6 +162,9 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             return cell
         } else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCell.identifier, forIndexPath: indexPath) as! CollectionViewCell
+            let item = goods![selectionSection][indexPath.row]
+            cell.imageView.kf_setImageWithURL(NSURL.init(string:item)!, placeholderImage: UIImage.init(named: "h8"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+
             return cell
             
         }
@@ -261,9 +263,16 @@ class CollectionLayout: UICollectionViewFlowLayout {
 class CollectionViewCell: UICollectionViewCell {
     static let identifier = "cell"
     
+    var imageView: UIImageView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.redColor()
+        
+        imageView = UIImageView()
+        self.addSubview(imageView)
+        imageView.snp_makeConstraints { (make) in
+            make.edges.equalTo(self)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

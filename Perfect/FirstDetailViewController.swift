@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class FirstDetailViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     
     var collectionView: UICollectionView!
@@ -17,43 +17,89 @@ class FirstDetailViewController: UIViewController, UICollectionViewDelegate, UIC
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
+        
+        fd_prefersNavigationBarHidden = false
 
-        
-        let layout = UICollectionViewFlowLayout.init()
-        layout.itemSize = CGSizeMake((Tools.width - 2) / 2, 200)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        
-        
-        collectionView = UICollectionView.init(frame: view.bounds, collectionViewLayout: layout)
+        collectionView = UICollectionView.init(frame: view.bounds, collectionViewLayout: CustomCollectionLayout())
         collectionView.backgroundColor = UIColor.whiteColor()
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
+
         
         collectionView.registerClass(FirstDetailCollectionCell.self, forCellWithReuseIdentifier: FirstDetailCollectionCell.identifier)
         
         collectionView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
         }
+        
+        collectionView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
+        collectionView.registerClass(CollectionViewBannerCell.self, forCellWithReuseIdentifier: CollectionViewBannerCell.identifier)
+
+        
     }
     
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if section == 0 {
+            return 1
+        } else {return 10}
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(FirstDetailCollectionCell.identifier, forIndexPath: indexPath) as! FirstDetailCollectionCell
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewBannerCell.identifier, forIndexPath: indexPath) as! CollectionViewBannerCell
+            //MARK: 处理banner 跳转
+            cell.banner.clickItemOperationBlock = {
+                currentIndex in
+                
+//                let item = self.topBanners![currentIndex]
+//                let id = item.id
+//                let action  = item.action!
+                
+//                print("id:\(id) & action: \(action)")
+                
+                
+                let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
+                detail.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(detail, animated: true)
+            }
+            
+            let imageUrl = [String]()
+//            if let _ = topBanners {
+//                for item in topBanners! {
+//                    imageUrl.append(item.imgUrl!)
+//                }
+//            }
+            
+            cell.banner.placeholderImage = UIImage.init(named: "h8")
+            cell.banner.imageURLStringsGroup = imageUrl
+            
+            return cell
+        }else {
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCell.identifier, forIndexPath: indexPath) as! CollectionViewCell
+//                let item = goods![selectionSection][indexPath.row]
+//                cell.imageView.kf_setImageWithURL(NSURL.init(string:item)!, placeholderImage: UIImage.init(named: "h8"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+            
+                return cell
+
+            }
         
-        cell.contentImageView.image = UIImage.init(named: "goods_item")
-        return cell
     }
+    
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        if indexPath.section == 0 {
+            return CGSizeMake(Tool.width, 250)
+        }else {
+            return CGSizeMake(Tool.width / 2 - 5, 200)
+        }
+    }
+
     
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -64,12 +110,6 @@ class FirstDetailViewController: UIViewController, UICollectionViewDelegate, UIC
 
     }
     
-    
-    
-    
-    
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,3 +127,46 @@ class FirstDetailViewController: UIViewController, UICollectionViewDelegate, UIC
     */
 
 }
+
+//MARK: Layout
+class CustomCollectionLayout: UICollectionViewFlowLayout {
+    override init() {
+        super.init()
+        self.minimumInteritemSpacing = 0.5
+        self.minimumLineSpacing = 0.5
+        if #available(iOS 9.0, *) {
+            self.sectionHeadersPinToVisibleBounds = true
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class FirstDetailCollectionCell: UICollectionViewCell {
+    
+    static let identifier = "FirstDetailCollectionCell"
+    var contentImageView: UIImageView!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        
+        contentImageView = UIImageView()
+        self.addSubview(contentImageView)
+        contentImageView.snp_makeConstraints { (make) in
+            make.edges.equalTo(self)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+}
+
+
+

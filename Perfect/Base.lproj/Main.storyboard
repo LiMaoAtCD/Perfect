@@ -143,7 +143,7 @@
         <!--首页-->
         <scene sceneID="TkM-Nk-p6Y">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SfO-gc-2ha" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="SfO-gc-2ha" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="首页" id="Lh5-ES-6Dd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9N5-5f-KKf">
