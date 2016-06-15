@@ -33,12 +33,12 @@ class FirstBannerItem: Mappable{
         self.init()
     }
     
-    var imgUrl: String?
+    var imageId: String?
     var id: String?
     var action: String?
     
     func mapping(map: Map) {
-        imgUrl <- map["imgUrl"]
+        imageId <- map["imageId"]
         id <- map["id"]
         action <- map["action"]
     }
@@ -67,11 +67,11 @@ class FirstButtonItem: Mappable{
         self.init()
     }
     
-    var imgUrl: String?
+    var imageId: String?
     var action: String?
     
     func mapping(map: Map) {
-        imgUrl <- map["imgUrl"]
+        imageId <- map["imageId"]
         action <- map["action"]
     }
 }

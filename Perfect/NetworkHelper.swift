@@ -37,7 +37,7 @@ class NetworkHelper: NSObject {
     
     
     
-    func request<T: DataResponse>(method:httpMethod, url: String, parameters: [String: AnyObject]?, completionHandler: (T? -> Void)?){
+    func request<T: DataResponse>(method:httpMethod, url: String, parameters: [String: AnyObject]?,completion completionHandler: (T? -> Void)?, failed failedHandler: (RetErrorCode -> Void)?){
         
         var p = parameters ?? [String:AnyObject]()
         p["sessionID"] = Defaults[.sessionID] ?? ""
@@ -45,11 +45,31 @@ class NetworkHelper: NSObject {
 //        Alamofire.request((method == .GET ? .GET : .POST), url, parameters: nil, encoding: ParameterEncoding.URL, headers: nil).responseString(completionHandler: { (res) in
 //            print(res)
 //        })
-        
-        Alamofire.request(.GET, url, parameters: nil, encoding: ParameterEncoding.URL, headers: nil).responseObject { (response: Response<T, NSError>) in
+
+        Alamofire.request((method == .GET ? Method.GET : Method.POST), url, parameters: p, encoding: ParameterEncoding.URL, headers: nil).responseObject { (response: Response<T, NSError>) in
+            if let _ = response.result.error {
+                failedHandler?(RetErrorCode.NetworkError)
+            } else {
+                if let value = response.result.value where value.retCode == RetErrorCode.Success.rawValue {
+                    completionHandler?(response.result.value)
+                } else if let value = response.result.value where value.retCode != RetErrorCode.Success.rawValue  {
+                    failedHandler?(RetErrorCode.init(rawValue: value.retCode)!)
+                } else {
+                    assertionFailure("network data format error")
+                }
+            }
             completionHandler?(response.result.value)
         }
     }
+}
+
+
+enum RetErrorCode: Int {
+    case Success = 0
+    case SystemError = -1
+    case PermissionDenied = -2
+    case NeedLogin = -3
+    case NetworkError = -7
 }
 
 

@@ -53,13 +53,11 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
 
         collection.registerClass(Header.self, forSupplementaryViewOfKind: Header.kind, withReuseIdentifier: Header.identifier)
         
-        
-        
-         NetworkHelper.instance.request(.GET, url:  URLConstant.FirstPage.contant, parameters: nil) { [weak self](res: FirstPageResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.FirstPage.contant, parameters: nil, completion: { [weak self](res: FirstPageResponse?) in
                 self?.topBanners = res?.retObj?.topBanners
                 self?.customButtons = res?.retObj?.buttons
                 self?.goodTypes = res?.retObj?.types
-            
+                
                 if let _ = self?.goodTypes where self?.goodTypes!.count > 0 {
                     
                     for i in 0...self!.goodTypes!.count - 1 {
@@ -68,14 +66,11 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
                         }
                     }
                 }
-
-            
-            
                 self?.collection.reloadData()
+        }) { (code: RetErrorCode) in
+            print(code)
+
         }
-
-        
-
     }
     
     
@@ -132,7 +127,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             var imageUrl = [String]()
             if let _ = topBanners {
                 for item in topBanners! {
-                    imageUrl.append(item.imgUrl!)
+                    imageUrl.append(item.imageId!)
                 }
             }
           
@@ -147,7 +142,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             var buttonsUrl = [String]()
             if let _ = customButtons {
                 for item in customButtons! {
-                    let url = item.imgUrl!
+                    let url = item.imageId!
                     buttonsUrl.append(url)
                 }
             }
