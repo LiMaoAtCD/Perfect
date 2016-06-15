@@ -27,7 +27,6 @@
 		870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */; };
 		8763BC131CF9DC7700FAB8D7 /* ThirdGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */; };
 		8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */; };
-		8763BC181CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC171CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift */; };
 		8763BC1F1CFC770A00FAB8D7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC1E1CFC770A00FAB8D7 /* SearchViewController.swift */; };
 		8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */; };
 		8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */; };
@@ -43,6 +42,7 @@
 		87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA561D0EEDAF000A1B41 /* Response.swift */; };
 		87A5AA591D0F0948000A1B41 /* ResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */; };
 		87A5AA5B1D0F11BB000A1B41 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */; };
+		87A5AA5F1D10C636000A1B41 /* GoodsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
 		DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* Assets.xcassets */; };
@@ -105,7 +105,6 @@
 		870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCell.swift; sourceTree = "<group>"; };
 		8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdGoodsCell.swift; sourceTree = "<group>"; };
 		8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDetailViewController.swift; sourceTree = "<group>"; };
-		8763BC171CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDetailCollectionCell.swift; sourceTree = "<group>"; };
 		8763BC1E1CFC770A00FAB8D7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideViewController.xib; sourceTree = "<group>"; };
@@ -121,6 +120,7 @@
 		87A5AA561D0EEDAF000A1B41 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEntity.swift; sourceTree = "<group>"; };
 		87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
+		87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsDetailViewController.swift; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -276,8 +276,6 @@
 			isa = PBXGroup;
 			children = (
 				DA57ED3B1CFC2A3100A8083A /* GoodsScan */,
-				8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */,
-				8763BC171CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -392,6 +390,9 @@
 			isa = PBXGroup;
 			children = (
 				87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */,
+				8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */,
+				87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */,
+				DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */,
 				8763BC141CFB32A700FAB8D7 /* Detail */,
 				DA57ED091CF7D3EF00A8083A /* FirstViewController.swift */,
 				DA57ED161CF7D57B00A8083A /* FirstTableViewController.swift */,
@@ -404,7 +405,6 @@
 		DA57ED3B1CFC2A3100A8083A /* GoodsScan */ = {
 			isa = PBXGroup;
 			children = (
-				DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */,
 			);
 			name = GoodsScan;
 			sourceTree = "<group>";
@@ -633,6 +633,7 @@
 				8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */,
 				DA57ED0C1CF7D3F700A8083A /* SecondViewController.swift in Sources */,
 				8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */,
+				87A5AA5F1D10C636000A1B41 /* GoodsDetailViewController.swift in Sources */,
 				DA57ED0A1CF7D3EF00A8083A /* FirstViewController.swift in Sources */,
 				870F38251CF973CC00AFF1AF /* RegisterViewController.swift in Sources */,
 				870F38291CF9757C00AFF1AF /* BaseViewController.swift in Sources */,
@@ -657,7 +658,6 @@
 				DA57ED5B1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m in Sources */,
 				870F38271CF973D500AFF1AF /* ForgetViewController.swift in Sources */,
 				870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */,
-				8763BC181CFB356F00FAB8D7 /* FirstDetailCollectionCell.swift in Sources */,
 				8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */,
 				8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */,
 				DAE24CCC1D0D4BA300B4A2B1 /* NetworkHelper.swift in Sources */,

@@ -29,3 +29,17 @@ class Utils: NSObject {
         
     }
 }
+
+extension UIView {
+    var x: CGFloat { return self.frame.origin.x}
+    var y: CGFloat { return self.frame.origin.y}
+    var w: CGFloat { return self.frame.size.width}
+    var h: CGFloat { return self.frame.size.height}
+    
+}
+
+
+//
+struct Tool {
+    static let width = UIScreen.mainScreen().bounds.size.width
+}

@@ -13,15 +13,15 @@ import ObjectMapper
 class FirstEntity: Mappable {
     
     var topBanners: [FirstBannerItem]?
-    var types: [FirstGoodsTypes]?
-    var buttons: [FirstButtons]?
+    var types: [FirstGoodsTypeItem]?
+    var buttons: [FirstButtonItem]?
     
     required init?(_ map: Map) {
     }
     
     func mapping(map: Map) {
         topBanners <- map["topBanners"]
-        types <- map["types"]
+        types <- map["goodsTypes"]
         buttons <- map["buttons"]
     }
     
@@ -44,7 +44,7 @@ class FirstBannerItem: Mappable{
     }
 }
 
-class FirstGoodsTypes: Mappable{
+class FirstGoodsTypeItem: Mappable{
     
     required convenience init?(_ map: Map) {
         self.init()
@@ -52,14 +52,16 @@ class FirstGoodsTypes: Mappable{
     
     var id: String?
     var title: String?
+    var opened: Bool = false
     
     func mapping(map: Map) {
         title <- map["title"]
         id <- map["id"]
+        opened <- map["opened"]
     }
 }
 
-class FirstButtons: Mappable{
+class FirstButtonItem: Mappable{
     
     required convenience init?(_ map: Map) {
         self.init()
