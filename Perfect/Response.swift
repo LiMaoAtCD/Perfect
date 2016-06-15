@@ -24,6 +24,7 @@ class DataResponse: Mappable {
     }
 }
 
+//首页上部
 class FirstPageResponse: DataResponse {
     var retObj: FirstEntity?
     
@@ -39,7 +40,7 @@ class FirstPageResponse: DataResponse {
 }
 
 
-
+//首页商品
 class ProductListResponse: DataResponse {
     var retObj: ProductEntity?
     
@@ -53,6 +54,22 @@ class ProductListResponse: DataResponse {
         retObj <- map["retObj"]
     }
 }
+//商品详情
+class ProductDetailResponse: DataResponse {
+    var retObj: ProductDetailEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        
+        retObj <- map["retObj"]
+    }
+}
+
+
 
 
 

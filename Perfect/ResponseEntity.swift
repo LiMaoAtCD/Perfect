@@ -110,4 +110,65 @@ class ProductItem: Mappable {
 }
 
 
+//商品详情
+
+class ProductDetailEntity: Mappable {
+    var deliverMemo: String?
+    var deliverRegionGroup: Int = 0
+    var marketPrice: Int = 0
+    var price: Int = 0
+    var merchantName: String?
+    var images: [String]?
+    
+    var fullName: String?
+    var favorite: Bool = false
+    var intro: String?
+    
+    var tabs:[ProductDetailSectionItem]?
+    
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        deliverMemo <- map["deliverMemo"]
+        deliverRegionGroup <- map["deliverRegionGroup"]
+        marketPrice <- map["marketPrice"]
+        price <- map["price"]
+        merchantName <- map["merchantName"]
+        images <- map["images"]
+        fullName <- map["fullName"]
+        favorite <- map["favorite"]
+        intro <- map["intro"]
+        tabs <- map["tabs"]
+    }
+}
+
+class ProductDetailSectionItem: Mappable {
+    var content: [ProductDetailIntroItem]?
+    var title: String?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        title <- map["title"]
+        content <- map["content"]
+    }
+}
+
+class ProductDetailIntroItem: Mappable {
+    var value: String?
+    var type: String?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        value <- map["value"]
+        type <- map["type"]
+    }
+
+}
+
+
+
+
 

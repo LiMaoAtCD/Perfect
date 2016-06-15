@@ -24,11 +24,20 @@ class GoodsDetailViewController: UIViewController {
     
     var bottomView: UIView!
     
+    var detail: ProductDetailEntity?
+    
     let bottomHeight = 44
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.appProductDetail.contant, parameters: ["id":"11"], completion: { [weak self](response: ProductDetailResponse?) in
+                self?.detail = response?.retObj
+                self?.updateViews()
+            }) { (errorMessage) in
+                print(errorMessage)
+        }
         scrollView = UIScrollView.init()
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { (make) in
@@ -36,6 +45,12 @@ class GoodsDetailViewController: UIViewController {
             make.bottom.equalTo(view).offset(-bottomHeight)
         }
         
+       
+        
+        
+    }
+    
+    func updateViews() {
         configureTopBanner()
         configureGoodInfoView()
         configureGoodIntroView()
@@ -49,8 +64,6 @@ class GoodsDetailViewController: UIViewController {
         }
         
         configureBottomView()
-        
-        
     }
     
     func configureTopBanner() {
@@ -59,7 +72,12 @@ class GoodsDetailViewController: UIViewController {
         topBanner.clickItemOperationBlock = { index in
             
         }
-        topBanner.imageURLStringsGroup = [String]()
+        
+        //banner 图片url
+        if let images = self.detail?.images {
+            topBanner.imageURLStringsGroup = images
+        }
+        
         scrollView.addSubview(topBanner)
         
         topBanner.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter
@@ -82,7 +100,7 @@ class GoodsDetailViewController: UIViewController {
         
         let titleLabel = UILabel()
         goodsInfoView.addSubview(titleLabel)
-        titleLabel.text = "ABC大连会计电费卡拉克剪短发开发及地方了发垃圾费卡里就发啦空间发的卡"
+        titleLabel.text = self.detail?.fullName
         titleLabel.font = UIFont.systemFontOfSize(16)
         titleLabel.textColor = UIColor.blackColor()
         titleLabel.numberOfLines = 0
@@ -96,7 +114,7 @@ class GoodsDetailViewController: UIViewController {
         let priceLabel: UILabel! = UILabel()
         
         goodsInfoView.addSubview(priceLabel)
-        priceLabel.text = "1200"
+        priceLabel.text = "￥\(self.detail!.price)"
         priceLabel.font = UIFont.systemFontOfSize(20)
         priceLabel.textColor = UIColor.redColor()
         
@@ -110,7 +128,7 @@ class GoodsDetailViewController: UIViewController {
         let marketPriceLabel: UILabel!  = UILabel()
         
         goodsInfoView.addSubview(marketPriceLabel)
-        marketPriceLabel.text = "1200"
+        marketPriceLabel.text = "市场价￥\(self.detail!.marketPrice)"
         marketPriceLabel.font = UIFont.systemFontOfSize(13)
         marketPriceLabel.textColor = UIColor.lightGrayColor()
         
@@ -131,7 +149,7 @@ class GoodsDetailViewController: UIViewController {
         let companyLabel: UILabel!  = UILabel()
         
         goodsInfoView.addSubview(companyLabel)
-        companyLabel.text = "美国圣地亚哥金坷垃公司"
+        companyLabel.text = self.detail?.merchantName
         companyLabel.font = UIFont.systemFontOfSize(13)
         companyLabel.textColor = UIColor.lightGrayColor()
         
@@ -152,7 +170,7 @@ class GoodsDetailViewController: UIViewController {
         let deliverLabel: UILabel!  = UILabel()
         
         goodsInfoView.addSubview(deliverLabel)
-        deliverLabel.text = "24adadfjakkdjfhadfjkahdfkjahdfkjahdfjkadfhkjfhd"
+        deliverLabel.text = self.detail?.deliverMemo
         deliverLabel.font = UIFont.systemFontOfSize(13)
         deliverLabel.textColor = UIColor.lightGrayColor()
         
