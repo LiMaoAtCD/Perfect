@@ -60,7 +60,6 @@ class FirstDetailViewController: UIViewController, UICollectionViewDelegateFlowL
 //                let item = self.topBanners![currentIndex]
 //                let id = item.id
 //                let action  = item.action!
-                
 //                print("id:\(id) & action: \(action)")
                 
                 

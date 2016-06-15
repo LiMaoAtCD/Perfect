@@ -12,10 +12,12 @@ import ObjectMapper
 class DataResponse: Mappable {
     var retCode: Int = 0
     var sessionId: String?
+    var retMsg: String?
     
     func mapping(map: Map) {
         retCode <- map["retCode"]
         sessionId <- map["sessionId"]
+        retMsg <- map["retMsg"]
     }
     
     required init?(_ map: Map){
@@ -36,6 +38,21 @@ class FirstPageResponse: DataResponse {
     }
 }
 
+
+
+class ProductListResponse: DataResponse {
+    var retObj: ProductEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        
+        retObj <- map["retObj"]
+    }
+}
 
 
 

@@ -18,7 +18,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
     var topBanners: [FirstBannerItem]?
     var customButtons: [FirstButtonItem]?
     var goodTypes: [FirstGoodsTypeItem]?
-    var goods: [[String]]?
+    var goods: [ProductItem]?
     
     var selectionSection = 0
 
@@ -56,21 +56,33 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
         NetworkHelper.instance.request(.GET, url: URLConstant.FirstPage.contant, parameters: nil, completion: { [weak self](res: FirstPageResponse?) in
                 self?.topBanners = res?.retObj?.topBanners
                 self?.customButtons = res?.retObj?.buttons
-                self?.goodTypes = res?.retObj?.types
-                
-                if let _ = self?.goodTypes where self?.goodTypes!.count > 0 {
-                    
-                    for i in 0...self!.goodTypes!.count - 1 {
-                        if self!.goodTypes![i].opened == true {
-                            self!.selectionSection = i
-                        }
-                    }
-                }
+                self?.fetchProductsByGoodTypes(res?.retObj?.types)
                 self?.collection.reloadData()
-        }) { (code: RetErrorCode) in
+        }) { (code: String?) in
             print(code)
 
         }
+    }
+    
+    func fetchProductsByGoodTypes(types:[FirstGoodsTypeItem]?) {
+        self.goodTypes = types
+        if let _ = self.goodTypes where self.goodTypes!.count > 0 {
+            for i in 0...self.goodTypes!.count - 1 {
+                if self.goodTypes![i].opened == true {
+                    self.selectionSection = i
+                }
+            }
+        }
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":self.goodTypes![self.selectionSection].id!], completion: { [weak self](product: ProductListResponse?) in
+                self?.goods = product?.retObj?.rows
+                self?.collection.reloadSections(NSIndexSet.init(index: 3))
+            }) { (msg) in
+                print(msg)
+        }
+        
+        
+        
     }
     
     
@@ -96,7 +108,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             return 1
         } else {
             if let _ = goods {
-                return goods![selectionSection].count
+                return goods!.count
 //                return 100
             } else {
                 return 0
@@ -157,13 +169,11 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             return cell
         } else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCell.identifier, forIndexPath: indexPath) as! CollectionViewCell
-            let item = goods![selectionSection][indexPath.row]
-            cell.imageView.kf_setImageWithURL(NSURL.init(string:item)!, placeholderImage: UIImage.init(named: "h8"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
-
-            return cell
+            let item = goods![indexPath.row]
             
+            cell.entity = item
+            return cell
         }
-        
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -184,7 +194,13 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             header.segmentControl.selectionHandler = { index in
                 print("index: \(index)")
                 self.selectionSection = index
-                self.collection.reloadSections(NSIndexSet.init(index: 3))
+                NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":self.goodTypes![self.selectionSection].id!], completion: { [weak self](product: ProductListResponse?) in
+                    self?.goods = product?.retObj?.rows
+                 
+                    self?.collection.reloadSections(NSIndexSet.init(index: 3))
+                }) { (msg) in
+                    print(msg)
+                }
             }
 
             return header
@@ -203,7 +219,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
         } else if indexPath.section == 2 {
             return CGSizeMake(Tool.width, 50)
         }else {
-            return CGSizeMake(Tool.width / 2 - 5, 100)
+            return CGSizeMake(Tool.width / 2 - 5, 200)
         }
     }
     
@@ -259,15 +275,59 @@ class CollectionViewCell: UICollectionViewCell {
     static let identifier = "cell"
     
     var imageView: UIImageView!
+    var title: UILabel!
+    var price: UILabel!
+    var marketPrice: UILabel!
+    
+    var entity: ProductItem? {
+        willSet{
+            if let _ = newValue {
+                imageView.kf_setImageWithURL(NSURL.init(string: newValue!.imageId!)!)
+                title.text = newValue!.fullName
+                marketPrice.text = "￥\(newValue!.marketPrice)"
+                price.text = "￥\(newValue!.price)"
+            }
+        }
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.redColor()
         
         imageView = UIImageView()
         self.addSubview(imageView)
         imageView.snp_makeConstraints { (make) in
-            make.edges.equalTo(self)
+            make.left.right.top.equalTo(self)
+            make.height.equalTo(100)
         }
+        title = UILabel.init()
+        self.addSubview(title)
+        title.textColor = UIColor.blackColor()
+        title.numberOfLines = 0
+        title.font = UIFont.systemFontOfSize(14)
+        title.snp_makeConstraints { (make) in
+            make.left.right.equalTo(self)
+            make.top.equalTo(imageView.snp_bottom)
+        }
+        
+        price = UILabel.init()
+        self.addSubview(price)
+        price.textColor = UIColor.redColor()
+        price.font = UIFont.systemFontOfSize(14)
+        price.snp_makeConstraints { (make) in
+            make.left.equalTo(title)
+            make.top.equalTo(title.snp_bottom)
+        }
+        
+        marketPrice = UILabel.init()
+        self.addSubview(marketPrice)
+        marketPrice.textColor = UIColor.lightGrayColor()
+        marketPrice.font = UIFont.systemFontOfSize(12)
+        marketPrice.snp_makeConstraints { (make) in
+            make.left.equalTo(price.snp_right).offset(8)
+            make.centerY.equalTo(price.snp_centerY)
+        }
+        
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

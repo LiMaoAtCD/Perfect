@@ -19,7 +19,9 @@ enum httpMethod {
     case POST
 }
 enum URLConstant: String {
-    case FirstPage = "queryAppIndexStaticContent"
+    case FirstPage = "appQueryIndexStaticContent"
+    case ProductList = "appQueryProductList"
+    case appProductDetail = "appProductDetail"
     
     var contant: String {
         return url + self.rawValue
@@ -37,40 +39,67 @@ class NetworkHelper: NSObject {
     
     
     
-    func request<T: DataResponse>(method:httpMethod, url: String, parameters: [String: AnyObject]?,completion completionHandler: (T? -> Void)?, failed failedHandler: (RetErrorCode -> Void)?){
+    func request<T: DataResponse>(method:httpMethod, url: String, parameters: [String: AnyObject]?,completion completionHandler: (T? -> Void)?, failed failedHandler: (String? -> Void)?){
         
         var p = parameters ?? [String:AnyObject]()
         p["sessionID"] = Defaults[.sessionID] ?? ""
         
-//        Alamofire.request((method == .GET ? .GET : .POST), url, parameters: nil, encoding: ParameterEncoding.URL, headers: nil).responseString(completionHandler: { (res) in
-//            print(res)
-//        })
 
         Alamofire.request((method == .GET ? Method.GET : Method.POST), url, parameters: p, encoding: ParameterEncoding.URL, headers: nil).responseObject { (response: Response<T, NSError>) in
             if let _ = response.result.error {
-                failedHandler?(RetErrorCode.NetworkError)
+                failedHandler?("网络连接失败")
             } else {
                 if let value = response.result.value where value.retCode == RetErrorCode.Success.rawValue {
                     completionHandler?(response.result.value)
+                    if let session = response.result.value?.sessionId {
+                        Defaults[.sessionID] = session
+                    }
+                    
                 } else if let value = response.result.value where value.retCode != RetErrorCode.Success.rawValue  {
-                    failedHandler?(RetErrorCode.init(rawValue: value.retCode)!)
+//                    failedHandler?(RetErrorCode.init(rawValue: value.retCode)!)
+                    failedHandler?(value.retMsg)
+
                 } else {
                     assertionFailure("network data format error")
                 }
             }
             completionHandler?(response.result.value)
         }
+//            .responseString { (res) in
+//            print(res)
+//        }
     }
 }
 
 
+
+
+//0
+//操作成功
+//-6
+//数据读写失败
+//-5
+//格式交验不通过
+//-4
+//权限不足
+//-3
+//操作对象无效
+//-2
+//请登录后再操作
+//-1
+//系统错误
+
 enum RetErrorCode: Int {
     case Success = 0
     case SystemError = -1
-    case PermissionDenied = -2
-    case NeedLogin = -3
+    case NeedLogin = -2
+    case ObjectInvalid = -3
+    case PerssionDeny = -4
+    case FormatError = -5
+    case DataIOError = -6
     case NetworkError = -7
 }
+
 
 
 extension DefaultsKeys {
