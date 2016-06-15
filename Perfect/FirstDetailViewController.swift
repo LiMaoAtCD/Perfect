@@ -64,12 +64,17 @@ class FirstDetailViewController: UIViewController, UICollectionViewDelegateFlowL
 //                print("id:\(id) & action: \(action)")
                 
                 
-                let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
+                let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodsDetailViewController") as! GoodsDetailViewController
                 detail.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(detail, animated: true)
             }
             
-            let imageUrl = [String]()
+            let imageUrl =  [
+                "https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
+                "https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
+                "https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg"
+            ]
+
 //            if let _ = topBanners {
 //                for item in topBanners! {
 //                    imageUrl.append(item.imgUrl!)
