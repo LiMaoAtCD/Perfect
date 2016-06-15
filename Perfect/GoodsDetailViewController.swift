@@ -13,78 +13,95 @@ class GoodsDetailViewController: UIViewController {
     var scrollView: UIScrollView!
 
     var topBanner: SDCycleScrollView!
-    var goodsDetailView: UIView!
-    var goodDetailLabel: UILabel!
-    var goodImageViews: [UIImageView]!
-    var customSteps: UILabel!
-    var helperView: UIView!
+    var goodsInfoView: UIView!
+    
+    var goodIntroView: UIView!
+    
+    var introImageViews: [UIImageView]!
+    
+    
+    
+    
     var bottomView: UIView!
+    
+    let bottomHeight = 44
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         scrollView = UIScrollView.init()
         view.addSubview(scrollView)
-        
         scrollView.snp_makeConstraints { (make) in
-            make.edges.equalTo(view)
+            make.top.left.right.equalTo(view)
+            make.bottom.equalTo(view).offset(-bottomHeight)
         }
         
+        configureTopBanner()
+        configureGoodInfoView()
+        configureGoodIntroView()
+        
+        bottomView = UIView()
+        
+        view.addSubview(bottomView)
+        bottomView.snp_makeConstraints { (make) in
+            make.left.right.bottom.equalTo(view)
+            make.height.equalTo(bottomHeight)
+        }
+        
+        configureBottomView()
+        
+        
+    }
+    
+    func configureTopBanner() {
         topBanner = SDCycleScrollView.init()
         topBanner.placeholderImage = UIImage.init(named: "placeholder")!
         topBanner.clickItemOperationBlock = { index in
-        
+            
         }
-        
         topBanner.imageURLStringsGroup = [String]()
         scrollView.addSubview(topBanner)
         
         topBanner.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter
         topBanner.currentPageDotColor = UIColor.whiteColor()
-        
         topBanner.snp_makeConstraints { (make) in
-            make.left.right.top.equalTo(view)
+            make.left.right.equalTo(view)
+            make.top.equalTo(scrollView)
             make.height.equalTo(300)
         }
-        
-        configureGoodInfoView()
-        
-        
     }
-    
     func configureGoodInfoView() {
-        goodsDetailView = UIView.init()
-        scrollView.addSubview(goodsDetailView)
+        goodsInfoView = UIView.init()
+        scrollView.addSubview(goodsInfoView)
         
-        goodsDetailView.snp_makeConstraints { (make) in
+        goodsInfoView.snp_makeConstraints { (make) in
             make.top.equalTo(topBanner.snp_bottom)
             make.left.right.equalTo(topBanner)
             make.height.equalTo(300)
         }
         
         let titleLabel = UILabel()
-        goodsDetailView.addSubview(titleLabel)
+        goodsInfoView.addSubview(titleLabel)
         titleLabel.text = "ABC大连会计电费卡拉克剪短发开发及地方了发垃圾费卡里就发啦空间发的卡"
         titleLabel.font = UIFont.systemFontOfSize(16)
         titleLabel.textColor = UIColor.blackColor()
         titleLabel.numberOfLines = 0
         
         titleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(goodsDetailView).offset(10)
-            make.right.equalTo(goodsDetailView).offset(-10)
+            make.left.equalTo(goodsInfoView).offset(10)
+            make.right.equalTo(goodsInfoView).offset(-10)
             make.top.equalTo(10)
         }
         
         let priceLabel: UILabel! = UILabel()
         
-        goodsDetailView.addSubview(priceLabel)
+        goodsInfoView.addSubview(priceLabel)
         priceLabel.text = "1200"
         priceLabel.font = UIFont.systemFontOfSize(20)
         priceLabel.textColor = UIColor.redColor()
         
         priceLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(goodsDetailView).offset(10)
+            make.left.equalTo(goodsInfoView).offset(10)
             make.top.equalTo(titleLabel.snp_bottom).offset(10)
         }
         
@@ -92,7 +109,7 @@ class GoodsDetailViewController: UIViewController {
         
         let marketPriceLabel: UILabel!  = UILabel()
         
-        goodsDetailView.addSubview(marketPriceLabel)
+        goodsInfoView.addSubview(marketPriceLabel)
         marketPriceLabel.text = "1200"
         marketPriceLabel.font = UIFont.systemFontOfSize(13)
         marketPriceLabel.textColor = UIColor.lightGrayColor()
@@ -103,7 +120,7 @@ class GoodsDetailViewController: UIViewController {
         }
         
         let homeTag = UIImageView()
-        goodsDetailView.addSubview(homeTag)
+        goodsInfoView.addSubview(homeTag)
         homeTag.image = UIImage.init(named: "perfect")
         homeTag.snp_makeConstraints { (make) in
             make.height.width.equalTo(20)
@@ -113,7 +130,7 @@ class GoodsDetailViewController: UIViewController {
         
         let companyLabel: UILabel!  = UILabel()
         
-        goodsDetailView.addSubview(companyLabel)
+        goodsInfoView.addSubview(companyLabel)
         companyLabel.text = "美国圣地亚哥金坷垃公司"
         companyLabel.font = UIFont.systemFontOfSize(13)
         companyLabel.textColor = UIColor.lightGrayColor()
@@ -124,7 +141,7 @@ class GoodsDetailViewController: UIViewController {
         }
         
         let deliverTag = UIImageView()
-        goodsDetailView.addSubview(deliverTag)
+        goodsInfoView.addSubview(deliverTag)
         deliverTag.image = UIImage.init(named: "perfect")
         deliverTag.snp_makeConstraints { (make) in
             make.height.width.equalTo(20)
@@ -134,7 +151,7 @@ class GoodsDetailViewController: UIViewController {
         
         let deliverLabel: UILabel!  = UILabel()
         
-        goodsDetailView.addSubview(deliverLabel)
+        goodsInfoView.addSubview(deliverLabel)
         deliverLabel.text = "24adadfjakkdjfhadfjkahdfkjahdfkjahdfjkadfhkjfhd"
         deliverLabel.font = UIFont.systemFontOfSize(13)
         deliverLabel.textColor = UIColor.lightGrayColor()
@@ -145,7 +162,7 @@ class GoodsDetailViewController: UIViewController {
         }
         
         let unknownTag = UIImageView()
-        goodsDetailView.addSubview(unknownTag)
+        goodsInfoView.addSubview(unknownTag)
         unknownTag.image = UIImage.init(named: "perfect")
         unknownTag.snp_makeConstraints { (make) in
             make.height.width.equalTo(20)
@@ -155,7 +172,7 @@ class GoodsDetailViewController: UIViewController {
         
         let unknownLabel: UILabel!  = UILabel()
         
-        goodsDetailView.addSubview(unknownLabel)
+        goodsInfoView.addSubview(unknownLabel)
         unknownLabel.text = "24adadfjakkdjfhadfjkahdfkjahdfkjahdfjkadfhkjfhd"
         unknownLabel.font = UIFont.systemFontOfSize(13)
         unknownLabel.textColor = UIColor.lightGrayColor()
@@ -164,24 +181,226 @@ class GoodsDetailViewController: UIViewController {
             make.left.equalTo(unknownTag.snp_right).offset(10)
             make.centerY.equalTo(unknownTag)
         }
+        
+        
 
+    }
+    
+    func configureGoodIntroView() {
+        goodIntroView = UIView()
+        scrollView.addSubview(goodIntroView)
+        goodIntroView.snp_makeConstraints { (make) in
+            make.left.right.equalTo(topBanner)
+            make.top.equalTo(goodsInfoView.snp_bottom)
+        }
+        
+        let introDetailLabel = UILabel()
+        goodIntroView.addSubview(introDetailLabel)
+        introDetailLabel.text = "xcaada"
+        introDetailLabel.textColor = UIColor.whiteColor()
+        introDetailLabel.textAlignment = .Center
+        introDetailLabel.snp_makeConstraints { (make) in
+            make.top.left.right.equalTo(goodIntroView)
+            make.height.equalTo(40)
+        }
+        
+        introImageViews = [UIImageView]()
+        for i in 0...2 {
+            let imageview = UIImageView()
+            goodIntroView.addSubview(imageview)
+            imageview.tag = i
+            
+            imageview.snp_makeConstraints(closure: { (make) in
+                make.left.right.equalTo(goodIntroView)
+                make.top.equalTo(introDetailLabel.snp_bottom).offset(i * 300)
+                make.height.equalTo(300)
+            })
+            
+            imageview.image = UIImage.init(named: "fourtag")
+            introImageViews.append(imageview)
+        }
+        
+        let customStepLabel = UILabel()
+        goodIntroView.addSubview(customStepLabel)
+        customStepLabel.text = "xcaada"
+        customStepLabel.textColor = UIColor.whiteColor()
+        customStepLabel.textAlignment = .Center
+        customStepLabel.snp_makeConstraints { (make) in
+            make.left.right.equalTo(goodIntroView)
+            make.top.equalTo(introImageViews.last!.snp_bottom)
+            make.height.equalTo(40)
+        }
+        
+        let helperView = UIView.init()
+        goodIntroView.addSubview(helperView)
+        helperView.snp_makeConstraints { (make) in
+            make.left.right.equalTo(goodIntroView)
+            make.top.equalTo(customStepLabel.snp_bottom)
+            make.height.equalTo(100)
+        }
+        
+        let margin: CGFloat = 10.0
+        let width: CGFloat = (Tool.width - 6 * margin) / 5
+        for i in 0...4 {
+            let imageview = UIImageView.init()
+            imageview.image = UIImage.init(named: "fourtag")
+
+            helperView.addSubview(imageview)
+            imageview.snp_makeConstraints(closure: { (make) in
+                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i + 1))
+                make.width.equalTo(width)
+                make.height.equalTo(width)
+                make.top.equalTo(helperView).offset(20)
+            })
+            
+            
+            let label = UILabel.init()
+            label.textColor = UIColor.blackColor()
+            label.text = "xxxx"
+            label.textAlignment = .Center
+            
+            helperView.addSubview(label)
+            label.snp_makeConstraints(closure: { (make) in
+                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i + 1))
+                make.width.equalTo(width)
+                make.height.equalTo(width)
+                make.top.equalTo(imageview.snp_bottom).offset(20)
+                make.bottom.equalTo(scrollView.snp_bottom)
+            })
+            
+        }
+        
+        
+        
+    }
+    
+    func tapBottomItems(tap: UITapGestureRecognizer) {
+        let tag = tap.view?.tag
+        if tag == 0 {
+        } else if tap == 1 {
+        
+        } else {
+            
+        }
+        print("tapBottomItems")
+
+    }
+    
+    func configureBottomView() {
+//        bottomView.layer.borderWidth = 0.5
+//        bottomView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        
+        
+        let collect = UIView()
+        
+        collect.layer.borderColor = UIColor.lightGrayColor().CGColor
+        collect.layer.borderWidth = 0.5
+        bottomView.addSubview(collect)
+        collect.snp_makeConstraints { (make) in
+            make.left.top.bottom.equalTo(bottomView)
+            make.width.equalTo(bottomView).multipliedBy(1.0 / 3)
+        }
+        
+        let collectionTap = UITapGestureRecognizer.init(target: self, action: #selector(self.tapBottomItems(_:)))
+
+        collect.tag = 0
+        collect.addGestureRecognizer(collectionTap)
+        
+        let collectImageview = UIImageView()
+        collectImageview.image = UIImage.init(named: "fourtag")
+        collect.addSubview(collectImageview)
+        collectImageview.snp_makeConstraints { (make) in
+            make.centerX.equalTo(collect)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
+            make.top.equalTo(collect).offset(10)
+        }
+        
+        let collectionTitle = UILabel()
+        collect.addSubview(collectionTitle)
+        collectionTitle.text = "哈哈"
+        collectionTitle.textColor = UIColor.blackColor()
+        collectionTitle.font = UIFont.systemFontOfSize(14.0)
+
+        collectionTitle.textAlignment = .Center
+        collectionTitle.snp_makeConstraints { (make) in
+            make.left.right.equalTo(collect)
+            make.top.equalTo(collectImageview.snp_bottom)
+        }
+        
+        
+        let service = UIView()
+        service.layer.borderColor = UIColor.lightGrayColor().CGColor
+        service.layer.borderWidth = 0.5
+        
+        let serviceTap = UITapGestureRecognizer.init(target: self, action: #selector(self.tapBottomItems(_:)))
+        
+        service.tag = 1
+        service.addGestureRecognizer(serviceTap)
+
+
+        bottomView.addSubview(service)
+        service.snp_makeConstraints { (make) in
+            make.top.bottom.equalTo(bottomView)
+            make.left.equalTo(collect.snp_right)
+            make.width.equalTo(bottomView).multipliedBy(1.0 / 3)
+        }
+        
+        let serviceImageview = UIImageView()
+        serviceImageview.image = UIImage.init(named: "fourtag")
+        service.addSubview(serviceImageview)
+        serviceImageview.snp_makeConstraints { (make) in
+            make.centerX.equalTo(service)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
+            make.top.equalTo(service).offset(10)
+        }
+        
+        let serviceTitle = UILabel()
+        service.addSubview(serviceTitle)
+        serviceTitle.text = "呵呵"
+        serviceTitle.textColor = UIColor.blackColor()
+        serviceTitle.font = UIFont.systemFontOfSize(14.0)
+        serviceTitle.textAlignment = .Center
+        serviceTitle.snp_makeConstraints { (make) in
+            make.left.right.equalTo(service)
+            make.top.equalTo(serviceImageview.snp_bottom)
+        }
+
+        
+        
+        
+        let ok = UIView()
+        
+        let okTap = UITapGestureRecognizer.init(target: self, action: #selector(self.tapBottomItems(_:)))
+        
+        ok.tag = 2
+        ok.addGestureRecognizer(okTap)
+        ok.backgroundColor = UIColor.redColor()
+        bottomView.addSubview(ok)
+        ok.snp_makeConstraints { (make) in
+            make.top.right.bottom.equalTo(bottomView)
+            make.width.equalTo(bottomView).multipliedBy(1.0 / 3)
+        }
+        
+        let okLabel = UILabel()
+        okLabel.text = "马上就好"
+        okLabel.textColor = UIColor.whiteColor()
+        okLabel.font = UIFont.systemFontOfSize(16)
+        okLabel.textAlignment = .Center
+        ok.addSubview(okLabel)
+        okLabel.snp_makeConstraints { (make) in
+            make.center.equalTo(ok)
+        }
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
