@@ -114,7 +114,7 @@ class GoodsDetailViewController: UIViewController {
         let priceLabel: UILabel! = UILabel()
         
         goodsInfoView.addSubview(priceLabel)
-        priceLabel.text = "￥\(self.detail!.price)"
+        priceLabel.text = self.detail!.price.currency
         priceLabel.font = UIFont.systemFontOfSize(20)
         priceLabel.textColor = UIColor.redColor()
         
@@ -125,12 +125,12 @@ class GoodsDetailViewController: UIViewController {
         
         
         
-        let marketPriceLabel: UILabel!  = UILabel()
+        let marketPriceLabel: MarketLabel!  = MarketLabel()
         
         goodsInfoView.addSubview(marketPriceLabel)
-        marketPriceLabel.text = "市场价￥\(self.detail!.marketPrice)"
+        marketPriceLabel.text = "市场价" + self.detail!.marketPrice.currency
         marketPriceLabel.font = UIFont.systemFontOfSize(13)
-        marketPriceLabel.textColor = UIColor.lightGrayColor()
+        marketPriceLabel.labelColor = UIColor.lightGrayColor()
         
         marketPriceLabel.snp_makeConstraints { (make) in
             make.left.equalTo(priceLabel.snp_right).offset(10)

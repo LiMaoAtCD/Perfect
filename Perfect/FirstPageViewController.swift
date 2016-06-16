@@ -277,15 +277,15 @@ class CollectionViewCell: UICollectionViewCell {
     var imageView: UIImageView!
     var title: UILabel!
     var price: UILabel!
-    var marketPrice: UILabel!
+    var marketPrice: MarketLabel!
     
     var entity: ProductItem? {
         willSet{
             if let _ = newValue {
                 imageView.kf_setImageWithURL(NSURL.init(string: newValue!.imageId!)!)
                 title.text = newValue!.fullName
-                marketPrice.text = "￥\(newValue!.marketPrice)"
-                price.text = "￥\(newValue!.price)"
+                marketPrice.text = newValue!.marketPrice.currency
+                price.text = newValue!.price.currency
             }
         }
     }
@@ -317,9 +317,9 @@ class CollectionViewCell: UICollectionViewCell {
             make.top.equalTo(title.snp_bottom)
         }
         
-        marketPrice = UILabel.init()
+        marketPrice = MarketLabel.init()
         self.addSubview(marketPrice)
-        marketPrice.textColor = UIColor.lightGrayColor()
+        marketPrice.labelColor = UIColor.lightGrayColor()
         marketPrice.font = UIFont.systemFontOfSize(12)
         marketPrice.snp_makeConstraints { (make) in
             make.left.equalTo(price.snp_right).offset(8)
@@ -342,7 +342,7 @@ class CollectionViewBannerCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.lightGrayColor()
+        self.backgroundColor = UIColor.whiteColor()
         
         banner = SDCycleScrollView.init()
         self.addSubview(banner)

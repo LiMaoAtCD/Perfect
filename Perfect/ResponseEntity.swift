@@ -92,8 +92,8 @@ class ProductEntity: Mappable {
 
 class ProductItem: Mappable {
     
-    var marketPrice: Int = 0
-    var price: Int = 0
+    var marketPrice: Float = 0.0
+    var price: Float = 0.0
     var imageId: String?
     var fullName: String?
     
@@ -115,8 +115,8 @@ class ProductItem: Mappable {
 class ProductDetailEntity: Mappable {
     var deliverMemo: String?
     var deliverRegionGroup: Int = 0
-    var marketPrice: Int = 0
-    var price: Int = 0
+    var marketPrice: Float = 0
+    var price: Float = 0
     var merchantName: String?
     var images: [String]?
     

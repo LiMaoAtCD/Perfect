@@ -16,7 +16,7 @@ target 'Perfect' do
     pod 'FDFullscreenPopGesture', '~> 1.1'
     pod 'SwiftyUserDefaults'
     pod 'AsyncSwift'
-
+    
 end
 
 target 'PerfectTests' do

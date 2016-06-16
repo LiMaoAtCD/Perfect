@@ -43,6 +43,8 @@
 		87A5AA591D0F0948000A1B41 /* ResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */; };
 		87A5AA5B1D0F11BB000A1B41 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */; };
 		87A5AA5F1D10C636000A1B41 /* GoodsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */; };
+		DA1A6B231D124A0B00FD4FB0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1A6B221D124A0B00FD4FB0 /* Extensions.swift */; };
+		DA1A6B251D124A3600FD4FB0 /* MarketLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1A6B241D124A3600FD4FB0 /* MarketLabel.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
 		DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* Assets.xcassets */; };
@@ -123,6 +125,8 @@
 		87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsDetailViewController.swift; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA1A6B221D124A0B00FD4FB0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		DA1A6B241D124A3600FD4FB0 /* MarketLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketLabel.swift; sourceTree = "<group>"; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B551CF5EDD100F61304 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA417B5A1CF5EDD100F61304 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -324,6 +328,14 @@
 			name = Order;
 			sourceTree = "<group>";
 		};
+		DA1A6B211D1249F800FD4FB0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DA1A6B221D124A0B00FD4FB0 /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		DA417B491CF5EDD100F61304 = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +361,7 @@
 		DA417B541CF5EDD100F61304 /* Perfect */ = {
 			isa = PBXGroup;
 			children = (
+				DA1A6B211D1249F800FD4FB0 /* Extensions */,
 				DAE24CC81D0D3EC800B4A2B1 /* Data */,
 				DA57ED441CFD308C00A8083A /* Vendor */,
 				870F38211CF9488700AFF1AF /* Login */,
@@ -422,6 +435,7 @@
 		DA57ED441CFD308C00A8083A /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				DA1A6B241D124A3600FD4FB0 /* MarketLabel.swift */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -633,6 +647,7 @@
 				8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */,
 				DA57ED0C1CF7D3F700A8083A /* SecondViewController.swift in Sources */,
 				8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */,
+				DA1A6B251D124A3600FD4FB0 /* MarketLabel.swift in Sources */,
 				87A5AA5F1D10C636000A1B41 /* GoodsDetailViewController.swift in Sources */,
 				DA57ED0A1CF7D3EF00A8083A /* FirstViewController.swift in Sources */,
 				870F38251CF973CC00AFF1AF /* RegisterViewController.swift in Sources */,
@@ -665,6 +680,7 @@
 				870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */,
 				DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */,
 				DA57ED561CFD6C9D00A8083A /* Guide2ViewController.swift in Sources */,
+				DA1A6B231D124A0B00FD4FB0 /* Extensions.swift in Sources */,
 				DA57ED171CF7D57B00A8083A /* FirstTableViewController.swift in Sources */,
 				870F382F1CF987C900AFF1AF /* PeronalViewController.swift in Sources */,
 				870F381D1CF9415200AFF1AF /* FourthTableViewCell.swift in Sources */,
