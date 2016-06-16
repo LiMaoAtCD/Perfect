@@ -336,6 +336,33 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		DA1A6B271D124F8B00FD4FB0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DA417B5C1CF5EDD100F61304 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		DA1A6B281D124F9D00FD4FB0 /* Cofig */ = {
+			isa = PBXGroup;
+			children = (
+				DA57ED111CF7D53F00A8083A /* Perfect-Bridging-Header.h */,
+				DA417B611CF5EDD100F61304 /* Info.plist */,
+			);
+			name = Cofig;
+			sourceTree = "<group>";
+		};
+		DA1A6B2A1D12515700FD4FB0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				870F38171CF9332D00AFF1AF /* FourTh */,
+				DA57ED151CF7D56500A8083A /* First */,
+				870F38281CF9757C00AFF1AF /* BaseViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		DA417B491CF5EDD100F61304 = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +388,9 @@
 		DA417B541CF5EDD100F61304 /* Perfect */ = {
 			isa = PBXGroup;
 			children = (
+				DA1A6B2A1D12515700FD4FB0 /* Controller */,
+				DA1A6B281D124F9D00FD4FB0 /* Cofig */,
+				DA1A6B271D124F8B00FD4FB0 /* Resources */,
 				DA1A6B211D1249F800FD4FB0 /* Extensions */,
 				DAE24CC81D0D3EC800B4A2B1 /* Data */,
 				DA57ED441CFD308C00A8083A /* Vendor */,
@@ -368,15 +398,9 @@
 				870F381E1CF944EA00AFF1AF /* Utils */,
 				DA417B551CF5EDD100F61304 /* AppDelegate.swift */,
 				DA417B591CF5EDD100F61304 /* Main.storyboard */,
-				DA417B5C1CF5EDD100F61304 /* Assets.xcassets */,
 				DA417B5E1CF5EDD100F61304 /* LaunchScreen.storyboard */,
-				DA417B611CF5EDD100F61304 /* Info.plist */,
-				DA57ED111CF7D53F00A8083A /* Perfect-Bridging-Header.h */,
-				870F38281CF9757C00AFF1AF /* BaseViewController.swift */,
-				DA57ED151CF7D56500A8083A /* First */,
 				870F38111CF91A5500AFF1AF /* Second */,
 				870F38161CF9332700AFF1AF /* Third */,
-				870F38171CF9332D00AFF1AF /* FourTh */,
 			);
 			path = Perfect;
 			sourceTree = "<group>";
