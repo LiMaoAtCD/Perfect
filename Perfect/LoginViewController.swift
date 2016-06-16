@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyUserDefaults
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -177,7 +178,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func login() {
+        Defaults[.logined] = true
+        if Defaults[.shouldSwitch] {
+           let tab =  Tool.root.viewControllers.first as! RootTabBarController
+            tab.selectedIndex = 1
+            Defaults[.shouldSwitch] = false
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
 
     /*

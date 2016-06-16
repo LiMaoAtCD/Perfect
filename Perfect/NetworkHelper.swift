@@ -102,8 +102,3 @@ enum RetErrorCode: Int {
 
 
 
-extension DefaultsKeys {
-    static let sessionID = DefaultsKey<String>("sessionID") // sessionID
-}
-
-

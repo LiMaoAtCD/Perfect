@@ -156,10 +156,10 @@
             </objects>
             <point key="canvasLocation" x="-384" y="-1134"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Root Tab Bar Controller-->
         <scene sceneID="vgo-Ki-7lv">
             <objects>
-                <tabBarController id="c0q-VF-Zmp" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="RootTabBarController" id="c0q-VF-Zmp" customClass="RootTabBarController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="34a-Cy-UAH"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="zN4-PT-m3e">

@@ -7,27 +7,35 @@
 //
 
 import UIKit
+import SwiftyUserDefaults
 
-class Utils: NSObject {
+struct Util {
     
-    static let shared = Utils()
-    
-    class var isLogin: Bool {
+    static var logined: Bool {
         get {
-            
-            let islogin = NSUserDefaults.standardUserDefaults().boolForKey("isLogin")
-            return islogin
+            return Defaults[.logined]
         }
         
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "isLogin")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            Defaults[.logined] = newValue
         }
     }
     
-    private override init() {
+    static var shouldSwitch: Bool {
+        get {
+            return Defaults[.shouldSwitch]
+        }
         
+        set {
+            Defaults[.shouldSwitch] = newValue
+        }
     }
+}
+
+extension DefaultsKeys {
+    static let logined = DefaultsKey<Bool>("logined")
+    static let sessionID = DefaultsKey<String>("sessionID") // sessionID
+    static let shouldSwitch = DefaultsKey<Bool>("shouldSwitch")
 }
 
 extension UIView {
@@ -43,4 +51,6 @@ extension UIView {
 struct Tool {
     static let width = UIScreen.mainScreen().bounds.size.width
     static let sb = UIStoryboard.init(name: "Main", bundle: nil)
+    static let root = UIApplication.sharedApplication().keyWindow?.rootViewController as! RootNavigationController
+
 }
