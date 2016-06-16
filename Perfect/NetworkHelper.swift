@@ -19,9 +19,11 @@ enum httpMethod {
     case POST
 }
 enum URLConstant: String {
-    case FirstPage = "appQueryIndexStaticContent"
-    case ProductList = "appQueryProductList"
-    case appProductDetail = "appProductDetail"
+    case FirstPage = "appQueryIndexStaticContent" //首页上部
+    case ProductList = "appQueryProductList"    //首页下部
+    case appProductDetail = "appProductDetail"  //商品详情
+    case appMemberCenterIndex = "appMemberCenterIndex" //个人
+    case appSubOrder = "appSubOrder" //提交订单
     
     var contant: String {
         return url + self.rawValue
