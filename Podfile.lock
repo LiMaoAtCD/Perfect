@@ -22,6 +22,7 @@ PODS:
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - SnapKit (0.21.0)
+  - SVProgressHUD (2.0.3)
   - SwiftyUserDefaults (2.2.0)
 
 DEPENDENCIES:
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - RealmSwift
   - SDCycleScrollView (~> 1.64)
   - SnapKit
+  - SVProgressHUD
   - SwiftyUserDefaults
 
 SPEC CHECKSUMS:
@@ -52,6 +54,7 @@ SPEC CHECKSUMS:
   SDCycleScrollView: 806fedb9342ab03b58b84442f985517b42c7cbb7
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SnapKit: 2756fe24b706367af224c9c508d2f9166d03354c
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
 
 COCOAPODS: 0.39.0

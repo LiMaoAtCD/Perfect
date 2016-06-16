@@ -96,6 +96,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Perfect/RealmSwift.framework"
   install_framework "Pods-Perfect/SDCycleScrollView.framework"
   install_framework "Pods-Perfect/SDWebImage.framework"
+  install_framework "Pods-Perfect/SVProgressHUD.framework"
   install_framework "Pods-Perfect/SnapKit.framework"
   install_framework "Pods-Perfect/SwiftyUserDefaults.framework"
 fi
@@ -112,6 +113,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Perfect/RealmSwift.framework"
   install_framework "Pods-Perfect/SDCycleScrollView.framework"
   install_framework "Pods-Perfect/SDWebImage.framework"
+  install_framework "Pods-Perfect/SVProgressHUD.framework"
   install_framework "Pods-Perfect/SnapKit.framework"
   install_framework "Pods-Perfect/SwiftyUserDefaults.framework"
 fi
