@@ -17,25 +17,36 @@ class FourthTableViewController: UITableViewController {
     var header: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        items = ["全部订单", "收货地址","联系客服","设置"]
+        items = ["修改密码", "设置手势密码","收货地址管理","清除缓存","退出登录"]
 
         self.tableView.registerClass(FourthTableViewCell.self, forCellReuseIdentifier: FourthTableViewCell.identifier)
         self.tableView.tableFooterView = UIView()
         
         
-        header = UIView.init(frame: CGRectMake(0, 0, Tools.width, 200))
+        header = UIView.init(frame: CGRectMake(0, 0, Tools.width, 300))
         header.backgroundColor = UIColor.brownColor()
+        
+        let headerBgImageView = UIImageView()
+        headerBgImageView.image = UIImage.init(named: "fourtag")
+        header.addSubview(headerBgImageView)
+        headerBgImageView.snp_makeConstraints { (make) in
+            make.edges.equalTo(header)
+        }
         
         let avatarImageView = UIImageView()
         avatarImageView.image = UIImage.init(named: "fourtag")
         avatarImageView.userInteractionEnabled = true
+        avatarImageView.layer.cornerRadius = 50
+        avatarImageView.layer.masksToBounds = true
+        
         header.addSubview(avatarImageView)
         
         avatarImageView.snp_makeConstraints { (make) in
             make.width.height.equalTo(100)
-            make.top.equalTo(20)
-            make.centerX.equalTo(header)
+            make.center.equalTo(header)
         }
+        
+        
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.profile))
         avatarImageView.addGestureRecognizer(tap)
         let nickNameLabel = UILabel()
@@ -48,41 +59,42 @@ class FourthTableViewController: UITableViewController {
             make.top.equalTo(avatarImageView.snp_bottom).offset(10)
         }
         
-        let bottomBackGroundView = UIView()
-        header.addSubview(bottomBackGroundView)
-        bottomBackGroundView.snp_makeConstraints { (make) in
-            make.left.right.bottom.equalTo(header)
-            make.height.equalTo(35)
-        }
-        bottomBackGroundView.backgroundColor = UIColor.whiteColor()
-        
-        let needPaybutton = UIButton.init(type: .Custom)
-        
-        let needDeliverButton = UIButton.init(type: .Custom)
-
-        bottomBackGroundView.addSubview(needPaybutton)
-        bottomBackGroundView.addSubview(needDeliverButton)
-
-        needPaybutton.snp_makeConstraints { (make) in
-            make.left.height.top.equalTo(bottomBackGroundView)
-            make.right.equalTo(bottomBackGroundView.snp_centerX)
-        }
-        
-        needDeliverButton.snp_makeConstraints { (make) in
-            make.right.height.top.equalTo(bottomBackGroundView)
-            make.left.equalTo(bottomBackGroundView.snp_centerX)
-        }
-
-        needPaybutton.setTitle("待支付", forState: .Normal)
-        needPaybutton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-
-        needDeliverButton.setTitle("待收货", forState: .Normal)
-        needDeliverButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-
-        
-        
-        needPaybutton.addTarget(self, action: #selector(self.needPay), forControlEvents: .TouchUpInside)
-        needDeliverButton.addTarget(self, action: #selector(self.needDeliver), forControlEvents: .TouchUpInside)
+//        let bottomBackGroundView = UIView()
+//        header.addSubview(bottomBackGroundView)
+//        bottomBackGroundView.snp_makeConstraints { (make) in
+//            make.left.right.bottom.equalTo(header)
+//            make.height.equalTo(35)
+//        }
+//        
+//        bottomBackGroundView.backgroundColor = UIColor.whiteColor()
+//        
+//        let needPaybutton = UIButton.init(type: .Custom)
+//        
+//        let needDeliverButton = UIButton.init(type: .Custom)
+//
+//        bottomBackGroundView.addSubview(needPaybutton)
+//        bottomBackGroundView.addSubview(needDeliverButton)
+//
+//        needPaybutton.snp_makeConstraints { (make) in
+//            make.left.height.top.equalTo(bottomBackGroundView)
+//            make.right.equalTo(bottomBackGroundView.snp_centerX)
+//        }
+//        
+//        needDeliverButton.snp_makeConstraints { (make) in
+//            make.right.height.top.equalTo(bottomBackGroundView)
+//            make.left.equalTo(bottomBackGroundView.snp_centerX)
+//        }
+//
+//        needPaybutton.setTitle("待支付", forState: .Normal)
+//        needPaybutton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+//
+//        needDeliverButton.setTitle("待收货", forState: .Normal)
+//        needDeliverButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+//
+//        
+//        
+//        needPaybutton.addTarget(self, action: #selector(self.needPay), forControlEvents: .TouchUpInside)
+//        needDeliverButton.addTarget(self, action: #selector(self.needDeliver), forControlEvents: .TouchUpInside)
         
         self.tableView.tableHeaderView = header
     }

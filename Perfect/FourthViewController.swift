@@ -15,7 +15,10 @@ class FourthViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBar.translucent = false
+//        self.navigationController?.navigationBar.translucent = false
+        self.fd_prefersNavigationBarHidden = true
+        edgesForExtendedLayout = UIRectEdge.None
+
         fourthTableViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FourthTableViewController") as! FourthTableViewController
         self.addChildViewController(fourthTableViewController)
         view.addSubview(fourthTableViewController.view)
