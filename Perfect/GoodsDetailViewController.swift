@@ -9,7 +9,7 @@
 import UIKit
 import SDCycleScrollView
 
-class GoodsDetailViewController: UIViewController {
+class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
     var scrollView: UIScrollView!
 
     var topBanner: SDCycleScrollView!
@@ -295,12 +295,20 @@ class GoodsDetailViewController: UIViewController {
     func tapBottomItems(tap: UITapGestureRecognizer) {
         let tag = tap.view?.tag
         if tag == 0 {
-        } else if tap == 1 {
-        
+            //collect
+        } else if tag == 1 {
+            //chat whth qq
+            let webview = UIWebView.init()
+            let url = NSURL.init(string: "mqq://im/chat?chat_type=wpa&uin=501863587&version=1&src_type=web")!
+            webview.loadRequest(NSURLRequest.init(URL: url))
+            webview.delegate = self
+            view.addSubview(webview)
+
         } else {
-            
+            let custom = Tool.sb.instantiateViewControllerWithIdentifier("CustomGoodViewController") as! CustomGoodViewController
+
+            self.navigationController?.pushViewController(custom, animated: true)
         }
-        print("tapBottomItems")
 
     }
     

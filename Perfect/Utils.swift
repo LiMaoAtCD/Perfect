@@ -42,4 +42,5 @@ extension UIView {
 //
 struct Tool {
     static let width = UIScreen.mainScreen().bounds.size.width
+    static let sb = UIStoryboard.init(name: "Main", bundle: nil)
 }

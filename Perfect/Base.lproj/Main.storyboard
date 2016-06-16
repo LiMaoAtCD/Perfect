@@ -5,6 +5,24 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--Custom Good View Controller-->
+        <scene sceneID="N1i-AV-HOt">
+            <objects>
+                <viewController storyboardIdentifier="CustomGoodViewController" id="Zxu-Ex-ulZ" customClass="CustomGoodViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Blh-4x-55C"/>
+                        <viewControllerLayoutGuide type="bottom" id="jG0-z8-pzY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1jB-NE-Kvx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mWw-Mc-HRm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-441" y="1671"/>
+        </scene>
         <!--First Table View Controller-->
         <scene sceneID="Pfi-W4-pL2">
             <objects>

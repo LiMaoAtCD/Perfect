@@ -45,6 +45,7 @@
 		87A5AA5F1D10C636000A1B41 /* GoodsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */; };
 		DA1A6B231D124A0B00FD4FB0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1A6B221D124A0B00FD4FB0 /* Extensions.swift */; };
 		DA1A6B251D124A3600FD4FB0 /* MarketLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1A6B241D124A3600FD4FB0 /* MarketLabel.swift */; };
+		DA1A6B2C1D1257F400FD4FB0 /* CustomGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1A6B2B1D1257F400FD4FB0 /* CustomGoodViewController.swift */; };
 		DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B551CF5EDD100F61304 /* AppDelegate.swift */; };
 		DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B591CF5EDD100F61304 /* Main.storyboard */; };
 		DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5C1CF5EDD100F61304 /* Assets.xcassets */; };
@@ -127,6 +128,7 @@
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA1A6B221D124A0B00FD4FB0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DA1A6B241D124A3600FD4FB0 /* MarketLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketLabel.swift; sourceTree = "<group>"; };
+		DA1A6B2B1D1257F400FD4FB0 /* CustomGoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGoodViewController.swift; sourceTree = "<group>"; };
 		DA417B521CF5EDD100F61304 /* Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B551CF5EDD100F61304 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA417B5A1CF5EDD100F61304 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -223,7 +225,7 @@
 			name = Third;
 			sourceTree = "<group>";
 		};
-		870F38171CF9332D00AFF1AF /* FourTh */ = {
+		870F38171CF9332D00AFF1AF /* Me */ = {
 			isa = PBXGroup;
 			children = (
 				8763BC301CFC890700FAB8D7 /* Order */,
@@ -235,7 +237,7 @@
 				870F381C1CF9415200AFF1AF /* FourthTableViewCell.swift */,
 				870F38321CF988D500AFF1AF /* FellbackViewController.swift */,
 			);
-			name = FourTh;
+			name = Me;
 			sourceTree = "<group>";
 		};
 		870F381E1CF944EA00AFF1AF /* Utils */ = {
@@ -279,6 +281,7 @@
 		8763BC141CFB32A700FAB8D7 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */,
 				DA57ED3B1CFC2A3100A8083A /* GoodsScan */,
 			);
 			name = Detail;
@@ -356,7 +359,7 @@
 		DA1A6B2A1D12515700FD4FB0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				870F38171CF9332D00AFF1AF /* FourTh */,
+				870F38171CF9332D00AFF1AF /* Me */,
 				DA57ED151CF7D56500A8083A /* First */,
 				870F38281CF9757C00AFF1AF /* BaseViewController.swift */,
 			);
@@ -429,7 +432,7 @@
 				87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */,
 				8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */,
 				87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */,
-				DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */,
+				DA1A6B2B1D1257F400FD4FB0 /* CustomGoodViewController.swift */,
 				8763BC141CFB32A700FAB8D7 /* Detail */,
 				DA57ED091CF7D3EF00A8083A /* FirstViewController.swift */,
 				DA57ED161CF7D57B00A8083A /* FirstTableViewController.swift */,
@@ -676,6 +679,7 @@
 				DA57ED0A1CF7D3EF00A8083A /* FirstViewController.swift in Sources */,
 				870F38251CF973CC00AFF1AF /* RegisterViewController.swift in Sources */,
 				870F38291CF9757C00AFF1AF /* BaseViewController.swift in Sources */,
+				DA1A6B2C1D1257F400FD4FB0 /* CustomGoodViewController.swift in Sources */,
 				870F38201CF9450500AFF1AF /* Utils.swift in Sources */,
 				DA57ED1B1CF7D6EE00A8083A /* FirstNormalCell.swift in Sources */,
 				8763BC1F1CFC770A00FAB8D7 /* SearchViewController.swift in Sources */,

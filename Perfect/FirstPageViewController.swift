@@ -240,6 +240,10 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
         } else if indexPath.section == 3 {
             //MARK: 处理普通商品
 //            let good = self.goods!
+            let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
+            detail.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(detail, animated: true)
+            
             
         }
     }
