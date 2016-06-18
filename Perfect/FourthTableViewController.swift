@@ -19,11 +19,12 @@ class FourthTableViewController: UITableViewController {
         super.viewDidLoad()
         items = ["修改密码", "设置手势密码","收货地址管理","清除缓存","退出登录"]
 
-        self.tableView.registerClass(FourthTableViewCell.self, forCellReuseIdentifier: FourthTableViewCell.identifier)
+        self.tableView.registerClass(MeCell.self, forCellReuseIdentifier: MeCell.identifier)
+        self.tableView.registerClass(LogOutCell.self, forCellReuseIdentifier: LogOutCell.identifier)
         self.tableView.tableFooterView = UIView()
         
         
-        header = UIView.init(frame: CGRectMake(0, 0, Tools.width, 300))
+        header = UIView.init(frame: CGRectMake(0, 0, Tool.width, 300))
         header.backgroundColor = UIColor.brownColor()
         
         let headerBgImageView = UIImageView()
@@ -99,36 +100,8 @@ class FourthTableViewController: UITableViewController {
         self.tableView.tableHeaderView = header
     }
     
-    func needPay() {
-        self.goToOrder(.WaitPayed)
-    }
     
-    func needDeliver() {
-        self.goToOrder(.Delivering)
-
-    }
     
-    func showAllOrder() {
-        self.goToOrder(.All)
-    }
-    
-    func goToOrder(type: OrderType) {
-        
-        let orderVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OrderViewController") as! OrderViewController
-        
-        orderVC.hidesBottomBarWhenPushed = true
-
-        orderVC.currentType = type
-
-
-        self.navigationController?.pushViewController(orderVC, animated: true)
-    }
-    
-    func profile() {
-        let profileVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PeronalViewController") as! PeronalViewController
-            profileVC.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(profileVC, animated: true)
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -149,81 +122,150 @@ class FourthTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(FourthTableViewCell.identifier, forIndexPath: indexPath) as! FourthTableViewCell
 
         // Configure the cell...
         
-        cell.tagImageView.image = UIImage.init(named: "fourtag")
-        cell.title.text = items![indexPath.row]
+        if indexPath != NSIndexPath.init(forRow: 4, inSection: 0) {
+            let cell = tableView.dequeueReusableCellWithIdentifier(MeCell.identifier, forIndexPath: indexPath) as! MeCell
+            cell.title.text = items![indexPath.row]
+
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(LogOutCell.identifier, forIndexPath: indexPath) as! LogOutCell
+
+            return cell
+        }
         
 
-        return cell
     }
  
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 {
-            self.showAllOrder()
+            self.changePassword()
         } else if indexPath.row == 1 {
+            let gesture = Tool.sb.instantiateViewControllerWithIdentifier("GesturePasswordViewController") as! GesturePasswordViewController
+            gesture.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(gesture, animated: true)
+        } else if indexPath.row == 2 {
+            
             let addressVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AddressViewController") as! AddressViewController
             addressVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(addressVC, animated: true)
-        } else if indexPath.row == 2 {
-            let fellbackVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FellbackViewController") as! FellbackViewController
-            fellbackVC.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(fellbackVC, animated: true)
         } else if indexPath.row == 3 {
-            let settingVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SettingViewController") as! SettingViewController
-            settingVC.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(settingVC, animated: true)
+            //提示清楚缓存
         } else {
-            
+            Util.logined = false
+            let tab =  Tool.root.viewControllers.first as! RootTabBarController
+            tab.selectedIndex = 0
         }
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 55.0
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.separatorInset = UIEdgeInsetsZero
+        cell.preservesSuperviewLayoutMargins = false
+        cell.layoutMargins = UIEdgeInsetsZero
     }
-    */
+    
+    //MARK: 事件
+    
+    func changePassword() {
+        let change = Tool.sb.instantiateViewControllerWithIdentifier("ChangePasswordViewController") as! ChangePasswordViewController
+        
+        change.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(change, animated: true)
+    }
+    
+    func needPay() {
+        self.goToOrder(.WaitPayed)
+    }
+    
+    func needDeliver() {
+        self.goToOrder(.Delivering)
+        
+    }
+    
+    func showAllOrder() {
+        self.goToOrder(.All)
+    }
+    
+    func goToOrder(type: OrderType) {
+        
+        let orderVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OrderViewController") as! OrderViewController
+        
+        orderVC.hidesBottomBarWhenPushed = true
+        
+        orderVC.currentType = type
+        
+        
+        self.navigationController?.pushViewController(orderVC, animated: true)
+    }
+    
+    func profile() {
+        let profileVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PeronalViewController") as! PeronalViewController
+        profileVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(profileVC, animated: true)
+    }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+    
+    
+}
+
+class MeCell: UITableViewCell {
+    static let identifier = "MeCell"
+    
+    var title: UILabel!
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        title = UILabel.init()
+        
+        self.addSubview(title)
+        title.snp_makeConstraints { (make) in
+            make.left.equalTo(self).offset(14)
+            make.centerY.equalTo(self)
+        }
+        self.accessoryType = .DisclosureIndicator
+        self.selectionStyle = .None
 
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
+    
+    
+    
+}
 
-    /*
-    // MARK: - Navigation
+class LogOutCell: UITableViewCell {
+    static let identifier = "LogoutCell"
+    
+    var title: UILabel!
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        title = UILabel.init()
+        
+        self.addSubview(title)
+        title.snp_makeConstraints { (make) in
+            make.center.equalTo(self)
+        }
+        
+        title.textColor = UIColor.redColor()
+        title.text = "退出登录"
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        self.accessoryType = .None
+        self.selectionStyle = .None
     }
-    */
-
+    
+    func setupViews(){
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

@@ -25,6 +25,8 @@
 		870F38381CF98CF600AFF1AF /* SettingNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38371CF98CF600AFF1AF /* SettingNormalCell.swift */; };
 		870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38391CF98D0E00AFF1AF /* SettingPushCell.swift */; };
 		870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */; };
+		8752BF3A1D14E28100ED58D3 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */; };
+		8752BF3C1D14E2F800ED58D3 /* GesturePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */; };
 		8763BC131CF9DC7700FAB8D7 /* ThirdGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */; };
 		8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */; };
 		8763BC1F1CFC770A00FAB8D7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC1E1CFC770A00FAB8D7 /* SearchViewController.swift */; };
@@ -108,6 +110,8 @@
 		870F38371CF98CF600AFF1AF /* SettingNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNormalCell.swift; sourceTree = "<group>"; };
 		870F38391CF98D0E00AFF1AF /* SettingPushCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPushCell.swift; sourceTree = "<group>"; };
 		870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCell.swift; sourceTree = "<group>"; };
+		8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GesturePasswordViewController.swift; sourceTree = "<group>"; };
 		8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdGoodsCell.swift; sourceTree = "<group>"; };
 		8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDetailViewController.swift; sourceTree = "<group>"; };
 		8763BC1E1CFC770A00FAB8D7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -232,14 +236,13 @@
 		870F38171CF9332D00AFF1AF /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */,
+				870F38181CF9336400AFF1AF /* FourthTableViewController.swift */,
 				8763BC301CFC890700FAB8D7 /* Order */,
 				8763BC271CFC82A900FAB8D7 /* address */,
 				870F383B1CF9CC6000AFF1AF /* Personal */,
-				870F38361CF98B8300AFF1AF /* Setting */,
-				DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */,
-				870F38181CF9336400AFF1AF /* FourthTableViewController.swift */,
-				870F381C1CF9415200AFF1AF /* FourthTableViewCell.swift */,
-				870F38321CF988D500AFF1AF /* FellbackViewController.swift */,
+				8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */,
+				8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -338,6 +341,9 @@
 		87D29C5C1D12F495001FA983 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				870F38361CF98B8300AFF1AF /* Setting */,
+				870F38321CF988D500AFF1AF /* FellbackViewController.swift */,
+				870F381C1CF9415200AFF1AF /* FourthTableViewCell.swift */,
 				870F38111CF91A5500AFF1AF /* Second */,
 				870F38161CF9332700AFF1AF /* Third */,
 			);
@@ -678,6 +684,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				870F38231CF9489400AFF1AF /* LoginViewController.swift in Sources */,
+				8752BF3C1D14E2F800ED58D3 /* GesturePasswordViewController.swift in Sources */,
 				87A5AA5B1D0F11BB000A1B41 /* FirstPageViewController.swift in Sources */,
 				870F38381CF98CF600AFF1AF /* SettingNormalCell.swift in Sources */,
 				DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */,
@@ -716,6 +723,7 @@
 				DA57ED5B1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m in Sources */,
 				870F38271CF973D500AFF1AF /* ForgetViewController.swift in Sources */,
 				870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */,
+				8752BF3A1D14E28100ED58D3 /* ChangePasswordViewController.swift in Sources */,
 				8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */,
 				8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */,
 				DAE24CCC1D0D4BA300B4A2B1 /* NetworkHelper.swift in Sources */,

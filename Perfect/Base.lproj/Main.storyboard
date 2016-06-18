@@ -140,10 +140,10 @@
             </objects>
             <point key="canvasLocation" x="-359" y="532"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Root Navigation Controller-->
         <scene sceneID="RE5-Zt-KD0">
             <objects>
-                <navigationController navigationBarHidden="YES" id="Xdm-L1-QGS" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RootNavigationController" navigationBarHidden="YES" id="Xdm-L1-QGS" customClass="RootNavigationController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7R5-zV-50T">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -503,6 +503,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ddm-vx-iVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1240" y="3501"/>
+        </scene>
+        <!--Gesture Password View Controller-->
+        <scene sceneID="Jab-pM-OPI">
+            <objects>
+                <viewController storyboardIdentifier="GesturePasswordViewController" id="XQ2-xa-7HN" customClass="GesturePasswordViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zi9-zr-TXY"/>
+                        <viewControllerLayoutGuide type="bottom" id="ga5-wc-7Rk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wfX-w7-Rw5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Kn-0G-vA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="897" y="178"/>
+        </scene>
+        <!--Change Password View Controller-->
+        <scene sceneID="juA-Yt-qRi">
+            <objects>
+                <viewController storyboardIdentifier="ChangePasswordViewController" id="igu-P7-gsH" customClass="ChangePasswordViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dAo-XZ-M3x"/>
+                        <viewControllerLayoutGuide type="bottom" id="jKd-Cg-FDX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vNS-Km-tht">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xkH-qP-wVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="186" y="160"/>
         </scene>
     </scenes>
 </document>

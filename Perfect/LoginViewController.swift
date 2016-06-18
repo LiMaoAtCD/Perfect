@@ -27,6 +27,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         setupViews()
     }
 
@@ -181,7 +183,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         Defaults[.logined] = true
         if Defaults[.shouldSwitch] {
            let tab =  Tool.root.viewControllers.first as! RootTabBarController
-            tab.selectedIndex = 1
+            tab.selectedIndex = 2
             Defaults[.shouldSwitch] = false
         }
         self.dismissViewControllerAnimated(true, completion: nil)
