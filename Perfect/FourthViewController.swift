@@ -8,6 +8,10 @@
 
 import UIKit
 
+class MeNavigationController: UINavigationController {
+    
+}
+
 class FourthViewController: UIViewController {
 
     var fourthTableViewController : FourthTableViewController!

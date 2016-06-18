@@ -200,7 +200,7 @@
         <!--个人中心-->
         <scene sceneID="MLM-sn-6H4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="DAk-Yl-Gtx" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="DAk-Yl-Gtx" customClass="MeNavigationController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="个人中心" id="acW-Jo-EoT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kwf-g6-DEC">
@@ -320,10 +320,10 @@
             </objects>
             <point key="canvasLocation" x="-271" y="3217"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Login Navigation Controller-->
         <scene sceneID="Nu9-ft-8ii">
             <objects>
-                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="2aW-0P-DQq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="2aW-0P-DQq" customClass="LoginNavigationController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nFg-qx-IjR">
@@ -538,7 +538,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xkH-qP-wVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="186" y="160"/>
+            <point key="canvasLocation" x="592" y="686"/>
         </scene>
     </scenes>
 </document>

@@ -9,6 +9,10 @@
 import UIKit
 import SwiftyUserDefaults
 
+class LoginNavigationController: UINavigationController {
+    
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var cellphoneTextfield: UITextField!
@@ -26,7 +30,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         setupViews()
@@ -159,11 +162,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             make.height.equalTo(45)
             make.left.equalTo(14)
         }
-        
-        
-        
-        
-        
+
     }
     
     func register() {
