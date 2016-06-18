@@ -24,6 +24,14 @@ enum URLConstant: String {
     case appProductDetail = "appProductDetail"  //商品详情
     case appMemberCenterIndex = "appMemberCenterIndex" //个人
     case appSubOrder = "appSubOrder" //提交订单
+    case Register = "memberRegister" //注册
+    case getMobileValidCode = "getMobileValidCode" //验证码
+    case appConfirmOrder = "appConfirmOrder"//确认订单
+    case appOrderHistory = "appOrderHistory" //历史订单
+    case resetPasswordByMobile = "resetPasswordByMobile" // 重置密码
+    case resetPswByMobile = "resetPswByMobile" //找回密码
+    case getRegAgreement = "getRegAgreement"
+    case memberLogin = "memberLogin"
     
     var contant: String {
         return url + self.rawValue

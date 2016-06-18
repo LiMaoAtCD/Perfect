@@ -12,12 +12,16 @@ import UIKit
 
 class FourthTableViewController: UITableViewController {
 
-    var items:[String]?
-    
+    let items = ["修改密码", "设置手势密码","收货地址管理","清除缓存","退出登录"]
     var header: UIView!
+    
+    var avatarImageView: UIImageView!
+    var nickNameLabel: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        items = ["修改密码", "设置手势密码","收货地址管理","清除缓存","退出登录"]
 
         self.tableView.registerClass(MeCell.self, forCellReuseIdentifier: MeCell.identifier)
         self.tableView.registerClass(LogOutCell.self, forCellReuseIdentifier: LogOutCell.identifier)
@@ -34,7 +38,7 @@ class FourthTableViewController: UITableViewController {
             make.edges.equalTo(header)
         }
         
-        let avatarImageView = UIImageView()
+        avatarImageView = UIImageView()
         avatarImageView.image = UIImage.init(named: "fourtag")
         avatarImageView.userInteractionEnabled = true
         avatarImageView.layer.cornerRadius = 50
@@ -50,7 +54,7 @@ class FourthTableViewController: UITableViewController {
         
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.profile))
         avatarImageView.addGestureRecognizer(tap)
-        let nickNameLabel = UILabel()
+        nickNameLabel = UILabel()
         nickNameLabel.text = "超人"
         nickNameLabel.textColor = UIColor.blackColor()
         header.addSubview(nickNameLabel)
@@ -117,7 +121,7 @@ class FourthTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return items!.count
+        return items.count
     }
 
     
@@ -127,7 +131,7 @@ class FourthTableViewController: UITableViewController {
         
         if indexPath != NSIndexPath.init(forRow: 4, inSection: 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier(MeCell.identifier, forIndexPath: indexPath) as! MeCell
-            cell.title.text = items![indexPath.row]
+            cell.title.text = items[indexPath.row]
 
             return cell
         } else {

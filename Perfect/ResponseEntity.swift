@@ -171,4 +171,51 @@ class ProductDetailIntroItem: Mappable {
 
 
 
+//个人中心 
+class PersonalEntity: Mappable {
+    var memberInfo: PersonalMemberInfoItem?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        memberInfo <- map["memberInfo"]
+    }
+}
+
+class PersonalMemberInfoItem: Mappable {
+    var id: Int = 0
+    var avatarImgId: Int = 0
+    var nick : String?
+    var name: String?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        name <- map["name"]
+        nick <- map["nick"]
+        avatarImgId <- map["avatarImgId"]
+        id <- map["id"]
+
+    }
+}
+
+
+
+//{
+//    "retCode": 0,
+//    "sessionId": "f1194bcf-8959-4069-b8bc-62259c094bb2",
+//    "retMsg": "操作成功",
+//    "retObj": {
+//        "memberInfo": {
+//            "id": 1,
+//            "avatarImgId": 1,
+//            "nick": "asdfasdf",
+//            "name": "张三"
+//        }
+//    }
+//}
+
+
+
+
 

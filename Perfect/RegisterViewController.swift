@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
@@ -18,107 +19,137 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     var verifyTextField: UITextField!
     var passwordTextfield: UITextField!
     var registerButton: UIButton!
-    var protocolButton: UIButton!
+//    var protocolButton: UIButton!
+    
+    
+    
+    var timer: NSTimer?
+    var timerCount: Int = 60
+    
+    var cellphone: String! = ""
+    var validCode: String! = ""
+    var password: String! = ""
+    
+    
+    
+    var scrollView: UIScrollView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = "注册"
+        
+        scrollView = UIScrollView.init()
+        scrollView.alwaysBounceVertical = true
+        view.addSubview(scrollView)
+        
+        scrollView.snp_makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
         setupViews()
     }
     
     func setupViews() {
+        
         cellphoneLabel = UILabel()
         cellphoneLabel.text = "手机号码"
         cellphoneLabel.textColor = UIColor.blackColor()
-        view.addSubview(cellphoneLabel)
+        scrollView.addSubview(cellphoneLabel)
         
         verifyCodeLabel = UILabel()
         verifyCodeLabel.text = "验证码"
         verifyCodeLabel.textColor = UIColor.blackColor()
-        view.addSubview(verifyCodeLabel)
+        scrollView.addSubview(verifyCodeLabel)
 
         passwordLabel = UILabel()
         passwordLabel.text = "密码"
         passwordLabel.textColor = UIColor.blackColor()
         
-        view.addSubview(passwordLabel)
+        scrollView.addSubview(passwordLabel)
         
         cellphoneTextfield = UITextField()
         cellphoneTextfield.delegate = self
         cellphoneTextfield.placeholder = "请输入号码"
-        view.addSubview(cellphoneTextfield)
+        cellphoneTextfield.keyboardType = .NamePhonePad
+        scrollView.addSubview(cellphoneTextfield)
         
         verifyTextField = UITextField()
         verifyTextField.delegate = self
         verifyTextField.placeholder = "请输入验证码"
-        view.addSubview(verifyTextField)
+        verifyTextField.keyboardType = .NamePhonePad
+
+        scrollView.addSubview(verifyTextField)
         
         passwordTextfield = UITextField()
         passwordTextfield.delegate = self
         passwordTextfield.placeholder = "请设定密码"
-        view.addSubview(passwordTextfield)
+        passwordTextfield.secureTextEntry = true
+        scrollView.addSubview(passwordTextfield)
         
         verifyButton = UIButton.init(type: .Custom)
-        verifyButton.setTitle("验证", forState: .Normal)
-        verifyButton.setTitleColor(UIColor.brownColor(), forState: .Normal)
+        verifyButton.setAttributedTitle(NSAttributedString(string: "获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+
         verifyButton.addTarget(self, action: #selector(self.verify), forControlEvents: .TouchUpInside)
-        view.addSubview(verifyButton)
+        scrollView.addSubview(verifyButton)
         
-        protocolButton = UIButton.init(type: .Custom)
-        protocolButton.setTitle("《APP使用协议》", forState: .Normal)
-        protocolButton.setTitleColor(UIColor.brownColor(), forState: .Normal)
-        
-        protocolButton.addTarget(self, action: #selector(self.protocolClick), forControlEvents: .TouchUpInside)
-        view.addSubview(protocolButton)
-        
+//        protocolButton = UIButton.init(type: .Custom)
+//        protocolButton.setTitle("《APP使用协议》", forState: .Normal)
+//        protocolButton.setTitleColor(UIColor.brownColor(), forState: .Normal)
+//        
+//        protocolButton.addTarget(self, action: #selector(self.protocolClick), forControlEvents: .TouchUpInside)
+//        scrollView.addSubview(protocolButton)
+//        
         registerButton = UIButton.init(type: .Custom)
         registerButton.addTarget(self, action: #selector(self.register), forControlEvents: .TouchUpInside)
-        registerButton.setTitle("同意协议并注册", forState: .Normal)
+        registerButton.setTitle("注册", forState: .Normal)
         registerButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         registerButton.backgroundColor = UIColor.brownColor()
         registerButton.layer.cornerRadius = 3.0
         registerButton.layer.masksToBounds = true
-        view.addSubview(registerButton)
+        scrollView.addSubview(registerButton)
         
         
         let line0 = UIView()
         line0.backgroundColor = UIColor.lightGrayColor()
-        view.addSubview(line0)
+        scrollView.addSubview(line0)
+        
+        line0.hidden = true
         
         let line1 = UIView()
         line1.backgroundColor = UIColor.lightGrayColor()
-        view.addSubview(line1)
+        scrollView.addSubview(line1)
         
         let line2 = UIView()
         line2.backgroundColor = UIColor.lightGrayColor()
-        view.addSubview(line2)
+        scrollView.addSubview(line2)
         
         let line3 = UIView()
         line3.backgroundColor = UIColor.lightGrayColor()
-        view.addSubview(line3)
+        scrollView.addSubview(line3)
         
         
         line0.snp_makeConstraints { (make) in
-            make.left.right.equalTo(0)
+            make.left.right.equalTo(view)
             make.top.equalTo(10)
             make.height.equalTo(1)
         }
         
+        
         line1.snp_makeConstraints { (make) in
-            make.left.right.equalTo(0)
+            make.left.right.equalTo(line0)
             make.top.equalTo(line0.snp_bottom).offset(60)
             make.height.equalTo(1)
         }
         
         line2.snp_makeConstraints { (make) in
-            make.left.right.equalTo(0)
+            make.left.right.equalTo(line0)
             make.top.equalTo(line1.snp_bottom).offset(60)
             make.height.equalTo(1)
         }
         
         line3.snp_makeConstraints { (make) in
-            make.left.right.equalTo(0)
+            make.left.right.equalTo(line0)
             make.top.equalTo(line2.snp_bottom).offset(60)
             make.height.equalTo(1)
         }
@@ -130,16 +161,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
         
         cellphoneTextfield.snp_makeConstraints { (make) in
-            make.left.equalTo(cellphoneLabel.snp_right).offset(0)
+            make.left.equalTo(cellphoneLabel.snp_right).offset(8)
             make.centerY.equalTo(cellphoneLabel)
             make.right.equalTo(-50)
             make.height.equalTo(35)
         }
         
         verifyButton.snp_makeConstraints { (make) in
-            make.right.equalTo(-10)
+            make.right.equalTo(view).offset(-10)
             make.centerY.equalTo(cellphoneTextfield.snp_centerY)
-            make.width.equalTo(60)
+            make.width.lessThanOrEqualTo(80)
         }
         
         verifyCodeLabel.snp_makeConstraints { (make) in
@@ -166,26 +197,117 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
         registerButton.snp_makeConstraints { (make) in
             make.top.equalTo(line3.snp_bottom).offset(60)
-            make.centerX.equalTo(view)
+            make.centerX.equalTo(scrollView)
             make.height.equalTo(45)
             make.left.equalTo(14)
         }
-        
-        protocolButton.snp_makeConstraints { (make) in
-            make.top.equalTo(registerButton.snp_bottom).offset(60)
-            make.centerX.equalTo(view)
-            make.height.equalTo(35)
-            make.width.equalTo(200)
-        }
+//
+//        protocolButton.snp_makeConstraints { (make) in
+//            make.top.equalTo(registerButton.snp_bottom).offset(60)
+//            make.centerX.equalTo(view)
+//            make.height.equalTo(35)
+//            make.width.equalTo(200)
+//        }
     }
     
     func register() {
-        
+        if cellphone.isValidCellPhone {}
     }
+    
+    
+    func checkValidation() -> Bool {
+        
+        guard self.cellphone!.isValidCellPhone else {
+            showAlertWithMessage("请输入11位手机号码", block: { (_) -> Void in
+                
+            })
+            return false
+        }
+        
+        guard self.cellphone != "" else {
+            showAlertWithMessage("手机不能输入为空", block: { (_) -> Void in
+                
+            })
+            return false
+        }
+        
+        guard (self.password as NSString).length >= 6 else {
+            showAlertWithMessage("请输入至少6位密码", block: { (_) -> Void in
+                
+            })
+            return false
+        }
+        guard self.validCode != "" else {
+            showAlertWithMessage("请输入验证码", block: { (_) -> Void in
+                
+            })
+            return false
+        }
+        
+        
+        guard self.password != "" else {
+            showAlertWithMessage("请输入密码", block: { (_) -> Void in
+                
+            })
+            
+            return false
+        }
+        
+        guard self.password!.isValidPassword else {
+            showAlertWithMessage("密码格式支持数字、大小写字母，不支持空格", block: { (_) -> Void in
+                
+            })
+            
+            return false
+        }
+        
+        
+//        guard userProtocolChecked else {
+//            showAlertWithMessage("请勾选同意封面《用户使用协议》", block: { (_) -> Void in
+//                
+//            })
+//            
+//            return false
+//        }
+        
+        
+        return true
+    }
+
     
     func verify() {
         
+        guard self.cellphone.isValidCellPhone else {
+            return
+        }
     }
+    
+    func timeDidCount() {
+        timerCount -= 1
+        if timerCount <= 0 {
+            timerCount = 60
+            timer?.invalidate()
+            configureFetchValidCode(.Normal)
+            
+        } else {
+            configureFetchValidCode(.Timer)
+        }
+    }
+    
+    func configureFetchValidCode(mode: CMValidateButtonMode) {
+        
+        if mode == .Timer {
+            let string = "\(timerCount) s"
+            verifyButton.userInteractionEnabled = false
+            verifyButton.setAttributedTitle(NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+        } else {
+            
+            verifyButton.userInteractionEnabled = true
+            verifyButton.setAttributedTitle(NSAttributedString(string: "重新获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+        }
+        
+    }
+
     
     func protocolClick() -> Void {
         let proto = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ProtocolViewController") as! ProtocolViewController
@@ -193,6 +315,35 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(proto, animated: true)
 
     }
+    
+    //MARK: 输入框处理
+    func textFieldDidEditChanged(textfield: UITextField) {
+        //
+        if textfield == cellphoneTextfield {
+            cellphone = textfield.text
+            
+            let text = NSString(string: cellphone!)
+            if text.length > 11 {
+                textfield.text = text.substringToIndex(11)
+                cellphone = textfield.text
+            }
+        } else if textfield == verifyTextField {
+            validCode = textfield.text
+            let text = NSString(string: validCode!)
+            if text.length > 6 {
+                textfield.text = text.substringToIndex(6)
+                validCode = textfield.text
+            }
+        } else {
+            password = textfield.text
+            let p = password as NSString
+            if p.length > 16 {
+                textfield.text = p.substringToIndex(16)
+                password = textfield.text
+            }
+        }
+    }
+
 
     
 
@@ -213,3 +364,28 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     */
 
 }
+
+enum CMValidateButtonMode {
+    case Normal
+    case Timer
+}
+
+
+extension UIViewController {
+    
+    func showAlertWithMessage(message: String?, block: (Void -> Void)?) {
+        
+        let alertController = UIAlertController(title: "", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let action: UIAlertAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default) { (_) -> Void in
+            if let _ = block {
+                block!()
+            }
+        }
+        
+        alertController.addAction(action)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+}
+
+

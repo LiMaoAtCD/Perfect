@@ -37,6 +37,22 @@ class FourthViewController: UIViewController {
         }
         
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //
+        NetworkHelper.instance.request(.GET, url: URLConstant.appMemberCenterIndex.contant, parameters: nil, completion: { [weak self](res: PersonalCenterResponse?) in
+                let personalEntity = res?.retObj
+            
+            
+                self?.fourthTableViewController.avatarImageView.image = UIImage.init(named: "")
+            
+                self?.fourthTableViewController.nickNameLabel.text = personalEntity?.memberInfo?.nick
+            }) { (msg) in
+                
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
