@@ -261,7 +261,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
 
             helperView.addSubview(imageview)
             imageview.snp_makeConstraints(closure: { (make) in
-                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i + 1))
+                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i) + margin)
                 make.width.equalTo(width)
                 make.height.equalTo(width)
                 make.top.equalTo(helperView).offset(20)
@@ -275,7 +275,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
             
             helperView.addSubview(label)
             label.snp_makeConstraints(closure: { (make) in
-                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i + 1))
+                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i) + margin)
                 make.width.equalTo(width)
                 make.height.equalTo(width)
                 make.top.equalTo(imageview.snp_bottom).offset(20)
@@ -340,7 +340,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
         
         let collectionTitle = UILabel()
         collect.addSubview(collectionTitle)
-        collectionTitle.text = "哈哈"
+        collectionTitle.text = "收藏"
         collectionTitle.textColor = UIColor.blackColor()
         collectionTitle.font = UIFont.systemFontOfSize(14.0)
 
@@ -380,7 +380,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
         
         let serviceTitle = UILabel()
         service.addSubview(serviceTitle)
-        serviceTitle.text = "呵呵"
+        serviceTitle.text = "联系客服"
         serviceTitle.textColor = UIColor.blackColor()
         serviceTitle.font = UIFont.systemFontOfSize(14.0)
         serviceTitle.textAlignment = .Center
@@ -406,7 +406,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
         }
         
         let okLabel = UILabel()
-        okLabel.text = "马上就好"
+        okLabel.text = "立即定制"
         okLabel.textColor = UIColor.whiteColor()
         okLabel.font = UIFont.systemFontOfSize(16)
         okLabel.textAlignment = .Center
