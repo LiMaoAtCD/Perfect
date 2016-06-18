@@ -44,10 +44,6 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
             make.top.left.right.equalTo(view)
             make.bottom.equalTo(view).offset(-bottomHeight)
         }
-        
-       
-        
-        
     }
     
     func updateViews() {

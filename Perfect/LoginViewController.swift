@@ -80,16 +80,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         
         
-//        cellphoneLabel = UILabel()
-//        cellphoneLabel.text = "手机号码"
-//        cellphoneLabel.textColor = UIColor.blackColor()
-//        view.addSubview(cellphoneLabel)
-//        
-//        passwordLabel = UILabel()
-//        passwordLabel.text = "密码"
-//        passwordLabel.textColor = UIColor.blackColor()
-//
-//        view.addSubview(passwordLabel)
+        cellphoneLabel = UILabel()
+        cellphoneLabel.text = "手机号码"
+        cellphoneLabel.textColor = UIColor.blackColor()
+        view.addSubview(cellphoneLabel)
+        
+        passwordLabel = UILabel()
+        passwordLabel.text = "密码"
+        passwordLabel.textColor = UIColor.blackColor()
+
+        view.addSubview(passwordLabel)
         
         cellphoneTextfield = UITextField()
         cellphoneTextfield.delegate = self

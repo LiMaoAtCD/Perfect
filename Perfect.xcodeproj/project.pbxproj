@@ -227,8 +227,6 @@
 			children = (
 				DA57ED0D1CF7D3FD00A8083A /* ThirdViewController.swift */,
 				8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */,
-				8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */,
-				8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */,
 			);
 			name = Third;
 			sourceTree = "<group>";
@@ -338,9 +336,24 @@
 			name = Order;
 			sourceTree = "<group>";
 		};
+		878F224F1D14F7230074E1A2 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */,
+				DA1A6B2B1D1257F400FD4FB0 /* CustomGoodViewController.swift */,
+				8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */,
+				8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
 		87D29C5C1D12F495001FA983 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				DA57ED091CF7D3EF00A8083A /* FirstViewController.swift */,
+				DA57ED161CF7D57B00A8083A /* FirstTableViewController.swift */,
+				DA57ED181CF7D6DC00A8083A /* FirstBannerCell.swift */,
+				DA57ED1A1CF7D6EE00A8083A /* FirstNormalCell.swift */,
 				870F38361CF98B8300AFF1AF /* Setting */,
 				870F38321CF988D500AFF1AF /* FellbackViewController.swift */,
 				870F381C1CF9415200AFF1AF /* FourthTableViewCell.swift */,
@@ -378,13 +391,13 @@
 		DA1A6B2A1D12515700FD4FB0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				870F38281CF9757C00AFF1AF /* BaseViewController.swift */,
 				DA417B591CF5EDD100F61304 /* Main.storyboard */,
 				DA1A6B6D1D127F4500FD4FB0 /* RootTabBarController.swift */,
 				DA1A6B6F1D127F6C00FD4FB0 /* RootNavigationController.swift */,
 				870F38211CF9488700AFF1AF /* Login */,
 				870F38171CF9332D00AFF1AF /* Me */,
 				DA57ED151CF7D56500A8083A /* First */,
-				870F38281CF9757C00AFF1AF /* BaseViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -449,15 +462,10 @@
 		DA57ED151CF7D56500A8083A /* First */ = {
 			isa = PBXGroup;
 			children = (
+				878F224F1D14F7230074E1A2 /* Detail */,
 				87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */,
 				8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */,
-				87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */,
-				DA1A6B2B1D1257F400FD4FB0 /* CustomGoodViewController.swift */,
 				8763BC141CFB32A700FAB8D7 /* Detail */,
-				DA57ED091CF7D3EF00A8083A /* FirstViewController.swift */,
-				DA57ED161CF7D57B00A8083A /* FirstTableViewController.swift */,
-				DA57ED181CF7D6DC00A8083A /* FirstBannerCell.swift */,
-				DA57ED1A1CF7D6EE00A8083A /* FirstNormalCell.swift */,
 			);
 			name = First;
 			sourceTree = "<group>";
