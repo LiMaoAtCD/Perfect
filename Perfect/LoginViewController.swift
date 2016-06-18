@@ -32,6 +32,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        self.title = "登录"
+        
+        
+        
         setupViews()
     }
 
@@ -41,16 +46,50 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setupViews() {
-        cellphoneLabel = UILabel()
-        cellphoneLabel.text = "手机号码"
-        cellphoneLabel.textColor = UIColor.blackColor()
-        view.addSubview(cellphoneLabel)
+        //背景
+        let imageview = UIImageView()
+        self.view.addSubview(imageview)
+        imageview.snp_makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+        imageview.image = UIImage.init(named: "loginBg")
         
-        passwordLabel = UILabel()
-        passwordLabel.text = "密码"
-        passwordLabel.textColor = UIColor.blackColor()
-
-        view.addSubview(passwordLabel)
+        //图标
+        let icon = UIImageView()
+        self.view.addSubview(icon)
+        icon.snp_makeConstraints { (make) in
+            make.centerX.equalTo(view)
+            make.width.height.equalTo(80)
+            make.top.equalTo(self.snp_topLayoutGuideBottom).offset(100)
+        }
+        
+        icon.image = UIImage.init(named: "h6")
+        
+        
+        
+        //用户名
+        let nameImageView = UIImageView()
+        self.view.addSubview(nameImageView)
+        nameImageView.snp_makeConstraints { (make) in
+            make.left.equalTo(40)
+            make.width.height.equalTo(20)
+            make.top.equalTo(icon.snp_bottom).offset(100)
+        }
+        nameImageView.image = UIImage.init(named: "perfect")
+        
+        
+        
+        
+//        cellphoneLabel = UILabel()
+//        cellphoneLabel.text = "手机号码"
+//        cellphoneLabel.textColor = UIColor.blackColor()
+//        view.addSubview(cellphoneLabel)
+//        
+//        passwordLabel = UILabel()
+//        passwordLabel.text = "密码"
+//        passwordLabel.textColor = UIColor.blackColor()
+//
+//        view.addSubview(passwordLabel)
         
         cellphoneTextfield = UITextField()
         cellphoneTextfield.delegate = self
