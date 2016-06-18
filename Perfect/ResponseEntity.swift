@@ -200,20 +200,47 @@ class PersonalMemberInfoItem: Mappable {
 }
 
 
+//注册
 
-//{
-//    "retCode": 0,
-//    "sessionId": "f1194bcf-8959-4069-b8bc-62259c094bb2",
-//    "retMsg": "操作成功",
-//    "retObj": {
-//        "memberInfo": {
-//            "id": 1,
-//            "avatarImgId": 1,
-//            "nick": "asdfasdf",
-//            "name": "张三"
-//        }
-//    }
-//}
+class RegisterEntity: Mappable {
+    var memberInfo: RegisterItem?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        memberInfo <- map["memberInfo"]
+    }
+}
+
+class RegisterItem: Mappable {
+    var id: Int = 0
+    var nick : String?
+    var name: String?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        name <- map["name"]
+        nick <- map["nick"]
+        id <- map["id"]
+    }
+}
+
+//获取验证码
+
+class ValidCodeEntity: Mappable {
+//    var memberInfo: RegisterItem?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+//        memberInfo <- map["memberInfo"]
+    }
+}
+
+
+
+
 
 
 

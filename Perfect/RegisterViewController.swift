@@ -19,7 +19,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     var verifyTextField: UITextField!
     var passwordTextfield: UITextField!
     var registerButton: UIButton!
-//    var protocolButton: UIButton!
+    var protocolButton: UIButton!
     
     
     
@@ -48,7 +48,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             make.edges.equalTo(view)
         }
         setupViews()
+        
     }
+    
+  
     
     func setupViews() {
         
@@ -70,19 +73,20 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         cellphoneTextfield = UITextField()
         cellphoneTextfield.delegate = self
+        cellphoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         cellphoneTextfield.placeholder = "请输入号码"
-        cellphoneTextfield.keyboardType = .NamePhonePad
+        cellphoneTextfield.keyboardType = .NumberPad
         scrollView.addSubview(cellphoneTextfield)
         
         verifyTextField = UITextField()
-        verifyTextField.delegate = self
+        verifyTextField.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         verifyTextField.placeholder = "请输入验证码"
-        verifyTextField.keyboardType = .NamePhonePad
+        verifyTextField.keyboardType = .NumberPad
 
         scrollView.addSubview(verifyTextField)
         
         passwordTextfield = UITextField()
-        passwordTextfield.delegate = self
+        passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         passwordTextfield.placeholder = "请设定密码"
         passwordTextfield.secureTextEntry = true
         scrollView.addSubview(passwordTextfield)
@@ -93,13 +97,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         verifyButton.addTarget(self, action: #selector(self.verify), forControlEvents: .TouchUpInside)
         scrollView.addSubview(verifyButton)
         
-//        protocolButton = UIButton.init(type: .Custom)
-//        protocolButton.setTitle("《APP使用协议》", forState: .Normal)
-//        protocolButton.setTitleColor(UIColor.brownColor(), forState: .Normal)
-//        
-//        protocolButton.addTarget(self, action: #selector(self.protocolClick), forControlEvents: .TouchUpInside)
-//        scrollView.addSubview(protocolButton)
-//        
+        protocolButton = UIButton.init(type: .Custom)
+        protocolButton.setTitle("《APP使用协议》", forState: .Normal)
+        protocolButton.setTitleColor(UIColor.brownColor(), forState: .Normal)
+        
+        protocolButton.addTarget(self, action: #selector(self.protocolClick), forControlEvents: .TouchUpInside)
+        scrollView.addSubview(protocolButton)
+//
         registerButton = UIButton.init(type: .Custom)
         registerButton.addTarget(self, action: #selector(self.register), forControlEvents: .TouchUpInside)
         registerButton.setTitle("注册", forState: .Normal)
@@ -201,13 +205,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             make.height.equalTo(45)
             make.left.equalTo(14)
         }
-//
-//        protocolButton.snp_makeConstraints { (make) in
-//            make.top.equalTo(registerButton.snp_bottom).offset(60)
-//            make.centerX.equalTo(view)
-//            make.height.equalTo(35)
-//            make.width.equalTo(200)
-//        }
+
+        protocolButton.snp_makeConstraints { (make) in
+            make.top.equalTo(registerButton.snp_bottom).offset(60)
+            make.centerX.equalTo(view)
+            make.height.equalTo(35)
+            make.width.equalTo(200)
+        }
     }
     
     func register() {
@@ -263,7 +267,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         
 //        guard userProtocolChecked else {
-//            showAlertWithMessage("请勾选同意封面《用户使用协议》", block: { (_) -> Void in
+//            showAlertWithMessage("请勾选同意《用户使用协议》", block: { (_) -> Void in
 //                
 //            })
 //            
@@ -278,20 +282,23 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func verify() {
         
         guard self.cellphone.isValidCellPhone else {
+            self.showAlertWithMessage("请输入正确的手机号", block: nil)
             return
         }
-    }
-    
-    func timeDidCount() {
-        timerCount -= 1
-        if timerCount <= 0 {
-            timerCount = 60
-            timer?.invalidate()
-            configureFetchValidCode(.Normal)
-            
-        } else {
-            configureFetchValidCode(.Timer)
-        }
+        
+        timer = NSTimer.YQ_scheduledTimerWithTimeInterval(0.1, closure: {
+            self.timerCount -= 1
+            if self.timerCount <= 0 {
+                self.timerCount = 60
+                self.timer?.invalidate()
+                self.configureFetchValidCode(.Normal)
+                self.verifyButton.userInteractionEnabled = true
+            } else {
+                self.configureFetchValidCode(.Timer)
+                self.verifyButton.userInteractionEnabled = false
+            }
+
+            }, repeats: true)
     }
     
     func configureFetchValidCode(mode: CMValidateButtonMode) {
@@ -344,7 +351,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-
+    deinit{
+        self.timer?.invalidate()
+        self.timer = nil
+    }
     
 
     override func didReceiveMemoryWarning() {
@@ -371,6 +381,20 @@ enum CMValidateButtonMode {
 }
 
 
+public typealias TimerExcuteClosure = @convention(block)()->()
+extension NSTimer{
+    public class func YQ_scheduledTimerWithTimeInterval(ti:NSTimeInterval, closure:TimerExcuteClosure, repeats yesOrNo: Bool) -> NSTimer{
+        return self.scheduledTimerWithTimeInterval(ti, target: self, selector: #selector(NSTimer.excuteTimerClosure(_:)), userInfo: unsafeBitCast(closure, AnyObject.self), repeats: true)
+    }
+    
+    class func excuteTimerClosure(timer: NSTimer)
+    {
+        let closure = unsafeBitCast(timer.userInfo, TimerExcuteClosure.self)
+        closure()
+    }
+}
+
+
 extension UIViewController {
     
     func showAlertWithMessage(message: String?, block: (Void -> Void)?) {
@@ -387,5 +411,4 @@ extension UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
-
 

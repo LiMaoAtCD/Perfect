@@ -87,6 +87,26 @@ class PersonalCenterResponse: DataResponse {
 }
 
 
+//注册
+
+class RegisterResponse: DataResponse {
+    var retObj: RegisterEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        
+        retObj <- map["retObj"]
+    }
+    
+}
+
+
+
+
 
 
 
