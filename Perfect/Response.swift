@@ -121,6 +121,23 @@ class LoginResponse: DataResponse {
     
 }
 
+//确认订单
+class ConfirmOrderResponse: DataResponse {
+    var retObj: ConfirmOrderEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        
+        retObj <- map["retObj"]
+    }
+    
+}
+
+
 
 
 

@@ -40,7 +40,6 @@
 		8763BC341CFC91D100FAB8D7 /* OrderTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */; };
 		8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */; };
 		8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */; };
-		8763BC3A1CFDEC6F00FAB8D7 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */; };
 		878F22551D163F1A0074E1A2 /* KKGestureLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878F22521D163F1A0074E1A2 /* KKGestureLockView.m */; };
 		878F22561D163F1A0074E1A2 /* KKGestureLockPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878F22541D163F1A0074E1A2 /* KKGestureLockPreviewView.m */; };
 		87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA561D0EEDAF000A1B41 /* Response.swift */; };
@@ -127,7 +126,6 @@
 		8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTypeCell.swift; sourceTree = "<group>"; };
 		8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderGoodsCell.swift; sourceTree = "<group>"; };
 		8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
-		8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
 		878F22511D163F1A0074E1A2 /* KKGestureLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKGestureLockView.h; sourceTree = "<group>"; };
 		878F22521D163F1A0074E1A2 /* KKGestureLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKGestureLockView.m; sourceTree = "<group>"; };
 		878F22531D163F1A0074E1A2 /* KKGestureLockPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKGestureLockPreviewView.h; sourceTree = "<group>"; };
@@ -346,7 +344,6 @@
 				87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */,
 				DA1A6B2B1D1257F400FD4FB0 /* CustomGoodViewController.swift */,
 				8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */,
-				8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -630,7 +627,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8763BC3A1CFDEC6F00FAB8D7 /* PayViewController.xib in Resources */,
 				DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */,

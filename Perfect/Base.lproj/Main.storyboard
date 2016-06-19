@@ -466,6 +466,24 @@
             </objects>
             <point key="canvasLocation" x="77" y="4086"/>
         </scene>
+        <!--Pay View Controller-->
+        <scene sceneID="2uW-7R-9B5">
+            <objects>
+                <viewController storyboardIdentifier="PayViewController" id="nBu-Sq-QQf" customClass="PayViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v6n-WC-fcd"/>
+                        <viewControllerLayoutGuide type="bottom" id="2RT-sa-gXv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5ac-ns-KxC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wxP-Ef-Zax" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="838" y="4685"/>
+        </scene>
         <!--Forget View Controller-->
         <scene sceneID="jFj-IR-D95">
             <objects>

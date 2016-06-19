@@ -341,9 +341,9 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             view.addSubview(webview)
 
         } else {
-            let custom = Tool.sb.instantiateViewControllerWithIdentifier("CustomGoodViewController") as! CustomGoodViewController
+            let payment = Tool.sb.instantiateViewControllerWithIdentifier("PayViewController") as! PayViewController
 
-            self.navigationController?.pushViewController(custom, animated: true)
+            self.navigationController?.pushViewController(payment, animated: true)
         }
 
     }
