@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import SVProgressHUD
 
 class RegisterViewController: BaseViewController, UITextFieldDelegate {
 
@@ -115,47 +116,46 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         
         let line0 = UIView()
-        line0.backgroundColor = UIColor.lightGrayColor()
+        line0.backgroundColor = UIColor.flatGrayColor()
         scrollView.addSubview(line0)
-        
         line0.hidden = true
         
         let line1 = UIView()
-        line1.backgroundColor = UIColor.lightGrayColor()
+        line1.backgroundColor = UIColor.flatGrayColor()
         scrollView.addSubview(line1)
         
         let line2 = UIView()
-        line2.backgroundColor = UIColor.lightGrayColor()
+        line2.backgroundColor = UIColor.flatGrayColor()
         scrollView.addSubview(line2)
         
         let line3 = UIView()
-        line3.backgroundColor = UIColor.lightGrayColor()
+        line3.backgroundColor = UIColor.flatGrayColor()
         scrollView.addSubview(line3)
         
         
         line0.snp_makeConstraints { (make) in
             make.left.right.equalTo(view)
             make.top.equalTo(10)
-            make.height.equalTo(1)
+            make.height.equalTo(0.3)
         }
         
         
         line1.snp_makeConstraints { (make) in
             make.left.right.equalTo(line0)
             make.top.equalTo(line0.snp_bottom).offset(60)
-            make.height.equalTo(1)
+            make.height.equalTo(0.3)
         }
         
         line2.snp_makeConstraints { (make) in
             make.left.right.equalTo(line0)
             make.top.equalTo(line1.snp_bottom).offset(60)
-            make.height.equalTo(1)
+            make.height.equalTo(0.3)
         }
         
         line3.snp_makeConstraints { (make) in
             make.left.right.equalTo(line0)
             make.top.equalTo(line2.snp_bottom).offset(60)
-            make.height.equalTo(1)
+            make.height.equalTo(0.3)
         }
         
         cellphoneLabel.snp_makeConstraints { (make) in
@@ -193,9 +193,8 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         passwordTextfield.snp_makeConstraints { (make) in
-            make.left.equalTo(passwordLabel.snp_right)
             make.centerY.equalTo(verifyTextField).offset(60)
-            make.right.equalTo(verifyTextField)
+            make.left.right.equalTo(verifyTextField)
             make.height.equalTo(verifyTextField)
         }
     
@@ -215,7 +214,9 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     }
     
     func register() {
-        if cellphone.isValidCellPhone {}
+        if checkValidation() {
+            
+        }
     }
     
     
@@ -300,7 +301,6 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         let proto = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ProtocolViewController") as! ProtocolViewController
         
         self.navigationController?.pushViewController(proto, animated: true)
-
     }
     
     //MARK: 输入框处理
@@ -332,25 +332,36 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     }
     
     func verify() {
-        
-        guard self.cellphone.isValidCellPhone else {
-            self.showAlertWithMessage("请输入正确的手机号", block: nil)
-            return
-        }
-        
-        timer = NSTimer.YQ_scheduledTimerWithTimeInterval(0.1, closure: {
-            self.timerCount -= 1
-            if self.timerCount <= 0 {
-                self.timerCount = 60
-                self.timer?.invalidate()
-                self.configureFetchValidCode(.Normal)
-                self.verifyButton.userInteractionEnabled = true
-            } else {
-                self.configureFetchValidCode(.Timer)
-                self.verifyButton.userInteractionEnabled = false
-            }
+        //获取验证码
+        if cellphone.isValidCellPhone {
+            self.timer = NSTimer.YQ_scheduledTimerWithTimeInterval(1.0, closure: {
+                    self.timerCount -= 1
+                    if self.timerCount <= 0 {
+                        self.restoreTimer()
+                    } else {
+                        self.configureFetchValidCode(.Timer)
+                        self.verifyButton.userInteractionEnabled = false
+                    }
+                }, repeats: true)
             
-            }, repeats: true)
+            NetworkHelper.instance.request(.GET, url: URLConstant.getMobileValidCode.contant, parameters: ["username": cellphone, "phone":cellphone], completion: { (result: DataResponse?) in
+                SVProgressHUD.showSuccessWithStatus("验证码获取成功")
+                self.restoreTimer()
+                
+            }) { (errMsg, errCode) in
+                SVProgressHUD.showErrorWithStatus(errMsg ?? "验证码获取失败")
+                self.restoreTimer()
+            }
+        } else {
+            showAlertWithMessage("请输入正确的手机号码", block: nil)
+        }
+    }
+    
+    func restoreTimer() {
+        self.timerCount = 60
+        self.timer?.invalidate()
+        self.configureFetchValidCode(.Normal)
+        self.verifyButton.userInteractionEnabled = true
     }
 
 

@@ -32,7 +32,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "修改密码"
+        self.title = "忘记密码"
         scrollView = UIScrollView.init()
         scrollView.alwaysBounceVertical = true
         view.addSubview(scrollView)
@@ -40,10 +40,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         scrollView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
         }
-        
         setupViews()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,54 +96,54 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         sureButton.addTarget(self, action: #selector(self.sure), forControlEvents: .TouchUpInside)
         sureButton.setTitle("确认修改", forState: .Normal)
         sureButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        sureButton.backgroundColor = UIColor.brownColor()
+        sureButton.backgroundColor = UIColor.flatMintColor()
         sureButton.layer.cornerRadius = 3.0
         sureButton.layer.masksToBounds = true
         scrollView.addSubview(sureButton)
         
         
         let line0 = UIView()
-        line0.backgroundColor = UIColor.lightGrayColor()
+        line0.backgroundColor = UIColor.flatGrayColor()
         scrollView.addSubview(line0)
         
         line0.hidden = true
         
         let line1 = UIView()
-        line1.backgroundColor = UIColor.lightGrayColor()
+        line1.backgroundColor = UIColor.flatGrayColor()
         scrollView.addSubview(line1)
         
         let line2 = UIView()
-        line2.backgroundColor = UIColor.lightGrayColor()
+        line2.backgroundColor = UIColor.flatGrayColor()
         scrollView.addSubview(line2)
         
         let line3 = UIView()
-        line3.backgroundColor = UIColor.lightGrayColor()
+        line3.backgroundColor = UIColor.flatGrayColor()
         scrollView.addSubview(line3)
         
         
         line0.snp_makeConstraints { (make) in
             make.left.right.equalTo(view)
             make.top.equalTo(10)
-            make.height.equalTo(1)
+            make.height.equalTo(0.3)
         }
         
         
         line1.snp_makeConstraints { (make) in
             make.left.right.equalTo(line0)
             make.top.equalTo(line0.snp_bottom).offset(60)
-            make.height.equalTo(1)
+            make.height.equalTo(line0)
         }
         
         line2.snp_makeConstraints { (make) in
             make.left.right.equalTo(line0)
             make.top.equalTo(line1.snp_bottom).offset(60)
-            make.height.equalTo(1)
+            make.height.equalTo(line0)
         }
         
         line3.snp_makeConstraints { (make) in
             make.left.right.equalTo(line0)
             make.top.equalTo(line2.snp_bottom).offset(60)
-            make.height.equalTo(1)
+            make.height.equalTo(line0)
         }
         
         cellphoneLabel.snp_makeConstraints { (make) in
@@ -235,15 +232,38 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
     
     //MARK: 修改密码
     func sure() {
-        NetworkHelper.instance.request(.GET, url: URLConstant.resetPasswordByMobile.contant, parameters: ["username": cellphone, "password": password,"validCode": validCode], completion: { [weak self](result: DataResponse?) in
-            SVProgressHUD.showSuccessWithStatus("密码修改成功")
-            Async.main(after: 1.0, block: {
-                self?.navigationController?.popViewControllerAnimated(true)
-            })
-        }) { (errMsg, errCode) in
-            SVProgressHUD.showErrorWithStatus(errMsg)
+        if checkValid() {
+            NetworkHelper.instance.request(.GET, url: URLConstant.resetPasswordByMobile.contant, parameters: ["username": cellphone, "password": password,"validCode": validCode], completion: { [weak self](result: DataResponse?) in
+                    SVProgressHUD.showSuccessWithStatus("修改成功")
+                    Async.main(after: 1.0, block: {
+                        self?.navigationController?.popViewControllerAnimated(true)
+                    })
+            }) { (errMsg, errCode) in
+                SVProgressHUD.showErrorWithStatus(errMsg)
+            }
         }
+  }
+    
+    func checkValid() -> Bool {
+        
+        if !cellphone.isValidCellPhone {
+            showAlertWithMessage("手机号不对", block: nil)
+            return false
+        }
+        
+        if password.isValidPassword {
+            showAlertWithMessage("密码为6-16位", block: nil)
+            return false
+        }
+        
+        if validCode.isEmpty {
+            showAlertWithMessage("验证码不能为空", block: nil)
+            return false
+        }
+        
+        return true
     }
+    
     
     func verify() {
         //获取验证码
