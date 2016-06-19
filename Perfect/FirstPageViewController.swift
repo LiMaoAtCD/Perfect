@@ -73,7 +73,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             }
         }
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":self.goodTypes![self.selectionSection].id!], completion: { [weak self](product: ProductListResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id)], completion: { [weak self](product: ProductListResponse?) in
                 self?.goods = product?.retObj?.rows
                 self?.collection.reloadSections(NSIndexSet.init(index: 3))
             }) { (errMsg: String?, errCode: Int) in
@@ -137,7 +137,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             var imageUrl = [String]()
             if let _ = topBanners {
                 for item in topBanners! {
-                    imageUrl.append(item.imageId!)
+                    imageUrl.append("\(item.imageId)")
                 }
             }
           
@@ -152,8 +152,8 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             var buttonsUrl = [String]()
             if let _ = customButtons {
                 for item in customButtons! {
-                    let url = item.imageId!
-                    buttonsUrl.append(url)
+                    let url = item.imageId
+                    buttonsUrl.append("\(url)")
                 }
             }
             
@@ -192,7 +192,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             header.segmentControl.selectionHandler = { index in
                 print("index: \(index)")
                 self.selectionSection = index
-                NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":self.goodTypes![self.selectionSection].id!], completion: { [weak self](product: ProductListResponse?) in
+                NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id)], completion: { [weak self](product: ProductListResponse?) in
                     self?.goods = product?.retObj?.rows
                  
                     self?.collection.reloadSections(NSIndexSet.init(index: 3))
@@ -283,7 +283,7 @@ class CollectionViewCell: UICollectionViewCell {
     var entity: ProductItem? {
         willSet{
             if let _ = newValue {
-                imageView.kf_setImageWithURL(NSURL.init(string: newValue!.imageId!)!)
+                imageView.kf_setImageWithURL(NSURL.init(string: "\(newValue!.imageId)")!)
                 title.text = newValue!.fullName
                 marketPrice.text = newValue!.marketPrice.currency
                 price.text = newValue!.price.currency
