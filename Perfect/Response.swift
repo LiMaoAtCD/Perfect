@@ -104,7 +104,7 @@ class RegisterResponse: DataResponse {
     
 }
 
-//注册
+//登录
 
 class LoginResponse: DataResponse {
     var retObj: LoginEntity?

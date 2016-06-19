@@ -32,6 +32,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.configurePopNavigationItem()
     }
 
     override func didReceiveMemoryWarning() {

@@ -10,6 +10,8 @@ import UIKit
 import SwiftyUserDefaults
 import Async
 import SVProgressHUD
+import ChameleonFramework
+
 class LoginNavigationController: UINavigationController {
     
 }
@@ -24,8 +26,8 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     var registerButton: UIButton!
     var loginButton: UIButton!
     
-    var cellphone: String = ""
-    var password: String = ""
+    var cellphone: String! = ""
+    var password: String! = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,26 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         self.title = "登录"
 
         setupViews()
+        
+        
+    }
+    
+    override func configurePopNavigationItem() {
+        
+        let image = UIImage(named: "ic_back")
+        let backButton = UIButton(type: .Custom)
+        backButton.setImage(image, forState: .Normal)
+        backButton.frame = CGRectMake(0, 0, image!.size.width, image!.size.height)
+        backButton.addTarget(self, action: #selector(self.dismiss), forControlEvents: .TouchUpInside)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+    
+    func dismiss() {
+        
+        
+        Defaults[.logined] = false
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,12 +110,13 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         view.addSubview(passwordLabel)
         
         cellphoneTextfield = UITextField()
-        cellphoneTextfield.delegate = self
+        cellphoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         cellphoneTextfield.placeholder = "请输入号码"
+        cellphoneTextfield.keyboardType = .NumberPad
         view.addSubview(cellphoneTextfield)
         
         passwordTextfield = UITextField()
-        passwordTextfield.delegate = self
+        passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         passwordTextfield.placeholder = "请输入密码"
         view.addSubview(passwordTextfield)
         
@@ -114,7 +137,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         loginButton.addTarget(self, action: #selector(self.login), forControlEvents: .TouchUpInside)
         loginButton.setTitle("登录", forState: .Normal)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        loginButton.backgroundColor = UIColor.brownColor()
+        loginButton.backgroundColor = UIColor.flatSandColor()
         loginButton.layer.cornerRadius = 3.0
         loginButton.layer.masksToBounds = true
         view.addSubview(loginButton)
@@ -217,25 +240,23 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     func login() {
         
         if checkValidation() {
+            SVProgressHUD.showWithStatus("")
+            NetworkHelper.instance.request(.GET, url: URLConstant.memberLogin.contant, parameters: ["username": cellphone,"password": password], completion: { (result: LoginResponse?) in
+                SVProgressHUD.showSuccessWithStatus("登录成功")
+                Async.main(after: 1.0, block: {
+                    
+                    Defaults[.logined] = true
+                    if Defaults[.shouldSwitch] {
+                        let tab =  Tool.root.viewControllers.first as! RootTabBarController
+                        tab.selectedIndex = 2
+                        Defaults[.shouldSwitch] = false
+                    }
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+            }) { (errMsg: String?, errCode: Int) in
+                SVProgressHUD.showErrorWithStatus(errMsg ?? "登录失败")
+            }
         }
-        
-        
-        SVProgressHUD.showWithStatus("")
-        NetworkHelper.instance.request(.GET, url: URLConstant.memberLogin.contant, parameters: ["username":"","password":""], completion: { (result: LoginResponse?) in
-            
-            
-        }) { (errMsg: String?, errCode: Int) in
-            
-        }
-        
-        Defaults[.logined] = true
-        if Defaults[.shouldSwitch] {
-           let tab =  Tool.root.viewControllers.first as! RootTabBarController
-            tab.selectedIndex = 2
-            Defaults[.shouldSwitch] = false
-        }
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
     }
     
     func checkValidation()-> Bool {
@@ -246,11 +267,34 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         }
         
         if password.isEmpty {
+            showAlertWithMessage("密码不能为空", block: nil)
             return false
         }
         
         return true
     }
+    
+    //MARK: 输入框处理
+    func textFieldDidEditChanged(textfield: UITextField) {
+        //
+        if textfield == cellphoneTextfield {
+            cellphone = textfield.text
+            
+            let text = NSString(string: cellphone!)
+            if text.length > 11 {
+                textfield.text = text.substringToIndex(11)
+                cellphone = textfield.text
+            }
+        } else {
+            password = textfield.text
+            let p = password as NSString
+            if p.length > 16 {
+                textfield.text = p.substringToIndex(16)
+                password = textfield.text
+            }
+        }
+    }
+
 
     /*
     // MARK: - Navigation
