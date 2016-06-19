@@ -116,6 +116,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         view.addSubview(cellphoneTextfield)
         
         passwordTextfield = UITextField()
+        passwordTextfield.secureTextEntry = true
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         passwordTextfield.placeholder = "请输入密码"
         view.addSubview(passwordTextfield)

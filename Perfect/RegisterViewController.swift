@@ -100,7 +100,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         protocolButton = UIButton.init(type: .Custom)
         protocolButton.setTitle("《APP使用协议》", forState: .Normal)
-        protocolButton.setTitleColor(UIColor.brownColor(), forState: .Normal)
+        protocolButton.setTitleColor(UIColor.flatMintColor(), forState: .Normal)
         
         protocolButton.addTarget(self, action: #selector(self.protocolClick), forControlEvents: .TouchUpInside)
         scrollView.addSubview(protocolButton)
@@ -109,7 +109,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         registerButton.addTarget(self, action: #selector(self.register), forControlEvents: .TouchUpInside)
         registerButton.setTitle("注册", forState: .Normal)
         registerButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        registerButton.backgroundColor = UIColor.brownColor()
+        registerButton.backgroundColor = UIColor.flatMintColor()
         registerButton.layer.cornerRadius = 3.0
         registerButton.layer.masksToBounds = true
         scrollView.addSubview(registerButton)
