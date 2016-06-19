@@ -35,8 +35,8 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
         NetworkHelper.instance.request(.GET, url: URLConstant.appProductDetail.contant, parameters: ["id":"11"], completion: { [weak self](response: ProductDetailResponse?) in
                 self?.detail = response?.retObj
                 self?.updateViews()
-            }) { (errorMessage) in
-                print(errorMessage)
+            }) { (errMsg: String?, errCode: Int) in
+                
         }
         scrollView = UIScrollView.init()
         view.addSubview(scrollView)

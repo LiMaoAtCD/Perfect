@@ -279,27 +279,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
 
     
-    func verify() {
-        
-        guard self.cellphone.isValidCellPhone else {
-            self.showAlertWithMessage("请输入正确的手机号", block: nil)
-            return
-        }
-        
-        timer = NSTimer.YQ_scheduledTimerWithTimeInterval(0.1, closure: {
-            self.timerCount -= 1
-            if self.timerCount <= 0 {
-                self.timerCount = 60
-                self.timer?.invalidate()
-                self.configureFetchValidCode(.Normal)
-                self.verifyButton.userInteractionEnabled = true
-            } else {
-                self.configureFetchValidCode(.Timer)
-                self.verifyButton.userInteractionEnabled = false
-            }
 
-            }, repeats: true)
-    }
     
     func configureFetchValidCode(mode: CMValidateButtonMode) {
         
@@ -350,6 +330,29 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    func verify() {
+        
+        guard self.cellphone.isValidCellPhone else {
+            self.showAlertWithMessage("请输入正确的手机号", block: nil)
+            return
+        }
+        
+        timer = NSTimer.YQ_scheduledTimerWithTimeInterval(0.1, closure: {
+            self.timerCount -= 1
+            if self.timerCount <= 0 {
+                self.timerCount = 60
+                self.timer?.invalidate()
+                self.configureFetchValidCode(.Normal)
+                self.verifyButton.userInteractionEnabled = true
+            } else {
+                self.configureFetchValidCode(.Timer)
+                self.verifyButton.userInteractionEnabled = false
+            }
+            
+            }, repeats: true)
+    }
+
 
     deinit{
         self.timer?.invalidate()

@@ -58,8 +58,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
                 self?.customButtons = res?.retObj?.buttons
                 self?.fetchProductsByGoodTypes(res?.retObj?.types)
                 self?.collection.reloadData()
-        }) { (code: String?) in
-            print(code)
+        }) { (errMsg: String?, errCode: Int) in
 
         }
     }
@@ -77,8 +76,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
         NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":self.goodTypes![self.selectionSection].id!], completion: { [weak self](product: ProductListResponse?) in
                 self?.goods = product?.retObj?.rows
                 self?.collection.reloadSections(NSIndexSet.init(index: 3))
-            }) { (msg) in
-                print(msg)
+            }) { (errMsg: String?, errCode: Int) in
         }
         
         
@@ -198,8 +196,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
                     self?.goods = product?.retObj?.rows
                  
                     self?.collection.reloadSections(NSIndexSet.init(index: 3))
-                }) { (msg) in
-                    print(msg)
+                }) { (errMsg: String?, errCode: Int) in
                 }
             }
 

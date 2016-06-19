@@ -49,7 +49,7 @@ class FourthViewController: UIViewController {
                 self?.fourthTableViewController.avatarImageView.image = UIImage.init(named: "")
             
                 self?.fourthTableViewController.nickNameLabel.text = personalEntity?.memberInfo?.nick
-            }) { (msg) in
+            }) { (errMsg: String?, errCode: Int) in
                 
         }
     }

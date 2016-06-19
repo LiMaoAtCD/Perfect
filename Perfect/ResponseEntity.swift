@@ -200,6 +200,8 @@ class PersonalMemberInfoItem: Mappable {
 }
 
 
+
+
 //注册
 
 class RegisterEntity: Mappable {
@@ -237,6 +239,7 @@ class ValidCodeEntity: Mappable {
 //        memberInfo <- map["memberInfo"]
     }
 }
+
 
 
 
