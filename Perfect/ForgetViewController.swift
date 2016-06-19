@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ForgetViewController: UIViewController, UITextFieldDelegate {
+class ForgetViewController: BaseViewController, UITextFieldDelegate {
     
     var cellphoneLabel: UILabel!
     var verifyCodeLabel: UILabel!

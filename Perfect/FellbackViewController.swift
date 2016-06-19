@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FellbackViewController: UIViewController {
+class FellbackViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

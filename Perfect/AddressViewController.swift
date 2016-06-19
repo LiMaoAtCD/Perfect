@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddressViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
+class AddressViewController: BaseViewController,UITableViewDataSource, UITableViewDelegate {
 
     
     var tableView: UITableView!

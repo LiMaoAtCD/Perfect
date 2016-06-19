@@ -12,7 +12,7 @@ class MeNavigationController: UINavigationController {
     
 }
 
-class FourthViewController: UIViewController {
+class FourthViewController: BaseViewController {
 
     var fourthTableViewController : FourthTableViewController!
     override func viewDidLoad() {

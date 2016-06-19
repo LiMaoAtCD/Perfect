@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SecondDetailViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     var tableView: UITableView!
     var items: [String]!

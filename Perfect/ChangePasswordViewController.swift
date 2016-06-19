@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 import Async
-class ChangePasswordViewController: UIViewController {
+class ChangePasswordViewController: BaseViewController {
 
     var cellphoneLabel: UILabel!
     var verifyCodeLabel: UILabel!

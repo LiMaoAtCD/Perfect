@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomGoodViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class CustomGoodViewController: BaseViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     
     var imagePicker: UIImagePickerController!

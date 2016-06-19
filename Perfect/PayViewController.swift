@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PayViewController: UIViewController {
+class PayViewController: BaseViewController {
 
     var scrollView: UIScrollView!
     

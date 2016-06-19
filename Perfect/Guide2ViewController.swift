@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Guide2ViewController: UIViewController {
+class Guide2ViewController: BaseViewController {
 
     var scrollView: UIScrollView!
     

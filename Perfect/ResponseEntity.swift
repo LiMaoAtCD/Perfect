@@ -202,10 +202,10 @@ class PersonalMemberInfoItem: Mappable {
 
 
 
-//注册
 
-class RegisterEntity: Mappable {
-    var memberInfo: RegisterItem?
+//登录    
+class LoginEntity: Mappable {
+    var memberInfo: memberInfoItem?
     required init?(_ map: Map) {
     }
     
@@ -213,8 +213,7 @@ class RegisterEntity: Mappable {
         memberInfo <- map["memberInfo"]
     }
 }
-
-class RegisterItem: Mappable {
+class memberInfoItem: Mappable {
     var id: Int = 0
     var nick : String?
     var name: String?
@@ -227,6 +226,20 @@ class RegisterItem: Mappable {
         id <- map["id"]
     }
 }
+
+//注册
+
+class RegisterEntity: Mappable {
+    var memberInfo: memberInfoItem?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        memberInfo <- map["memberInfo"]
+    }
+}
+
+
 
 //获取验证码
 

@@ -18,7 +18,7 @@ enum OrderType: Int {
     case Finished
 }
 
-class OrderViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class OrderViewController: BaseViewController,UITableViewDelegate, UITableViewDataSource {
 
     var items: [String]!
     var titleButton: UIButton!

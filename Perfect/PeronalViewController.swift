@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PeronalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PeronalViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     var items: [String]!
     override func viewDidLoad() {

@@ -9,7 +9,7 @@
 import UIKit
 import SDCycleScrollView
 
-class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
+class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     var scrollView: UIScrollView!
 
     var topBanner: SDCycleScrollView!
@@ -19,7 +19,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
     
     var introImageViews: [UIImageView]!
     
-    
+    var webview: UIWebView!
     
     
     var bottomView: UIView!
@@ -31,6 +31,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
         
         NetworkHelper.instance.request(.GET, url: URLConstant.appProductDetail.contant, parameters: ["id":"11"], completion: { [weak self](response: ProductDetailResponse?) in
                 self?.detail = response?.retObj
@@ -49,7 +50,8 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
     func updateViews() {
         configureTopBanner()
         configureGoodInfoView()
-        configureGoodIntroView()
+//        configureGoodIntroView()
+        configureGoodIntrowebView()
         
         bottomView = UIView()
         
@@ -200,7 +202,45 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
 
     }
     
+    func configureGoodIntrowebView() {
+        webview = UIWebView()
+        scrollView.addSubview(webview)
+        
+        let url  = NSURL.init(string: "http://ic.snssdk.com/wenda/wapshare/answer/brow/?ansid=6296220727066493186&iid=4584663589&app=news_article&tt_from=mobile_qq&utm_source=mobile_qq&utm_medium=toutiao_ios&utm_campaign=client_share")
+        webview.loadRequest(NSURLRequest.init(URL: url!))
+        webview.delegate = self
+        webview.snp_makeConstraints(closure: { (make) in
+            make.left.right.equalTo(view)
+            make.width.equalTo(Tool.width)
+            make.top.equalTo(goodsInfoView.snp_bottom)
+            make.bottom.equalTo(scrollView.snp_bottom)
+            make.height.equalTo(1000)
+        })
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        if let heightString = webView.stringByEvaluatingJavaScriptFromString("document.height"),
+            widthString = webView.stringByEvaluatingJavaScriptFromString("document.width"),
+            height = Float(heightString),
+            _ = Float(widthString) {
+            
+//            var rect = webView.frame
+//            rect.size.height = CGFloat(height)
+//            rect.size.width = CGFloat(width)
+//            webView.frame = rect
+            
+            webview.snp_remakeConstraints(closure: { (make) in
+                make.left.right.equalTo(view)
+                make.width.equalTo(Tool.width)
+                make.top.equalTo(goodsInfoView.snp_bottom)
+                make.bottom.equalTo(scrollView.snp_bottom)
+                make.height.equalTo(height)
+            })
+        }
+    }
+    
     func configureGoodIntroView() {
+        
         goodIntroView = UIView()
         scrollView.addSubview(goodIntroView)
         goodIntroView.snp_makeConstraints { (make) in

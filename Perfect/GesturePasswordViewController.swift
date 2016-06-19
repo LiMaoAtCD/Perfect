@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GesturePasswordViewController: UIViewController {
+class GesturePasswordViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

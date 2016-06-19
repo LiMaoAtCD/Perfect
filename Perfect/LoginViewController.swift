@@ -8,36 +8,31 @@
 
 import UIKit
 import SwiftyUserDefaults
-
+import Async
+import SVProgressHUD
 class LoginNavigationController: UINavigationController {
     
 }
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     var cellphoneTextfield: UITextField!
     var passwordTextfield: UITextField!
-    
     var cellphoneLabel: UILabel!
     var passwordLabel: UILabel!
-    
     var forgetpasswordButton: UIButton!
     var registerButton: UIButton!
-    
     var loginButton: UIButton!
+    
+    var cellphone: String = ""
+    var password: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-        
         self.navigationController?.navigationBar.translucent = false
         self.title = "登录"
-        
-        
-        
+
         setupViews()
     }
 
@@ -48,35 +43,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func setupViews() {
         //背景
-        let imageview = UIImageView()
-        self.view.addSubview(imageview)
-        imageview.snp_makeConstraints { (make) in
-            make.edges.equalTo(view)
-        }
-        imageview.image = UIImage.init(named: "loginBg")
+//        let imageview = UIImageView()
+//        self.view.addSubview(imageview)
+//        imageview.snp_makeConstraints { (make) in
+//            make.edges.equalTo(view)
+//        }
+//        imageview.image = UIImage.init(named: "loginBg")
         
         //图标
-        let icon = UIImageView()
-        self.view.addSubview(icon)
-        icon.snp_makeConstraints { (make) in
-            make.centerX.equalTo(view)
-            make.width.height.equalTo(80)
-            make.top.equalTo(self.snp_topLayoutGuideBottom).offset(100)
-        }
-        
-        icon.image = UIImage.init(named: "h6")
+//        let icon = UIImageView()
+//        self.view.addSubview(icon)
+//        icon.snp_makeConstraints { (make) in
+//            make.centerX.equalTo(view)
+//            make.width.height.equalTo(80)
+//            make.top.equalTo(self.snp_topLayoutGuideBottom).offset(100)
+//        }
+//        
+//        icon.image = UIImage.init(named: "h6")
         
         
         
         //用户名
-        let nameImageView = UIImageView()
-        self.view.addSubview(nameImageView)
-        nameImageView.snp_makeConstraints { (make) in
-            make.left.equalTo(40)
-            make.width.height.equalTo(20)
-            make.top.equalTo(icon.snp_bottom).offset(100)
-        }
-        nameImageView.image = UIImage.init(named: "perfect")
+//        let nameImageView = UIImageView()
+//        self.view.addSubview(nameImageView)
+//        nameImageView.snp_makeConstraints { (make) in
+//            make.left.equalTo(40)
+//            make.width.height.equalTo(20)
+//            make.top.equalTo(self.snp_topLayoutGuideBottom).offset(20)
+//        }
+//        nameImageView.image = UIImage.init(named: "perfect")
         
         
         
@@ -128,6 +123,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let line0 = UIView()
         line0.backgroundColor = UIColor.lightGrayColor()
         view.addSubview(line0)
+        line0.hidden = true
         
         let line1 = UIView()
         line1.backgroundColor = UIColor.lightGrayColor()
@@ -219,6 +215,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func login() {
+        
+        if checkValidation() {
+        }
+        
+        
+        SVProgressHUD.showWithStatus("")
+        NetworkHelper.instance.request(.GET, url: URLConstant.memberLogin.contant, parameters: ["username":"","password":""], completion: { (result: LoginResponse?) in
+            
+            
+        }) { (errMsg: String?, errCode: Int) in
+            
+        }
+        
         Defaults[.logined] = true
         if Defaults[.shouldSwitch] {
            let tab =  Tool.root.viewControllers.first as! RootTabBarController
@@ -227,6 +236,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         self.dismissViewControllerAnimated(true, completion: nil)
         
+    }
+    
+    func checkValidation()-> Bool {
+        
+        if !self.cellphone.isValidCellPhone {
+            showAlertWithMessage("手机号码不合法", block: nil)
+            return false
+        }
+        
+        if password.isEmpty {
+            return false
+        }
+        
+        return true
     }
 
     /*

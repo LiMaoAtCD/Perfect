@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GoodsScanViewController: UIViewController {
+class GoodsScanViewController: BaseViewController {
     var compositionButton: UIButton!
     var bottleButton: UIButton!
     var boxButton: UIButton!

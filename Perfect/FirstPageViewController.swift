@@ -11,7 +11,7 @@ import FDFullscreenPopGesture
 import SnapKit
 import SDCycleScrollView
 
-class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     var collection : UICollectionView!
     

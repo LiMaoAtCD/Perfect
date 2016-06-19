@@ -9,7 +9,7 @@
 import UIKit
 import ChameleonFramework
 
-class RegisterViewController: UIViewController, UITextFieldDelegate {
+class RegisterViewController: BaseViewController, UITextFieldDelegate {
 
     var cellphoneLabel: UILabel!
     var verifyCodeLabel: UILabel!

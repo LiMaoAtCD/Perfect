@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProtocolViewController: UIViewController {
+class ProtocolViewController: BaseViewController {
 
     
     override func viewDidLoad() {

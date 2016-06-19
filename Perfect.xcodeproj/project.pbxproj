@@ -292,8 +292,6 @@
 		8763BC141CFB32A700FAB8D7 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */,
-				DA57ED3B1CFC2A3100A8083A /* GoodsScan */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -367,6 +365,9 @@
 		87D29C5C1D12F495001FA983 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				8763BC141CFB32A700FAB8D7 /* Detail */,
+				DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */,
+				DA57ED3B1CFC2A3100A8083A /* GoodsScan */,
 				DA57ED091CF7D3EF00A8083A /* FirstViewController.swift */,
 				DA57ED161CF7D57B00A8083A /* FirstTableViewController.swift */,
 				DA57ED181CF7D6DC00A8083A /* FirstBannerCell.swift */,
@@ -482,7 +483,6 @@
 				878F224F1D14F7230074E1A2 /* Detail */,
 				87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */,
 				8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */,
-				8763BC141CFB32A700FAB8D7 /* Detail */,
 			);
 			name = First;
 			sourceTree = "<group>";
