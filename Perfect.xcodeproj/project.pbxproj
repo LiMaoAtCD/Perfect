@@ -41,6 +41,8 @@
 		8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */; };
 		8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */; };
 		8763BC3A1CFDEC6F00FAB8D7 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */; };
+		878F22551D163F1A0074E1A2 /* KKGestureLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878F22521D163F1A0074E1A2 /* KKGestureLockView.m */; };
+		878F22561D163F1A0074E1A2 /* KKGestureLockPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878F22541D163F1A0074E1A2 /* KKGestureLockPreviewView.m */; };
 		87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA561D0EEDAF000A1B41 /* Response.swift */; };
 		87A5AA591D0F0948000A1B41 /* ResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */; };
 		87A5AA5B1D0F11BB000A1B41 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */; };
@@ -126,6 +128,10 @@
 		8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderGoodsCell.swift; sourceTree = "<group>"; };
 		8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		8763BC381CFDEC6F00FAB8D7 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
+		878F22511D163F1A0074E1A2 /* KKGestureLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKGestureLockView.h; sourceTree = "<group>"; };
+		878F22521D163F1A0074E1A2 /* KKGestureLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKGestureLockView.m; sourceTree = "<group>"; };
+		878F22531D163F1A0074E1A2 /* KKGestureLockPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKGestureLockPreviewView.h; sourceTree = "<group>"; };
+		878F22541D163F1A0074E1A2 /* KKGestureLockPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKGestureLockPreviewView.m; sourceTree = "<group>"; };
 		87A5AA561D0EEDAF000A1B41 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEntity.swift; sourceTree = "<group>"; };
 		87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +353,17 @@
 			name = Detail;
 			sourceTree = "<group>";
 		};
+		878F22501D163EFA0074E1A2 /* KKGestrueLock */ = {
+			isa = PBXGroup;
+			children = (
+				878F22511D163F1A0074E1A2 /* KKGestureLockView.h */,
+				878F22521D163F1A0074E1A2 /* KKGestureLockView.m */,
+				878F22531D163F1A0074E1A2 /* KKGestureLockPreviewView.h */,
+				878F22541D163F1A0074E1A2 /* KKGestureLockPreviewView.m */,
+			);
+			name = KKGestrueLock;
+			sourceTree = "<group>";
+		};
 		87D29C5C1D12F495001FA983 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +507,7 @@
 		DA57ED441CFD308C00A8083A /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				878F22501D163EFA0074E1A2 /* KKGestrueLock */,
 				DA1A6B241D124A3600FD4FB0 /* MarketLabel.swift */,
 			);
 			name = Vendor;
@@ -706,6 +724,7 @@
 				DA1A6B251D124A3600FD4FB0 /* MarketLabel.swift in Sources */,
 				87A5AA5F1D10C636000A1B41 /* GoodsDetailViewController.swift in Sources */,
 				DA57ED0A1CF7D3EF00A8083A /* FirstViewController.swift in Sources */,
+				878F22551D163F1A0074E1A2 /* KKGestureLockView.m in Sources */,
 				870F38251CF973CC00AFF1AF /* RegisterViewController.swift in Sources */,
 				870F38291CF9757C00AFF1AF /* BaseViewController.swift in Sources */,
 				DA1A6B2C1D1257F400FD4FB0 /* CustomGoodViewController.swift in Sources */,
@@ -714,6 +733,7 @@
 				8763BC1F1CFC770A00FAB8D7 /* SearchViewController.swift in Sources */,
 				DA57ED421CFC3F0600A8083A /* SecondDetailTableViewCell.swift in Sources */,
 				8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */,
+				878F22561D163F1A0074E1A2 /* KKGestureLockPreviewView.m in Sources */,
 				DA1A6B6E1D127F4500FD4FB0 /* RootTabBarController.swift in Sources */,
 				870F382D1CF9876100AFF1AF /* OrderViewController.swift in Sources */,
 				87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */,

@@ -33,7 +33,7 @@ class ChangePasswordViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        self.title = "修改密码"
         scrollView = UIScrollView.init()
         scrollView.alwaysBounceVertical = true
         view.addSubview(scrollView)
@@ -58,7 +58,7 @@ class ChangePasswordViewController: UIViewController {
         scrollView.addSubview(verifyCodeLabel)
         
         passwordLabel = UILabel()
-        passwordLabel.text = "密码"
+        passwordLabel.text = "新密码"
         passwordLabel.textColor = UIColor.blackColor()
         
         scrollView.addSubview(passwordLabel)
@@ -78,7 +78,7 @@ class ChangePasswordViewController: UIViewController {
         
         passwordTextfield = UITextField()
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        passwordTextfield.placeholder = "请设定密码"
+        passwordTextfield.placeholder = "请输入新密码"
         passwordTextfield.secureTextEntry = true
         scrollView.addSubview(passwordTextfield)
         
@@ -91,7 +91,7 @@ class ChangePasswordViewController: UIViewController {
         //
         sureButton = UIButton.init(type: .Custom)
         sureButton.addTarget(self, action: #selector(self.sure), forControlEvents: .TouchUpInside)
-        sureButton.setTitle("修改", forState: .Normal)
+        sureButton.setTitle("确认修改", forState: .Normal)
         sureButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         sureButton.backgroundColor = UIColor.brownColor()
         sureButton.layer.cornerRadius = 3.0
@@ -152,7 +152,7 @@ class ChangePasswordViewController: UIViewController {
         cellphoneTextfield.snp_makeConstraints { (make) in
             make.left.equalTo(cellphoneLabel.snp_right).offset(8)
             make.centerY.equalTo(cellphoneLabel)
-            make.right.equalTo(-50)
+            make.right.equalTo(verifyButton.snp_left).offset(-8)
             make.height.equalTo(35)
         }
         
@@ -246,6 +246,11 @@ class ChangePasswordViewController: UIViewController {
             }
             
             }, repeats: true)
+        NetworkHelper.instance.request(.GET, url: URLConstant.getMobileValidCode.contant, parameters: ["username": cellphone], completion: { (result: DataResponse?) in
+            SVProgressHUD.showSuccessWithStatus("验证码获取成功")
+            }) { (errMsg, errCode) in
+                SVProgressHUD.showErrorWithStatus(errMsg ?? "验证码获取失败")
+        }
     }
     
     func configureFetchValidCode(mode: CMValidateButtonMode) {
@@ -262,19 +267,25 @@ class ChangePasswordViewController: UIViewController {
         
     }
     
-    
+    //MARK: 修改密码
     func sure() {
-        
         NetworkHelper.instance.request(.GET, url: URLConstant.resetPasswordByMobile.contant, parameters: ["username": cellphone, "password": password,"validCode": validCode], completion: { [weak self](result: DataResponse?) in
                 SVProgressHUD.showSuccessWithStatus("密码修改成功")
                 Async.main(after: 1.0, block: {
                     self?.navigationController?.popViewControllerAnimated(true)
                 })
             }) { (errMsg, errCode) in
-                
+                if errCode == 1 {
+                    SVProgressHUD.showErrorWithStatus("用户名或手机号码不存在")
+                } else if errCode == 2 {
+                    SVProgressHUD.showErrorWithStatus("验证码不正确")
+                } else if errCode == 3 {
+                    SVProgressHUD.showErrorWithStatus("输入项格式不符合要求")
+                } else {
+                    SVProgressHUD.showErrorWithStatus("密码修改失败")
+                }
         }
     }
-
 
 
     override func didReceiveMemoryWarning() {

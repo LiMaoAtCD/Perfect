@@ -167,7 +167,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         cellphoneTextfield.snp_makeConstraints { (make) in
             make.left.equalTo(cellphoneLabel.snp_right).offset(8)
             make.centerY.equalTo(cellphoneLabel)
-            make.right.equalTo(-50)
+            make.right.equalTo(verifyButton.snp_left).offset(-8)
             make.height.equalTo(35)
         }
         

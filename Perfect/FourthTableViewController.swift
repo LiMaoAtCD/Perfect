@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import SVProgressHUD
+import Async
 
 
 class FourthTableViewController: UITableViewController {
@@ -158,6 +159,10 @@ class FourthTableViewController: UITableViewController {
             self.navigationController?.pushViewController(addressVC, animated: true)
         } else if indexPath.row == 3 {
             //提示清楚缓存
+            SVProgressHUD.showWithStatus("正在清除缓存")
+            Async.main(after: 1.0, block: { 
+                SVProgressHUD.showSuccessWithStatus("清除成功")
+            })
         } else {
             Util.logined = false
             let tab =  Tool.root.viewControllers.first as! RootTabBarController
@@ -179,7 +184,6 @@ class FourthTableViewController: UITableViewController {
     
     func changePassword() {
         let change = Tool.sb.instantiateViewControllerWithIdentifier("ChangePasswordViewController") as! ChangePasswordViewController
-        
         change.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(change, animated: true)
     }
