@@ -39,88 +39,184 @@ class PayViewController: BaseViewController {
     
     func configureScrollView() {
         scrollView = UIScrollView.init()
+        scrollView.backgroundColor = UIColor.init(hexString: "#cccccc")
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { (make) in
-            make.edges.equalTo(view)
+            make.top.left.right.equalTo(view)
+            make.bottom.equalTo(view).offset(-50)
         }
     }
     
     func configureBuyerView() {
         buyerView = UIView()
+        buyerView.backgroundColor = UIColor.whiteColor()
         scrollView.addSubview(buyerView)
         
-        let nameTitleLabel = UILabel()
-        buyerView.addSubview(nameTitleLabel)
-        nameTitleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(buyerView).offset(8)
-            make.top.equalTo(10)
-            
+        let titleLabel = UILabel()
+        buyerView.addSubview(titleLabel)
+        titleLabel.text = "收货地址"
+        titleLabel.textColor = UIColor.blackColor()
+        titleLabel.font = UIFont.systemFontOfSize(16)
+        titleLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(buyerView).offset(14)
+            make.top.equalTo(buyerView).offset(8)
+            make.width.lessThanOrEqualTo(80).priority(1000)
         }
-        nameTitleLabel.text = "收货人:"
-
+        
         nameLabel = UILabel()
         buyerView.addSubview(nameLabel)
         nameLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(nameTitleLabel.snp_right)
-            make.centerY.equalTo(nameTitleLabel)
+            make.left.equalTo(titleLabel.snp_right).offset(20)
+            make.centerY.equalTo(titleLabel)
         }
+        nameLabel.textColor = UIColor.lightGrayColor()
+        nameLabel.text = "张一山"
+        nameLabel.font = UIFont.systemFontOfSize(14)
 
-        let contactTitleLabel = UILabel()
-        buyerView.addSubview(contactTitleLabel)
-        contactTitleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(buyerView).offset(8)
-            make.top.equalTo(nameTitleLabel.snp_bottom).offset(8)
-        }
-        contactTitleLabel.text = "联系电话:"
-        
         contactLabel = UILabel()
         buyerView.addSubview(contactLabel)
         contactLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(contactTitleLabel.snp_right).offset(8)
-            make.centerY.equalTo(contactTitleLabel)
+            make.left.equalTo(nameLabel.snp_right).offset(8)
+            make.centerY.equalTo(nameLabel)
         }
-        
-        let addressTitleLabel = UILabel()
-        buyerView.addSubview(addressTitleLabel)
-        addressTitleLabel.text = "详细地址:"
-        addressTitleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(buyerView).offset(8)
-            make.top.equalTo(contactTitleLabel.snp_bottom).offset(8)
-            
-        }
+        contactLabel.text = "14311111111"
+    
         
         addressLabel = UILabel()
+        addressLabel.text = "四川省成都市武侯区跪下了的骄傲付款了就发离开家地方"
+        addressLabel.numberOfLines = 0
         buyerView.addSubview(addressLabel)
         addressLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(addressTitleLabel.snp_right).offset(8)
-            make.centerY.equalTo(contactTitleLabel)
-            make.bottom.equalTo(buyerView.snp_bottom).offset(-8)
+            make.left.equalTo(nameLabel).offset(8)
+            make.top.equalTo(nameLabel.snp_bottom).offset(15)
+            make.right.equalTo(buyerView.snp_right).offset(-20)
         }
         
         buyerView.snp_makeConstraints { (make) in
             make.left.right.equalTo(view)
-            make.top.equalTo(scrollView)
+            make.top.equalTo(scrollView).offset(20)
+            make.height.equalTo(100)
         }
 
+        let flagImageView = UIImageView()
+        flagImageView.image = UIImage.init(named: "fourtag")
+        buyerView.addSubview(flagImageView)
+        flagImageView.snp_makeConstraints { (make) in
+            make.left.right.bottom.equalTo(buyerView)
+            make.height.equalTo(10)
+        }
     }
     
     func configureGoodView() {
         customView = UIView()
+        customView.backgroundColor = UIColor.clearColor()
         
         scrollView.addSubview(customView)
+        
         customView.snp_makeConstraints { (make) in
             make.left.right.equalTo(view)
             make.top.equalTo(buyerView.snp_bottom)
-            make.height.equalTo(customView.snp_width).multipliedBy(0.5)
         }
         
-        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.custom))
-        customView.addGestureRecognizer(tap)
-        customGoodImageView = UIImageView()
-        customView.addSubview(customGoodImageView)
-        customGoodImageView.snp_makeConstraints { (make) in
-            make.edges.equalTo(customView)
+        let title = UILabel()
+        title.text = "订单商品"
+        title.textColor = UIColor.blackColor()
+        title.font = UIFont.systemFontOfSize(16)
+        customView.addSubview(title)
+        title.snp_makeConstraints { (make) in
+            make.left.equalTo(customView).offset(14)
+            make.top.equalTo(customView).offset(8)
+            make.width.lessThanOrEqualTo(80).priority(1000)
         }
+        
+        let mainView = UIView()
+        mainView.backgroundColor = UIColor.whiteColor()
+        customView.addSubview(mainView)
+        mainView.snp_makeConstraints { (make) in
+            make.left.equalTo(title)
+            make.right.equalTo(customView).offset(-14)
+            make.top.equalTo(title.snp_bottom).offset(20)
+        }
+        
+        let previewImageview = UIImageView()
+        previewImageview.image = UIImage.init(named: "customEffect")
+        mainView.addSubview(previewImageview)
+        previewImageview.snp_makeConstraints { (make) in
+            make.left.equalTo(8)
+            make.width.height.equalTo(80)
+            make.top.equalTo(8)
+        }
+        
+        let goodsTitle = UILabel.init()
+        goodsTitle.numberOfLines = 0
+        goodsTitle.textColor = UIColor.blackColor()
+        goodsTitle.font = UIFont.systemFontOfSize(14.0)
+        mainView.addSubview(goodsTitle)
+        goodsTitle.snp_makeConstraints { (make) in
+            make.left.equalTo(previewImageview.snp_right).offset(8)
+            make.right.equalTo(mainView).offset(-14)
+            make.top.equalTo(previewImageview)
+        }
+        goodsTitle.text = "飞天毛衣他空间打客服哈卡积分换发客服哈就开发好"
+        
+        let priceLabel = UILabel()
+        let price: NSString = "￥1000"
+        let attributeString = NSMutableAttributedString.init(string: "￥1000", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(10)], range: NSMakeRange(0, 1))
+        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(18)], range: NSMakeRange(1, price.length - 1))
+        priceLabel.attributedText = attributeString
+        mainView.addSubview(priceLabel)
+        
+        priceLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(goodsTitle)
+            make.width.equalTo(50)
+            make.bottom.equalTo(previewImageview)
+            make.height.equalTo(30)
+        }
+        
+        let marginView = UIView()
+        marginView.backgroundColor = UIColor.lightGrayColor()
+        
+        mainView.addSubview(marginView)
+        marginView.snp_makeConstraints { (make) in
+            make.left.right.equalTo(mainView)
+            make.height.equalTo(0.3)
+            make.top.equalTo(previewImageview.snp_bottom).offset(8)
+        }
+        
+        let myGoodImageView = UIImageView()
+        mainView.addSubview(myGoodImageView)
+        myGoodImageView.image = UIImage.init(named: "customEffect")
+        
+        myGoodImageView.snp_makeConstraints { (make) in
+            make.left.equalTo(previewImageview)
+            make.width.height.equalTo(previewImageview)
+            make.top.equalTo(marginView).offset(8)
+            make.bottom.equalTo(mainView).offset(-8)
+        }
+        
+        let tipTitle = UILabel()
+        tipTitle.backgroundColor = UIColor.lightGrayColor()
+        tipTitle.text = "左图为定制图案"
+        mainView.addSubview(tipTitle)
+        tipTitle.snp_makeConstraints { (make) in
+            make.left.equalTo(myGoodImageView.snp_right).offset(8)
+            make.top.equalTo(marginView).offset(20)
+        }
+        
+        let changeButton = UIButton.init()
+        changeButton.backgroundColor = UIColor.redColor()
+        changeButton.setTitle("更换定制图", forState: .Normal)
+        changeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        mainView.addSubview(changeButton)
+        
+        changeButton.snp_makeConstraints { (make) in
+            make.right.equalTo(mainView).offset(-8)
+            make.width.equalTo(80)
+            make.height.equalTo(40)
+            make.bottom.equalTo(mainView.snp_bottom).offset(-20)
+        }
+
     }
     
     func custom() {
@@ -183,6 +279,10 @@ class PayViewController: BaseViewController {
         }
     }
     
+    func configurePayView() {
+//        let payV
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -190,9 +290,7 @@ class PayViewController: BaseViewController {
         configureScrollView()
         configureBuyerView()
         configureGoodView()
-        configureQuantityView()
-        configurePriceView()
-        configureOrderButton()
+        configurePayView()
         
 //
 //        let goodImageView = UIImageView()

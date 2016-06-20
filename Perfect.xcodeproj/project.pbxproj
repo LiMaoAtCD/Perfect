@@ -390,7 +390,6 @@
 				8763BC301CFC890700FAB8D7 /* Order */,
 				8763BC141CFB32A700FAB8D7 /* Detail */,
 				DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */,
-				DA57ED3B1CFC2A3100A8083A /* GoodsScan */,
 				DA57ED091CF7D3EF00A8083A /* FirstViewController.swift */,
 				DA57ED161CF7D57B00A8083A /* FirstTableViewController.swift */,
 				DA57ED181CF7D6DC00A8083A /* FirstBannerCell.swift */,
@@ -509,13 +508,6 @@
 				8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */,
 			);
 			name = First;
-			sourceTree = "<group>";
-		};
-		DA57ED3B1CFC2A3100A8083A /* GoodsScan */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = GoodsScan;
 			sourceTree = "<group>";
 		};
 		DA57ED3E1CFC3A5000A8083A /* Detail */ = {
