@@ -429,6 +429,24 @@
             </objects>
             <point key="canvasLocation" x="-419" y="8081"/>
         </scene>
+        <!--All Order View Controller-->
+        <scene sceneID="TVM-rJ-Y3D">
+            <objects>
+                <viewController storyboardIdentifier="AllOrderViewController" id="zas-GQ-WjW" customClass="AllOrderViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kJK-y7-Au7"/>
+                        <viewControllerLayoutGuide type="bottom" id="cau-hy-Xzf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cOU-0n-xSB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QlA-GI-Qtc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="926" y="8053"/>
+        </scene>
         <!--Search View Controller-->
         <scene sceneID="5wS-U6-2ZW">
             <objects>

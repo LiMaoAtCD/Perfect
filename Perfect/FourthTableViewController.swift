@@ -13,7 +13,7 @@ import Async
 
 class FourthTableViewController: UITableViewController {
 
-    let items = ["修改密码", "设置手势密码","收货地址管理","清除缓存","退出登录"]
+    let items = ["修改密码", "设置手势密码","收货地址管理","清除缓存","我的订单","退出登录"]
     var header: UIView!
     
     var avatarImageView: UIImageView!
@@ -130,7 +130,7 @@ class FourthTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        if indexPath != NSIndexPath.init(forRow: 4, inSection: 0) {
+        if indexPath != NSIndexPath.init(forRow: 5, inSection: 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier(MeCell.identifier, forIndexPath: indexPath) as! MeCell
             cell.title.text = items[indexPath.row]
 
@@ -163,6 +163,10 @@ class FourthTableViewController: UITableViewController {
             Async.main(after: 1.0, block: { 
                 SVProgressHUD.showSuccessWithStatus("清除成功")
             })
+        } else if indexPath.row == 4 {
+            let orderVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AllOrderViewController") as! AllOrderViewController
+            orderVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(orderVC, animated: true)
         } else {
             Util.logined = false
             let tab =  Tool.root.viewControllers.first as! RootTabBarController

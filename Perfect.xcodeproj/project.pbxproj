@@ -42,6 +42,7 @@
 		878F22561D163F1A0074E1A2 /* KKGestureLockPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878F22541D163F1A0074E1A2 /* KKGestureLockPreviewView.m */; };
 		878F22861D182AE70074E1A2 /* AddressEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F22841D182AE70074E1A2 /* AddressEditViewController.swift */; };
 		878F22871D182AE70074E1A2 /* AddressEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 878F22851D182AE70074E1A2 /* AddressEditViewController.xib */; };
+		878F228B1D18347C0074E1A2 /* AllOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F228A1D18347C0074E1A2 /* AllOrderViewController.swift */; };
 		87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA561D0EEDAF000A1B41 /* Response.swift */; };
 		87A5AA591D0F0948000A1B41 /* ResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */; };
 		87A5AA5B1D0F11BB000A1B41 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */; };
@@ -130,6 +131,7 @@
 		878F22541D163F1A0074E1A2 /* KKGestureLockPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKGestureLockPreviewView.m; sourceTree = "<group>"; };
 		878F22841D182AE70074E1A2 /* AddressEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressEditViewController.swift; sourceTree = "<group>"; };
 		878F22851D182AE70074E1A2 /* AddressEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressEditViewController.xib; sourceTree = "<group>"; };
+		878F228A1D18347C0074E1A2 /* AllOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllOrderViewController.swift; sourceTree = "<group>"; };
 		87A5AA561D0EEDAF000A1B41 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEntity.swift; sourceTree = "<group>"; };
 		87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
@@ -238,9 +240,9 @@
 		870F38171CF9332D00AFF1AF /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				878F22891D1834590074E1A2 /* OrderViewController */,
 				DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */,
 				870F38181CF9336400AFF1AF /* FourthTableViewController.swift */,
-				8763BC301CFC890700FAB8D7 /* Order */,
 				8763BC271CFC82A900FAB8D7 /* address */,
 				870F383B1CF9CC6000AFF1AF /* Personal */,
 				8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */,
@@ -367,9 +369,25 @@
 			name = AddressEditController;
 			sourceTree = "<group>";
 		};
+		878F22881D1833830074E1A2 /* Collect */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Collect;
+			sourceTree = "<group>";
+		};
+		878F22891D1834590074E1A2 /* OrderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				878F228A1D18347C0074E1A2 /* AllOrderViewController.swift */,
+			);
+			name = OrderViewController;
+			sourceTree = "<group>";
+		};
 		87D29C5C1D12F495001FA983 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				8763BC301CFC890700FAB8D7 /* Order */,
 				8763BC141CFB32A700FAB8D7 /* Detail */,
 				DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */,
 				DA57ED3B1CFC2A3100A8083A /* GoodsScan */,
@@ -414,6 +432,7 @@
 		DA1A6B2A1D12515700FD4FB0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				878F22881D1833830074E1A2 /* Collect */,
 				870F38281CF9757C00AFF1AF /* BaseViewController.swift */,
 				DA417B591CF5EDD100F61304 /* Main.storyboard */,
 				DA1A6B6D1D127F4500FD4FB0 /* RootTabBarController.swift */,
@@ -755,6 +774,7 @@
 				DA57ED5B1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m in Sources */,
 				870F38271CF973D500AFF1AF /* ForgetViewController.swift in Sources */,
 				870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */,
+				878F228B1D18347C0074E1A2 /* AllOrderViewController.swift in Sources */,
 				8752BF3A1D14E28100ED58D3 /* ChangePasswordViewController.swift in Sources */,
 				8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */,
 				8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */,
