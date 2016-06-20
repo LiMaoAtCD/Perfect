@@ -10,22 +10,18 @@ import UIKit
 import SVProgressHUD
 import Async
 class ChangePasswordViewController: BaseViewController {
-
-    var cellphoneLabel: UILabel!
-    var verifyCodeLabel: UILabel!
+    
+    var oldPasswordLabel: UILabel!
+    var oldPasswordTextfield: UITextField!
     var passwordLabel: UILabel!
-    var verifyButton: UIButton!
-    var cellphoneTextfield: UITextField!
-    var verifyTextField: UITextField!
     var passwordTextfield: UITextField!
     var sureButton: UIButton!
-    
-    var timer: NSTimer?
-    var timerCount: Int = 60
-    
-    var cellphone: String! = ""
-    var validCode: String! = ""
+    var confirmLabel: UILabel!
+    var comfirmTextfield: UITextField!
+
+    var oldPassword: String! = ""
     var password: String! = ""
+    var confirmPassword: String! = ""
 
     var scrollView: UIScrollView!
     
@@ -36,255 +32,180 @@ class ChangePasswordViewController: BaseViewController {
         self.title = "修改密码"
         scrollView = UIScrollView.init()
         scrollView.alwaysBounceVertical = true
+        scrollView.backgroundColor = UIColor.init(hexString: "#cccccc")
         view.addSubview(scrollView)
         
         scrollView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
         }
-
+        
         setupViews()
         
     }
     func setupViews() {
         
-        cellphoneLabel = UILabel()
-        cellphoneLabel.text = "手机号码"
-        cellphoneLabel.textColor = UIColor.blackColor()
-        scrollView.addSubview(cellphoneLabel)
+        let view0 = UIView()
+        view0.backgroundColor = UIColor.whiteColor()
+        scrollView.addSubview(view0)
         
-        verifyCodeLabel = UILabel()
-        verifyCodeLabel.text = "验证码"
-        verifyCodeLabel.textColor = UIColor.blackColor()
-        scrollView.addSubview(verifyCodeLabel)
+        view0.snp_makeConstraints { (make) in
+            make.left.right.equalTo(view)
+            make.top.equalTo(scrollView).offset(20)
+            make.height.equalTo(50)
+        }
+        
+        oldPasswordLabel = UILabel()
+        oldPasswordLabel.text = "旧密码"
+        oldPasswordLabel.textColor = UIColor.blackColor()
+        view0.addSubview(oldPasswordLabel)
+        oldPasswordLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(10)
+            make.centerY.equalTo(view0.snp_centerY)
+            make.width.lessThanOrEqualTo(80)
+        }
+        oldPasswordTextfield = UITextField()
+        oldPasswordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
+        oldPasswordTextfield.placeholder = "请输入您的密码"
+        oldPasswordTextfield.keyboardType = .NumberPad
+        view0.addSubview(oldPasswordTextfield)
+        
+        oldPasswordTextfield.snp_makeConstraints { (make) in
+            make.left.equalTo(oldPasswordLabel.snp_right).offset(14)
+            make.centerY.equalTo(oldPasswordLabel)
+            make.right.equalTo(view0).offset(-14)
+            make.height.equalTo(35)
+        }
+        
+        
+        let view1 = UIView()
+        view1.backgroundColor = UIColor.whiteColor()
+        scrollView.addSubview(view1)
+        
+        view1.snp_makeConstraints { (make) in
+            make.left.right.height.equalTo(view0)
+            make.top.equalTo(view0.snp_bottom).offset(20)
+        }
         
         passwordLabel = UILabel()
         passwordLabel.text = "新密码"
         passwordLabel.textColor = UIColor.blackColor()
         
-        scrollView.addSubview(passwordLabel)
+        view1.addSubview(passwordLabel)
         
-        cellphoneTextfield = UITextField()
-        cellphoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        cellphoneTextfield.placeholder = "请输入号码"
-        cellphoneTextfield.keyboardType = .NumberPad
-        scrollView.addSubview(cellphoneTextfield)
-        
-        verifyTextField = UITextField()
-        verifyTextField.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        verifyTextField.placeholder = "请输入验证码"
-        verifyTextField.keyboardType = .NumberPad
-        
-        scrollView.addSubview(verifyTextField)
+        passwordLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(oldPasswordLabel)
+            make.centerY.equalTo(view1)
+        }
         
         passwordTextfield = UITextField()
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        passwordTextfield.placeholder = "请输入新密码"
+        passwordTextfield.placeholder = "请输入6-16位密码"
         passwordTextfield.secureTextEntry = true
-        scrollView.addSubview(passwordTextfield)
+        view1.addSubview(passwordTextfield)
         
-        verifyButton = UIButton.init(type: .Custom)
-        verifyButton.setAttributedTitle(NSAttributedString(string: "获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+        passwordTextfield.snp_makeConstraints { (make) in
+            make.left.right.equalTo(oldPasswordTextfield)
+            make.centerY.equalTo(view1)
+            make.height.equalTo(oldPasswordTextfield)
+        }
+ 
+        let view2 = UIView()
+        view2.backgroundColor = UIColor.whiteColor()
+        scrollView.addSubview(view2)
+        view2.snp_makeConstraints { (make) in
+            make.left.right.height.equalTo(view1)
+            make.top.equalTo(view1.snp_bottom).offset(20)
+        }
         
-        verifyButton.addTarget(self, action: #selector(self.verify), forControlEvents: .TouchUpInside)
-        scrollView.addSubview(verifyButton)
+        confirmLabel = UILabel()
+        confirmLabel.text = "确认密码"
+        confirmLabel.textColor = UIColor.blackColor()
+        
+        view2.addSubview(confirmLabel)
+        
+        confirmLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(passwordLabel)
+            make.centerY.equalTo(view2)
+        }
+        
+        comfirmTextfield = UITextField()
+        comfirmTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
+        comfirmTextfield.placeholder = "请输入6-16位密码"
+        comfirmTextfield.secureTextEntry = true
+        view2.addSubview(comfirmTextfield)
+        
+        comfirmTextfield.snp_makeConstraints { (make) in
+            make.left.right.equalTo(oldPasswordTextfield)
+            make.centerY.equalTo(view2)
+            make.height.equalTo(oldPasswordTextfield)
+        }
+        
         
         //
         sureButton = UIButton.init(type: .Custom)
         sureButton.addTarget(self, action: #selector(self.sure), forControlEvents: .TouchUpInside)
-        sureButton.setTitle("确认修改", forState: .Normal)
+        sureButton.setTitle("确定", forState: .Normal)
         sureButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        sureButton.backgroundColor = UIColor.brownColor()
+        sureButton.backgroundColor = UIColor.flatMintColor()
         sureButton.layer.cornerRadius = 3.0
         sureButton.layer.masksToBounds = true
         scrollView.addSubview(sureButton)
         
-        
-        let line0 = UIView()
-        line0.backgroundColor = UIColor.lightGrayColor()
-        scrollView.addSubview(line0)
-        
-        line0.hidden = true
-        
-        let line1 = UIView()
-        line1.backgroundColor = UIColor.lightGrayColor()
-        scrollView.addSubview(line1)
-        
-        let line2 = UIView()
-        line2.backgroundColor = UIColor.lightGrayColor()
-        scrollView.addSubview(line2)
-        
-        let line3 = UIView()
-        line3.backgroundColor = UIColor.lightGrayColor()
-        scrollView.addSubview(line3)
-        
-        
-        line0.snp_makeConstraints { (make) in
-            make.left.right.equalTo(view)
-            make.top.equalTo(10)
-            make.height.equalTo(1)
-        }
-        
-        
-        line1.snp_makeConstraints { (make) in
-            make.left.right.equalTo(line0)
-            make.top.equalTo(line0.snp_bottom).offset(60)
-            make.height.equalTo(1)
-        }
-        
-        line2.snp_makeConstraints { (make) in
-            make.left.right.equalTo(line0)
-            make.top.equalTo(line1.snp_bottom).offset(60)
-            make.height.equalTo(1)
-        }
-        
-        line3.snp_makeConstraints { (make) in
-            make.left.right.equalTo(line0)
-            make.top.equalTo(line2.snp_bottom).offset(60)
-            make.height.equalTo(1)
-        }
-        
-        cellphoneLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(10)
-            make.centerY.equalTo(line0.snp_bottom).offset(30)
-            make.width.lessThanOrEqualTo(80).priority(1000)
-        }
-        
-        cellphoneTextfield.snp_makeConstraints { (make) in
-            make.left.equalTo(cellphoneLabel.snp_right).offset(8)
-            make.centerY.equalTo(cellphoneLabel)
-            make.right.equalTo(verifyButton.snp_left).offset(-8)
-            make.height.equalTo(35)
-        }
-        
-        verifyButton.snp_makeConstraints { (make) in
-            make.right.equalTo(view).offset(-10)
-            make.centerY.equalTo(cellphoneTextfield.snp_centerY)
-            make.width.lessThanOrEqualTo(80)
-        }
-        
-        verifyCodeLabel.snp_makeConstraints { (make) in
-            make.left.right.equalTo(cellphoneLabel)
-            make.centerY.equalTo(cellphoneLabel).offset(60)
-        }
-        verifyTextField.snp_makeConstraints { (make) in
-            make.left.right.height.equalTo(cellphoneTextfield)
-            make.centerY.equalTo(verifyCodeLabel)
-        }
-        
-        passwordLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(10)
-            make.width.equalTo(cellphoneLabel)
-            make.centerY.equalTo(verifyCodeLabel.snp_centerY).offset(60)
-        }
-        
-        passwordTextfield.snp_makeConstraints { (make) in
-            make.left.equalTo(passwordLabel.snp_right)
-            make.centerY.equalTo(verifyTextField).offset(60)
-            make.right.equalTo(verifyTextField)
-            make.height.equalTo(verifyTextField)
-        }
-        
         sureButton.snp_makeConstraints { (make) in
-            make.top.equalTo(line3.snp_bottom).offset(60)
+            make.top.equalTo(view2.snp_bottom).offset(30)
             make.centerX.equalTo(scrollView)
             make.height.equalTo(45)
             make.left.equalTo(14)
         }
-        
    }
     
     //MARK: 输入框处理
     func textFieldDidEditChanged(textfield: UITextField) {
         //
-        if textfield == cellphoneTextfield {
-            cellphone = textfield.text
+        if textfield == oldPasswordTextfield {
+            oldPassword = textfield.text
             
-            let text = NSString(string: cellphone!)
-            if text.length > 11 {
-                textfield.text = text.substringToIndex(11)
-                cellphone = textfield.text
+            let text = NSString(string: oldPassword!)
+            if text.length > 16 {
+                textfield.text = text.substringToIndex(16)
+                oldPassword = textfield.text
             }
-        } else if textfield == verifyTextField {
-            validCode = textfield.text
-            let text = NSString(string: validCode!)
+        } else if textfield == passwordTextfield {
+            password = textfield.text
+            let text = NSString(string: password!)
             if text.length > 6 {
                 textfield.text = text.substringToIndex(6)
-                validCode = textfield.text
-            }
-        } else {
-            password = textfield.text
-            let p = password as NSString
-            if p.length > 16 {
-                textfield.text = p.substringToIndex(16)
                 password = textfield.text
             }
-        }
-    }
-    
-    deinit{
-        self.timer?.invalidate()
-        self.timer = nil
-    }
-    
-    func verify() {
-        
-        guard self.cellphone.isValidCellPhone else {
-            self.showAlertWithMessage("请输入正确的手机号", block: nil)
-            return
-        }
-        
-        timer = NSTimer.YQ_scheduledTimerWithTimeInterval(0.1, closure: {
-            self.timerCount -= 1
-            if self.timerCount <= 0 {
-                self.timerCount = 60
-                self.timer?.invalidate()
-                self.configureFetchValidCode(.Normal)
-                self.verifyButton.userInteractionEnabled = true
-            } else {
-                self.configureFetchValidCode(.Timer)
-                self.verifyButton.userInteractionEnabled = false
-            }
-            
-            }, repeats: true)
-        NetworkHelper.instance.request(.GET, url: URLConstant.getMobileValidCode.contant, parameters: ["username": cellphone], completion: { (result: DataResponse?) in
-            SVProgressHUD.showSuccessWithStatus("验证码获取成功")
-            }) { (errMsg, errCode) in
-                SVProgressHUD.showErrorWithStatus(errMsg ?? "验证码获取失败")
-        }
-    }
-    
-    func configureFetchValidCode(mode: CMValidateButtonMode) {
-        
-        if mode == .Timer {
-            let string = "\(timerCount) s"
-            verifyButton.userInteractionEnabled = false
-            verifyButton.setAttributedTitle(NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
         } else {
-            
-            verifyButton.userInteractionEnabled = true
-            verifyButton.setAttributedTitle(NSAttributedString(string: "重新获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+            confirmPassword = textfield.text
+            let p = confirmPassword as NSString
+            if p.length > 16 {
+                textfield.text = p.substringToIndex(16)
+                confirmPassword = textfield.text
+            }
         }
-        
     }
+    
     
     //MARK: 修改密码
     func sure() {
-        NetworkHelper.instance.request(.GET, url: URLConstant.resetPasswordByMobile.contant, parameters: ["username": cellphone, "password": password,"validCode": validCode], completion: { [weak self](result: DataResponse?) in
-                SVProgressHUD.showSuccessWithStatus("密码修改成功")
-                Async.main(after: 1.0, block: {
-                    self?.navigationController?.popViewControllerAnimated(true)
-                })
-            }) { (errMsg, errCode) in
-                if errCode == 1 {
-                    SVProgressHUD.showErrorWithStatus("用户名或手机号码不存在")
-                } else if errCode == 2 {
-                    SVProgressHUD.showErrorWithStatus("验证码不正确")
-                } else if errCode == 3 {
-                    SVProgressHUD.showErrorWithStatus("输入项格式不符合要求")
-                } else {
-                    SVProgressHUD.showErrorWithStatus("密码修改失败")
-                }
-        }
+//        NetworkHelper.instance.request(.GET, url: URLConstant.resetPasswordByMobile.contant, parameters: ["username": cellphone, "password": password,"validCode": validCode], completion: { [weak self](result: DataResponse?) in
+//                SVProgressHUD.showSuccessWithStatus("密码修改成功")
+//                Async.main(after: 1.0, block: {
+//                    self?.navigationController?.popViewControllerAnimated(true)
+//                })
+//            }) { (errMsg, errCode) in
+//                if errCode == 1 {
+//                    SVProgressHUD.showErrorWithStatus("用户名或手机号码不存在")
+//                } else if errCode == 2 {
+//                    SVProgressHUD.showErrorWithStatus("验证码不正确")
+//                } else if errCode == 3 {
+//                    SVProgressHUD.showErrorWithStatus("输入项格式不符合要求")
+//                } else {
+//                    SVProgressHUD.showErrorWithStatus("密码修改失败")
+//                }
+//        }
     }
 
 
