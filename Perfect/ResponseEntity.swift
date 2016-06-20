@@ -8,6 +8,7 @@
 
 import UIKit
 import ObjectMapper
+import RealmSwift
 
 // 首页
 class FirstEntity: Mappable {
@@ -301,6 +302,13 @@ class TransformOfUtils {
 
 
 
+class DeliverAddress: Object {
+    dynamic var name: String?
+    dynamic var cellphone: String?
+    dynamic var address: String?
+    dynamic var isDefault: Bool = false
+    dynamic var id: Int = 0
+}
 
 
 

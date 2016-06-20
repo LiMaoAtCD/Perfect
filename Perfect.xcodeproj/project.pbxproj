@@ -34,14 +34,14 @@
 		8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */; };
 		8763BC261CFC7E9B00FAB8D7 /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */; };
 		8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */; };
-		8763BC2E1CFC853E00FAB8D7 /* AddressAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC2C1CFC853E00FAB8D7 /* AddressAddViewController.swift */; };
-		8763BC2F1CFC853E00FAB8D7 /* AddressAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC2D1CFC853E00FAB8D7 /* AddressAddViewController.xib */; };
 		8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */; };
 		8763BC341CFC91D100FAB8D7 /* OrderTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */; };
 		8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */; };
 		8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */; };
 		878F22551D163F1A0074E1A2 /* KKGestureLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878F22521D163F1A0074E1A2 /* KKGestureLockView.m */; };
 		878F22561D163F1A0074E1A2 /* KKGestureLockPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878F22541D163F1A0074E1A2 /* KKGestureLockPreviewView.m */; };
+		878F22861D182AE70074E1A2 /* AddressEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F22841D182AE70074E1A2 /* AddressEditViewController.swift */; };
+		878F22871D182AE70074E1A2 /* AddressEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 878F22851D182AE70074E1A2 /* AddressEditViewController.xib */; };
 		87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA561D0EEDAF000A1B41 /* Response.swift */; };
 		87A5AA591D0F0948000A1B41 /* ResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */; };
 		87A5AA5B1D0F11BB000A1B41 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */; };
@@ -120,8 +120,6 @@
 		8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideViewController.xib; sourceTree = "<group>"; };
 		8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
 		8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
-		8763BC2C1CFC853E00FAB8D7 /* AddressAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressAddViewController.swift; sourceTree = "<group>"; };
-		8763BC2D1CFC853E00FAB8D7 /* AddressAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressAddViewController.xib; sourceTree = "<group>"; };
 		8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTypeCell.swift; sourceTree = "<group>"; };
 		8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderGoodsCell.swift; sourceTree = "<group>"; };
@@ -130,6 +128,8 @@
 		878F22521D163F1A0074E1A2 /* KKGestureLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKGestureLockView.m; sourceTree = "<group>"; };
 		878F22531D163F1A0074E1A2 /* KKGestureLockPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKGestureLockPreviewView.h; sourceTree = "<group>"; };
 		878F22541D163F1A0074E1A2 /* KKGestureLockPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKGestureLockPreviewView.m; sourceTree = "<group>"; };
+		878F22841D182AE70074E1A2 /* AddressEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressEditViewController.swift; sourceTree = "<group>"; };
+		878F22851D182AE70074E1A2 /* AddressEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressEditViewController.xib; sourceTree = "<group>"; };
 		87A5AA561D0EEDAF000A1B41 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEntity.swift; sourceTree = "<group>"; };
 		87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
@@ -319,10 +319,9 @@
 		8763BC271CFC82A900FAB8D7 /* address */ = {
 			isa = PBXGroup;
 			children = (
+				878F22831D182ACB0074E1A2 /* AddressEditController */,
 				870F38301CF988C100AFF1AF /* AddressViewController.swift */,
 				8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */,
-				8763BC2C1CFC853E00FAB8D7 /* AddressAddViewController.swift */,
-				8763BC2D1CFC853E00FAB8D7 /* AddressAddViewController.xib */,
 			);
 			name = address;
 			sourceTree = "<group>";
@@ -357,6 +356,15 @@
 				878F22541D163F1A0074E1A2 /* KKGestureLockPreviewView.m */,
 			);
 			name = KKGestrueLock;
+			sourceTree = "<group>";
+		};
+		878F22831D182ACB0074E1A2 /* AddressEditController */ = {
+			isa = PBXGroup;
+			children = (
+				878F22841D182AE70074E1A2 /* AddressEditViewController.swift */,
+				878F22851D182AE70074E1A2 /* AddressEditViewController.xib */,
+			);
+			name = AddressEditController;
 			sourceTree = "<group>";
 		};
 		87D29C5C1D12F495001FA983 /* Unused */ = {
@@ -628,9 +636,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */,
+				878F22871D182AE70074E1A2 /* AddressEditViewController.xib in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */,
-				8763BC2F1CFC853E00FAB8D7 /* AddressAddViewController.xib in Resources */,
 				DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */,
 				DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */,
 			);
@@ -738,11 +746,11 @@
 				DA57ED401CFC3A6200A8083A /* SecondDetailViewController.swift in Sources */,
 				870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */,
 				DA57ED3D1CFC2A5300A8083A /* GoodsScanViewController.swift in Sources */,
-				8763BC2E1CFC853E00FAB8D7 /* AddressAddViewController.swift in Sources */,
 				870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */,
 				8763BC341CFC91D100FAB8D7 /* OrderTypeCell.swift in Sources */,
 				8763BC261CFC7E9B00FAB8D7 /* GuideTableViewCell.swift in Sources */,
 				DA57ED0E1CF7D3FD00A8083A /* ThirdViewController.swift in Sources */,
+				878F22861D182AE70074E1A2 /* AddressEditViewController.swift in Sources */,
 				DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */,
 				DA57ED5B1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m in Sources */,
 				870F38271CF973D500AFF1AF /* ForgetViewController.swift in Sources */,
