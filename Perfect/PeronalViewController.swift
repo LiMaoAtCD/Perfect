@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PeronalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PeronalViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     var items: [String]!
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class PeronalViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.scrollEnabled = false
         
         
-        let upperView = UIView.init(frame: CGRectMake(0, 0, Tools.width, 150))
+        let upperView = UIView.init(frame: CGRectMake(0, 0, Tool.width, 150))
         
         let avatarImageView = UIImageView()
         upperView.addSubview(avatarImageView)
@@ -44,7 +44,7 @@ class PeronalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         
         
-        let footerView = UIView.init(frame: CGRectMake(0, 0, Tools.width, 50))
+        let footerView = UIView.init(frame: CGRectMake(0, 0, Tool.width, 50))
         
         let saveButton = UIButton.init(type: .Custom)
         saveButton.addTarget(self, action: #selector(self.save), forControlEvents: .TouchUpInside)

@@ -19,9 +19,19 @@ enum httpMethod {
     case POST
 }
 enum URLConstant: String {
-    case FirstPage = "appQueryIndexStaticContent"
-    case ProductList = "appQueryProductList"
-    case appProductDetail = "appProductDetail"
+    case FirstPage = "appQueryIndexStaticContent" //首页上部
+    case ProductList = "appQueryProductList"    //首页下部
+    case appProductDetail = "appProductDetail"  //商品详情
+    case appMemberCenterIndex = "appMemberCenterIndex" //个人
+    case appSubOrder = "appSubOrder" //提交订单
+    case Register = "memberRegister" //注册
+    case getMobileValidCode = "getMobileValidCode" //验证码
+    case appConfirmOrder = "appConfirmOrder"//确认订单
+    case appOrderHistory = "appOrderHistory" //历史订单
+    case resetPasswordByMobile = "resetPasswordByMobile" // 重置密码
+    case resetPswByMobile = "resetPswByMobile" //找回密码
+    case getRegAgreement = "getRegAgreement"
+    case memberLogin = "memberLogin"
     
     var contant: String {
         return url + self.rawValue
@@ -39,7 +49,7 @@ class NetworkHelper: NSObject {
     
     
     
-    func request<T: DataResponse>(method:httpMethod, url: String, parameters: [String: AnyObject]?,completion completionHandler: (T? -> Void)?, failed failedHandler: (String? -> Void)?){
+    func request<T: DataResponse>(method:httpMethod, url: String, parameters: [String: AnyObject]?,completion completionHandler: (T? -> Void)?, failed failedHandler: ((String?,Int) -> Void)?){
         
         var p = parameters ?? [String:AnyObject]()
         p["sessionID"] = Defaults[.sessionID] ?? ""
@@ -47,27 +57,22 @@ class NetworkHelper: NSObject {
 
         Alamofire.request((method == .GET ? Method.GET : Method.POST), url, parameters: p, encoding: ParameterEncoding.URL, headers: nil).responseObject { (response: Response<T, NSError>) in
             if let _ = response.result.error {
-                failedHandler?("网络连接失败")
+                failedHandler?("网络连接失败", RetErrorCode.NetworkError.rawValue)
             } else {
                 if let value = response.result.value where value.retCode == RetErrorCode.Success.rawValue {
                     completionHandler?(response.result.value)
                     if let session = response.result.value?.sessionId {
                         Defaults[.sessionID] = session
                     }
-                    
                 } else if let value = response.result.value where value.retCode != RetErrorCode.Success.rawValue  {
-//                    failedHandler?(RetErrorCode.init(rawValue: value.retCode)!)
-                    failedHandler?(value.retMsg)
+                    
+                    failedHandler?(value.retMsg, value.retCode)
 
                 } else {
                     assertionFailure("network data format error")
                 }
             }
-            completionHandler?(response.result.value)
         }
-//            .responseString { (res) in
-//            print(res)
-//        }
     }
 }
 

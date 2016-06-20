@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class ThirdViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource{
 
     var bottomView: UIView!
     

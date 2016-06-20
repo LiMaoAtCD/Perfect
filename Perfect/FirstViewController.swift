@@ -9,7 +9,7 @@
 import UIKit
 import ChameleonFramework
 import FDFullscreenPopGesture
-class FirstViewController: UIViewController {
+class FirstViewController: BaseViewController {
 
     var leftTableViewController: FirstTableViewController!
     var rightTableViewController: FirstTableViewController!

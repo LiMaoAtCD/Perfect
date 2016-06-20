@@ -8,7 +8,11 @@
 
 import UIKit
 
-class FourthViewController: UIViewController {
+class MeNavigationController: UINavigationController {
+    
+}
+
+class FourthViewController: BaseViewController {
 
     var fourthTableViewController : FourthTableViewController!
     override func viewDidLoad() {
@@ -16,6 +20,9 @@ class FourthViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBar.translucent = false
+        self.fd_prefersNavigationBarHidden = true
+        edgesForExtendedLayout = UIRectEdge.None
+
         fourthTableViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FourthTableViewController") as! FourthTableViewController
         self.addChildViewController(fourthTableViewController)
         view.addSubview(fourthTableViewController.view)
@@ -29,6 +36,22 @@ class FourthViewController: UIViewController {
             self.presentViewController(nav, animated: true, completion: nil)
         }
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //
+        NetworkHelper.instance.request(.GET, url: URLConstant.appMemberCenterIndex.contant, parameters: nil, completion: { [weak self](res: PersonalCenterResponse?) in
+                let personalEntity = res?.retObj
+            
+            
+                self?.fourthTableViewController.avatarImageView.image = UIImage.init(named: "")
+            
+                self?.fourthTableViewController.nickNameLabel.text = personalEntity?.memberInfo?.nick
+            }) { (errMsg: String?, errCode: Int) in
+                
+        }
     }
 
     override func didReceiveMemoryWarning() {

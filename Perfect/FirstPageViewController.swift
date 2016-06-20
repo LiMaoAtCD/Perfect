@@ -11,7 +11,7 @@ import FDFullscreenPopGesture
 import SnapKit
 import SDCycleScrollView
 
-class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     var collection : UICollectionView!
     
@@ -58,8 +58,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
                 self?.customButtons = res?.retObj?.buttons
                 self?.fetchProductsByGoodTypes(res?.retObj?.types)
                 self?.collection.reloadData()
-        }) { (code: String?) in
-            print(code)
+        }) { (errMsg: String?, errCode: Int) in
 
         }
     }
@@ -74,11 +73,10 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             }
         }
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":self.goodTypes![self.selectionSection].id!], completion: { [weak self](product: ProductListResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id)], completion: { [weak self](product: ProductListResponse?) in
                 self?.goods = product?.retObj?.rows
                 self?.collection.reloadSections(NSIndexSet.init(index: 3))
-            }) { (msg) in
-                print(msg)
+            }) { (errMsg: String?, errCode: Int) in
         }
         
         
@@ -139,7 +137,7 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             var imageUrl = [String]()
             if let _ = topBanners {
                 for item in topBanners! {
-                    imageUrl.append(item.imageId!)
+                    imageUrl.append("\(item.imageId)")
                 }
             }
           
@@ -154,8 +152,8 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             var buttonsUrl = [String]()
             if let _ = customButtons {
                 for item in customButtons! {
-                    let url = item.imageId!
-                    buttonsUrl.append(url)
+                    let url = item.imageId
+                    buttonsUrl.append("\(url)")
                 }
             }
             
@@ -194,12 +192,11 @@ class FirstPageViewController: UIViewController, SDCycleScrollViewDelegate,UICol
             header.segmentControl.selectionHandler = { index in
                 print("index: \(index)")
                 self.selectionSection = index
-                NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":self.goodTypes![self.selectionSection].id!], completion: { [weak self](product: ProductListResponse?) in
+                NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id)], completion: { [weak self](product: ProductListResponse?) in
                     self?.goods = product?.retObj?.rows
                  
                     self?.collection.reloadSections(NSIndexSet.init(index: 3))
-                }) { (msg) in
-                    print(msg)
+                }) { (errMsg: String?, errCode: Int) in
                 }
             }
 
@@ -286,7 +283,7 @@ class CollectionViewCell: UICollectionViewCell {
     var entity: ProductItem? {
         willSet{
             if let _ = newValue {
-                imageView.kf_setImageWithURL(NSURL.init(string: newValue!.imageId!)!)
+                imageView.kf_setImageWithURL(NSURL.init(string: "\(newValue!.imageId)")!)
                 title.text = newValue!.fullName
                 marketPrice.text = newValue!.marketPrice.currency
                 price.text = newValue!.price.currency

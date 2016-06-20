@@ -3,3 +3,5 @@
 //
 
 #import "NSObject+UIAppearanceSwift.h"
+#import "KKGestureLockView.h"
+#import "KKGestureLockPreviewView.h"

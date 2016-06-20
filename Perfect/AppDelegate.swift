@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AlamofireObjectMapper
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,8 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-
+        configureSVProgressHUD()
         return true
+    }
+    
+    func configureSVProgressHUD() {
+        SVProgressHUD.setMinimumDismissTimeInterval(1.0)
     }
 
 

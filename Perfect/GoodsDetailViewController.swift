@@ -9,7 +9,7 @@
 import UIKit
 import SDCycleScrollView
 
-class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
+class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     var scrollView: UIScrollView!
 
     var topBanner: SDCycleScrollView!
@@ -19,7 +19,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
     
     var introImageViews: [UIImageView]!
     
-    
+    var webview: UIWebView!
     
     
     var bottomView: UIView!
@@ -32,11 +32,12 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
 
         // Do any additional setup after loading the view.
         
+        
         NetworkHelper.instance.request(.GET, url: URLConstant.appProductDetail.contant, parameters: ["id":"11"], completion: { [weak self](response: ProductDetailResponse?) in
                 self?.detail = response?.retObj
                 self?.updateViews()
-            }) { (errorMessage) in
-                print(errorMessage)
+            }) { (errMsg: String?, errCode: Int) in
+                
         }
         scrollView = UIScrollView.init()
         view.addSubview(scrollView)
@@ -44,16 +45,13 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
             make.top.left.right.equalTo(view)
             make.bottom.equalTo(view).offset(-bottomHeight)
         }
-        
-       
-        
-        
     }
     
     func updateViews() {
         configureTopBanner()
         configureGoodInfoView()
-        configureGoodIntroView()
+//        configureGoodIntroView()
+        configureGoodIntrowebView()
         
         bottomView = UIView()
         
@@ -204,7 +202,45 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
 
     }
     
+    func configureGoodIntrowebView() {
+        webview = UIWebView()
+        scrollView.addSubview(webview)
+        
+        let url  = NSURL.init(string: "http://ic.snssdk.com/wenda/wapshare/answer/brow/?ansid=6296220727066493186&iid=4584663589&app=news_article&tt_from=mobile_qq&utm_source=mobile_qq&utm_medium=toutiao_ios&utm_campaign=client_share")
+        webview.loadRequest(NSURLRequest.init(URL: url!))
+        webview.delegate = self
+        webview.snp_makeConstraints(closure: { (make) in
+            make.left.right.equalTo(view)
+            make.width.equalTo(Tool.width)
+            make.top.equalTo(goodsInfoView.snp_bottom)
+            make.bottom.equalTo(scrollView.snp_bottom)
+            make.height.equalTo(1000)
+        })
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        if let heightString = webView.stringByEvaluatingJavaScriptFromString("document.height"),
+            widthString = webView.stringByEvaluatingJavaScriptFromString("document.width"),
+            height = Float(heightString),
+            _ = Float(widthString) {
+            
+//            var rect = webView.frame
+//            rect.size.height = CGFloat(height)
+//            rect.size.width = CGFloat(width)
+//            webView.frame = rect
+            
+            webview.snp_remakeConstraints(closure: { (make) in
+                make.left.right.equalTo(view)
+                make.width.equalTo(Tool.width)
+                make.top.equalTo(goodsInfoView.snp_bottom)
+                make.bottom.equalTo(scrollView.snp_bottom)
+                make.height.equalTo(height)
+            })
+        }
+    }
+    
     func configureGoodIntroView() {
+        
         goodIntroView = UIView()
         scrollView.addSubview(goodIntroView)
         goodIntroView.snp_makeConstraints { (make) in
@@ -265,7 +301,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
 
             helperView.addSubview(imageview)
             imageview.snp_makeConstraints(closure: { (make) in
-                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i + 1))
+                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i) + margin)
                 make.width.equalTo(width)
                 make.height.equalTo(width)
                 make.top.equalTo(helperView).offset(20)
@@ -279,7 +315,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
             
             helperView.addSubview(label)
             label.snp_makeConstraints(closure: { (make) in
-                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i + 1))
+                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i) + margin)
                 make.width.equalTo(width)
                 make.height.equalTo(width)
                 make.top.equalTo(imageview.snp_bottom).offset(20)
@@ -305,9 +341,9 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
             view.addSubview(webview)
 
         } else {
-            let custom = Tool.sb.instantiateViewControllerWithIdentifier("CustomGoodViewController") as! CustomGoodViewController
+            let payment = Tool.sb.instantiateViewControllerWithIdentifier("PayViewController") as! PayViewController
 
-            self.navigationController?.pushViewController(custom, animated: true)
+            self.navigationController?.pushViewController(payment, animated: true)
         }
 
     }
@@ -344,7 +380,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
         
         let collectionTitle = UILabel()
         collect.addSubview(collectionTitle)
-        collectionTitle.text = "哈哈"
+        collectionTitle.text = "收藏"
         collectionTitle.textColor = UIColor.blackColor()
         collectionTitle.font = UIFont.systemFontOfSize(14.0)
 
@@ -384,7 +420,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
         
         let serviceTitle = UILabel()
         service.addSubview(serviceTitle)
-        serviceTitle.text = "呵呵"
+        serviceTitle.text = "联系客服"
         serviceTitle.textColor = UIColor.blackColor()
         serviceTitle.font = UIFont.systemFontOfSize(14.0)
         serviceTitle.textAlignment = .Center
@@ -410,7 +446,7 @@ class GoodsDetailViewController: UIViewController, UIWebViewDelegate {
         }
         
         let okLabel = UILabel()
-        okLabel.text = "马上就好"
+        okLabel.text = "立即定制"
         okLabel.textColor = UIColor.whiteColor()
         okLabel.font = UIFont.systemFontOfSize(16)
         okLabel.textAlignment = .Center

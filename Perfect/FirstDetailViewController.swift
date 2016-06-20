@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstDetailViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     
     var collectionView: UICollectionView!

@@ -1,16 +1,15 @@
 //
-//  ProtocolViewController.swift
+//  GesturePasswordViewController.swift
 //  Perfect
 //
-//  Created by AlienLi on 16/5/28.
+//  Created by AlienLi on 16/6/18.
 //  Copyright © 2016年 limao. All rights reserved.
 //
 
 import UIKit
 
-class ProtocolViewController: BaseViewController {
+class GesturePasswordViewController: BaseViewController {
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SettingViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     var tableView: UITableView!
     

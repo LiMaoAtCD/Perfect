@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GuideViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class GuideViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource{
 
     
     var tableView: UITableView!

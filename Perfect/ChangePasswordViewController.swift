@@ -1,17 +1,16 @@
 //
-//  ForgetViewController.swift
+//  ChangePasswordViewController.swift
 //  Perfect
 //
-//  Created by AlienLi on 16/5/28.
+//  Created by AlienLi on 16/6/18.
 //  Copyright © 2016年 limao. All rights reserved.
 //
 
 import UIKit
 import SVProgressHUD
 import Async
+class ChangePasswordViewController: BaseViewController {
 
-class ForgetViewController: BaseViewController, UITextFieldDelegate {
-    
     var cellphoneLabel: UILabel!
     var verifyCodeLabel: UILabel!
     var passwordLabel: UILabel!
@@ -27,12 +26,14 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
     var cellphone: String! = ""
     var validCode: String! = ""
     var password: String! = ""
-    
+
     var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "忘记密码"
+
+        // Do any additional setup after loading the view.
+        self.title = "修改密码"
         scrollView = UIScrollView.init()
         scrollView.alwaysBounceVertical = true
         view.addSubview(scrollView)
@@ -40,14 +41,10 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         scrollView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
         }
-        setupViews()
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        setupViews()
+        
     }
-    
     func setupViews() {
         
         cellphoneLabel = UILabel()
@@ -96,54 +93,54 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         sureButton.addTarget(self, action: #selector(self.sure), forControlEvents: .TouchUpInside)
         sureButton.setTitle("确认修改", forState: .Normal)
         sureButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        sureButton.backgroundColor = UIColor.flatMintColor()
+        sureButton.backgroundColor = UIColor.brownColor()
         sureButton.layer.cornerRadius = 3.0
         sureButton.layer.masksToBounds = true
         scrollView.addSubview(sureButton)
         
         
         let line0 = UIView()
-        line0.backgroundColor = UIColor.flatGrayColor()
+        line0.backgroundColor = UIColor.lightGrayColor()
         scrollView.addSubview(line0)
         
         line0.hidden = true
         
         let line1 = UIView()
-        line1.backgroundColor = UIColor.flatGrayColor()
+        line1.backgroundColor = UIColor.lightGrayColor()
         scrollView.addSubview(line1)
         
         let line2 = UIView()
-        line2.backgroundColor = UIColor.flatGrayColor()
+        line2.backgroundColor = UIColor.lightGrayColor()
         scrollView.addSubview(line2)
         
         let line3 = UIView()
-        line3.backgroundColor = UIColor.flatGrayColor()
+        line3.backgroundColor = UIColor.lightGrayColor()
         scrollView.addSubview(line3)
         
         
         line0.snp_makeConstraints { (make) in
             make.left.right.equalTo(view)
             make.top.equalTo(10)
-            make.height.equalTo(0.3)
+            make.height.equalTo(1)
         }
         
         
         line1.snp_makeConstraints { (make) in
             make.left.right.equalTo(line0)
             make.top.equalTo(line0.snp_bottom).offset(60)
-            make.height.equalTo(line0)
+            make.height.equalTo(1)
         }
         
         line2.snp_makeConstraints { (make) in
             make.left.right.equalTo(line0)
             make.top.equalTo(line1.snp_bottom).offset(60)
-            make.height.equalTo(line0)
+            make.height.equalTo(1)
         }
         
         line3.snp_makeConstraints { (make) in
             make.left.right.equalTo(line0)
             make.top.equalTo(line2.snp_bottom).offset(60)
-            make.height.equalTo(line0)
+            make.height.equalTo(1)
         }
         
         cellphoneLabel.snp_makeConstraints { (make) in
@@ -194,7 +191,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
             make.left.equalTo(14)
         }
         
-    }
+   }
     
     //MARK: 输入框处理
     func textFieldDidEditChanged(textfield: UITextField) {
@@ -228,75 +225,33 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         self.timer?.invalidate()
         self.timer = nil
     }
-
-    
-    //MARK: 修改密码
-    func sure() {
-        if checkValid() {
-            NetworkHelper.instance.request(.GET, url: URLConstant.resetPasswordByMobile.contant, parameters: ["username": cellphone, "password": password,"validCode": validCode], completion: { [weak self](result: DataResponse?) in
-                    SVProgressHUD.showSuccessWithStatus("修改成功")
-                    Async.main(after: 1.0, block: {
-                        self?.navigationController?.popViewControllerAnimated(true)
-                    })
-            }) { (errMsg, errCode) in
-                SVProgressHUD.showErrorWithStatus(errMsg)
-            }
-        }
-  }
-    
-    func checkValid() -> Bool {
-        
-        if !cellphone.isValidCellPhone {
-            showAlertWithMessage("手机号不对", block: nil)
-            return false
-        }
-        
-        if password.isValidPassword {
-            showAlertWithMessage("密码为6-16位", block: nil)
-            return false
-        }
-        
-        if validCode.isEmpty {
-            showAlertWithMessage("验证码不能为空", block: nil)
-            return false
-        }
-        
-        return true
-    }
-    
     
     func verify() {
-        //获取验证码
-        if cellphone.isValidCellPhone {
-            self.timer = NSTimer.YQ_scheduledTimerWithTimeInterval(1.0, closure: { 
-                self.timerCount -= 1
-                if self.timerCount <= 0 {
-                    self.restoreTimer()
-                } else {
-                    self.configureFetchValidCode(.Timer)
-                    self.verifyButton.userInteractionEnabled = false
-                }
-                }, repeats: true)
-            NetworkHelper.instance.request(.GET, url: URLConstant.getMobileValidCode.contant, parameters: ["username": cellphone, "phone":cellphone], completion: { (result: DataResponse?) in
-                SVProgressHUD.showSuccessWithStatus("验证码获取成功")
-                self.restoreTimer()
-
+        
+        guard self.cellphone.isValidCellPhone else {
+            self.showAlertWithMessage("请输入正确的手机号", block: nil)
+            return
+        }
+        
+        timer = NSTimer.YQ_scheduledTimerWithTimeInterval(0.1, closure: {
+            self.timerCount -= 1
+            if self.timerCount <= 0 {
+                self.timerCount = 60
+                self.timer?.invalidate()
+                self.configureFetchValidCode(.Normal)
+                self.verifyButton.userInteractionEnabled = true
+            } else {
+                self.configureFetchValidCode(.Timer)
+                self.verifyButton.userInteractionEnabled = false
+            }
+            
+            }, repeats: true)
+        NetworkHelper.instance.request(.GET, url: URLConstant.getMobileValidCode.contant, parameters: ["username": cellphone], completion: { (result: DataResponse?) in
+            SVProgressHUD.showSuccessWithStatus("验证码获取成功")
             }) { (errMsg, errCode) in
                 SVProgressHUD.showErrorWithStatus(errMsg ?? "验证码获取失败")
-                self.restoreTimer()
-            }
-        } else {
-            showAlertWithMessage("请输入正确的手机号码", block: nil)
         }
     }
-    
-    func restoreTimer() {
-        self.timerCount = 60
-        self.timer?.invalidate()
-        self.configureFetchValidCode(.Normal)
-        self.verifyButton.userInteractionEnabled = true
-    }
-
     
     func configureFetchValidCode(mode: CMValidateButtonMode) {
         
@@ -311,6 +266,42 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         }
         
     }
+    
+    //MARK: 修改密码
+    func sure() {
+        NetworkHelper.instance.request(.GET, url: URLConstant.resetPasswordByMobile.contant, parameters: ["username": cellphone, "password": password,"validCode": validCode], completion: { [weak self](result: DataResponse?) in
+                SVProgressHUD.showSuccessWithStatus("密码修改成功")
+                Async.main(after: 1.0, block: {
+                    self?.navigationController?.popViewControllerAnimated(true)
+                })
+            }) { (errMsg, errCode) in
+                if errCode == 1 {
+                    SVProgressHUD.showErrorWithStatus("用户名或手机号码不存在")
+                } else if errCode == 2 {
+                    SVProgressHUD.showErrorWithStatus("验证码不正确")
+                } else if errCode == 3 {
+                    SVProgressHUD.showErrorWithStatus("输入项格式不符合要求")
+                } else {
+                    SVProgressHUD.showErrorWithStatus("密码修改失败")
+                }
+        }
+    }
 
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }

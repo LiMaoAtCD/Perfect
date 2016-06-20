@@ -33,13 +33,13 @@ class FirstBannerItem: Mappable{
         self.init()
     }
     
-    var imageId: String?
-    var id: String?
+    var imageId: Int64 = 0
+    var id: Int64 = 0
     var action: String?
     
     func mapping(map: Map) {
-        imageId <- map["imageId"]
-        id <- map["id"]
+        imageId <- (map["imageId"], TransformOfUtils.TransformOfInt64())
+        id <- (map["id"], TransformOfUtils.TransformOfInt64())
         action <- map["action"]
     }
 }
@@ -50,13 +50,13 @@ class FirstGoodsTypeItem: Mappable{
         self.init()
     }
     
-    var id: String?
+    var id: Int64 = 0
     var title: String?
     var opened: Bool = false
     
     func mapping(map: Map) {
         title <- map["title"]
-        id <- map["id"]
+        id <- (map["id"], TransformOfUtils.TransformOfInt64())
         opened <- map["opened"]
     }
 }
@@ -67,11 +67,11 @@ class FirstButtonItem: Mappable{
         self.init()
     }
     
-    var imageId: String?
+    var imageId: Int64 = 0
     var action: String?
     
     func mapping(map: Map) {
-        imageId <- map["imageId"]
+        imageId <- (map["imageId"], TransformOfUtils.TransformOfInt64())
         action <- map["action"]
     }
 }
@@ -94,7 +94,7 @@ class ProductItem: Mappable {
     
     var marketPrice: Float = 0.0
     var price: Float = 0.0
-    var imageId: String?
+    var imageId: Int64 = 0
     var fullName: String?
     
     
@@ -104,7 +104,7 @@ class ProductItem: Mappable {
     func mapping(map: Map) {
         marketPrice <- map["marketPrice"]
         price <- map["price"]
-        imageId <- map["imageId"]
+        imageId <- (map["imageId"], TransformOfUtils.TransformOfInt64())
         fullName <- map["fullName"]
     }
 }
@@ -167,6 +167,139 @@ class ProductDetailIntroItem: Mappable {
     }
 
 }
+
+
+
+
+//个人中心 
+class PersonalEntity: Mappable {
+    var memberInfo: PersonalMemberInfoItem?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        memberInfo <- map["memberInfo"]
+    }
+}
+
+class PersonalMemberInfoItem: Mappable {
+    var id: Int = 0
+    var avatarImgId: Int = 0
+    var nick : String?
+    var name: String?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        name <- map["name"]
+        nick <- map["nick"]
+        avatarImgId <- map["avatarImgId"]
+        id <- map["id"]
+
+    }
+}
+
+
+
+
+
+//登录    
+class LoginEntity: Mappable {
+    var memberInfo: memberInfoItem?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        memberInfo <- map["memberInfo"]
+    }
+}
+class memberInfoItem: Mappable {
+    var id: Int64 = 0
+    var nick : String?
+    var name: String?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        name <- map["name"]
+        nick <- map["nick"]
+        id <- (map["id"], TransformOfUtils.TransformOfInt64())
+    }
+}
+
+//注册
+
+class RegisterEntity: Mappable {
+    var memberInfo: memberInfoItem?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        memberInfo <- map["memberInfo"]
+    }
+}
+
+
+
+//获取验证码
+
+class ValidCodeEntity: Mappable {
+//    var memberInfo: RegisterItem?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+//        memberInfo <- map["memberInfo"]
+    }
+}
+
+
+//确认下单
+class ConfirmOrderEntity: Mappable {
+    
+    var payToken: String?
+    var orderId: Int64 = 0
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        orderId <- (map["orderId"], TransformOfUtils.TransformOfInt64())
+        payToken <- map["payToken"]
+    }
+}
+
+
+//{
+//    "retCode": 0,
+//    "sessionId": "f2dd6816-eaae-4fc1-be2a-9854de682bec",
+//    "retMsg": "操作成功",
+//    "retObj": {
+//        "payToken": "1231sfjas;dfjkweiasdfasdf",
+//        "orderId": 1
+//    }
+//}
+
+
+class TransformOfUtils {
+    class func TransformOfInt64() -> TransformOf<Int64, NSObject> {
+        let trans =  TransformOf<Int64, NSObject>(fromJSON: {
+            var ret: Int64?
+            if let numberValue = $0 as? NSNumber {
+                ret = numberValue.longLongValue
+            } else if let strValue = $0 as? NSString {
+                ret = strValue.longLongValue
+            }
+            return ret
+            },
+      toJSON: {
+        $0.map { NSNumber(longLong: $0)
+        } })
+        
+        return trans
+    }
+}
+
+
 
 
 

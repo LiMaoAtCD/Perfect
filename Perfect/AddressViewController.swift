@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddressViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
+class AddressViewController: BaseViewController,UITableViewDataSource, UITableViewDelegate {
 
     
     var tableView: UITableView!
@@ -31,7 +31,7 @@ class AddressViewController: UIViewController,UITableViewDataSource, UITableView
         tableView.tableFooterView = UIView()
         tableView.registerClass(AddressTableViewCell.self, forCellReuseIdentifier: "address")
         
-        let header = UIView.init(frame: CGRectMake(0, 0, Tools.width, 50))
+        let header = UIView.init(frame: CGRectMake(0, 0, Tool.width, 50))
         tableView.tableHeaderView = header
         
         let addAddressButon = UIButton.init(type: .Custom)

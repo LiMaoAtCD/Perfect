@@ -69,6 +69,80 @@ class ProductDetailResponse: DataResponse {
     }
 }
 
+//个人中心
+
+class PersonalCenterResponse: DataResponse {
+    var retObj: PersonalEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        
+        retObj <- map["retObj"]
+    }
+
+}
+
+
+//注册
+
+class RegisterResponse: DataResponse {
+    var retObj: RegisterEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        
+        retObj <- map["retObj"]
+    }
+    
+}
+
+//登录
+
+class LoginResponse: DataResponse {
+    var retObj: LoginEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        
+        retObj <- map["retObj"]
+    }
+    
+}
+
+//确认订单
+class ConfirmOrderResponse: DataResponse {
+    var retObj: ConfirmOrderEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        
+        retObj <- map["retObj"]
+    }
+    
+}
+
+
+
+
+
+
+
 
 
 
