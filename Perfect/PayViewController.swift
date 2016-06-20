@@ -219,38 +219,60 @@ class PayViewController: BaseViewController {
 
     }
     
+    func configurePayView() {
+        let payView = UIView()
+        payView.backgroundColor = UIColor.clearColor()
+        scrollView.addSubview(payView)
+        payView.snp_makeConstraints { (make) in
+            make.left.right.equalTo(customView)
+            make.top.equalTo(customView.snp_bottom).offset(20)
+        }
+        
+        
+        let title = UILabel()
+        title.text = "支付方式"
+        title.font = UIFont.systemFontOfSize(16.0)
+        title.textColor = UIColor.blackColor()
+        payView.addSubview(title)
+        title.snp_makeConstraints { (make) in
+            make.left.equalTo(payView).offset(14)
+            make.top.equalTo(payView).offset(8)
+            make.width.lessThanOrEqualTo(80).priority(1000)
+        }
+        
+        let mainView = UIView()
+        mainView.backgroundColor = UIColor.whiteColor()
+        payView.addSubview(mainView)
+        mainView.snp_makeConstraints { (make) in
+            make.left.equalTo(title)
+            make.right.equalTo(customView).offset(-14)
+            make.top.equalTo(title.snp_bottom).offset(20)
+        }
+        
+        let payItemMargin: CGFloat = 20
+        let payItemWidth = ((Tool.width - 2 * 14) - 4 * payItemMargin) / 3
+        for i in 0...2 {
+            let payitemView = PayTypeView.init(frame: CGRectZero)
+            payitemView.tag = i
+            mainView.addSubview(payitemView)
+            payitemView.snp_makeConstraints(closure: { (make) in
+                make.left.equalTo(payItemMargin + (payItemWidth + payItemMargin) * CGFloat(i))
+                make.width.equalTo(payItemWidth)
+                make.height.equalTo(60)
+                make.top.equalTo(mainView).offset(14)
+                make.bottom.equalTo(mainView.snp_bottom).offset(-20)
+            })
+        }
+        
+        
+        
+    }
+    
     func custom() {
         let customVC = Tool.sb.instantiateViewControllerWithIdentifier("CustomGoodViewController") as! CustomGoodViewController
         self.navigationController?.pushViewController(customVC, animated: true)
     }
     
-    func configureQuantityView() {
-        quantityView = UIStepper.init()
-        quantityView.addTarget(self, action: #selector(self.numberChanged), forControlEvents: .ValueChanged)
-        quantityView.maximumValue = 999
-        scrollView.addSubview(quantityView)
-        quantityView.snp_makeConstraints { (make) in
-            make.top.equalTo(customView.snp_bottom)
-            make.left.right.equalTo(customView)
-            make.height.equalTo(80)
-        }
-        
-    }
-    
-    func numberChanged(id: UIStepper){
-        print(id.value)
-    }
-    
-    
-    func configurePriceView() {
-        priceView = UIView()
-        scrollView.addSubview(priceView)
-        priceView.snp_makeConstraints { (make) in
-            make.left.right.equalTo(view)
-            make.top.equalTo(quantityView.snp_bottom)
-            make.height.equalTo(100)
-        }
-    }
     
     func configureOrderButton() {
         let submit = UIButton.init(type: .Custom)
@@ -279,9 +301,7 @@ class PayViewController: BaseViewController {
         }
     }
     
-    func configurePayView() {
-//        let payV
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -292,135 +312,10 @@ class PayViewController: BaseViewController {
         configureGoodView()
         configurePayView()
         
-//
-//        let goodImageView = UIImageView()
-//        goodImageView.image = UIImage.init(named: "jiu")
-//        goodView.addSubview(goodImageView)
-//        goodImageView.snp_makeConstraints { (make) in
-//            make.width.height.equalTo(40)
-//            make.centerY.equalTo(goodView)
-//            make.left.equalTo(20)
-//        }
-//        
-//        let title = UILabel.init()
-//        title.text = "xxxx酒"
-//        goodView.addSubview(title)
-//        title.snp_makeConstraints { (make) in
-//            make.left.equalTo(goodImageView.snp_right).offset(20)
-//            make.top.equalTo(goodImageView)
-//        }
-//        
-//        let content = UILabel.init()
-//        content.text = "容量: 450ml 酒精度:52%vol"
-//        goodView.addSubview(content)
-//        content.snp_makeConstraints { (make) in
-//            make.left.equalTo(title)
-//            make.top.equalTo(title.snp_bottom)
-//        }
-//        
-//        let priceLabel = UILabel.init()
-//        priceLabel.text = "￥100"
-//        goodView.addSubview(priceLabel)
-//        priceLabel.snp_makeConstraints { (make) in
-//            make.left.equalTo(content)
-//            make.top.equalTo(content.snp_bottom)
-//        }
-//        
-//        //3卖家留言
-//        messageView = UIView()
-//        scrollView.addSubview(messageView)
-//        messageView.snp_makeConstraints { (make) in
-//            make.left.right.equalTo(view)
-//            make.height.equalTo(120)
-//            make.top.equalTo(goodView.snp_bottom)
-//            
-//        }
-//        
-//        let leaveMessage = UILabel()
-//        leaveMessage.text = "给卖家留言"
-//        messageView.addSubview(leaveMessage)
-//        leaveMessage.snp_makeConstraints { (make) in
-//            make.left.equalTo(8)
-//            make.top.equalTo(8)
-//        }
-//        
-//        let textView = UITextView()
-//        messageView.addSubview(textView)
-//        textView.snp_makeConstraints { (make) in
-//            make.left.equalTo(8)
-//            make.right.equalTo(-8)
-//            make.top.equalTo(leaveMessage.snp_bottom)
-//            make.bottom.equalTo(messageView).offset(-8)
-//        }
-//        
-//        
-//        //4 价格
-//        
-//        priceView = UIView()
-//        scrollView.addSubview(priceView)
-//        priceView.snp_makeConstraints { (make) in
-//            make.left.right.equalTo(view)
-//            make.top.equalTo(messageView.snp_bottom)
-//            make.height.equalTo(70)
-//        }
-//        
-//        let delivertotalPriceLabel = UILabel()
-//        priceView.addSubview(delivertotalPriceLabel)
-//        delivertotalPriceLabel.snp_makeConstraints { (make) in
-//            make.left.equalTo(8)
-//            make.top.equalTo(priceView)
-//        }
-//        
-//        delivertotalPriceLabel.text = "总运费"
-//        
-//        let deliverPrice = UILabel()
-//        deliverPrice.text = "￥5.00"
-//        priceView.addSubview(deliverPrice)
-//        deliverPrice.snp_makeConstraints { (make) in
-//            make.right.equalTo(-8)
-//            make.centerY.equalTo(delivertotalPriceLabel)
-//        }
-//        
-//        
-//        let totalPriceLabel = UILabel()
-//        priceView.addSubview(totalPriceLabel)
-//        totalPriceLabel.snp_makeConstraints { (make) in
-//            make.left.equalTo(8)
-//            make.top.equalTo(delivertotalPriceLabel.snp_bottom)
-//        }
-//        
-//        totalPriceLabel.text = "实付款"
-//        
-//        let totalPrice = UILabel()
-//        totalPrice.text = "￥25.00"
-//        priceView.addSubview(totalPrice)
-//        totalPrice.snp_makeConstraints { (make) in
-//            make.right.equalTo(-8)
-//            make.centerY.equalTo(totalPriceLabel)
-//        }
-//        
-//        //5 
-//        
-//        let submitView = UIView()
-//        submitView.backgroundColor = UIColor.grayColor()
-//        view.addSubview(submitView)
-//        
-//        submitView.snp_makeConstraints { (make) in
-//            make.left.right.equalTo(view)
-//            make.bottom.equalTo(view)
-//            make.height.equalTo(44)
-//        }
-//
-//        
-//
-        
-        
-        
-        
-        
-
         
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -444,4 +339,48 @@ extension Int64 {
     var toNSNumber: NSNumber {
         return NSNumber.init(longLong: self)
     }
+}
+
+class PayTypeView: UIView {
+    var checkImageView: UIImageView!
+    var imageView: UIImageView!
+    var title: UILabel!
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        checkImageView = UIImageView()
+        self.addSubview(checkImageView)
+        
+        checkImageView.snp_makeConstraints { (make) in
+            make.left.equalTo(self)
+            make.width.height.equalTo(20)
+            make.centerY.equalTo(self)
+        }
+
+        imageView = UIImageView()
+        self.addSubview(imageView)
+        
+        imageView.snp_makeConstraints { (make) in
+            make.left.equalTo(checkImageView.snp_right).offset(8)
+            make.width.height.equalTo(30)
+            make.bottom.equalTo(checkImageView.snp_centerY)
+        }
+        
+        title = UILabel()
+        self.addSubview(title)
+        
+        title.snp_makeConstraints { (make) in
+            make.centerX.equalTo(imageView)
+            make.width.equalTo(30)
+            make.top.equalTo(imageView.snp_bottom).offset(14)
+        }
+        
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
 }
