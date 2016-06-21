@@ -17,6 +17,7 @@ target 'Perfect' do
     pod 'SwiftyUserDefaults'
     pod 'AsyncSwift'
     pod 'SVProgressHUD'
+	pod 'SnappingStepper', '~> 2.3.0'
     
 end
 

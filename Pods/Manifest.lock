@@ -7,6 +7,7 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
+  - DynamicColor (2.4.0)
   - FDFullscreenPopGesture (1.1)
   - Kingfisher (2.4.1)
   - MJRefresh (3.1.0)
@@ -22,6 +23,8 @@ PODS:
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - SnapKit (0.21.0)
+  - SnappingStepper (2.3.0):
+    - DynamicColor (~> 2.4)
   - SVProgressHUD (2.0.3)
   - SwiftyUserDefaults (2.2.0)
 
@@ -37,6 +40,7 @@ DEPENDENCIES:
   - RealmSwift
   - SDCycleScrollView (~> 1.64)
   - SnapKit
+  - SnappingStepper (~> 2.3.0)
   - SVProgressHUD
   - SwiftyUserDefaults
 
@@ -45,6 +49,7 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
   AsyncSwift: 46a78bceb11f0e5bb52747f740d9692ec78d2d7c
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  DynamicColor: 2f3fd61053684667bad9f03045dcf9a2a5a007ea
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
@@ -54,6 +59,7 @@ SPEC CHECKSUMS:
   SDCycleScrollView: 806fedb9342ab03b58b84442f985517b42c7cbb7
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SnapKit: 2756fe24b706367af224c9c508d2f9166d03354c
+  SnappingStepper: 8472746edf41bc848e7b72db2b4fd722798f13f5
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
 

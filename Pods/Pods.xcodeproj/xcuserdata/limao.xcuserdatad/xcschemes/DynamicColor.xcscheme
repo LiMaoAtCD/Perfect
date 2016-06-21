@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '624BF1C82294A83D9213881E'
-               BlueprintName = 'Kingfisher'
+               BlueprintIdentifier = 'ADD0D245DECD7EA1E8831CAB'
+               BlueprintName = 'DynamicColor'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Kingfisher.framework'>
+               BuildableName = 'DynamicColor.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
