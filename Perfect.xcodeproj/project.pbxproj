@@ -17,6 +17,7 @@
 		870F382F1CF987C900AFF1AF /* PeronalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F382E1CF987C900AFF1AF /* PeronalViewController.swift */; };
 		870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38301CF988C100AFF1AF /* AddressViewController.swift */; };
 		870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */; };
+		8721877C1D19888E00281A19 /* NSObject+UIAppearanceSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = 8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */; };
 		8752BF3A1D14E28100ED58D3 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */; };
 		8752BF3C1D14E2F800ED58D3 /* GesturePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */; };
 		8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */; };
@@ -76,6 +77,8 @@
 		870F382E1CF987C900AFF1AF /* PeronalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeronalViewController.swift; sourceTree = "<group>"; };
 		870F38301CF988C100AFF1AF /* AddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
 		870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCell.swift; sourceTree = "<group>"; };
+		8721877A1D19888E00281A19 /* NSObject+UIAppearanceSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UIAppearanceSwift.h"; sourceTree = "<group>"; };
+		8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UIAppearanceSwift.m"; sourceTree = "<group>"; };
 		8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GesturePasswordViewController.swift; sourceTree = "<group>"; };
 		8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDetailViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +202,15 @@
 				870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */,
 			);
 			name = Personal;
+			sourceTree = "<group>";
+		};
+		872187791D19888000281A19 /* UIAppearance */ = {
+			isa = PBXGroup;
+			children = (
+				8721877A1D19888E00281A19 /* NSObject+UIAppearanceSwift.h */,
+				8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */,
+			);
+			name = UIAppearance;
 			sourceTree = "<group>";
 		};
 		8763BC271CFC82A900FAB8D7 /* address */ = {
@@ -365,6 +377,7 @@
 		DA57ED441CFD308C00A8083A /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				872187791D19888000281A19 /* UIAppearance */,
 				878F22501D163EFA0074E1A2 /* KKGestrueLock */,
 				DA1A6B241D124A3600FD4FB0 /* MarketLabel.swift */,
 			);
@@ -585,6 +598,7 @@
 				870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */,
 				870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */,
 				878F22861D182AE70074E1A2 /* AddressEditViewController.swift in Sources */,
+				8721877C1D19888E00281A19 /* NSObject+UIAppearanceSwift.m in Sources */,
 				DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */,
 				870F38271CF973D500AFF1AF /* ForgetViewController.swift in Sources */,
 				878F228B1D18347C0074E1A2 /* AllOrderViewController.swift in Sources */,

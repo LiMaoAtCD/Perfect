@@ -148,29 +148,33 @@ class FourthTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.row == 0 {
-            let personal = UIViewController
-            
+            let personal = UIViewController.someController(PeronalViewController, ofStoryBoard: UIStoryboard.main)
+            personal.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(personal, animated: true)
         } else if indexPath.row == 1 {
             
             let change = Tool.sb.instantiateViewControllerWithIdentifier("ChangePasswordViewController") as! ChangePasswordViewController
             change.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(change, animated: true)
 
+          
+        } else if indexPath.row == 2 {
             let gesture = Tool.sb.instantiateViewControllerWithIdentifier("GesturePasswordViewController") as! GesturePasswordViewController
             gesture.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(gesture, animated: true)
-        } else if indexPath.row == 2 {
-            
+          
+        } else if indexPath.row == 3 {
             let addressVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AddressViewController") as! AddressViewController
             addressVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(addressVC, animated: true)
-        } else if indexPath.row == 3 {
+          } else if indexPath.row == 4 {
+            
             //提示清楚缓存
             SVProgressHUD.showWithStatus("正在清除缓存")
-            Async.main(after: 1.0, block: { 
+            Async.main(after: 1.0, block: {
                 SVProgressHUD.showSuccessWithStatus("清除成功")
             })
-        } else if indexPath.row == 4 {
+        } else if indexPath.row == 5 {
             let orderVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AllOrderViewController") as! AllOrderViewController
             orderVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(orderVC, animated: true)
