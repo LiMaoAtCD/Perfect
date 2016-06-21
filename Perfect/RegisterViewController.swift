@@ -41,9 +41,19 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         self.title = "注册"
         
+        //背景
+        let imageview = UIImageView()
+        self.view.addSubview(imageview)
+        imageview.snp_makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+        imageview.image = UIImage.init(named: "loginBg")
+        
+        
         scrollView = UIScrollView.init()
         scrollView.alwaysBounceVertical = true
         view.addSubview(scrollView)
+        scrollView.backgroundColor = UIColor.clearColor()
         
         scrollView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)

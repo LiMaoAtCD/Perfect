@@ -15,7 +15,7 @@ class PeronalViewController: BaseViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        items = ["姓名","性别","生日","手机号"]
+        items = ["姓名","性别","生日"]
 
         
         let tableView = UITableView.init(frame: CGRectZero, style: UITableViewStyle.Grouped)
@@ -29,19 +29,6 @@ class PeronalViewController: BaseViewController, UITableViewDelegate, UITableVie
         }
         tableView.registerClass(PersonalCell.self, forCellReuseIdentifier: "Personal")
         tableView.scrollEnabled = false
-        
-        
-        let upperView = UIView.init(frame: CGRectMake(0, 0, Tool.width, 150))
-        
-        let avatarImageView = UIImageView()
-        upperView.addSubview(avatarImageView)
-        avatarImageView.image = UIImage.init(named: "fourtag")
-        avatarImageView.snp_makeConstraints { (make) in
-            make.center.equalTo(upperView)
-            make.height.width.equalTo(100)
-        }
-        tableView.tableHeaderView = upperView
-        
         
         
         let footerView = UIView.init(frame: CGRectMake(0, 0, Tool.width, 50))
@@ -90,16 +77,45 @@ class PeronalViewController: BaseViewController, UITableViewDelegate, UITableVie
     func save() {
         
     }
+}
+
+class PersonalCell: UITableViewCell {
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
     }
-    */
-
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
+    var title: UILabel!
+    var detail: UILabel!
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        title = UILabel()
+        self.addSubview(title)
+        title.snp_makeConstraints { (make) in
+            make.left.equalTo(self).offset(8)
+            make.centerY.equalTo(self)
+        }
+        
+        detail = UILabel()
+        self.addSubview(detail)
+        detail.snp_makeConstraints { (make) in
+            make.right.equalTo(self).offset(-8)
+            make.centerY.equalTo(self)
+        }
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }

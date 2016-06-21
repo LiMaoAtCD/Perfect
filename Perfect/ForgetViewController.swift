@@ -37,6 +37,9 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+
         self.title = "找回密码"
         scrollView = UIScrollView.init()
         scrollView.alwaysBounceVertical = true

@@ -16,8 +16,8 @@
 		870F382B1CF97AF600AFF1AF /* ProtocolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F382A1CF97AF600AFF1AF /* ProtocolViewController.swift */; };
 		870F382F1CF987C900AFF1AF /* PeronalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F382E1CF987C900AFF1AF /* PeronalViewController.swift */; };
 		870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38301CF988C100AFF1AF /* AddressViewController.swift */; };
-		870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */; };
 		8721877C1D19888E00281A19 /* NSObject+UIAppearanceSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = 8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */; };
+		8721877E1D19921000281A19 /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721877D1D19921000281A19 /* AvatarViewController.swift */; };
 		8752BF3A1D14E28100ED58D3 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */; };
 		8752BF3C1D14E2F800ED58D3 /* GesturePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */; };
 		8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */; };
@@ -76,9 +76,9 @@
 		870F382A1CF97AF600AFF1AF /* ProtocolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolViewController.swift; sourceTree = "<group>"; };
 		870F382E1CF987C900AFF1AF /* PeronalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeronalViewController.swift; sourceTree = "<group>"; };
 		870F38301CF988C100AFF1AF /* AddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
-		870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCell.swift; sourceTree = "<group>"; };
 		8721877A1D19888E00281A19 /* NSObject+UIAppearanceSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UIAppearanceSwift.h"; sourceTree = "<group>"; };
 		8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UIAppearanceSwift.m"; sourceTree = "<group>"; };
+		8721877D1D19921000281A19 /* AvatarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
 		8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GesturePasswordViewController.swift; sourceTree = "<group>"; };
 		8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDetailViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +168,7 @@
 				878F22891D1834590074E1A2 /* OrderViewController */,
 				DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */,
 				870F38181CF9336400AFF1AF /* FourthTableViewController.swift */,
+				8721877D1D19921000281A19 /* AvatarViewController.swift */,
 				8763BC271CFC82A900FAB8D7 /* address */,
 				870F383B1CF9CC6000AFF1AF /* Personal */,
 				8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */,
@@ -199,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				870F382E1CF987C900AFF1AF /* PeronalViewController.swift */,
-				870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */,
 			);
 			name = Personal;
 			sourceTree = "<group>";
@@ -596,7 +596,7 @@
 				87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */,
 				870F382B1CF97AF600AFF1AF /* ProtocolViewController.swift in Sources */,
 				870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */,
-				870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */,
+				8721877E1D19921000281A19 /* AvatarViewController.swift in Sources */,
 				878F22861D182AE70074E1A2 /* AddressEditViewController.swift in Sources */,
 				8721877C1D19888E00281A19 /* NSObject+UIAppearanceSwift.m in Sources */,
 				DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */,

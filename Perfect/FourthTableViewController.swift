@@ -53,7 +53,7 @@ class FourthTableViewController: UITableViewController {
         }
         
         
-        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.profile))
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.changeAvatar))
         avatarImageView.addGestureRecognizer(tap)
         nickNameLabel = UILabel()
         nickNameLabel.text = "超人"
@@ -130,7 +130,7 @@ class FourthTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        if indexPath != NSIndexPath.init(forRow: 5, inSection: 0) {
+        if indexPath != NSIndexPath.init(forRow: 6, inSection: 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier(MeCell.identifier, forIndexPath: indexPath) as! MeCell
             cell.title.text = items[indexPath.row]
 
@@ -202,6 +202,9 @@ class FourthTableViewController: UITableViewController {
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
 
+    
+    func changeAvatar() {
+    }
     
     
 }
