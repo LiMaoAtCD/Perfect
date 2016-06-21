@@ -21,7 +21,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
     var cellphoneTextfield: UITextField!
     var verifyTextField: UITextField!
     var passwordTextfield: UITextField!
-    var comfirmTextfield: UITextField!
+    var confirmTextfield: UITextField!
 
     var sureButton: UIButton!
     
@@ -31,6 +31,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
     var cellphone: String! = ""
     var validCode: String! = ""
     var password: String! = ""
+    var confirm: String! = ""
     
     var scrollView: UIScrollView!
     
@@ -46,7 +47,18 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
             make.edges.equalTo(view)
         }
         setupViews()
+        
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.dismissKeyboard))
+        self.scrollView.addGestureRecognizer(tap)
     }
+    
+    func dismissKeyboard() {
+        self.confirmTextfield.resignFirstResponder()
+        self.cellphoneTextfield.resignFirstResponder()
+        self.passwordTextfield.resignFirstResponder()
+        self.verifyTextField.resignFirstResponder()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -133,18 +145,18 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         verifyButton.snp_makeConstraints { (make) in
             make.right.equalTo(view).offset(-10)
             make.centerY.equalTo(verifyTextField.snp_centerY)
-            make.width.lessThanOrEqualTo(80)
+            make.width.lessThanOrEqualTo(100)
         }
         
-        let maginView = UIView()
-        maginView.backgroundColor = UIColor.lightGrayColor()
-        view1.addSubview(maginView)
+        let marginView = UIView()
+        marginView.backgroundColor = UIColor.lightGrayColor()
+        view1.addSubview(marginView)
         
-        maginView.snp_makeConstraints { (make) in
+        marginView.snp_makeConstraints { (make) in
             make.centerY.equalTo(view1)
-            make.height.equalTo(40)
+            make.height.equalTo(30)
             make.width.equalTo(1)
-            make.right.equalTo(verifyButton.snp_left).offset(-10)
+            make.right.equalTo(view).offset(-100)
         }
         
         let view2 = UIView()
@@ -197,13 +209,13 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
             make.centerY.equalTo(view3)
         }
         
-        comfirmTextfield = UITextField()
-        comfirmTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        comfirmTextfield.placeholder = "请输入6-16位密码"
-        comfirmTextfield.secureTextEntry = true
-        view3.addSubview(comfirmTextfield)
+        confirmTextfield = UITextField()
+        confirmTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
+        confirmTextfield.placeholder = "请输入6-16位密码"
+        confirmTextfield.secureTextEntry = true
+        view3.addSubview(confirmTextfield)
         
-        comfirmTextfield.snp_makeConstraints { (make) in
+        confirmTextfield.snp_makeConstraints { (make) in
             make.left.right.equalTo(cellphoneTextfield)
             make.centerY.equalTo(view3)
             make.height.equalTo(cellphoneTextfield)
@@ -246,6 +258,13 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
             if text.length > 6 {
                 textfield.text = text.substringToIndex(6)
                 validCode = textfield.text
+            }
+        }else if textfield == confirmTextfield {
+            confirm = textfield.text
+            let text = NSString(string: confirm!)
+            if text.length > 16 {
+                textfield.text = text.substringToIndex(16)
+                confirm = textfield.text
             }
         } else {
             password = textfield.text
@@ -294,6 +313,18 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
             return false
         }
         
+        if password.isEmpty {
+            showAlertWithMessage("密码不能为空", block: nil)
+            return false
+        }
+        
+        if password != confirm {
+            showAlertWithMessage("二次密码输入不一致", block: nil)
+            return false
+        }
+        
+        
+        
         return true
     }
     
@@ -312,11 +343,9 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
                 }, repeats: true)
             NetworkHelper.instance.request(.GET, url: URLConstant.getMobileValidCode.contant, parameters: ["username": cellphone, "phone":cellphone], completion: { (result: DataResponse?) in
                 SVProgressHUD.showSuccessWithStatus("验证码获取成功")
-                self.restoreTimer()
 
             }) { (errMsg, errCode) in
                 SVProgressHUD.showErrorWithStatus(errMsg ?? "验证码获取失败")
-                self.restoreTimer()
             }
         } else {
             showAlertWithMessage("请输入正确的手机号码", block: nil)

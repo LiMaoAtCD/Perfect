@@ -55,6 +55,9 @@ class PayViewController: BaseViewController {
         buyerView.backgroundColor = UIColor.whiteColor()
         scrollView.addSubview(buyerView)
         
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.changeAddress))
+        buyerView.addGestureRecognizer(tap)
+        
         let titleLabel = UILabel()
         buyerView.addSubview(titleLabel)
         titleLabel.text = "收货地址"
@@ -243,6 +246,7 @@ class PayViewController: BaseViewController {
         changeButton.backgroundColor = UIColor.redColor()
         changeButton.setTitle("更换定制图", forState: .Normal)
         changeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        changeButton.addTarget(self, action: #selector(self.custom), forControlEvents: .TouchUpInside)
         mainView.addSubview(changeButton)
         
         changeButton.snp_makeConstraints { (make) in
@@ -253,6 +257,7 @@ class PayViewController: BaseViewController {
         }
 
     }
+    
     
     func configurePayView() {
         let payView = UIView()
@@ -357,6 +362,12 @@ class PayViewController: BaseViewController {
             make.baseline.equalTo(totalPriceLabel)
         }
         title.text = "合计:"
+    }
+    
+    func changeAddress() {
+        let addressVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AddressViewController") as! AddressViewController
+        addressVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(addressVC, animated: true)
     }
     
     func custom() {
