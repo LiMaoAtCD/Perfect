@@ -303,7 +303,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
             return false
         }
         
-        if password.isValidPassword {
+        if !password.isValidPassword {
             showAlertWithMessage("密码为6-16位", block: nil)
             return false
         }
@@ -315,6 +315,10 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         
         if password.isEmpty {
             showAlertWithMessage("密码不能为空", block: nil)
+            return false
+        }
+        if confirm.isEmpty {
+            showAlertWithMessage("确认密码不能为空", block: nil)
             return false
         }
         
