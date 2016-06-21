@@ -10,6 +10,7 @@ import UIKit
 import FDFullscreenPopGesture
 import SnapKit
 import SDCycleScrollView
+import Kingfisher
 
 class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 

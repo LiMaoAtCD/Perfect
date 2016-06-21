@@ -148,7 +148,7 @@ class FourthTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.row == 0 {
-            let personal = UIViewController.someController(PeronalViewController, ofStoryBoard: UIStoryboard.main)
+            let personal = PeronalViewController.someController(PeronalViewController.self, ofStoryBoard: UIStoryboard.main)
             personal.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(personal, animated: true)
         } else if indexPath.row == 1 {
@@ -195,32 +195,6 @@ class FourthTableViewController: UITableViewController {
         cell.layoutMargins = UIEdgeInsetsZero
     }
     
-    //MARK: 事件
-    
-    func needPay() {
-        self.goToOrder(.WaitPayed)
-    }
-    
-    func needDeliver() {
-        self.goToOrder(.Delivering)
-        
-    }
-    
-    func showAllOrder() {
-        self.goToOrder(.All)
-    }
-    
-    func goToOrder(type: OrderType) {
-        
-        let orderVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OrderViewController") as! OrderViewController
-        
-        orderVC.hidesBottomBarWhenPushed = true
-        
-        orderVC.currentType = type
-        
-        
-        self.navigationController?.pushViewController(orderVC, animated: true)
-    }
     
     func profile() {
         let profileVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PeronalViewController") as! PeronalViewController
