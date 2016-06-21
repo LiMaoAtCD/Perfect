@@ -39,7 +39,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         self.title = "找回密码"
         scrollView = UIScrollView.init()
         scrollView.alwaysBounceVertical = true
-        scrollView.backgroundColor = UIColor.init(hexString: "#cccccc")
+        scrollView.backgroundColor = UIColor(hexString: "#cccccc")
         view.addSubview(scrollView)
         
         scrollView.snp_makeConstraints { (make) in

@@ -32,7 +32,7 @@ class ChangePasswordViewController: BaseViewController {
         self.title = "修改密码"
         scrollView = UIScrollView.init()
         scrollView.alwaysBounceVertical = true
-        scrollView.backgroundColor = UIColor.init(hexString: "#cccccc")
+        scrollView.backgroundColor = UIColor(hexString: "#cccccc")
         view.addSubview(scrollView)
         
         scrollView.snp_makeConstraints { (make) in

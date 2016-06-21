@@ -21,7 +21,7 @@ class AddressEditViewController: BaseViewController {
         self.title = "收货地址管理"
         
         scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor.init(hexString: "#cccccc")
+        scrollView.backgroundColor = UIColor(hexString: "#cccccc")
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -74,7 +74,7 @@ class AddressEditViewController: BaseViewController {
             make.centerY.equalTo(title0)
         }
         let line0 = UIView()
-        line0.backgroundColor = UIColor.init(hexString: "#ccccccc")
+        line0.backgroundColor = UIColor(hexString: "#cccccc")
         upperView.addSubview(line0)
         line0.snp_makeConstraints { (make) in
             make.left.right.equalTo(upperView)
@@ -99,7 +99,7 @@ class AddressEditViewController: BaseViewController {
             make.centerY.equalTo(title1)
         }
         let line1 = UIView()
-        line1.backgroundColor = UIColor.init(hexString: "#ccccccc")
+        line1.backgroundColor = UIColor(hexString: "#cccccc")
 
         upperView.addSubview(line1)
         line1.snp_makeConstraints { (make) in
@@ -126,7 +126,7 @@ class AddressEditViewController: BaseViewController {
             make.centerY.equalTo(title2)
         }
         let line2 = UIView()
-        line2.backgroundColor = UIColor.init(hexString: "#ccccccc")
+        line2.backgroundColor = UIColor(hexString: "#cccccc")
 
         upperView.addSubview(line2)
         line2.snp_makeConstraints { (make) in

@@ -7,25 +7,28 @@
 //
 
 import UIKit
+import SnappingStepper
 
 class PayViewController: BaseViewController {
 
     var scrollView: UIScrollView!
     
-    
-    
-    var buyerView: UIView!
+    var buyerView: UIView! //顶部信息
     var nameLabel: UILabel!//收货人
     var contactLabel: UILabel!//联系电话
     var addressLabel: UILabel!//地址
     
+    //定制信息
     var customView: UIView!
-    var customGoodImageView: UIImageView!//商品预览图
-    
-    var quantityView: UIStepper! //数量
-    
     var priceView: UIView! // 价格
     
+    //支付信息
+    var payTypeViews: [PayTypeView]!
+    
+    //底部合计
+    var bottomView: UIView!
+    var totalPriceLabel = UILabel()
+
     
     var productId: Int64 = 0
     var quantity: Int = 0
@@ -39,7 +42,7 @@ class PayViewController: BaseViewController {
     
     func configureScrollView() {
         scrollView = UIScrollView.init()
-        scrollView.backgroundColor = UIColor.init(hexString: "#cccccc")
+        scrollView.backgroundColor = UIColor(hexString: "#cccccc")
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { (make) in
             make.top.left.right.equalTo(view)
@@ -130,12 +133,12 @@ class PayViewController: BaseViewController {
         }
         
         let mainView = UIView()
-        mainView.backgroundColor = UIColor.whiteColor()
         customView.addSubview(mainView)
         mainView.snp_makeConstraints { (make) in
             make.left.equalTo(title)
             make.right.equalTo(customView).offset(-14)
             make.top.equalTo(title.snp_bottom).offset(20)
+            make.bottom.equalTo(customView).offset(-8)
         }
         
         let previewImageview = UIImageView()
@@ -196,12 +199,44 @@ class PayViewController: BaseViewController {
         }
         
         let tipTitle = UILabel()
-        tipTitle.backgroundColor = UIColor.lightGrayColor()
         tipTitle.text = "左图为定制图案"
         mainView.addSubview(tipTitle)
         tipTitle.snp_makeConstraints { (make) in
             make.left.equalTo(myGoodImageView.snp_right).offset(8)
             make.top.equalTo(marginView).offset(20)
+        }
+        
+        let stepper = SnappingStepper(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+        mainView.addSubview(stepper)
+        stepper.snp_makeConstraints { (make) in
+            make.right.equalTo(addressLabel)
+            make.height.equalTo(35)
+            make.centerY.equalTo(priceLabel)
+            make.width.equalTo(100)
+        }
+        stepper.continuous   = true
+        stepper.autorepeat   = true
+        stepper.wraps        = false
+        stepper.minimumValue = 1
+        stepper.maximumValue = 999
+        stepper.stepValue    = 1
+        stepper.value = 1
+        
+        stepper.symbolFont           = UIFont(name: "TrebuchetMS-Bold", size: 20)
+        stepper.symbolFontColor      = UIColor.lightGrayColor()
+//        stepper.backgroundColor      = UIColor(hex: 0xffffff)
+        stepper.thumbWidthRatio      = 0.5
+        stepper.thumbText            = "1"
+        stepper.thumbFont            = UIFont(name: "TrebuchetMS-Bold", size: 20)
+        stepper.thumbBackgroundColor = UIColor.whiteColor()
+        stepper.thumbTextColor       = UIColor.blackColor()
+        stepper.layer.cornerRadius = 5.0
+        stepper.layer.borderColor = UIColor.lightGrayColor().CGColor
+        stepper.layer.borderWidth = 1.0
+        stepper.valueChangedBlock = {
+            (value: Double) in
+            let v = Int(value)
+            stepper.thumbText = "\(v)"
         }
         
         let changeButton = UIButton.init()
@@ -212,7 +247,7 @@ class PayViewController: BaseViewController {
         
         changeButton.snp_makeConstraints { (make) in
             make.right.equalTo(mainView).offset(-8)
-            make.width.equalTo(80)
+            make.width.equalTo(100)
             make.height.equalTo(40)
             make.bottom.equalTo(mainView.snp_bottom).offset(-20)
         }
@@ -251,6 +286,7 @@ class PayViewController: BaseViewController {
         
         let payItemMargin: CGFloat = 20
         let payItemWidth = ((Tool.width - 2 * 14) - 4 * payItemMargin) / 3
+        payTypeViews = [PayTypeView]()
         for i in 0...2 {
             let payitemView = PayTypeView.init(frame: CGRectZero)
             payitemView.tag = i
@@ -262,10 +298,64 @@ class PayViewController: BaseViewController {
                 make.top.equalTo(mainView).offset(14)
                 make.bottom.equalTo(mainView.snp_bottom).offset(-20)
             })
+            payTypeViews.append(payitemView)
+            if i == 0 {
+                payitemView.imageView.image = UIImage.init(named: "")
+                payitemView.title.text = "支付宝"
+            } else if i == 1 {
+                payitemView.imageView.image = UIImage.init(named: "")
+                payitemView.title.text = "微信"
+
+            } else {
+                payitemView.imageView.image = UIImage.init(named: "")
+                payitemView.title.text = "线下支付"
+            }
         }
         
         
         
+    }
+    
+    func configureTotalView() {
+        bottomView = UIView()
+        view.addSubview(bottomView)
+        bottomView.snp_makeConstraints { (make) in
+            make.bottom.left.right.equalTo(view)
+            make.top.equalTo(scrollView.snp_bottom)
+        }
+        
+        let settleButton = UIButton()
+        bottomView.addSubview(settleButton)
+        settleButton.snp_makeConstraints { (make) in
+            make.width.equalTo(100)
+            make.right.height.top.equalTo(bottomView)
+        }
+        settleButton.backgroundColor = UIColor.redColor()
+        settleButton.setTitle("结算", forState: .Normal)
+        
+        totalPriceLabel = UILabel()
+        let totalPrice: NSString = "￥1000"
+        let attributeString = NSMutableAttributedString.init(string: "￥1000", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(10)], range: NSMakeRange(0, 1))
+        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(18)], range: NSMakeRange(1, totalPrice.length - 1))
+        totalPriceLabel.attributedText = attributeString
+        bottomView.addSubview(totalPriceLabel)
+        totalPriceLabel.snp_makeConstraints { (make) in
+            make.centerY.equalTo(settleButton)
+            make.right.equalTo(settleButton.snp_left).offset(-10)
+            make.height.equalTo(bottomView)
+            make.width.lessThanOrEqualTo(150).priority(250)
+        }
+        
+        
+        let title = UILabel()
+        bottomView.addSubview(title)
+        title.snp_makeConstraints { (make) in
+            make.right.equalTo(totalPriceLabel.snp_left)
+            make.centerY.equalTo(settleButton)
+            make.baseline.equalTo(totalPriceLabel)
+        }
+        title.text = "合计:"
     }
     
     func custom() {
@@ -311,7 +401,7 @@ class PayViewController: BaseViewController {
         configureBuyerView()
         configureGoodView()
         configurePayView()
-        
+        configureTotalView()
         
     }
     
@@ -371,7 +461,6 @@ class PayTypeView: UIView {
         
         title.snp_makeConstraints { (make) in
             make.centerX.equalTo(imageView)
-            make.width.equalTo(30)
             make.top.equalTo(imageView.snp_bottom).offset(14)
         }
         

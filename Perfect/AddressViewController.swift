@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class AddressViewController: BaseViewController,UITableViewDataSource, UITableViewDelegate {
 
@@ -43,7 +44,7 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         tableView.estimatedRowHeight = 200
         tableView.tableFooterView = UIView()
         tableView.registerClass(AddressTableViewCell.self, forCellReuseIdentifier: "address")
-        tableView.backgroundColor = UIColor.init(hexString: "#cccccc")
+        tableView.backgroundColor = UIColor(hexString: "#cccccc")
         
         
         

@@ -245,6 +245,8 @@ import UIKit
 
       if thumbBackgroundColor == nil {
         thumbLabel.backgroundColor = backgroundColor?.lighterColor()
+        thumbLabel.layer.borderWidth = 1
+        thumbLabel.layer.borderColor = UIColor.lightGrayColor().CGColor
       }
     }
   }
