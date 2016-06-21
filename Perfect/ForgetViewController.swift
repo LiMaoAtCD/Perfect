@@ -326,9 +326,6 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
             showAlertWithMessage("二次密码输入不一致", block: nil)
             return false
         }
-        
-        
-        
         return true
     }
     

@@ -7,36 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38121CF9296800AFF1AF /* SecondTableViewController.swift */; };
-		870F38151CF92BCA00AFF1AF /* SecondInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38141CF92BCA00AFF1AF /* SecondInfoCell.swift */; };
 		870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38181CF9336400AFF1AF /* FourthTableViewController.swift */; };
-		870F381D1CF9415200AFF1AF /* FourthTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F381C1CF9415200AFF1AF /* FourthTableViewCell.swift */; };
 		870F38201CF9450500AFF1AF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F381F1CF9450500AFF1AF /* Utils.swift */; };
 		870F38231CF9489400AFF1AF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38221CF9489400AFF1AF /* LoginViewController.swift */; };
 		870F38251CF973CC00AFF1AF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38241CF973CC00AFF1AF /* RegisterViewController.swift */; };
 		870F38271CF973D500AFF1AF /* ForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38261CF973D500AFF1AF /* ForgetViewController.swift */; };
 		870F38291CF9757C00AFF1AF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38281CF9757C00AFF1AF /* BaseViewController.swift */; };
 		870F382B1CF97AF600AFF1AF /* ProtocolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F382A1CF97AF600AFF1AF /* ProtocolViewController.swift */; };
-		870F382D1CF9876100AFF1AF /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F382C1CF9876100AFF1AF /* OrderViewController.swift */; };
 		870F382F1CF987C900AFF1AF /* PeronalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F382E1CF987C900AFF1AF /* PeronalViewController.swift */; };
 		870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38301CF988C100AFF1AF /* AddressViewController.swift */; };
-		870F38331CF988D500AFF1AF /* FellbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38321CF988D500AFF1AF /* FellbackViewController.swift */; };
-		870F38351CF988DD00AFF1AF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38341CF988DD00AFF1AF /* SettingViewController.swift */; };
-		870F38381CF98CF600AFF1AF /* SettingNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38371CF98CF600AFF1AF /* SettingNormalCell.swift */; };
-		870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38391CF98D0E00AFF1AF /* SettingPushCell.swift */; };
 		870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */; };
 		8752BF3A1D14E28100ED58D3 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */; };
 		8752BF3C1D14E2F800ED58D3 /* GesturePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */; };
-		8763BC131CF9DC7700FAB8D7 /* ThirdGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */; };
 		8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */; };
-		8763BC1F1CFC770A00FAB8D7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC1E1CFC770A00FAB8D7 /* SearchViewController.swift */; };
-		8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */; };
-		8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */; };
-		8763BC261CFC7E9B00FAB8D7 /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */; };
 		8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */; };
-		8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */; };
-		8763BC341CFC91D100FAB8D7 /* OrderTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */; };
-		8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */; };
 		8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */; };
 		878F22551D163F1A0074E1A2 /* KKGestureLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878F22521D163F1A0074E1A2 /* KKGestureLockView.m */; };
 		878F22561D163F1A0074E1A2 /* KKGestureLockPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878F22541D163F1A0074E1A2 /* KKGestureLockPreviewView.m */; };
@@ -58,19 +42,7 @@
 		DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA417B5E1CF5EDD100F61304 /* LaunchScreen.storyboard */; };
 		DA417B6B1CF5EDD100F61304 /* PerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B6A1CF5EDD100F61304 /* PerfectTests.swift */; };
 		DA417B761CF5EDD100F61304 /* PerfectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B751CF5EDD100F61304 /* PerfectUITests.swift */; };
-		DA57ED0A1CF7D3EF00A8083A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED091CF7D3EF00A8083A /* FirstViewController.swift */; };
-		DA57ED0C1CF7D3F700A8083A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED0B1CF7D3F700A8083A /* SecondViewController.swift */; };
-		DA57ED0E1CF7D3FD00A8083A /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED0D1CF7D3FD00A8083A /* ThirdViewController.swift */; };
 		DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */; };
-		DA57ED171CF7D57B00A8083A /* FirstTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED161CF7D57B00A8083A /* FirstTableViewController.swift */; };
-		DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED181CF7D6DC00A8083A /* FirstBannerCell.swift */; };
-		DA57ED1B1CF7D6EE00A8083A /* FirstNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED1A1CF7D6EE00A8083A /* FirstNormalCell.swift */; };
-		DA57ED3D1CFC2A5300A8083A /* GoodsScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */; };
-		DA57ED401CFC3A6200A8083A /* SecondDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED3F1CFC3A6200A8083A /* SecondDetailViewController.swift */; };
-		DA57ED421CFC3F0600A8083A /* SecondDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED411CFC3F0600A8083A /* SecondDetailTableViewCell.swift */; };
-		DA57ED561CFD6C9D00A8083A /* Guide2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED541CFD6C9D00A8083A /* Guide2ViewController.swift */; };
-		DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */; };
-		DA57ED5B1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED5A1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m */; };
 		DAE24CCC1D0D4BA300B4A2B1 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */; };
 		F417D554CD143DFAA2CFA261 /* Pods_Perfect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */; };
 /* End PBXBuildFile section */
@@ -94,36 +66,20 @@
 
 /* Begin PBXFileReference section */
 		41057C964BB9260F6FA956DA /* Pods-Perfect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.release.xcconfig"; sourceTree = "<group>"; };
-		870F38121CF9296800AFF1AF /* SecondTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTableViewController.swift; sourceTree = "<group>"; };
-		870F38141CF92BCA00AFF1AF /* SecondInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondInfoCell.swift; sourceTree = "<group>"; };
 		870F38181CF9336400AFF1AF /* FourthTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthTableViewController.swift; sourceTree = "<group>"; };
-		870F381C1CF9415200AFF1AF /* FourthTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthTableViewCell.swift; sourceTree = "<group>"; };
 		870F381F1CF9450500AFF1AF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		870F38221CF9489400AFF1AF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		870F38241CF973CC00AFF1AF /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		870F38261CF973D500AFF1AF /* ForgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetViewController.swift; sourceTree = "<group>"; };
 		870F38281CF9757C00AFF1AF /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		870F382A1CF97AF600AFF1AF /* ProtocolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolViewController.swift; sourceTree = "<group>"; };
-		870F382C1CF9876100AFF1AF /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		870F382E1CF987C900AFF1AF /* PeronalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeronalViewController.swift; sourceTree = "<group>"; };
 		870F38301CF988C100AFF1AF /* AddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
-		870F38321CF988D500AFF1AF /* FellbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FellbackViewController.swift; sourceTree = "<group>"; };
-		870F38341CF988DD00AFF1AF /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		870F38371CF98CF600AFF1AF /* SettingNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNormalCell.swift; sourceTree = "<group>"; };
-		870F38391CF98D0E00AFF1AF /* SettingPushCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPushCell.swift; sourceTree = "<group>"; };
 		870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCell.swift; sourceTree = "<group>"; };
 		8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GesturePasswordViewController.swift; sourceTree = "<group>"; };
-		8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdGoodsCell.swift; sourceTree = "<group>"; };
 		8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDetailViewController.swift; sourceTree = "<group>"; };
-		8763BC1E1CFC770A00FAB8D7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
-		8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideViewController.xib; sourceTree = "<group>"; };
-		8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
 		8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
-		8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
-		8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTypeCell.swift; sourceTree = "<group>"; };
-		8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderGoodsCell.swift; sourceTree = "<group>"; };
 		8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		878F22511D163F1A0074E1A2 /* KKGestureLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKGestureLockView.h; sourceTree = "<group>"; };
 		878F22521D163F1A0074E1A2 /* KKGestureLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKGestureLockView.m; sourceTree = "<group>"; };
@@ -155,21 +111,8 @@
 		DA417B711CF5EDD100F61304 /* PerfectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerfectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA417B751CF5EDD100F61304 /* PerfectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectUITests.swift; sourceTree = "<group>"; };
 		DA417B771CF5EDD100F61304 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA57ED091CF7D3EF00A8083A /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		DA57ED0B1CF7D3F700A8083A /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		DA57ED0D1CF7D3FD00A8083A /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
 		DA57ED111CF7D53F00A8083A /* Perfect-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Perfect-Bridging-Header.h"; sourceTree = "<group>"; };
-		DA57ED161CF7D57B00A8083A /* FirstTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstTableViewController.swift; sourceTree = "<group>"; };
-		DA57ED181CF7D6DC00A8083A /* FirstBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstBannerCell.swift; sourceTree = "<group>"; };
-		DA57ED1A1CF7D6EE00A8083A /* FirstNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstNormalCell.swift; sourceTree = "<group>"; };
-		DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsScanViewController.swift; sourceTree = "<group>"; };
-		DA57ED3F1CFC3A6200A8083A /* SecondDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondDetailViewController.swift; sourceTree = "<group>"; };
-		DA57ED411CFC3F0600A8083A /* SecondDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondDetailTableViewCell.swift; sourceTree = "<group>"; };
-		DA57ED541CFD6C9D00A8083A /* Guide2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide2ViewController.swift; sourceTree = "<group>"; };
-		DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Guide2ViewController.xib; sourceTree = "<group>"; };
-		DA57ED591CFD704C00A8083A /* NSObject+UIAppearanceSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UIAppearanceSwift.h"; sourceTree = "<group>"; };
-		DA57ED5A1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UIAppearanceSwift.m"; sourceTree = "<group>"; };
 		DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,27 +159,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		870F38111CF91A5500AFF1AF /* Second */ = {
-			isa = PBXGroup;
-			children = (
-				8763BC1B1CFC76CB00FAB8D7 /* search */,
-				DA57ED3E1CFC3A5000A8083A /* Detail */,
-				DA57ED0B1CF7D3F700A8083A /* SecondViewController.swift */,
-				870F38121CF9296800AFF1AF /* SecondTableViewController.swift */,
-				870F38141CF92BCA00AFF1AF /* SecondInfoCell.swift */,
-			);
-			name = Second;
-			sourceTree = "<group>";
-		};
-		870F38161CF9332700AFF1AF /* Third */ = {
-			isa = PBXGroup;
-			children = (
-				DA57ED0D1CF7D3FD00A8083A /* ThirdViewController.swift */,
-				8763BC121CF9DC7700FAB8D7 /* ThirdGoodsCell.swift */,
-			);
-			name = Third;
-			sourceTree = "<group>";
-		};
 		870F38171CF9332D00AFF1AF /* Me */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,16 +192,6 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
-		870F38361CF98B8300AFF1AF /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				870F38341CF988DD00AFF1AF /* SettingViewController.swift */,
-				870F38371CF98CF600AFF1AF /* SettingNormalCell.swift */,
-				870F38391CF98D0E00AFF1AF /* SettingPushCell.swift */,
-			);
-			name = Setting;
-			sourceTree = "<group>";
-		};
 		870F383B1CF9CC6000AFF1AF /* Personal */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,35 +199,6 @@
 				870F383C1CF9CC7200AFF1AF /* PersonalCell.swift */,
 			);
 			name = Personal;
-			sourceTree = "<group>";
-		};
-		8763BC141CFB32A700FAB8D7 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Detail;
-			sourceTree = "<group>";
-		};
-		8763BC1B1CFC76CB00FAB8D7 /* search */ = {
-			isa = PBXGroup;
-			children = (
-				DA57ED591CFD704C00A8083A /* NSObject+UIAppearanceSwift.h */,
-				DA57ED5A1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m */,
-				8763BC1E1CFC770A00FAB8D7 /* SearchViewController.swift */,
-			);
-			name = search;
-			sourceTree = "<group>";
-		};
-		8763BC201CFC7D4D00FAB8D7 /* GuideViewController */ = {
-			isa = PBXGroup;
-			children = (
-				8763BC211CFC7D6700FAB8D7 /* GuideViewController.swift */,
-				8763BC251CFC7E9B00FAB8D7 /* GuideTableViewCell.swift */,
-				8763BC221CFC7D6700FAB8D7 /* GuideViewController.xib */,
-				DA57ED541CFD6C9D00A8083A /* Guide2ViewController.swift */,
-				DA57ED551CFD6C9D00A8083A /* Guide2ViewController.xib */,
-			);
-			name = GuideViewController;
 			sourceTree = "<group>";
 		};
 		8763BC271CFC82A900FAB8D7 /* address */ = {
@@ -326,17 +209,6 @@
 				8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */,
 			);
 			name = address;
-			sourceTree = "<group>";
-		};
-		8763BC301CFC890700FAB8D7 /* Order */ = {
-			isa = PBXGroup;
-			children = (
-				870F382C1CF9876100AFF1AF /* OrderViewController.swift */,
-				8763BC311CFC8DB400FAB8D7 /* OrderTableViewCell.swift */,
-				8763BC331CFC91D100FAB8D7 /* OrderTypeCell.swift */,
-				8763BC351CFDDD3200FAB8D7 /* OrderGoodsCell.swift */,
-			);
-			name = Order;
 			sourceTree = "<group>";
 		};
 		878F224F1D14F7230074E1A2 /* Detail */ = {
@@ -382,25 +254,6 @@
 				878F228A1D18347C0074E1A2 /* AllOrderViewController.swift */,
 			);
 			name = OrderViewController;
-			sourceTree = "<group>";
-		};
-		87D29C5C1D12F495001FA983 /* Unused */ = {
-			isa = PBXGroup;
-			children = (
-				8763BC301CFC890700FAB8D7 /* Order */,
-				8763BC141CFB32A700FAB8D7 /* Detail */,
-				DA57ED3C1CFC2A5300A8083A /* GoodsScanViewController.swift */,
-				DA57ED091CF7D3EF00A8083A /* FirstViewController.swift */,
-				DA57ED161CF7D57B00A8083A /* FirstTableViewController.swift */,
-				DA57ED181CF7D6DC00A8083A /* FirstBannerCell.swift */,
-				DA57ED1A1CF7D6EE00A8083A /* FirstNormalCell.swift */,
-				870F38361CF98B8300AFF1AF /* Setting */,
-				870F38321CF988D500AFF1AF /* FellbackViewController.swift */,
-				870F381C1CF9415200AFF1AF /* FourthTableViewCell.swift */,
-				870F38111CF91A5500AFF1AF /* Second */,
-				870F38161CF9332700AFF1AF /* Third */,
-			);
-			name = Unused;
 			sourceTree = "<group>";
 		};
 		DA1A6B211D1249F800FD4FB0 /* Extensions */ = {
@@ -468,7 +321,6 @@
 		DA417B541CF5EDD100F61304 /* Perfect */ = {
 			isa = PBXGroup;
 			children = (
-				87D29C5C1D12F495001FA983 /* Unused */,
 				DA1A6B2A1D12515700FD4FB0 /* Controller */,
 				DA1A6B281D124F9D00FD4FB0 /* Cofig */,
 				DA1A6B271D124F8B00FD4FB0 /* Resources */,
@@ -508,16 +360,6 @@
 				8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */,
 			);
 			name = First;
-			sourceTree = "<group>";
-		};
-		DA57ED3E1CFC3A5000A8083A /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				8763BC201CFC7D4D00FAB8D7 /* GuideViewController */,
-				DA57ED3F1CFC3A6200A8083A /* SecondDetailViewController.swift */,
-				DA57ED411CFC3F0600A8083A /* SecondDetailTableViewCell.swift */,
-			);
-			name = Detail;
 			sourceTree = "<group>";
 		};
 		DA57ED441CFD308C00A8083A /* Vendor */ = {
@@ -646,10 +488,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA57ED571CFD6C9D00A8083A /* Guide2ViewController.xib in Resources */,
 				878F22871D182AE70074E1A2 /* AddressEditViewController.xib in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
-				8763BC241CFC7D6700FAB8D7 /* GuideViewController.xib in Resources */,
 				DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */,
 				DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */,
 			);
@@ -727,59 +567,33 @@
 				870F38231CF9489400AFF1AF /* LoginViewController.swift in Sources */,
 				8752BF3C1D14E2F800ED58D3 /* GesturePasswordViewController.swift in Sources */,
 				87A5AA5B1D0F11BB000A1B41 /* FirstPageViewController.swift in Sources */,
-				870F38381CF98CF600AFF1AF /* SettingNormalCell.swift in Sources */,
 				DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */,
-				870F38331CF988D500AFF1AF /* FellbackViewController.swift in Sources */,
-				870F38151CF92BCA00AFF1AF /* SecondInfoCell.swift in Sources */,
 				870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */,
 				8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */,
-				8763BC361CFDDD3200FAB8D7 /* OrderGoodsCell.swift in Sources */,
-				DA57ED0C1CF7D3F700A8083A /* SecondViewController.swift in Sources */,
-				8763BC321CFC8DB400FAB8D7 /* OrderTableViewCell.swift in Sources */,
 				DA1A6B251D124A3600FD4FB0 /* MarketLabel.swift in Sources */,
 				87A5AA5F1D10C636000A1B41 /* GoodsDetailViewController.swift in Sources */,
-				DA57ED0A1CF7D3EF00A8083A /* FirstViewController.swift in Sources */,
 				878F22551D163F1A0074E1A2 /* KKGestureLockView.m in Sources */,
 				870F38251CF973CC00AFF1AF /* RegisterViewController.swift in Sources */,
 				870F38291CF9757C00AFF1AF /* BaseViewController.swift in Sources */,
 				DA1A6B2C1D1257F400FD4FB0 /* CustomGoodViewController.swift in Sources */,
 				870F38201CF9450500AFF1AF /* Utils.swift in Sources */,
-				DA57ED1B1CF7D6EE00A8083A /* FirstNormalCell.swift in Sources */,
-				8763BC1F1CFC770A00FAB8D7 /* SearchViewController.swift in Sources */,
-				DA57ED421CFC3F0600A8083A /* SecondDetailTableViewCell.swift in Sources */,
 				8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */,
 				878F22561D163F1A0074E1A2 /* KKGestureLockPreviewView.m in Sources */,
 				DA1A6B6E1D127F4500FD4FB0 /* RootTabBarController.swift in Sources */,
-				870F382D1CF9876100AFF1AF /* OrderViewController.swift in Sources */,
 				87A5AA571D0EEDAF000A1B41 /* Response.swift in Sources */,
-				8763BC131CF9DC7700FAB8D7 /* ThirdGoodsCell.swift in Sources */,
 				870F382B1CF97AF600AFF1AF /* ProtocolViewController.swift in Sources */,
-				DA57ED401CFC3A6200A8083A /* SecondDetailViewController.swift in Sources */,
 				870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */,
-				DA57ED3D1CFC2A5300A8083A /* GoodsScanViewController.swift in Sources */,
 				870F383D1CF9CC7200AFF1AF /* PersonalCell.swift in Sources */,
-				8763BC341CFC91D100FAB8D7 /* OrderTypeCell.swift in Sources */,
-				8763BC261CFC7E9B00FAB8D7 /* GuideTableViewCell.swift in Sources */,
-				DA57ED0E1CF7D3FD00A8083A /* ThirdViewController.swift in Sources */,
 				878F22861D182AE70074E1A2 /* AddressEditViewController.swift in Sources */,
 				DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */,
-				DA57ED5B1CFD704C00A8083A /* NSObject+UIAppearanceSwift.m in Sources */,
 				870F38271CF973D500AFF1AF /* ForgetViewController.swift in Sources */,
-				870F38131CF9296800AFF1AF /* SecondTableViewController.swift in Sources */,
 				878F228B1D18347C0074E1A2 /* AllOrderViewController.swift in Sources */,
 				8752BF3A1D14E28100ED58D3 /* ChangePasswordViewController.swift in Sources */,
-				8763BC231CFC7D6700FAB8D7 /* GuideViewController.swift in Sources */,
 				8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */,
 				DAE24CCC1D0D4BA300B4A2B1 /* NetworkHelper.swift in Sources */,
-				870F38351CF988DD00AFF1AF /* SettingViewController.swift in Sources */,
-				870F383A1CF98D0E00AFF1AF /* SettingPushCell.swift in Sources */,
-				DA57ED191CF7D6DC00A8083A /* FirstBannerCell.swift in Sources */,
 				DA1A6B701D127F6C00FD4FB0 /* RootNavigationController.swift in Sources */,
-				DA57ED561CFD6C9D00A8083A /* Guide2ViewController.swift in Sources */,
 				DA1A6B231D124A0B00FD4FB0 /* Extensions.swift in Sources */,
-				DA57ED171CF7D57B00A8083A /* FirstTableViewController.swift in Sources */,
 				870F382F1CF987C900AFF1AF /* PeronalViewController.swift in Sources */,
-				870F381D1CF9415200AFF1AF /* FourthTableViewCell.swift in Sources */,
 				87A5AA591D0F0948000A1B41 /* ResponseEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

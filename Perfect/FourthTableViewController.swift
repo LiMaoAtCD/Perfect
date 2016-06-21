@@ -13,7 +13,7 @@ import Async
 
 class FourthTableViewController: UITableViewController {
 
-    let items = ["修改密码", "设置手势密码","收货地址管理","清除缓存","我的订单","退出登录"]
+    let items = ["个人信息","修改密码", "设置手势密码","收货地址管理","清除缓存","我的订单","退出登录"]
     var header: UIView!
     
     var avatarImageView: UIImageView!
@@ -146,9 +146,16 @@ class FourthTableViewController: UITableViewController {
  
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         if indexPath.row == 0 {
-            self.changePassword()
+            let personal = UIViewController
+            
         } else if indexPath.row == 1 {
+            
+            let change = Tool.sb.instantiateViewControllerWithIdentifier("ChangePasswordViewController") as! ChangePasswordViewController
+            change.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(change, animated: true)
+
             let gesture = Tool.sb.instantiateViewControllerWithIdentifier("GesturePasswordViewController") as! GesturePasswordViewController
             gesture.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(gesture, animated: true)
@@ -185,12 +192,6 @@ class FourthTableViewController: UITableViewController {
     }
     
     //MARK: 事件
-    
-    func changePassword() {
-        let change = Tool.sb.instantiateViewControllerWithIdentifier("ChangePasswordViewController") as! ChangePasswordViewController
-        change.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(change, animated: true)
-    }
     
     func needPay() {
         self.goToOrder(.WaitPayed)
