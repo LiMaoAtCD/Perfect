@@ -332,6 +332,7 @@ class PayViewController: BaseViewController {
         }
         settleButton.backgroundColor = UIColor.redColor()
         settleButton.setTitle("结算", forState: .Normal)
+        settleButton.addTarget(self, action: #selector(self.submitOrder), forControlEvents: .TouchUpInside)
         
         totalPriceLabel = UILabel()
         let totalPrice: NSString = "￥1000"
@@ -364,24 +365,6 @@ class PayViewController: BaseViewController {
     }
     
     
-    func configureOrderButton() {
-        let submit = UIButton.init(type: .Custom)
-        self.scrollView.addSubview(submit)
-        
-        submit.snp_makeConstraints { (make) in
-            make.left.right.equalTo(view)
-            make.height.equalTo(45)
-            make.top.equalTo(priceView.snp_bottom).offset(20)
-            make.bottom.equalTo(scrollView)
-        }
-        
-        submit.addTarget(self, action: #selector(self.submitOrder), forControlEvents: .TouchUpInside)
-        submit.backgroundColor = UIColor.flatPinkColor()
-        submit.layer.cornerRadius = 5
-        submit.layer.masksToBounds = true
-        
-
-    }
     
     func submitOrder() {
         NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmOrder.contant, parameters: ["productId":productId.toNSNumber,"quantity":quantity, "areaId": areaId.toNSNumber,"contactAddress": contactAddress, "contactName": contactName, "contactPhone": contactPhone, "customImgId": customImgId.toNSNumber, "payType":"alipay"], completion: { (result: ConfirmOrderResponse?) in
@@ -402,7 +385,6 @@ class PayViewController: BaseViewController {
         configureGoodView()
         configurePayView()
         configureTotalView()
-        
     }
     
     
