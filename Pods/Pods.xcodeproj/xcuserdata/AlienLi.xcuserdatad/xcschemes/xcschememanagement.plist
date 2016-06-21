@@ -32,6 +32,11 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>DynamicColor.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
 		<key>FDFullscreenPopGesture.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -107,6 +112,11 @@
 			<key>orderHint</key>
 			<integer>14</integer>
 		</dict>
+		<key>SnappingStepper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
 		<key>SwiftyUserDefaults.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -122,7 +132,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>08F6A5AF8E89681F880EB03F167AACB7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1BFF305FA58528E921599B0829CFEC6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2D80D98B3A52F41F415183A1F0A71A7A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -133,6 +153,11 @@
 			<true/>
 		</dict>
 		<key>325099557CDA4DDE35FA182D1A489B91</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3937ED49AD4B884E7CBE96D1B55D4350</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,7 +192,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>68F64FA36A42B692372270630FACB623</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7CC51E2677B364CB49688658D7B4F4A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -192,12 +227,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9F0511A3245BC725A3147C4842C7DCE4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>AB6433534749B2CB2D9B65F51715334D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>AFE537DAD8E4833EDF381FB8D2F133DE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B45DFFE81660C4933F92448411AA18BF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C1D5BC4DA1976DEAF2A4398691C24958</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -222,7 +272,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>D4575D86439647F209B96786B6199092</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E96E13C4D3B5B5FC0651440734C2BF4D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0F32B76AA3A0E6A50F5241C2E7A0AB9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
