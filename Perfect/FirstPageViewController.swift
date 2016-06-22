@@ -235,6 +235,11 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             let item = self.customButtons![indexPath.row]
             let action = item.action
             print("action: \(action)")
+            
+            let detail = FirstDetailViewController.someController(FirstDetailViewController.self, ofStoryBoard: UIStoryboard.main)
+            detail.tagID = action?.actionID
+            self.navigationController?.pushViewController(detail, animated: true)
+            
         } else if indexPath.section == 3 {
             //MARK: 处理普通商品
 //            let good = self.goods!
@@ -508,3 +513,24 @@ class SegmentControlView : UIView {
 }
 
 
+extension String {
+    var actionID: Int64 {
+        let arr = self.componentsSeparatedByString(":")
+        if arr.count > 0 {
+            let id = Int64(arr.last!)
+            return id ?? 0
+        } else {
+            return 0
+        }
+        
+    }
+    var actionType: String {
+        let arr = self.componentsSeparatedByString(":")
+        if arr.count > 0 {
+            let type = arr[1]
+            return type
+        } else {
+            return ""
+        }
+    }
+}

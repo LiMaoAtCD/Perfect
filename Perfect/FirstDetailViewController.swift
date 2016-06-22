@@ -10,7 +10,7 @@ import UIKit
 
 class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
-    
+    var tagID: Int64 = 0
     var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -36,7 +36,11 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
         collectionView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
         collectionView.registerClass(CollectionViewBannerCell.self, forCellWithReuseIdentifier: CollectionViewBannerCell.identifier)
 
-        
+        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: tagID)], completion: { [weak self](product: ProductListResponse?) in
+            
+            
+        }) { (errMsg: String?, errCode: Int) in
+        }
     }
     
     
@@ -88,6 +92,7 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCell.identifier, forIndexPath: indexPath) as! CollectionViewCell
 //                let item = goods![selectionSection][indexPath.row]
 //                cell.imageView.kf_setImageWithURL(NSURL.init(string:item)!, placeholderImage: UIImage.init(named: "h8"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+            
             
                 return cell
 
