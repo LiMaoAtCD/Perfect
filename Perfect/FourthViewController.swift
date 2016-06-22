@@ -42,7 +42,7 @@ class FourthViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         //
-        NetworkHelper.instance.request(.GET, url: URLConstant.appMemberCenterIndex.contant, parameters: nil, completion: { [weak self](res: PersonalCenterResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appMemberCenterIndex.contant, parameters: ["rows": 0, "page": 1], completion: { [weak self](res: PersonalCenterResponse?) in
                 let personalEntity = res?.retObj
             
             

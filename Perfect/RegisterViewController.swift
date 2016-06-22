@@ -9,6 +9,7 @@
 import UIKit
 import ChameleonFramework
 import SVProgressHUD
+import SwiftyUserDefaults
 
 class RegisterViewController: BaseViewController, UITextFieldDelegate {
 
@@ -19,7 +20,8 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     var registerButton: UIButton!
     var protocolCheckButton: UIButton!
     var protocolLabel: UILabel!
-    
+    var personalButton: UIButton!
+    var enterPriseButton: UIButton!
     
     var timer: NSTimer?
     var timerCount: Int = 60
@@ -27,8 +29,8 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     var cellphone: String! = ""
     var validCode: String! = ""
     var password: String! = ""
-    
-    
+    var userProtocolChecked: Bool = false
+    var personalRegister: Bool = true
     
     var scrollView: UIScrollView!
 
@@ -61,6 +63,14 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         setupViews()
         
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        self.cellphoneTextfield.resignFirstResponder()
+        self.passwordTextfield.resignFirstResponder()
+        self.verifyTextField.resignFirstResponder()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -124,10 +134,13 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
 
         passwordTextfield = UITextField()
+        passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "密码", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        passwordTextfield.textColor = UIColor.whiteColor()
+
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        passwordTextfield.placeholder = "密码"
         passwordTextfield.secureTextEntry = true
         scrollView.addSubview(passwordTextfield)
+        
         
         passwordTextfield.snp_makeConstraints { (make) in
             make.centerY.equalTo(cellphoneTextfield).offset(50)
@@ -155,7 +168,8 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         verifyTextField = UITextField()
         verifyTextField.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        verifyTextField.placeholder = "验证码"
+        verifyTextField.attributedPlaceholder = NSAttributedString.init(string: "验证码", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        verifyTextField.textColor = UIColor.whiteColor()
         verifyTextField.keyboardType = .NumberPad
 
         scrollView.addSubview(verifyTextField)
@@ -197,6 +211,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         protocolCheckButton = UIButton.init(type: .Custom)
+        protocolCheckButton.addTarget(self, action: #selector(self.checkProtocol), forControlEvents: .TouchUpInside)
         protocolCheckButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
         scrollView.addSubview(protocolCheckButton)
         protocolCheckButton.snp_makeConstraints { (make) in
@@ -229,7 +244,8 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
             make.centerY.equalTo(protocolCheckButton)
         }
         
-        let enterPriseButton = UIButton.init(type: .Custom)
+        enterPriseButton = UIButton.init(type: .Custom)
+        enterPriseButton.addTarget(self, action: #selector(self.choosePersonalOrEnterprise), forControlEvents: .TouchUpInside)
         enterPriseButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
         scrollView.addSubview(enterPriseButton)
         enterPriseButton.snp_makeConstraints { (make) in
@@ -248,7 +264,9 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
             make.centerY.equalTo(enterPriseButton)
         }
         
-        let personalButton = UIButton.init(type: .Custom)
+        personalButton = UIButton.init(type: .Custom)
+        personalButton.addTarget(self, action: #selector(self.choosePersonalOrEnterprise), forControlEvents: .TouchUpInside)
+
         personalButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
         scrollView.addSubview(personalButton)
         personalButton.snp_makeConstraints { (make) in
@@ -279,14 +297,44 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
 
     }
     
+    //MARK: 注册
     func register() {
         if checkValidation() {
-            
+            NetworkHelper.instance.request(.GET, url: URLConstant.Register.contant, parameters: ["username": cellphone,"password": password, "validCode": validCode, "phone": cellphone, "type": (personalRegister ? "person" : "company")], completion: { (result: RegisterResponse?) in
+                    Defaults[.password] = self.password
+                    SVProgressHUD.showSuccessWithStatus("注册成功")
+                }, failed: { (errMsg: String?, errCode: Int) in
+                    SVProgressHUD.showErrorWithStatus(errMsg ?? "注册失败")
+            })
+        }
+    }
+    
+    func checkProtocol() {
+        if userProtocolChecked {
+            userProtocolChecked = false
+            protocolCheckButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+        } else {
+            userProtocolChecked = true
+            protocolCheckButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+        }
+    }
+    
+    func choosePersonalOrEnterprise() {
+        if personalRegister {
+            personalRegister = false
+            enterPriseButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+            personalButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+        } else {
+            personalRegister = true
+            enterPriseButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+            personalButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
         }
     }
     
     func gotoProtocol() {
+        let proto = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ProtocolViewController") as! ProtocolViewController
         
+        self.navigationController?.pushViewController(proto, animated: true)
     }
     
     
@@ -329,7 +377,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         guard self.password!.isValidPassword else {
-            showAlertWithMessage("密码格式支持数字、大小写字母，不支持空格", block: { (_) -> Void in
+            showAlertWithMessage("密码为6-16位字母数字", block: { (_) -> Void in
                 
             })
             
@@ -337,21 +385,17 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         
-//        guard userProtocolChecked else {
-//            showAlertWithMessage("请勾选同意《用户使用协议》", block: { (_) -> Void in
-//                
-//            })
-//            
-//            return false
-//        }
-        
+        guard userProtocolChecked else {
+            showAlertWithMessage("请勾选同意注册协议", block: { (_) -> Void in
+                
+            })
+            
+            return false
+        }
         
         return true
     }
 
-    
-
-    
     func configureFetchValidCode(mode: CMValidateButtonMode) {
         
         if mode == .Timer {
@@ -365,14 +409,6 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
     }
-
-    
-    func protocolClick() -> Void {
-        let proto = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ProtocolViewController") as! ProtocolViewController
-        
-        self.navigationController?.pushViewController(proto, animated: true)
-    }
-    
     //MARK: 输入框处理
     func textFieldDidEditChanged(textfield: UITextField) {
         //

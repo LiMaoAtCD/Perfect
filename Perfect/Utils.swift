@@ -36,7 +36,7 @@ extension DefaultsKeys {
     static let logined = DefaultsKey<Bool>("logined")
     static let sessionID = DefaultsKey<String>("sessionID") // sessionID
     static let shouldSwitch = DefaultsKey<Bool>("shouldSwitch")
-    
+    static let password = DefaultsKey<String>("password")
 }
 
 extension UIView {
