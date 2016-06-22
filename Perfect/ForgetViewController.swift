@@ -55,6 +55,13 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         self.scrollView.addGestureRecognizer(tap)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.blackColor()), forBarMetrics: UIBarMetrics.Default)
+        
+        super.viewWillAppear(animated)
+    }
+
+    
     func dismissKeyboard() {
         self.confirmTextfield.resignFirstResponder()
         self.cellphoneTextfield.resignFirstResponder()

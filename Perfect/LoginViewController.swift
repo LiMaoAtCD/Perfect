@@ -40,6 +40,20 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.init(hexString: "#ffffff", withAlpha: 1.0)]
 
         setupViews()
+        
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        self.cellphoneTextfield.resignFirstResponder()
+        self.passwordTextfield.resignFirstResponder()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        
+        super.viewWillAppear(animated)
     }
     
     override func configurePopNavigationItem() {
@@ -276,4 +290,17 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     */
 
+}
+
+extension UIImage {
+    class func imageFromColor(color: UIColor) -> UIImage {
+        let rect = CGRectMake(0, 0, 100, 100)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetFillColor(context, CGColorGetComponents(color.CGColor))
+        CGContextFillRect(context, rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 }

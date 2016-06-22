@@ -38,7 +38,6 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         self.title = "注册"
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.init(hexString: "#ffffff", withAlpha: 1.0)]
         
@@ -64,7 +63,11 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
     }
     
-  
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        
+        super.viewWillAppear(animated)
+    }
     
     func setupViews() {
         //图标
@@ -141,6 +144,15 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
             make.height.equalTo(1)
         }
         
+        let verifyTagImageView = UIImageView()
+        verifyTagImageView.image = UIImage.init(named: "perfect")
+        scrollView.addSubview(verifyTagImageView)
+        verifyTagImageView.snp_makeConstraints { (make) in
+            make.left.equalTo(30)
+            make.width.height.equalTo(25)
+            make.centerY.equalTo(passwordTagImageView.snp_centerY).offset(50)
+        }
+        
         verifyTextField = UITextField()
         verifyTextField.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         verifyTextField.placeholder = "验证码"
@@ -185,6 +197,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         protocolCheckButton = UIButton.init(type: .Custom)
+        protocolCheckButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
         scrollView.addSubview(protocolCheckButton)
         protocolCheckButton.snp_makeConstraints { (make) in
             make.left.equalTo(view).offset(20)
@@ -192,7 +205,15 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
             make.top.equalTo(line2.snp_bottom).offset(20)
         }
         
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.gotoProtocol))
         protocolLabel = UILabel()
+        let agree: NSString = "同意注册协议"
+        let attributeString = NSMutableAttributedString.init(string: "同意注册协议", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        attributeString.addAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], range: NSMakeRange(0, 2))
+        attributeString.addAttributes([NSForegroundColorAttributeName: UIColor.greenColor()], range: NSMakeRange(2, agree.length - 2))
+        protocolLabel.attributedText = attributeString
+
+        protocolLabel.addGestureRecognizer(tap)
         scrollView.addSubview(protocolLabel)
         protocolLabel.snp_makeConstraints { (make) in
             make.centerY.equalTo(protocolCheckButton)
@@ -200,6 +221,8 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         let enterpriseLabel = UILabel()
+        enterpriseLabel.text = "企业"
+        enterpriseLabel.textColor = UIColor.whiteColor()
         scrollView.addSubview(enterpriseLabel)
         enterpriseLabel.snp_makeConstraints { (make) in
             make.right.equalTo(line2.snp_right)
@@ -207,6 +230,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         let enterPriseButton = UIButton.init(type: .Custom)
+        enterPriseButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
         scrollView.addSubview(enterPriseButton)
         enterPriseButton.snp_makeConstraints { (make) in
             make.width.height.equalTo(protocolCheckButton)
@@ -215,6 +239,9 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         let personalLabel = UILabel()
+        personalLabel.text = " 个人  /"
+        personalLabel.textColor = UIColor.whiteColor()
+
         scrollView.addSubview(personalLabel)
         personalLabel.snp_makeConstraints { (make) in
             make.right.equalTo(enterPriseButton.snp_left).offset(-8)
@@ -222,6 +249,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         let personalButton = UIButton.init(type: .Custom)
+        personalButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
         scrollView.addSubview(personalButton)
         personalButton.snp_makeConstraints { (make) in
             make.width.height.equalTo(enterPriseButton)
@@ -230,15 +258,15 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         
-        
-        
         registerButton = UIButton.init(type: .Custom)
         registerButton.addTarget(self, action: #selector(self.register), forControlEvents: .TouchUpInside)
         registerButton.setTitle("注册", forState: .Normal)
         registerButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        registerButton.backgroundColor = UIColor.flatMintColor()
+        registerButton.backgroundColor = UIColor.clearColor()
         registerButton.layer.cornerRadius = 3.0
         registerButton.layer.masksToBounds = true
+        registerButton.layer.borderWidth = 1
+        registerButton.layer.borderColor = UIColor.whiteColor().CGColor
         scrollView.addSubview(registerButton)
 
         registerButton.snp_makeConstraints { (make) in
@@ -255,6 +283,10 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         if checkValidation() {
             
         }
+    }
+    
+    func gotoProtocol() {
+        
     }
     
     
