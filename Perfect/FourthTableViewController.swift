@@ -13,7 +13,7 @@ import Async
 
 class FourthTableViewController: UITableViewController {
 
-    let items = ["个人信息","修改密码", "设置手势密码","收货地址管理","清除缓存","我的订单","退出登录"]
+    let items = ["个人信息","修改密码","收货地址管理","清除缓存","我的订单","退出登录"]
     var header: UIView!
     
     var avatarImageView: UIImageView!
@@ -152,36 +152,31 @@ class FourthTableViewController: UITableViewController {
             personal.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(personal, animated: true)
         } else if indexPath.row == 1 {
-            
             let change = Tool.sb.instantiateViewControllerWithIdentifier("ChangePasswordViewController") as! ChangePasswordViewController
             change.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(change, animated: true)
 
-          
         } else if indexPath.row == 2 {
-            let gesture = Tool.sb.instantiateViewControllerWithIdentifier("GesturePasswordViewController") as! GesturePasswordViewController
-            gesture.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(gesture, animated: true)
-          
-        } else if indexPath.row == 3 {
             let addressVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AddressViewController") as! AddressViewController
             addressVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(addressVC, animated: true)
-          } else if indexPath.row == 4 {
-            
+        } else if indexPath.row == 3 {
             //提示清楚缓存
             SVProgressHUD.showWithStatus("正在清除缓存")
             Async.main(after: 1.0, block: {
                 SVProgressHUD.showSuccessWithStatus("清除成功")
             })
-        } else if indexPath.row == 5 {
+          } else if indexPath.row == 4 {
             let orderVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AllOrderViewController") as! AllOrderViewController
             orderVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(orderVC, animated: true)
-        } else {
+          
+        } else if indexPath.row == 5 {
             Util.logined = false
             let tab =  Tool.root.viewControllers.first as! RootTabBarController
             tab.selectedIndex = 0
+        } else {
+          
         }
     }
     

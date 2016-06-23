@@ -19,7 +19,6 @@
 		8721877C1D19888E00281A19 /* NSObject+UIAppearanceSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = 8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */; };
 		8721877E1D19921000281A19 /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721877D1D19921000281A19 /* AvatarViewController.swift */; };
 		8752BF3A1D14E28100ED58D3 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */; };
-		8752BF3C1D14E2F800ED58D3 /* GesturePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */; };
 		8763BC161CFB32CA00FAB8D7 /* FirstDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */; };
 		8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */; };
 		8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */; };
@@ -80,7 +79,6 @@
 		8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UIAppearanceSwift.m"; sourceTree = "<group>"; };
 		8721877D1D19921000281A19 /* AvatarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
 		8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
-		8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GesturePasswordViewController.swift; sourceTree = "<group>"; };
 		8763BC151CFB32CA00FAB8D7 /* FirstDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstDetailViewController.swift; sourceTree = "<group>"; };
 		8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
 		8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 				8763BC271CFC82A900FAB8D7 /* address */,
 				870F383B1CF9CC6000AFF1AF /* Personal */,
 				8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */,
-				8752BF3B1D14E2F800ED58D3 /* GesturePasswordViewController.swift */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -578,7 +575,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				870F38231CF9489400AFF1AF /* LoginViewController.swift in Sources */,
-				8752BF3C1D14E2F800ED58D3 /* GesturePasswordViewController.swift in Sources */,
 				87A5AA5B1D0F11BB000A1B41 /* FirstPageViewController.swift in Sources */,
 				DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */,
 				870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */,
