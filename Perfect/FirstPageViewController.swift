@@ -11,6 +11,7 @@ import FDFullscreenPopGesture
 import SnapKit
 import SDCycleScrollView
 import Kingfisher
+import SVProgressHUD
 
 class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
@@ -25,17 +26,12 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-//        self.navigationController?.navigationBar.hidden = true
         fd_prefersNavigationBarHidden = true
         edgesForExtendedLayout = UIRectEdge.None
 
-        //
         topBanners = [FirstBannerItem]()
         customButtons = [FirstButtonItem]()
         goodTypes = [FirstGoodsTypeItem]()
-
-        
         
         collection = UICollectionView.init(frame: view.bounds, collectionViewLayout: CollectionLayout())
         view.addSubview(collection)
@@ -43,24 +39,28 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         collection.backgroundColor = UIColor.lightGrayColor()
         collection.delegate = self
         collection.dataSource = self
-    
-
         collection.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
         collection.registerClass(CollectionViewBannerCell.self, forCellWithReuseIdentifier: CollectionViewBannerCell.identifier)
         collection.registerClass(CollectionViewButtonsCell.self, forCellWithReuseIdentifier: CollectionViewButtonsCell.identifier)
         collection.registerClass(CollectionViewFootCell.self, forCellWithReuseIdentifier: CollectionViewFootCell.identifier)
-
         collection.registerClass(Header.self, forSupplementaryViewOfKind: Header.kind, withReuseIdentifier: Header.identifier)
+        collection.hidden = true
         
+        SVProgressHUD.showWithStatus("正在获取商品信息")
         NetworkHelper.instance.request(.GET, url: URLConstant.FirstPage.contant, parameters: nil, completion: { [weak self](res: FirstPageResponse?) in
+                SVProgressHUD.dismiss()
                 self?.topBanners = res?.retObj?.topBanners
                 self?.customButtons = res?.retObj?.buttons
                 self?.fetchProductsByGoodTypes(res?.retObj?.types)
                 self?.collection.reloadData()
-        }) { (errMsg: String?, errCode: Int) in
+                self?.collection.hidden = false
 
+        }) { (errMsg: String?, errCode: Int) in
+            SVProgressHUD.showErrorWithStatus(errMsg)
         }
     }
+    
+    //根据分类ID获取商品列表
     
     func fetchProductsByGoodTypes(types:[FirstGoodsTypeItem]?) {
         self.goodTypes = types
@@ -76,10 +76,8 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
                 self?.goods = product?.retObj?.rows
                 self?.collection.reloadSections(NSIndexSet.init(index: 3))
             }) { (errMsg: String?, errCode: Int) in
+                SVProgressHUD.showErrorWithStatus(errMsg)
         }
-        
-        
-        
     }
     
     
@@ -91,11 +89,8 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if section == 0 {
-            
             return 1
-        
         } else if section == 1 {
-            
             if let btns = self.customButtons {
                 return btns.count
             } else {
@@ -106,7 +101,6 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         } else {
             if let _ = goods {
                 return goods!.count
-//                return 100
             } else {
                 return 0
             }
@@ -130,7 +124,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
                 
            
                 let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
-                detail.tagID = id
+                detail.id = id
                 detail.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(detail, animated: true)
             }
@@ -158,9 +152,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
                 }
             }
             
-            
             cell.imageView.kf_setImageWithURL(NSURL.init(string: buttonsUrl[indexPath.row])!, placeholderImage: UIImage.init(named: "h8"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
-            
             
             return cell
         } else if indexPath.section == 2 {
@@ -237,7 +229,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             print("action: \(action)")
             
             let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
-            detail.tagID = action!.actionID
+            detail.id = action!.actionID
             detail.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detail, animated: true)
             
@@ -248,8 +240,6 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             detail.id = self.goods![indexPath.row].id
             detail.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detail, animated: true)
-            
-            
         }
     }
 

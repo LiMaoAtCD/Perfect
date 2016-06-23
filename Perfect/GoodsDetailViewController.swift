@@ -8,17 +8,15 @@
 
 import UIKit
 import SDCycleScrollView
+import SVProgressHUD
 
 class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     var scrollView: UIScrollView!
 
     var topBanner: SDCycleScrollView!
     var goodsInfoView: UIView!
-    
     var goodIntroView: UIView!
-    
     var introImageViews: [UIImageView]!
-    
     var webview: UIWebView!
     
     
@@ -34,13 +32,15 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
 
         // Do any additional setup after loading the view.
         
-        
-        NetworkHelper.instance.request(.GET, url: URLConstant.appProductDetail.contant, parameters: ["id":"11"], completion: { [weak self](response: ProductDetailResponse?) in
+        SVProgressHUD.showWithStatus("正在获取商品详情")
+        NetworkHelper.instance.request(.GET, url: URLConstant.appProductDetail.contant, parameters: ["id": NSNumber.init(longLong: id)], completion: { [weak self](response: ProductDetailResponse?) in
+                SVProgressHUD.dismiss()
                 self?.detail = response?.retObj
                 self?.updateViews()
             }) { (errMsg: String?, errCode: Int) in
-                
+                SVProgressHUD.showErrorWithStatus(errMsg ?? "商品信息获取失败")
         }
+        
         scrollView = UIScrollView.init()
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { (make) in
@@ -56,7 +56,6 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         configureGoodIntrowebView()
         
         bottomView = UIView()
-        
         view.addSubview(bottomView)
         bottomView.snp_makeConstraints { (make) in
             make.left.right.bottom.equalTo(view)

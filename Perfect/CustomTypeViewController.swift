@@ -10,7 +10,7 @@ import UIKit
 
 class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
-    var tagID: Int64 = 0
+    var id: Int64 = 0
     var collectionView: UICollectionView!
     var items: [ProductItem]?
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         collectionView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
         collectionView.registerClass(CollectionViewBannerCell.self, forCellWithReuseIdentifier: CollectionViewBannerCell.identifier)
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: tagID)], completion: { [weak self](product: ProductListResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: id)], completion: { [weak self](product: ProductListResponse?) in
             print(product)
             self?.items = product?.retObj?.rows
             self?.collectionView.reloadSections(NSIndexSet.init(index: 1))
@@ -65,9 +65,9 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
             cell.banner.clickItemOperationBlock = {
                 currentIndex in
                 
-                let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodsDetailViewController") as! GoodsDetailViewController
-                detail.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(detail, animated: true)
+//                let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodsDetailViewController") as! GoodsDetailViewController
+//                detail.hidesBottomBarWhenPushed = true
+//                self.navigationController?.pushViewController(detail, animated: true)
             }
             
             let imageUrl =  [
@@ -88,14 +88,9 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
             return cell
         }else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCell.identifier, forIndexPath: indexPath) as! CollectionViewCell
-            let item = items![indexPath.row]
-            
-            cell.entity = item
-            
-            return cell
-            
+                cell.entity = items![indexPath.row]
+                return cell
         }
-        
     }
     
     
@@ -106,13 +101,12 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
             return CGSizeMake(Tool.width / 2 - 5, 200)
         }
     }
-    
-    
-    
+
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
             let detail = GoodsDetailViewController.someController(GoodsDetailViewController.self, ofStoryBoard: UIStoryboard.main)
             detail.hidesBottomBarWhenPushed = true
+            detail.id = self.items![indexPath.row].id
             self.navigationController?.pushViewController(detail, animated: true)
         }
     }
