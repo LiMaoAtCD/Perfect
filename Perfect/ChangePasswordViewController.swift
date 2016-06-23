@@ -190,24 +190,59 @@ class ChangePasswordViewController: BaseViewController {
     
     //MARK: 修改密码
     func sure() {
-//        NetworkHelper.instance.request(.GET, url: URLConstant.resetPasswordByMobile.contant, parameters: ["username": cellphone, "password": password,"validCode": validCode], completion: { [weak self](result: DataResponse?) in
-//                SVProgressHUD.showSuccessWithStatus("密码修改成功")
-//                Async.main(after: 1.0, block: {
-//                    self?.navigationController?.popViewControllerAnimated(true)
-//                })
-//            }) { (errMsg, errCode) in
-//                if errCode == 1 {
-//                    SVProgressHUD.showErrorWithStatus("用户名或手机号码不存在")
-//                } else if errCode == 2 {
-//                    SVProgressHUD.showErrorWithStatus("验证码不正确")
-//                } else if errCode == 3 {
-//                    SVProgressHUD.showErrorWithStatus("输入项格式不符合要求")
-//                } else {
-//                    SVProgressHUD.showErrorWithStatus("密码修改失败")
-//                }
-//        }
+        if checkValid() {
+            NetworkHelper.instance.request(.GET, url: URLConstant.updateLoginMemberPassword.contant, parameters: ["oldPassword":oldPassword,"password":password], completion: { (result: DataResponse?) in
+                
+            }) { (msg: String?, code: Int) in
+                if code == -2 {
+                    let login = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginNavigationController") as! LoginNavigationController
+                    self.presentViewController(login, animated: true, completion: nil)
+                } else {
+                    SVProgressHUD.showErrorWithStatus(msg ?? "修改失败")
+                }
+            }
+        }
     }
 
+    func checkValid() -> Bool {
+
+        
+        guard (self.password as NSString).length >= 6 else {
+            showAlertWithMessage("请输入至少6位密码", block: { (_) -> Void in
+                
+            })
+            return false
+        }
+        
+        
+        guard self.password != "" else {
+            showAlertWithMessage("请输入密码", block: { (_) -> Void in
+                
+            })
+            
+            return false
+        }
+        
+        guard self.password!.isValidPassword else {
+            showAlertWithMessage("密码为6-16位字母数字", block: { (_) -> Void in
+                
+            })
+            
+            return false
+        }
+        
+        guard password == confirmPassword else {
+            showAlertWithMessage("二次密码输入不一致", block: { (_) -> Void in
+                
+            })
+            
+            return false
+        }
+
+        
+        return true
+
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

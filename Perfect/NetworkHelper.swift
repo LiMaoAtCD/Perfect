@@ -29,7 +29,7 @@ enum URLConstant: String {
     case appConfirmOrder = "appConfirmOrder"//确认订单
     case appOrderHistory = "appOrderHistory" //历史订单
     case resetPasswordByMobile = "resetPasswordByMobile" // 重置密码
-    case resetPswByMobile = "resetPswByMobile" //找回密码
+    case updateLoginMemberPassword = "updateLoginMemberPassword"//修改密码
     case getRegAgreement = "getRegAgreement"
     case memberLogin = "memberLogin"
     

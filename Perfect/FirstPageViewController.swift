@@ -237,7 +237,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             print("action: \(action)")
             
             let detail = FirstDetailViewController.someController(FirstDetailViewController.self, ofStoryBoard: UIStoryboard.main)
-            detail.tagID = action?.actionID
+            detail.tagID = (action?.actionID)!
             self.navigationController?.pushViewController(detail, animated: true)
             
         } else if indexPath.section == 3 {
