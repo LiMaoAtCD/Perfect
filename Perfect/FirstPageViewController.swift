@@ -15,14 +15,12 @@ import Kingfisher
 class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     var collection : UICollectionView!
-    
     var topBanners: [FirstBannerItem]?
     var customButtons: [FirstButtonItem]?
     var goodTypes: [FirstGoodsTypeItem]?
     var goods: [ProductItem]?
     
-    var selectionSection = 0
-
+    var selectionSection = 0 //  当前选中的分类
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +128,9 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
                 print("id:\(id) & action: \(action)")
                 
                 
-                let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
+           
+                let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
+                detail.tagID = id
                 detail.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(detail, animated: true)
             }
@@ -236,16 +236,16 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             let action = item.action
             print("action: \(action)")
             
-            let detail = FirstDetailViewController.someController(FirstDetailViewController.self, ofStoryBoard: UIStoryboard.main)
+            let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
             detail.tagID = action!.actionID
             detail.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detail, animated: true)
             
         } else if indexPath.section == 3 {
             //MARK: 处理普通商品
-            let good = self.goods!
             
-            let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
+            let detail = GoodsDetailViewController.someController(GoodsDetailViewController.self, ofStoryBoard: UIStoryboard.main)
+            detail.id = self.goods![indexPath.row].id
             detail.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detail, animated: true)
             

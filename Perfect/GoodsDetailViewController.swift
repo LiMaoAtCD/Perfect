@@ -27,6 +27,8 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     var detail: ProductDetailEntity?
     
     let bottomHeight = 44
+    
+    var id: Int64 = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -393,10 +393,10 @@
             </objects>
             <point key="canvasLocation" x="-848" y="5825"/>
         </scene>
-        <!--First Detail View Controller-->
+        <!--Custom Type View Controller-->
         <scene sceneID="Tio-oe-uQv">
             <objects>
-                <viewController storyboardIdentifier="FirstDetailViewController" id="aqq-Hu-Rmw" customClass="FirstDetailViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CustomTypeViewController" id="aqq-Hu-Rmw" customClass="CustomTypeViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ppz-B6-WjF"/>
                         <viewControllerLayoutGuide type="bottom" id="HZd-lV-Run"/>

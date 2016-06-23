@@ -1,21 +1,21 @@
 //
-//  FirstDetailViewController.swift
+//  CustomTypeViewController.swift
 //  Perfect
 //
-//  Created by AlienLi on 16/5/29.
+//  Created by AlienLi on 16/6/23.
 //  Copyright © 2016年 limao. All rights reserved.
 //
 
 import UIKit
 
-class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     var tagID: Int64 = 0
     var collectionView: UICollectionView!
     var items: [ProductItem]?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         fd_prefersNavigationBarHidden = false
@@ -26,7 +26,7 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
-
+        
         
         collectionView.registerClass(FirstDetailCollectionCell.self, forCellWithReuseIdentifier: FirstDetailCollectionCell.identifier)
         
@@ -36,11 +36,11 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
         
         collectionView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
         collectionView.registerClass(CollectionViewBannerCell.self, forCellWithReuseIdentifier: CollectionViewBannerCell.identifier)
-
+        
         NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: tagID)], completion: { [weak self](product: ProductListResponse?) in
-                print(product)
-                self?.items = product?.retObj?.rows
-                self?.collectionView.reloadSections(NSIndexSet.init(index: 1))
+            print(product)
+            self?.items = product?.retObj?.rows
+            self?.collectionView.reloadSections(NSIndexSet.init(index: 1))
             
         }) { (errMsg: String?, errCode: Int) in
             
@@ -75,26 +75,26 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
                 "https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
                 "https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg"
             ]
-
-//            if let _ = topBanners {
-//                for item in topBanners! {
-//                    imageUrl.append(item.imgUrl!)
-//                }
-//            }
+            
+            //            if let _ = topBanners {
+            //                for item in topBanners! {
+            //                    imageUrl.append(item.imgUrl!)
+            //                }
+            //            }
             
             cell.banner.placeholderImage = UIImage.init(named: "h8")
             cell.banner.imageURLStringsGroup = imageUrl
             
             return cell
         }else {
-                let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCell.identifier, forIndexPath: indexPath) as! CollectionViewCell
-                let item = items![indexPath.row]
-                
-                cell.entity = item
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCell.identifier, forIndexPath: indexPath) as! CollectionViewCell
+            let item = items![indexPath.row]
             
-                return cell
-
-            }
+            cell.entity = item
+            
+            return cell
+            
+        }
         
     }
     
@@ -106,12 +106,12 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
             return CGSizeMake(Tool.width / 2 - 5, 200)
         }
     }
-
+    
     
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
-            let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
+            let detail = GoodsDetailViewController.someController(GoodsDetailViewController.self, ofStoryBoard: UIStoryboard.main)
             detail.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detail, animated: true)
         }
@@ -121,17 +121,7 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -174,6 +164,3 @@ class FirstDetailCollectionCell: UICollectionViewCell {
     
     
 }
-
-
-
