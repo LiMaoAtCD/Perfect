@@ -97,7 +97,7 @@ class ProductItem: Mappable {
     var price: Float = 0.0
     var imageId: Int64 = 0
     var fullName: String?
-    
+    var id: Int64 = 0
     
     required init?(_ map: Map) {
     }
@@ -107,6 +107,7 @@ class ProductItem: Mappable {
         price <- map["price"]
         imageId <- (map["imageId"], TransformOfUtils.TransformOfInt64())
         fullName <- map["fullName"]
+        id <- (map["id"], TransformOfUtils.TransformOfInt64())
     }
 }
 

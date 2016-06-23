@@ -74,7 +74,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             }
         }
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id)], completion: { [weak self](product: ProductListResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": 1], completion: { [weak self](product: ProductListResponse?) in
                 self?.goods = product?.retObj?.rows
                 self?.collection.reloadSections(NSIndexSet.init(index: 3))
             }) { (errMsg: String?, errCode: Int) in
@@ -237,12 +237,14 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             print("action: \(action)")
             
             let detail = FirstDetailViewController.someController(FirstDetailViewController.self, ofStoryBoard: UIStoryboard.main)
-            detail.tagID = (action?.actionID)!
+            detail.tagID = action!.actionID
+            detail.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detail, animated: true)
             
         } else if indexPath.section == 3 {
             //MARK: 处理普通商品
-//            let good = self.goods!
+            let good = self.goods!
+            
             let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
             detail.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detail, animated: true)

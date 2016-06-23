@@ -12,14 +12,15 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
 
     var tagID: Int64 = 0
     var collectionView: UICollectionView!
-    
+    var items: [ProductItem]?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
         fd_prefersNavigationBarHidden = false
-
+        
+        items = [ProductItem]()
         collectionView = UICollectionView.init(frame: view.bounds, collectionViewLayout: CustomCollectionLayout())
         collectionView.backgroundColor = UIColor.whiteColor()
         collectionView.delegate = self
@@ -37,9 +38,12 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
         collectionView.registerClass(CollectionViewBannerCell.self, forCellWithReuseIdentifier: CollectionViewBannerCell.identifier)
 
         NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: tagID)], completion: { [weak self](product: ProductListResponse?) in
-            
+                print(product)
+                self?.items = product?.retObj?.rows
+                self?.collectionView.reloadSections(NSIndexSet.init(index: 1))
             
         }) { (errMsg: String?, errCode: Int) in
+            
         }
     }
     
@@ -51,7 +55,7 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             return 1
-        } else {return 10}
+        } else {return items!.count}
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -60,12 +64,6 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
             //MARK: 处理banner 跳转
             cell.banner.clickItemOperationBlock = {
                 currentIndex in
-                
-//                let item = self.topBanners![currentIndex]
-//                let id = item.id
-//                let action  = item.action!
-//                print("id:\(id) & action: \(action)")
-                
                 
                 let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodsDetailViewController") as! GoodsDetailViewController
                 detail.hidesBottomBarWhenPushed = true
@@ -90,9 +88,9 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
             return cell
         }else {
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCell.identifier, forIndexPath: indexPath) as! CollectionViewCell
-//                let item = goods![selectionSection][indexPath.row]
-//                cell.imageView.kf_setImageWithURL(NSURL.init(string:item)!, placeholderImage: UIImage.init(named: "h8"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
-            
+                let item = items![indexPath.row]
+                
+                cell.entity = item
             
                 return cell
 
@@ -112,7 +110,11 @@ class FirstDetailViewController: BaseViewController, UICollectionViewDelegateFlo
     
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-     
+        if indexPath.section == 1 {
+            let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstDetailViewController") as! FirstDetailViewController
+            detail.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(detail, animated: true)
+        }
     }
     
     override func didReceiveMemoryWarning() {
