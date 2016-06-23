@@ -220,16 +220,6 @@
 			name = address;
 			sourceTree = "<group>";
 		};
-		878F224F1D14F7230074E1A2 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */,
-				DA1A6B2B1D1257F400FD4FB0 /* CustomGoodViewController.swift */,
-				8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */,
-			);
-			name = Detail;
-			sourceTree = "<group>";
-		};
 		878F22501D163EFA0074E1A2 /* KKGestrueLock */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,9 +354,11 @@
 		DA57ED151CF7D56500A8083A /* First */ = {
 			isa = PBXGroup;
 			children = (
-				878F224F1D14F7230074E1A2 /* Detail */,
 				87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */,
 				8768B2A01D1C1387003A6201 /* CustomTypeViewController.swift */,
+				87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */,
+				DA1A6B2B1D1257F400FD4FB0 /* CustomGoodViewController.swift */,
+				8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */,
 			);
 			name = First;
 			sourceTree = "<group>";

@@ -191,8 +191,12 @@ class ChangePasswordViewController: BaseViewController {
     //MARK: 修改密码
     func sure() {
         if checkValid() {
+            SVProgressHUD.showWithStatus("正在修改")
             NetworkHelper.instance.request(.GET, url: URLConstant.updateLoginMemberPassword.contant, parameters: ["oldPassword":oldPassword,"password":password], completion: { (result: DataResponse?) in
-                
+                    SVProgressHUD.showSuccessWithStatus("密码修改成功")
+                    Async.main(after: 1.0, block: { 
+                        self.navigationController?.popViewControllerAnimated(true)
+                    })
             }) { (msg: String?, code: Int) in
                 if code == -2 {
                     let login = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginNavigationController") as! LoginNavigationController

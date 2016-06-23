@@ -229,6 +229,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         protocolLabel.attributedText = attributeString
 
         protocolLabel.addGestureRecognizer(tap)
+        protocolLabel.userInteractionEnabled = true
         scrollView.addSubview(protocolLabel)
         protocolLabel.snp_makeConstraints { (make) in
             make.centerY.equalTo(protocolCheckButton)
@@ -450,7 +451,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
                     }
                 }, repeats: true)
             
-            NetworkHelper.instance.request(.GET, url: URLConstant.getMobileValidCode.contant, parameters: ["username": cellphone, "phone":cellphone], completion: { (result: DataResponse?) in
+            NetworkHelper.instance.request(.GET, url: URLConstant.getMobileValidCode.contant, parameters: ["username": cellphone, "phone":cellphone,"busiType": "reg"], completion: { (result: DataResponse?) in
                 SVProgressHUD.showSuccessWithStatus("验证码获取成功")
                 self.restoreTimer()
                 
@@ -463,6 +464,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
     }
     
+
     func restoreTimer() {
         self.timerCount = 60
         self.timer?.invalidate()

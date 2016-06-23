@@ -352,7 +352,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
                     self.verifyButton.userInteractionEnabled = false
                 }
                 }, repeats: true)
-            NetworkHelper.instance.request(.GET, url: URLConstant.getMobileValidCode.contant, parameters: ["username": cellphone, "phone":cellphone], completion: { (result: DataResponse?) in
+            NetworkHelper.instance.request(.GET, url: URLConstant.getMobileValidCode.contant, parameters: ["username": cellphone, "phone":cellphone,"busiType": "resetPsw"], completion: { (result: DataResponse?) in
                 SVProgressHUD.showSuccessWithStatus("验证码获取成功")
 
             }) { (errMsg, errCode) in
@@ -362,6 +362,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
             showAlertWithMessage("请输入正确的手机号码", block: nil)
         }
     }
+
     
     func restoreTimer() {
         self.timerCount = 60
