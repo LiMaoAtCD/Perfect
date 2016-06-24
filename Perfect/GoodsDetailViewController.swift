@@ -200,6 +200,8 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         }
         
         
+        
+        
 
     }
     

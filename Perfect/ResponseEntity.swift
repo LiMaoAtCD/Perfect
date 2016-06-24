@@ -354,10 +354,7 @@ class AreaIDItemEntity: Object, Mappable {
     }
 }
 
-class dada: Object {
-    dynamic var fullName:  String?
 
-}
 
 
 

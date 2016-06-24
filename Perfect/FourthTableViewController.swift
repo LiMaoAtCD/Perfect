@@ -15,11 +15,8 @@ class FourthTableViewController: UITableViewController {
 
     let items = ["个人信息","修改密码","收货地址管理","清除缓存","我的订单","退出登录"]
     var header: UIView!
-    
     var avatarImageView: UIImageView!
     var nickNameLabel: UILabel!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +127,7 @@ class FourthTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        if indexPath != NSIndexPath.init(forRow: 6, inSection: 0) {
+        if indexPath != NSIndexPath.init(forRow: 5, inSection: 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier(MeCell.identifier, forIndexPath: indexPath) as! MeCell
             cell.title.text = items[indexPath.row]
 
@@ -199,6 +196,11 @@ class FourthTableViewController: UITableViewController {
 
     
     func changeAvatar() {
+        
+        let avatarVC = AvatarViewController.someController(AvatarViewController.self, ofStoryBoard: UIStoryboard.main)
+        avatarVC.modalPresentationStyle = .OverCurrentContext
+        avatarVC.view.backgroundColor = UIColor.clearColor()
+        self.presentViewController(avatarVC, animated: false, completion: nil)
     }
     
     
