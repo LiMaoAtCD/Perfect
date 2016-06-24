@@ -30,9 +30,14 @@ enum URLConstant: String {
     case appOrderHistory = "appOrderHistory" //历史订单
     case resetPasswordByMobile = "resetPasswordByMobile" // 重置密码
     case updateLoginMemberPassword = "updateLoginMemberPassword"//修改密码
-    case getRegAgreement = "getRegAgreement"
     case memberLogin = "memberLogin"
-    
+    case updateLoginMemberInfo = "updateLoginMemberInfo" //更新个人信息
+    case getLoginMemberInfo = "getLoginMemberInfo" // 获取用户信息
+    case getSubAreas = "getSubAreas"
+    case setLoginMemberDefaultDeliveryAddress = "setLoginMemberDefaultDeliveryAddress"
+    case getLoginMemberDeliveryAddresses = "getLoginMemberDeliveryAddresses"
+    case deleteLoginMemberDeliveryAddress = "deleteLoginMemberDeliveryAddress"
+    case saveOrUpdateLoginMemberDeliveryAddress = "saveOrUpdateLoginMemberDeliveryAddress"
     var contant: String {
         return url + self.rawValue
     }

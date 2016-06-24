@@ -7,14 +7,27 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class PeronalViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     var items: [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+//        type	用户类别	string	false	个人:person,单位:company
+//        name	姓名	string	false
+//        gender	性别	string	false	男:male,女:female
+//        birth	生日	date	false
+//        avatarId	头像ID	int	false
+        
+
+        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberInfo.contant, parameters: nil, completion: { (result: MemberInfoResponse?) in
+            
+        }) { (errMsg: String?, errCode: Int) in
+            SVProgressHUD.showErrorWithStatus(errMsg ?? "个人信息获取失败")
+        }
+        
         items = ["姓名","性别","生日"]
 
         

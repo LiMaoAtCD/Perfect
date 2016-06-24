@@ -137,6 +137,35 @@ class ConfirmOrderResponse: DataResponse {
     
 }
 
+// 个人信息
+
+class MemberInfoResponse : DataResponse {
+    var retObj: MemberInfoEntity?
+
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        retObj <- map["retObj"]
+    }
+}
+
+//获取配送区域
+class AreaResponse: DataResponse {
+    var retObj: AreaIDEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        retObj <- map["retObj"]
+    }
+}
+
 
 
 

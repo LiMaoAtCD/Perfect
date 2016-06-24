@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 import RealmSwift
-
+import Realm
 // 首页
 class FirstEntity: Mappable {
     
@@ -310,6 +310,56 @@ class DeliverAddress: Object {
     dynamic var isDefault: Bool = false
     dynamic var id: Int = 0
 }
+
+
+class MemberInfoEntity: Mappable {
+    var phone: String?
+    var username:  String?
+    var type: String?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        username <- map["username"]
+        type <- map["type"]
+        phone <- map["phone"]
+    }
+}
+
+
+class AreaIDEntity: Mappable {
+    var areas: [AreaIDItemEntity]?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        areas <- map["areas"]
+    }
+
+}
+
+class AreaIDItemEntity: Object, Mappable {
+    dynamic var name: String?
+    dynamic var fullName:  String?
+    dynamic var id: Int = 0
+    
+    required convenience init?(_ map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        fullName <- map["fullName"]
+        name <- map["name"]
+    }
+}
+
+class dada: Object {
+    dynamic var fullName:  String?
+
+}
+
+
 
 
 
