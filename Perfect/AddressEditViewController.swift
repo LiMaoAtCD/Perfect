@@ -7,8 +7,9 @@
 //
 
 import UIKit
-
-class AddressEditViewController: BaseViewController {
+import SVProgressHUD
+import Async
+class AddressEditViewController: BaseViewController, UITextViewDelegate {
 
     var scrollView: UIScrollView!
     var upperView: UIView!
@@ -20,6 +21,11 @@ class AddressEditViewController: BaseViewController {
     
     var addressString: String = ""
     var areaID: Int64 = 0
+    var cellphone: String! = ""
+    var name: String! = ""
+    var detailAddress: String! = ""
+    
+    var id: Int64 = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +55,6 @@ class AddressEditViewController: BaseViewController {
         finishedButton.addTarget(self, action: #selector(self.finishEdit), forControlEvents: .TouchUpInside)
     }
     
-    func finishEdit() {
-        
-    }
 
     func setupUpper() {
         upperView = UIView()
@@ -75,7 +78,7 @@ class AddressEditViewController: BaseViewController {
         nameTextfield = UITextField.init()
         upperView.addSubview(nameTextfield)
         nameTextfield.placeholder = "请输入您的姓名"
-        
+        nameTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         nameTextfield.snp_makeConstraints { (make) in
             make.left.equalTo(title0.snp_right).offset(10)
             make.right.equalTo(upperView)
@@ -101,6 +104,9 @@ class AddressEditViewController: BaseViewController {
         
         phoneTextfield = UITextField.init()
         phoneTextfield.placeholder = "请输入您的电话"
+        phoneTextfield.keyboardType = .NumberPad
+        phoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
+
         upperView.addSubview(phoneTextfield)
         phoneTextfield.snp_makeConstraints { (make) in
             make.left.equalTo(title1.snp_right).offset(10)
@@ -152,6 +158,7 @@ class AddressEditViewController: BaseViewController {
         }
         
         let detailAddress = UITextView.init()
+        detailAddress.delegate = self
         upperView.addSubview(detailAddress)
         detailAddress.snp_makeConstraints { (make) in
             make.left.equalTo(upperView).offset(8)
@@ -163,6 +170,8 @@ class AddressEditViewController: BaseViewController {
         detailAddress.text = "详细地址"
     }
     
+    
+    //选择地址
     func chooseAddress() {
         let vc = AddressChooseViewController.someController(AddressChooseViewController.self, ofStoryBoard: UIStoryboard.main)
         
@@ -179,6 +188,83 @@ class AddressEditViewController: BaseViewController {
             print((self?.addressString)! + String(self?.areaID))
         }
     }
+    
+    //MARK: 输入框处理
+    func textFieldDidEditChanged(textfield: UITextField) {
+        //
+        if textfield == nameTextfield {
+            name = textfield.text
+            let text = NSString(string: name)
+            if text.length > 11 {
+                textfield.text = text.substringToIndex(11)
+                cellphone = textfield.text
+            }
+        } else if textfield == phoneTextfield {
+            cellphone = textfield.text
+            let text = NSString(string: cellphone!)
+            if text.length > 11 {
+                textfield.text = text.substringToIndex(11)
+                cellphone = textfield.text
+            }
+        } else {
+            
+        }
+    }
+    
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        if textView.text == "详细地址" {
+            textView.text = ""
+        }
+        
+        return true
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        detailAddress = textView.text
+    }
+    
+    func finishEdit() {
+        
+        if self.name == "" {
+            showAlertWithMessage("姓名不能为空", block: nil)
+            return
+        } else if !self.cellphone.isValidCellPhone {
+            showAlertWithMessage("手机号码不正确", block: nil)
+            return
+        } else if addressString == "" {
+            showAlertWithMessage("地址不能为空", block: nil)
+            return
+        } else if detailAddress == "" {
+            showAlertWithMessage("详细地址不能为空", block: nil)
+            return
+        }
+        
+        var params = [String:AnyObject]()
+        if id != -1 {
+            params["id"] = NSNumber.init(longLong: id)
+        }
+        params["name"] = name
+        params["phone"] = cellphone
+        params["address"] = addressString + detailAddress
+        
+        SVProgressHUD.showWithStatus("正在处理")
+        NetworkHelper.instance.request(.GET, url: URLConstant.saveOrUpdateLoginMemberDeliveryAddress.contant, parameters: params, completion: { (result: DataResponse?) in
+                SVProgressHUD.showSuccessWithStatus("操作成功")
+                Async.main(after: 1.0, block: { 
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
+            }) { (errormsg, errcode) in
+                SVProgressHUD.showErrorWithStatus(errormsg ?? "地址修改失败")
+        }
+    }
+
+
+//    id	id	int	false	对应收件地址列表中的id,为空时新建,不为空时更新
+//    areaId	区域ID	int	true	要求选择到区县级
+//    name	收件人姓名	string	true
+//    phone	收件人电话	string	true
+//    address	收件人电话	string	true
+//    isDefault	是否默认	bool	false
     
     
     override func didReceiveMemoryWarning() {

@@ -37,6 +37,7 @@ class AddressChooseViewController: UIViewController,UIPickerViewDelegate, UIPick
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.clearColor()
+        self.blackView.alpha = 0.0
         pickView.delegate = self
         pickView.dataSource = self
         
@@ -141,14 +142,12 @@ class AddressChooseViewController: UIViewController,UIPickerViewDelegate, UIPick
             if countys!.isEmpty {
                 addressString = provinces![selectionProvinceRow].n! + citys![selectionCityRow].n!
                 areaID = citys![selectionCityRow].i
-                print(addressString)
             }
         } else {
             if countys!.isEmpty {
             } else {
                 addressString = provinces![selectionProvinceRow].n! + citys![selectionCityRow].n! + countys![row].n!
-                areaID = citys![selectionCityRow].i
-                print(addressString)
+                areaID = countys![selectionCityRow].i
 
             }
             
