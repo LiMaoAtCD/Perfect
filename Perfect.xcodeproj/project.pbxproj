@@ -22,6 +22,7 @@
 		8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */; };
 		8763BC391CFDEC6F00FAB8D7 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */; };
 		8768B2A11D1C1387003A6201 /* CustomTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768B2A01D1C1387003A6201 /* CustomTypeViewController.swift */; };
+		8768B2A31D1E1BCD003A6201 /* AddressChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768B2A21D1E1BCD003A6201 /* AddressChooseViewController.swift */; };
 		878F22551D163F1A0074E1A2 /* KKGestureLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878F22521D163F1A0074E1A2 /* KKGestureLockView.m */; };
 		878F22561D163F1A0074E1A2 /* KKGestureLockPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878F22541D163F1A0074E1A2 /* KKGestureLockPreviewView.m */; };
 		878F22861D182AE70074E1A2 /* AddressEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F22841D182AE70074E1A2 /* AddressEditViewController.swift */; };
@@ -82,6 +83,7 @@
 		8763BC281CFC82CC00FAB8D7 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
 		8763BC371CFDEC6F00FAB8D7 /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		8768B2A01D1C1387003A6201 /* CustomTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTypeViewController.swift; sourceTree = "<group>"; };
+		8768B2A21D1E1BCD003A6201 /* AddressChooseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressChooseViewController.swift; sourceTree = "<group>"; };
 		878F22511D163F1A0074E1A2 /* KKGestureLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKGestureLockView.h; sourceTree = "<group>"; };
 		878F22521D163F1A0074E1A2 /* KKGestureLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKGestureLockView.m; sourceTree = "<group>"; };
 		878F22531D163F1A0074E1A2 /* KKGestureLockPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKGestureLockPreviewView.h; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			children = (
 				878F22841D182AE70074E1A2 /* AddressEditViewController.swift */,
 				878F22851D182AE70074E1A2 /* AddressEditViewController.xib */,
+				8768B2A21D1E1BCD003A6201 /* AddressChooseViewController.swift */,
 			);
 			name = AddressEditController;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */,
 				8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */,
 				DA1A6B251D124A3600FD4FB0 /* MarketLabel.swift in Sources */,
+				8768B2A31D1E1BCD003A6201 /* AddressChooseViewController.swift in Sources */,
 				87A5AA5F1D10C636000A1B41 /* GoodsDetailViewController.swift in Sources */,
 				878F22551D163F1A0074E1A2 /* KKGestureLockView.m in Sources */,
 				870F38251CF973CC00AFF1AF /* RegisterViewController.swift in Sources */,

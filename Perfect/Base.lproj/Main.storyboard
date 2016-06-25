@@ -465,6 +465,84 @@
             </objects>
             <point key="canvasLocation" x="926" y="8053"/>
         </scene>
+        <!--Address Choose View Controller-->
+        <scene sceneID="IzW-WO-xKb">
+            <objects>
+                <viewController storyboardIdentifier="AddressChooseViewController" id="dAl-YG-fl6" customClass="AddressChooseViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vGA-RK-GQO"/>
+                        <viewControllerLayoutGuide type="bottom" id="7mg-Oc-JfQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ruM-1H-pzg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZW-rI-9g5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4a-mj-QXv">
+                                <rect key="frame" x="0.0" y="230" width="320" height="250"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZB-h9-zrc">
+                                        <rect key="frame" x="0.0" y="34" width="320" height="216"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="216" id="C3A-0j-lJe"/>
+                                        </constraints>
+                                    </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgd-0g-KD3">
+                                        <rect key="frame" x="0.0" y="8" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="LMJ-Bu-rNI"/>
+                                            <constraint firstAttribute="width" constant="46" id="o0m-B7-vuI"/>
+                                        </constraints>
+                                        <state key="normal" title="取消"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DwE-m6-Qgf">
+                                        <rect key="frame" x="274" y="8" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="re3-hK-aqI"/>
+                                            <constraint firstAttribute="width" constant="46" id="vdG-vW-vda"/>
+                                        </constraints>
+                                        <state key="normal" title="确定"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="eZB-h9-zrc" secondAttribute="bottom" id="FQh-v7-F81"/>
+                                    <constraint firstAttribute="trailing" secondItem="eZB-h9-zrc" secondAttribute="trailing" id="Ifv-l1-5gP"/>
+                                    <constraint firstAttribute="height" constant="250" id="Ik4-rh-ltr"/>
+                                    <constraint firstItem="eZB-h9-zrc" firstAttribute="leading" secondItem="U4a-mj-QXv" secondAttribute="leading" id="J0m-UJ-xj5"/>
+                                    <constraint firstItem="Tgd-0g-KD3" firstAttribute="top" secondItem="U4a-mj-QXv" secondAttribute="top" constant="8" id="cX4-WF-8LP"/>
+                                    <constraint firstItem="DwE-m6-Qgf" firstAttribute="top" secondItem="U4a-mj-QXv" secondAttribute="top" constant="8" id="f6z-Eu-nvw"/>
+                                    <constraint firstAttribute="trailing" secondItem="DwE-m6-Qgf" secondAttribute="trailing" id="scL-cm-RVS"/>
+                                    <constraint firstItem="Tgd-0g-KD3" firstAttribute="leading" secondItem="U4a-mj-QXv" secondAttribute="leading" id="wEM-Wf-IGa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="U4a-mj-QXv" firstAttribute="leading" secondItem="fZW-rI-9g5" secondAttribute="leading" id="3xC-W5-14e"/>
+                            <constraint firstItem="7mg-Oc-JfQ" firstAttribute="top" secondItem="fZW-rI-9g5" secondAttribute="bottom" id="CEZ-6h-r9h"/>
+                            <constraint firstItem="7mg-Oc-JfQ" firstAttribute="top" secondItem="U4a-mj-QXv" secondAttribute="bottom" id="J1K-XR-0Tl"/>
+                            <constraint firstItem="fZW-rI-9g5" firstAttribute="leading" secondItem="ruM-1H-pzg" secondAttribute="leading" id="LlW-Il-GCp"/>
+                            <constraint firstItem="fZW-rI-9g5" firstAttribute="top" secondItem="ruM-1H-pzg" secondAttribute="top" id="OmB-Sb-FiN"/>
+                            <constraint firstAttribute="trailing" secondItem="fZW-rI-9g5" secondAttribute="trailing" id="s91-Z9-UpQ"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="blackView" destination="fZW-rI-9g5" id="lyd-dY-nvH"/>
+                        <outlet property="bottomView" destination="U4a-mj-QXv" id="rP9-tO-ogp"/>
+                        <outlet property="cancelButton" destination="Tgd-0g-KD3" id="L2y-4s-WjC"/>
+                        <outlet property="pickView" destination="eZB-h9-zrc" id="bvY-g6-Dpq"/>
+                        <outlet property="sureButton" destination="DwE-m6-Qgf" id="gXJ-du-H2a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c6Y-9P-hzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1068" y="9752"/>
+        </scene>
         <!--Search View Controller-->
         <scene sceneID="5wS-U6-2ZW">
             <objects>

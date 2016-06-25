@@ -13,6 +13,8 @@ class AddressEditViewController: BaseViewController {
     var scrollView: UIScrollView!
     var upperView: UIView!
     var finishedButton: UIButton!
+    var nameTextfield: UITextField!
+    var phoneTextfield: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +42,6 @@ class AddressEditViewController: BaseViewController {
         finishedButton.setTitle("完成", forState: .Normal)
         finishedButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         finishedButton.addTarget(self, action: #selector(self.finishEdit), forControlEvents: .TouchUpInside)
-        
     }
     
     func finishEdit() {
@@ -63,10 +64,13 @@ class AddressEditViewController: BaseViewController {
         title0.snp_makeConstraints { (make) in
             make.left.equalTo(upperView).offset(10)
             make.top.equalTo(upperView).offset(20)
+            make.width.lessThanOrEqualTo(80)
         }
         
-        let nameTextfield = UITextField.init()
+        nameTextfield = UITextField.init()
         upperView.addSubview(nameTextfield)
+        nameTextfield.placeholder = "请输入您的姓名"
+        
         nameTextfield.snp_makeConstraints { (make) in
             make.left.equalTo(title0.snp_right).offset(10)
             make.right.equalTo(upperView)
@@ -90,7 +94,8 @@ class AddressEditViewController: BaseViewController {
             make.top.equalTo(line0).offset(20)
         }
         
-        let phoneTextfield = UITextField.init()
+        phoneTextfield = UITextField.init()
+        phoneTextfield.placeholder = "请输入您的电话"
         upperView.addSubview(phoneTextfield)
         phoneTextfield.snp_makeConstraints { (make) in
             make.left.equalTo(title1.snp_right).offset(10)
@@ -98,6 +103,7 @@ class AddressEditViewController: BaseViewController {
             make.height.equalTo(35)
             make.centerY.equalTo(title1)
         }
+        
         let line1 = UIView()
         line1.backgroundColor = UIColor(hexString: "#cccccc")
 
@@ -119,12 +125,17 @@ class AddressEditViewController: BaseViewController {
         
         let addressLabel = UILabel.init()
         upperView.addSubview(addressLabel)
+        addressLabel.text = "四川省成都市锦江区"
+        addressLabel.userInteractionEnabled = true
         addressLabel.snp_makeConstraints { (make) in
             make.left.equalTo(title2.snp_right).offset(10)
             make.right.equalTo(upperView)
             make.height.equalTo(35)
             make.centerY.equalTo(title2)
         }
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.chooseAddress))
+        addressLabel.addGestureRecognizer(tap)
+        
         let line2 = UIView()
         line2.backgroundColor = UIColor(hexString: "#cccccc")
 
@@ -144,9 +155,14 @@ class AddressEditViewController: BaseViewController {
             make.height.equalTo(100)
             make.bottom.equalTo(upperView.snp_bottom)
         }
+        detailAddress.text = "详细地址"
+    }
+    
+    func chooseAddress() {
+        let vc = AddressChooseViewController.someController(AddressChooseViewController.self, ofStoryBoard: UIStoryboard.main)
         
-
-        
+        vc.modalPresentationStyle = .OverCurrentContext
+        self.presentViewController(vc, animated: false, completion: nil)
     }
     
     

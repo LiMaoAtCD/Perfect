@@ -60,11 +60,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let citys = realm.objects(CityItem)
         if citys.isEmpty {
             NetworkHelper.instance.request(.GET, url: URLConstant.getAreasTreeJson.contant, parameters: ["areaTreeVer": NSNumber.init(longLong: 160620000000)], completion: { (result: AreaTreeResponse?) in
-                Async.background(block: {
-                    if let data = result?.retObj {
-                        try! realm.write({ realm.add(data, update: true) })
-                    }
-                })
+                    Async.background(block: {
+                        if let data = result?.retObj {
+                            try! realm.write({ realm.add(data, update: true) })
+                        }
+                    })
             }) { (msg: String?, code: Int) in
                 print("area json error")
             }

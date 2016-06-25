@@ -53,7 +53,7 @@ class BaseViewController: UIViewController {
 
 }
 
-extension BaseViewController {
+extension UIViewController {
     
     class func someController<T: UIViewController>(vc: T.Type,ofStoryBoard storyBoard: String) -> T {
         let vc = UIStoryboard.init(name: storyBoard, bundle: nil).instantiateViewControllerWithIdentifier(String.init(T)) as! T
