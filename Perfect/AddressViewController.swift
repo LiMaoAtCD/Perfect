@@ -81,8 +81,10 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
                 
                 temps.appendContentsOf(addresses!)
                 let realm = try! Realm()
-
+                
+                let addresses = realm.objects(AddressItemsEntity)
                 try! realm.write({
+                    realm.delete(addresses)
                     realm.add(temps, update: true)
                 })
             }
@@ -132,12 +134,17 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
                 let realm = try! Realm()
                 let toDeleteaddresses = realm.objects(AddressItemsEntity).filter("id == \(id)")
                 if !toDeleteaddresses.isEmpty {
-                    realm.delete(toDeleteaddresses.first!)
+                    try! realm.write({
+                        realm.delete(toDeleteaddresses)
+                    })
                 }
+                
                 let addresses = realm.objects(AddressItemsEntity)
                 if !addresses.isEmpty {
                     self?.addressItems.appendContentsOf(addresses)
                 }
+                
+
                 self?.tableView.reloadData()
                 
                 }, failed: { (errmsg: String?, errcode: Int) in

@@ -92,41 +92,49 @@ class AddressTableViewCell: UITableViewCell {
         MainView.addSubview(marginView)
         marginView.snp_makeConstraints { (make) in
             make.left.right.equalTo(self)
-            make.height.equalTo(1)
+            make.height.equalTo(0.3)
             make.top.equalTo(address.snp_bottom).offset(20)
         }
         
         
-        defaultAddress = CheckView()
+        defaultAddress = CheckView.init(frame: CGRectMake(0, 0, 100, 35))
         MainView.addSubview(defaultAddress)
+        defaultAddress.backgroundColor =  UIColor.blueColor()
+        
+
         defaultAddress.snp_makeConstraints { (make) in
             make.left.equalTo(name)
             make.width.lessThanOrEqualTo(100)
-            make.top.equalTo(marginView.snp_bottom).offset(14)
+            make.top.equalTo(marginView.snp_bottom).offset(8)
             make.height.equalTo(35)
-            make.bottom.equalTo(MainView.snp_bottom).offset(-14)
+            make.bottom.equalTo(MainView.snp_bottom).offset(-8)
         }
         
-        deleteView = AddressEditView()
+        print(defaultAddress.frame)
+        
+        deleteView = AddressEditView.init(frame: CGRectZero)
         MainView.addSubview(deleteView)
         deleteView.snp_makeConstraints { (make) in
             make.right.equalTo(cellphone)
             make.centerY.equalTo(defaultAddress)
             make.width.greaterThanOrEqualTo(80)
+            make.height.equalTo(35)
         }
         deleteView.imageView.image = UIImage.init(named: "perfect")
         deleteView.title.text = "删除"
         
-        editView = AddressEditView()
+        editView = AddressEditView.init(frame: CGRectMake(0, 0, 200, 100))
         
         MainView.addSubview(editView)
         editView.snp_makeConstraints { (make) in
             make.right.equalTo(deleteView.snp_left).offset(-14)
             make.centerY.equalTo(defaultAddress)
             make.width.greaterThanOrEqualTo(80)
+            make.height.equalTo(35)
         }
         editView.imageView.image = UIImage.init(named: "perfect")
         editView.title.text = "编辑"
+        
     }
     
     
@@ -174,6 +182,7 @@ class CheckView: UIView {
         
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.setDefault))
         self.addGestureRecognizer(tap)
+        self.userInteractionEnabled = true
     }
     
     var clickHandler:(Void -> Void)?
@@ -195,33 +204,36 @@ class AddressEditView: UIView {
     var isDefault: Bool = false
     var clickHandler:((Int64, Bool) -> Void)?
     var tap: UITapGestureRecognizer?
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         imageView = UIImageView()
         self.addSubview(imageView)
+        
+        title = UILabel()
+        title.textColor = UIColor.flatGrayColor()
+        title.font = UIFont.systemFontOfSize(14)
+        self.addSubview(title)
+       
+        self.userInteractionEnabled = true
+        
+        tap = UITapGestureRecognizer.init(target: self, action: #selector(self.click))
+        self.addGestureRecognizer(tap!)
+        
         imageView.snp_makeConstraints { (make) in
             make.left.equalTo(self)
             make.width.height.equalTo(25)
             make.centerY.equalTo(self.snp_centerY)
         }
-        imageView.userInteractionEnabled = true
-        
-        title = UILabel()
-        title.textColor = UIColor.flatGrayColor()
-        self.addSubview(title)
-        title.font = UIFont.systemFontOfSize(14)
         title.snp_makeConstraints { (make) in
             make.left.equalTo(imageView.snp_right).offset(14)
             make.centerY.equalTo(imageView)
         }
-        title.userInteractionEnabled = true
-        
-        tap = UITapGestureRecognizer.init(target: self, action: #selector(self.click))
-        title.addGestureRecognizer(tap!)
-        imageView.addGestureRecognizer(tap!)
-        self.userInteractionEnabled = true
-        title.backgroundColor = UIColor.redColor()
+
     }
+
     
     
     func click() {

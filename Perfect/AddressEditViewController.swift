@@ -230,9 +230,6 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         } else if !self.cellphone.isValidCellPhone {
             showAlertWithMessage("手机号码不正确", block: nil)
             return
-        } else if addressString == "" {
-            showAlertWithMessage("地址不能为空", block: nil)
-            return
         } else if detailAddress == "" {
             showAlertWithMessage("详细地址不能为空", block: nil)
             return
@@ -247,7 +244,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         }
         params["name"] = name
         params["phone"] = cellphone
-        params["address"] = addressString + detailAddress
+        params["address"] = detailAddress
         params["areaId"] = NSNumber.init(longLong: self.areaID)
         
         
