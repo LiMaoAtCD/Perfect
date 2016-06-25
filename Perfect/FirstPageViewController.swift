@@ -66,7 +66,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         self.goodTypes = types
         if let _ = self.goodTypes where self.goodTypes!.count > 0 {
             for i in 0...self.goodTypes!.count - 1 {
-                if self.goodTypes![i].opened == true {
+                if self.goodTypes![i].isDefault == true {
                     self.selectionSection = i
                 }
             }
@@ -117,7 +117,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
                 
                 let item = self.topBanners![currentIndex]
                 let id = item.id
-                let action  = item.action!
+                let action  = item.linkAction!
                 
                 print("id:\(id) & action: \(action)")
                 
@@ -225,7 +225,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         if indexPath.section == 1 {
             //MARK: 处理button 点击
             let item = self.customButtons![indexPath.row]
-            let action = item.action
+            let action = item.linkAction
             print("action: \(action)")
             
             let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)

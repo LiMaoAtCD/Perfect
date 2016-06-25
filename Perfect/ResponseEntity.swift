@@ -36,12 +36,12 @@ class FirstBannerItem: Mappable{
     
     var imageId: Int64 = 0
     var id: Int64 = 0
-    var action: String?
+    var linkAction: String?
     
     func mapping(map: Map) {
         imageId <- (map["imageId"], TransformOfUtils.TransformOfInt64())
         id <- (map["id"], TransformOfUtils.TransformOfInt64())
-        action <- map["action"]
+        linkAction <- map["linkAction"]
     }
 }
 
@@ -53,12 +53,12 @@ class FirstGoodsTypeItem: Mappable{
     
     var id: Int64 = 0
     var title: String?
-    var opened: Bool = false
+    var isDefault: Bool = false
     
     func mapping(map: Map) {
         title <- map["title"]
         id <- (map["id"], TransformOfUtils.TransformOfInt64())
-        opened <- map["opened"]
+        isDefault <- map["isDefault"]
     }
 }
 
@@ -69,11 +69,11 @@ class FirstButtonItem: Mappable{
     }
     
     var imageId: Int64 = 0
-    var action: String?
+    var linkAction: String?
     
     func mapping(map: Map) {
         imageId <- (map["imageId"], TransformOfUtils.TransformOfInt64())
-        action <- map["action"]
+        linkAction <- map["linkAction"]
     }
 }
 
