@@ -72,7 +72,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         title0.snp_makeConstraints { (make) in
             make.left.equalTo(upperView).offset(10)
             make.top.equalTo(upperView).offset(20)
-            make.width.lessThanOrEqualTo(80)
+            make.width.lessThanOrEqualTo(70)
         }
         
         nameTextfield = UITextField.init()
@@ -109,7 +109,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
 
         upperView.addSubview(phoneTextfield)
         phoneTextfield.snp_makeConstraints { (make) in
-            make.left.equalTo(title1.snp_right).offset(10)
+            make.left.equalTo(nameTextfield)
             make.right.equalTo(upperView)
             make.height.equalTo(35)
             make.centerY.equalTo(title1)
@@ -136,7 +136,6 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         
         addressLabel = UILabel.init()
         upperView.addSubview(addressLabel)
-        addressLabel.text = "四川省成都市锦江区"
         addressLabel.userInteractionEnabled = true
         addressLabel.snp_makeConstraints { (make) in
             make.left.equalTo(title2.snp_right).offset(10)
@@ -237,6 +236,9 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         } else if detailAddress == "" {
             showAlertWithMessage("详细地址不能为空", block: nil)
             return
+        } else if self.areaID == 0 {
+            showAlertWithMessage("地址不能为空", block: nil)
+            return
         }
         
         var params = [String:AnyObject]()
@@ -246,6 +248,8 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         params["name"] = name
         params["phone"] = cellphone
         params["address"] = addressString + detailAddress
+        params["areaId"] = NSNumber.init(longLong: self.areaID)
+        
         
         SVProgressHUD.showWithStatus("正在处理")
         NetworkHelper.instance.request(.GET, url: URLConstant.saveOrUpdateLoginMemberDeliveryAddress.contant, parameters: params, completion: { (result: DataResponse?) in

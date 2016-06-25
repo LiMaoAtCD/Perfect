@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import SVProgressHUD
 
 class AddressViewController: BaseViewController,UITableViewDataSource, UITableViewDelegate {
 
@@ -26,30 +27,6 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         if !addresses.isEmpty {
             addressItems.appendContentsOf(addresses)
         }
-        
-        
-        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberDeliveryAddresses.contant, parameters: nil, completion: { (result: AddressResponse?) in
-            
-            let addresses = result?.retObj?.addresses
-            var temps = [AddressItemsEntity]()
-            if let _ = addresses {
-                temps.appendContentsOf(addresses!)
-                try! realm.write({
-                    realm.add(temps, update: true)
-                })
-            }
-            
-            self.addressItems.removeAll()
-            self.addressItems.appendContentsOf(temps)
-            
-            self.tableView.reloadData()
-            
-        }) { (errorMsg: String?, errorCode: Int) in
-            print(errorMsg ?? "")
-        }
-        
-        
-        
         
         tableView = UITableView.init(frame: view.bounds, style: .Plain)
         view.addSubview(tableView)
@@ -94,6 +71,33 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberDeliveryAddresses.contant, parameters: nil, completion: { (result: AddressResponse?) in
+            
+            let addresses = result?.retObj?.addresses
+            var temps = [AddressItemsEntity]()
+            if let _ = addresses {
+                
+                temps.appendContentsOf(addresses!)
+                let realm = try! Realm()
+
+                try! realm.write({
+                    realm.add(temps, update: true)
+                })
+            }
+            
+            self.addressItems.removeAll()
+            self.addressItems.appendContentsOf(temps)
+            
+            self.tableView.reloadData()
+            
+        }) { (errorMsg: String?, errorCode: Int) in
+            print(errorMsg ?? "")
+        }
+
+    }
+    
     func addAddress() {
         let edit = AddressEditViewController.init(nibName: "AddressEditViewController", bundle: nil)
         self.navigationController?.pushViewController(edit, animated: true)
@@ -110,19 +114,35 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("address", forIndexPath: indexPath) as! AddressTableViewCell
-        cell.address.text = addressItems[indexPath.row].areaFullName! + addressItems[indexPath.row].contactAddress!
-        cell.cellphone.text = addressItems[indexPath.row].contactPhone
-        cell.name.text = addressItems[indexPath.row].contactName
-        cell.defaultAddress.choosen = addressItems[indexPath.row].isDefault
+        cell.entity = addressItems[indexPath.row]
+        
         cell.defaultAddress.clickHandler = { [weak self] in
-        self?.tableView.reloadData()
+            self?.tableView.reloadData()
         }
         
-        cell.editView.clickHandler = { [weak self] in
-           
-        }
-        cell.deleteView.clickHandler = { [weak self] in
+        cell.editView.clickHandler = { [weak self](id, isDefault) in
             
+            let edit = AddressEditViewController.init(nibName: "AddressEditViewController", bundle: nil)
+            self?.navigationController?.pushViewController(edit, animated: true)
+        }
+        cell.deleteView.clickHandler = { [weak self](id, isDefault) in
+            NetworkHelper.instance.request(.GET, url: URLConstant.deleteLoginMemberDeliveryAddress.contant, parameters: ["id": NSNumber.init(longLong: id),"isDefault": isDefault], completion: { [weak self](result: DataResponse?) in
+                
+                self?.addressItems.removeAll()
+                let realm = try! Realm()
+                let toDeleteaddresses = realm.objects(AddressItemsEntity).filter("id == \(id)")
+                if !toDeleteaddresses.isEmpty {
+                    realm.delete(toDeleteaddresses.first!)
+                }
+                let addresses = realm.objects(AddressItemsEntity)
+                if !addresses.isEmpty {
+                    self?.addressItems.appendContentsOf(addresses)
+                }
+                self?.tableView.reloadData()
+                
+                }, failed: { (errmsg: String?, errcode: Int) in
+                    SVProgressHUD.showErrorWithStatus(errmsg ?? "操作失败")
+            })
         }
         
 

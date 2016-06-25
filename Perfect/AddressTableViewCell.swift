@@ -30,11 +30,26 @@ class AddressTableViewCell: UITableViewCell {
     var deleteView: AddressEditView!
     
     
+    var entity: AddressItemsEntity? {
+        willSet {
+            if let _ = newValue {
+                self.address.text = newValue!.areaFullName! + newValue!.contactAddress!
+                self.cellphone.text = newValue!.contactPhone
+                self.name.text = newValue!.contactName
+                self.defaultAddress.choosen = newValue!.isDefault
+                self.editView.id = newValue!.id
+                self.editView.isDefault = newValue!.isDefault
+                self.deleteView.id = newValue!.id
+                self.deleteView.isDefault = newValue!.isDefault
+            }
+        }
+    }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.backgroundColor = UIColor.clearColor()
-        
+        self.selectionStyle = .None
         
         MainView = UIView()
         MainView.backgroundColor = UIColor.whiteColor()
@@ -97,22 +112,21 @@ class AddressTableViewCell: UITableViewCell {
         deleteView.snp_makeConstraints { (make) in
             make.right.equalTo(cellphone)
             make.centerY.equalTo(defaultAddress)
-            make.width.lessThanOrEqualTo(80)
+            make.width.greaterThanOrEqualTo(80)
         }
-        deleteView.imageView.image = UIImage.init(named: "")
+        deleteView.imageView.image = UIImage.init(named: "perfect")
         deleteView.title.text = "删除"
         
-        
-        
         editView = AddressEditView()
+        
         MainView.addSubview(editView)
         editView.snp_makeConstraints { (make) in
             make.right.equalTo(deleteView.snp_left).offset(-14)
             make.centerY.equalTo(defaultAddress)
-            make.width.lessThanOrEqualTo(80)
+            make.width.greaterThanOrEqualTo(80)
         }
-        deleteView.imageView.image = UIImage.init(named: "")
-        deleteView.title.text = "编辑"
+        editView.imageView.image = UIImage.init(named: "perfect")
+        editView.title.text = "编辑"
     }
     
     
@@ -177,7 +191,10 @@ class AddressEditView: UIView {
     
     var imageView: UIImageView!
     var title: UILabel!
-    
+    var id: Int64 = 0
+    var isDefault: Bool = false
+    var clickHandler:((Int64, Bool) -> Void)?
+    var tap: UITapGestureRecognizer?
     override init(frame: CGRect) {
         super.init(frame: frame)
         imageView = UIImageView()
@@ -187,23 +204,28 @@ class AddressEditView: UIView {
             make.width.height.equalTo(25)
             make.centerY.equalTo(self.snp_centerY)
         }
+        imageView.userInteractionEnabled = true
         
         title = UILabel()
+        title.textColor = UIColor.flatGrayColor()
         self.addSubview(title)
         title.font = UIFont.systemFontOfSize(14)
         title.snp_makeConstraints { (make) in
             make.left.equalTo(imageView.snp_right).offset(14)
             make.centerY.equalTo(imageView)
         }
+        title.userInteractionEnabled = true
         
-        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.click))
-        self.addGestureRecognizer(tap)
+        tap = UITapGestureRecognizer.init(target: self, action: #selector(self.click))
+        title.addGestureRecognizer(tap!)
+        imageView.addGestureRecognizer(tap!)
+        self.userInteractionEnabled = true
+        title.backgroundColor = UIColor.redColor()
     }
     
-    var clickHandler:(Void -> Void)?
     
     func click() {
-        self.clickHandler?()
+        self.clickHandler?(id, isDefault)
     }
 
     

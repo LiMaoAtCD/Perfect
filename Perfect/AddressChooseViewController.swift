@@ -144,10 +144,11 @@ class AddressChooseViewController: UIViewController,UIPickerViewDelegate, UIPick
                 areaID = citys![selectionCityRow].i
             }
         } else {
+            selectionCountyRow = row
             if countys!.isEmpty {
             } else {
                 addressString = provinces![selectionProvinceRow].n! + citys![selectionCityRow].n! + countys![row].n!
-                areaID = countys![selectionCityRow].i
+                areaID = countys![selectionCountyRow].i
 
             }
             
