@@ -34,6 +34,7 @@ enum URLConstant: String {
     case updateLoginMemberInfo = "updateLoginMemberInfo" //更新个人信息
     case getLoginMemberInfo = "getLoginMemberInfo" // 获取用户信息
     case getSubAreas = "getSubAreas"
+    case getAreasTreeJson = "getAreasTreeJson" //获取quyuID
     case setLoginMemberDefaultDeliveryAddress = "setLoginMemberDefaultDeliveryAddress"
     case getLoginMemberDeliveryAddresses = "getLoginMemberDeliveryAddresses"
     case deleteLoginMemberDeliveryAddress = "deleteLoginMemberDeliveryAddress"

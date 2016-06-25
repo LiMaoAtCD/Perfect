@@ -10,6 +10,9 @@ import UIKit
 import Alamofire
 import AlamofireObjectMapper
 import SVProgressHUD
+import RealmSwift
+import Async
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         configureSVProgressHUD()
+        
+        fetchAreaID()
         return true
     }
     
@@ -48,6 +53,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func fetchAreaID(){
+        let realm = try! Realm()
+        let citys = realm.objects(CityItem)
+        if citys.isEmpty {
+            NetworkHelper.instance.request(.GET, url: URLConstant.getAreasTreeJson.contant, parameters: ["areaTreeVer": NSNumber.init(longLong: 160620000000)], completion: { (result: AreaTreeResponse?) in
+                Async.background(block: {
+                    if let data = result?.retObj {
+                        try! realm.write({ realm.add(data, update: true) })
+                    }
+                })
+            }) { (msg: String?, code: Int) in
+                print("area json error")
+            }
+
+        }
     }
 
 

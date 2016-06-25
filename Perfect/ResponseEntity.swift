@@ -356,6 +356,73 @@ class AreaIDItemEntity: Object, Mappable {
 
 
 
+class AreaTreeEntity: Object, Mappable {
+    
+    dynamic var areaTreeVer: Int64 = 0
+    private var temp: [CityItem] {
+        set{
+            areaTree.removeAll()
+            areaTree.appendContentsOf(newValue)
+        }
+        get{
+            return Array(areaTree)
+        }
+    }
+    let areaTree = List<CityItem>()
+    
+    required convenience init?(_ map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        areaTreeVer <- (map["areaTreeVer"], TransformOfUtils.TransformOfInt64())
+        temp <- map["areaTree"]
+    }
+    
+    override static func primaryKey() -> String? {
+        return "areaTreeVer"
+    }
+    
+    
+}
+
+class CityItem: Object,Mappable {
+    dynamic var n: String?
+    dynamic var i:  Int64 = 0
+    private var temp: [CountyItem] {
+        set{
+            c.removeAll()
+            c.appendContentsOf(newValue)
+        }
+        get{
+            return Array(c)
+        }
+    }
+    let c = List<CountyItem>()
+    required convenience init?(_ map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        n <- map["n"]
+        i <- (map["i"],TransformOfUtils.TransformOfInt64())
+        temp <- map["c"]
+    }
+}
+
+class CountyItem: Object ,Mappable {
+    dynamic var n: String?
+    dynamic var i:  Int64 = 0
+    
+    required convenience init?(_ map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        n <- map["n"]
+        i <- (map["i"],TransformOfUtils.TransformOfInt64())
+    }
+}
 
 
 

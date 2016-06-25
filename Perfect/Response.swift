@@ -166,6 +166,19 @@ class AreaResponse: DataResponse {
     }
 }
 
+class AreaTreeResponse: DataResponse {
+    var retObj: AreaTreeEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        retObj <- map["retObj"]
+    }
+}
+
 
 
 
