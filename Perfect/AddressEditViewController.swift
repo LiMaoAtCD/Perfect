@@ -16,6 +16,11 @@ class AddressEditViewController: BaseViewController {
     var nameTextfield: UITextField!
     var phoneTextfield: UITextField!
     
+    var addressLabel: UILabel!
+    
+    var addressString: String = ""
+    var areaID: Int64 = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -123,7 +128,7 @@ class AddressEditViewController: BaseViewController {
             make.top.equalTo(line1).offset(20)
         }
         
-        let addressLabel = UILabel.init()
+        addressLabel = UILabel.init()
         upperView.addSubview(addressLabel)
         addressLabel.text = "四川省成都市锦江区"
         addressLabel.userInteractionEnabled = true
@@ -163,6 +168,16 @@ class AddressEditViewController: BaseViewController {
         
         vc.modalPresentationStyle = .OverCurrentContext
         self.presentViewController(vc, animated: false, completion: nil)
+        
+        vc.handler = {
+            [weak self](areaID, address) in
+            
+            self?.areaID = areaID
+            self?.addressString = address ?? ""
+            self?.addressLabel.text = self?.addressString
+            
+            print((self?.addressString)! + String(self?.areaID))
+        }
     }
     
     

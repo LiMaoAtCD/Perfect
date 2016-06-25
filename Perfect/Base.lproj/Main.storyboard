@@ -524,6 +524,7 @@
                         <constraints>
                             <constraint firstItem="U4a-mj-QXv" firstAttribute="leading" secondItem="fZW-rI-9g5" secondAttribute="leading" id="3xC-W5-14e"/>
                             <constraint firstItem="7mg-Oc-JfQ" firstAttribute="top" secondItem="fZW-rI-9g5" secondAttribute="bottom" id="CEZ-6h-r9h"/>
+                            <constraint firstAttribute="trailing" secondItem="U4a-mj-QXv" secondAttribute="trailing" id="Ih1-EP-Lu1"/>
                             <constraint firstItem="7mg-Oc-JfQ" firstAttribute="top" secondItem="U4a-mj-QXv" secondAttribute="bottom" id="J1K-XR-0Tl"/>
                             <constraint firstItem="fZW-rI-9g5" firstAttribute="leading" secondItem="ruM-1H-pzg" secondAttribute="leading" id="LlW-Il-GCp"/>
                             <constraint firstItem="fZW-rI-9g5" firstAttribute="top" secondItem="ruM-1H-pzg" secondAttribute="top" id="OmB-Sb-FiN"/>

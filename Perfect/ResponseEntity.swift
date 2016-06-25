@@ -359,7 +359,7 @@ class AreaIDItemEntity: Object, Mappable {
 class AreaTreeEntity: Object, Mappable {
     
     dynamic var areaTreeVer: Int64 = 0
-    private var temp: [CityItem] {
+    private var temp: [ProviceItem] {
         set{
             areaTree.removeAll()
             areaTree.appendContentsOf(newValue)
@@ -368,7 +368,7 @@ class AreaTreeEntity: Object, Mappable {
             return Array(areaTree)
         }
     }
-    let areaTree = List<CityItem>()
+    let areaTree = List<ProviceItem>()
     
     required convenience init?(_ map: Map) {
         self.init()
@@ -384,6 +384,30 @@ class AreaTreeEntity: Object, Mappable {
     }
     
     
+}
+
+class ProviceItem: Object,Mappable {
+    dynamic var n: String?
+    dynamic var i:  Int64 = 0
+    private var temp: [CityItem] {
+        set{
+            c.removeAll()
+            c.appendContentsOf(newValue)
+        }
+        get{
+            return Array(c)
+        }
+    }
+    let c = List<CityItem>()
+    required convenience init?(_ map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        n <- map["n"]
+        i <- (map["i"],TransformOfUtils.TransformOfInt64())
+        temp <- map["c"]
+    }
 }
 
 class CityItem: Object,Mappable {

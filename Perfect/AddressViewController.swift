@@ -92,10 +92,7 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         cell.name.text = addressItems[indexPath.row].name
         cell.defaultAddress.choosen = addressItems[indexPath.row].isDefault
         cell.defaultAddress.clickHandler = { [weak self] in
-            
-            
-            
-            self?.tableView.reloadData()
+        self?.tableView.reloadData()
         }
         
         cell.editView.clickHandler = { [weak self] in
