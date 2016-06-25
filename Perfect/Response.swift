@@ -179,7 +179,19 @@ class AreaTreeResponse: DataResponse {
     }
 }
 
-
+//MARK: 收获地址
+class AddressResponse: DataResponse {
+    var retObj: AddressEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        retObj <- map["retObj"]
+    }
+}
 
 
 

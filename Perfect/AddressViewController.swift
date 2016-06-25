@@ -14,18 +14,41 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
 
     
     var tableView: UITableView!
-    var addressItems: [DeliverAddress]!
+    var addressItems: [AddressItemsEntity]!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        addressItems = [DeliverAddress]()
+        addressItems = [AddressItemsEntity]()
         let realm = try! Realm()
-        let addresses = realm.objects(DeliverAddress)
+        let addresses = realm.objects(AddressItemsEntity)
         if !addresses.isEmpty {
             addressItems.appendContentsOf(addresses)
         }
+        
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberDeliveryAddresses.contant, parameters: nil, completion: { (result: AddressResponse?) in
+            
+            let addresses = result?.retObj?.addresses
+            var temps = [AddressItemsEntity]()
+            if let _ = addresses {
+                temps.appendContentsOf(addresses!)
+                try! realm.write({
+                    realm.add(temps, update: true)
+                })
+            }
+            
+            self.addressItems.removeAll()
+            self.addressItems.appendContentsOf(temps)
+            
+            self.tableView.reloadData()
+            
+        }) { (errorMsg: String?, errorCode: Int) in
+            print(errorMsg ?? "")
+        }
+        
+        
         
         
         tableView = UITableView.init(frame: view.bounds, style: .Plain)
@@ -87,9 +110,9 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("address", forIndexPath: indexPath) as! AddressTableViewCell
-        cell.address.text = addressItems[indexPath.row].address
-        cell.cellphone.text = addressItems[indexPath.row].cellphone
-        cell.name.text = addressItems[indexPath.row].name
+        cell.address.text = addressItems[indexPath.row].areaFullName! + addressItems[indexPath.row].contactAddress!
+        cell.cellphone.text = addressItems[indexPath.row].contactPhone
+        cell.name.text = addressItems[indexPath.row].contactName
         cell.defaultAddress.choosen = addressItems[indexPath.row].isDefault
         cell.defaultAddress.clickHandler = { [weak self] in
         self?.tableView.reloadData()

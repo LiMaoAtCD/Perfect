@@ -58,7 +58,7 @@ class NetworkHelper: NSObject {
     func request<T: DataResponse>(method:httpMethod, url: String, parameters: [String: AnyObject]?,completion completionHandler: (T? -> Void)?, failed failedHandler: ((String?,Int) -> Void)?){
         
         var p = parameters ?? [String:AnyObject]()
-        p["sessionID"] = Defaults[.sessionID] ?? ""
+        p["sessionId"] = Defaults[.sessionID] ?? ""
         
 
         Alamofire.request((method == .GET ? Method.GET : Method.POST), url, parameters: p, encoding: ParameterEncoding.URL, headers: nil).responseObject { (response: Response<T, NSError>) in
@@ -69,6 +69,7 @@ class NetworkHelper: NSObject {
                     completionHandler?(response.result.value)
                     if let session = response.result.value?.sessionId {
                         Defaults[.sessionID] = session
+
                     }
                 } else if let value = response.result.value where value.retCode != RetErrorCode.Success.rawValue  {
                     

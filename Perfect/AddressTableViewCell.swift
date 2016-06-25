@@ -70,14 +70,14 @@ class AddressTableViewCell: UITableViewCell {
             make.left.equalTo(name)
             make.top.equalTo(name.snp_bottom).offset(14)
             make.right.equalTo(self)
-            make.bottom.equalTo(-8)
         }
 
         marginView = UIView()
+        marginView.backgroundColor = UIColor.grayColor()
         MainView.addSubview(marginView)
         marginView.snp_makeConstraints { (make) in
             make.left.right.equalTo(self)
-            make.height.equalTo(0.3)
+            make.height.equalTo(1)
             make.top.equalTo(address.snp_bottom).offset(20)
         }
         
@@ -89,7 +89,7 @@ class AddressTableViewCell: UITableViewCell {
             make.width.lessThanOrEqualTo(100)
             make.top.equalTo(marginView.snp_bottom).offset(14)
             make.height.equalTo(35)
-            make.baseline.equalTo(MainView.snp_bottom).offset(-14)
+            make.bottom.equalTo(MainView.snp_bottom).offset(-14)
         }
         
         deleteView = AddressEditView()

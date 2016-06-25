@@ -302,16 +302,6 @@ class TransformOfUtils {
 }
 
 
-
-class DeliverAddress: Object {
-    dynamic var name: String?
-    dynamic var cellphone: String?
-    dynamic var address: String?
-    dynamic var isDefault: Bool = false
-    dynamic var id: Int = 0
-}
-
-
 class MemberInfoEntity: Mappable {
     var phone: String?
     var username:  String?
@@ -445,6 +435,61 @@ class CountyItem: Object ,Mappable {
     func mapping(map: Map) {
         n <- map["n"]
         i <- (map["i"],TransformOfUtils.TransformOfInt64())
+    }
+}
+
+
+
+//MARK: 收获地址
+
+class AddressEntity: Object, Mappable {
+    let addresses = List<AddressItemsEntity>()
+    private var temp: [AddressItemsEntity] {
+        set{
+            addresses.removeAll()
+            addresses.appendContentsOf(newValue)
+        }
+        get{
+            return Array(addresses)
+        }
+    }
+    required convenience init?(_ map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        temp <- map["addresses"]
+    }
+}
+
+class AddressItemsEntity:Object, Mappable {
+    dynamic var id: Int64 = 0
+    dynamic var contactPhone: String?
+    dynamic var contactId: Int64 = 0
+    dynamic var areaFullName: String?
+    dynamic var areaName: String?
+    dynamic var isDefault: Bool = false
+    dynamic var contactName: String?
+    dynamic var areaId: Int64 = 0
+    dynamic var contactAddress: String?
+    
+    required convenience init?(_ map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        id <- (map["id"],TransformOfUtils.TransformOfInt64())
+        contactPhone <- map["contactPhone"]
+        contactId <- (map["contactId"],TransformOfUtils.TransformOfInt64())
+        areaFullName <- map["areaFullName"]
+        areaName <- map["areaName"]
+        isDefault <- map["isDefault"]
+        contactName <- map["contactName"]
+        areaId <- (map["areaId"],TransformOfUtils.TransformOfInt64())
+        contactAddress <- map["contactAddress"]
+    }
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }
 
