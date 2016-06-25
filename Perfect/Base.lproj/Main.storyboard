@@ -544,6 +544,25 @@
             </objects>
             <point key="canvasLocation" x="1068" y="9752"/>
         </scene>
+        <!--Article View Controller-->
+        <scene sceneID="1MP-5L-coh">
+            <objects>
+                <viewController storyboardIdentifier="ArticleViewController" id="BPo-02-Q2g" customClass="ArticleViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c5s-7D-XR2"/>
+                        <viewControllerLayoutGuide type="bottom" id="XMS-No-7N6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dOf-5Q-N27">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ODR-in-odc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1154" y="10417"/>
+        </scene>
         <!--Search View Controller-->
         <scene sceneID="5wS-U6-2ZW">
             <objects>

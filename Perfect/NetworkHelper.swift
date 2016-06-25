@@ -14,6 +14,34 @@ import SwiftyUserDefaults
 
 let url = "http://101.200.131.198:8090/custwine/gw?cmd="
 
+let ArticleURL = "http://101.200.131.198:8090/custwine/article/mobile/"
+let NetWorkImageUrl = "http://101.200.131.198:8090/custwine/dimg/"
+
+
+extension Int64 {
+    func perfectImageurl(w: CGFloat, h: CGFloat, crop: Bool) -> String {
+        
+        return NetWorkImageUrl + String(self) + "_"
+            + String(Int(w)) + "_"
+            + String(Int(h)) + "_"
+            + (crop ? "1" : "0")
+            + ".png"
+    }
+    
+    var article: String {
+        return ArticleURL + String(self) + ".page"
+    }
+}
+
+
+//文章读取地址为： http://服务器地址/article/mobile/id.page
+//例如：
+//http://101.200.131.198:8090/custwine/article/mobile/1.page
+
+//图片访问方式为：
+//"http://地址/dimg/id_图片宽_图片最大高_是否裁减(1/0).png
+//示例：http://101.200.131.198:8090/custwine/dimg/1_1_1_0.png"
+
 enum httpMethod {
     case GET
     case POST
@@ -59,7 +87,6 @@ class NetworkHelper: NSObject {
         
         var p = parameters ?? [String:AnyObject]()
         p["sessionId"] = Defaults[.sessionID] ?? ""
-        print(p)
 
         Alamofire.request((method == .GET ? Method.GET : Method.POST), url, parameters: p, encoding: ParameterEncoding.URL, headers: nil).responseObject { (response: Response<T, NSError>) in
             if let _ = response.result.error {

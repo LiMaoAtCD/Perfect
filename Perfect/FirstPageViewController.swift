@@ -111,33 +111,29 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         if indexPath.section == 0 {
             
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewBannerCell.identifier, forIndexPath: indexPath) as! CollectionViewBannerCell
-            //MARK: 处理banner 跳转
+            //MARK: 顶部处理banner 跳转
             cell.banner.clickItemOperationBlock = {
                 currentIndex in
                 
                 let item = self.topBanners![currentIndex]
                 let id = item.id
-                let action  = item.linkAction!
+//                let action  = item.linkAction!
                 
-                print("id:\(id) & action: \(action)")
-                
-                
-           
-                let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
-                detail.id = id
-                detail.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(detail, animated: true)
+                let articleVC = ArticleViewController.someController(ArticleViewController.self, ofStoryBoard: UIStoryboard.main)
+                articleVC.hidesBottomBarWhenPushed = true
+                articleVC.id = id
+                self.navigationController?.pushViewController(articleVC, animated: true)
             }
             
-            var imageUrl = [String]()
+            var imageUrls = [String]()
             if let _ = topBanners {
                 for item in topBanners! {
-                    imageUrl.append("\(item.imageId)")
+                    
+                    let imageurl = item.imageId.perfectImageurl(Tool.width, h: 1000, crop: false)
+                    imageUrls.append(imageurl)
                 }
             }
-          
-            cell.banner.placeholderImage = UIImage.init(named: "h8")
-            cell.banner.imageURLStringsGroup = imageUrl
+            cell.banner.imageURLStringsGroup = imageUrls
             
             return cell
             
@@ -147,14 +143,14 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             var buttonsUrl = [String]()
             if let _ = customButtons {
                 for item in customButtons! {
-                    let url = item.imageId
-                    buttonsUrl.append("\(url)")
+                    let imageurl = item.imageId.perfectImageurl(Tool.width, h: 50, crop: false)
+                    buttonsUrl.append(imageurl)
                 }
             }
-            
-            cell.imageView.kf_setImageWithURL(NSURL.init(string: buttonsUrl[indexPath.row])!, placeholderImage: UIImage.init(named: "h8"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+            cell.imageView.kf_setImageWithURL(NSURL.init(string: buttonsUrl[indexPath.row])!, placeholderImage: nil , optionsInfo: nil, progressBlock: nil, completionHandler: nil)
             
             return cell
+            
         } else if indexPath.section == 2 {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewFootCell.identifier, forIndexPath: indexPath) as! CollectionViewFootCell
             return cell
@@ -281,7 +277,8 @@ class CollectionViewCell: UICollectionViewCell {
     var entity: ProductItem? {
         willSet{
             if let _ = newValue {
-                imageView.kf_setImageWithURL(NSURL.init(string: "\(newValue!.imageId)")!)
+                let url = newValue!.imageId.perfectImageurl(Tool.width / 2, h: 300, crop: false)
+                imageView.kf_setImageWithURL(NSURL.init(string: url)!)
                 title.text = newValue!.fullName
                 marketPrice.text = newValue!.marketPrice.currency
                 price.text = newValue!.price.currency
@@ -421,8 +418,6 @@ class Header: UICollectionReusableView {
         segmentControl.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
         }
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
