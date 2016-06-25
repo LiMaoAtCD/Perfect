@@ -118,8 +118,34 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCellWithIdentifier("address", forIndexPath: indexPath) as! AddressTableViewCell
         cell.entity = addressItems[indexPath.row]
         
-        cell.defaultAddress.clickHandler = { [weak self] in
-            self?.tableView.reloadData()
+        cell.defaultAddress.clickHandler = { [weak self](id) in
+            
+            //MARK: 设为默认
+            print(id)
+            NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberDefaultDeliveryAddress.contant, parameters: ["id": NSNumber.init(longLong: id),"isDefault": true], completion: { (result: DataResponse?) in
+                    let realm = try! Realm()
+                    let addresses = realm.objects(AddressItemsEntity)
+                    if !addresses.isEmpty {
+                        
+                        for address in addresses {
+                            if address.id == id {
+                                try! realm.write({
+                                    address.isDefault = true
+                                })
+                            } else {
+                                try! realm.write({
+                                    address.isDefault = false
+                                })
+                            }
+                        }
+                    }
+                
+                    self?.tableView.reloadData()
+
+                }, failed: { (errMsg, errCode) in
+                    SVProgressHUD.showErrorWithStatus(errMsg ?? "操作失败")
+            })
+            
         }
         
         cell.editView.clickHandler = { [weak self](id, isDefault) in

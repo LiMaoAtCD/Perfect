@@ -59,7 +59,7 @@ class NetworkHelper: NSObject {
         
         var p = parameters ?? [String:AnyObject]()
         p["sessionId"] = Defaults[.sessionID] ?? ""
-        
+        print(p)
 
         Alamofire.request((method == .GET ? Method.GET : Method.POST), url, parameters: p, encoding: ParameterEncoding.URL, headers: nil).responseObject { (response: Response<T, NSError>) in
             if let _ = response.result.error {

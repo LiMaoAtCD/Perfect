@@ -37,6 +37,7 @@ class AddressTableViewCell: UITableViewCell {
                 self.cellphone.text = newValue!.contactPhone
                 self.name.text = newValue!.contactName
                 self.defaultAddress.choosen = newValue!.isDefault
+                self.defaultAddress.id = newValue!.id
                 self.editView.id = newValue!.id
                 self.editView.isDefault = newValue!.isDefault
                 self.deleteView.id = newValue!.id
@@ -97,20 +98,18 @@ class AddressTableViewCell: UITableViewCell {
         }
         
         
-        defaultAddress = CheckView.init(frame: CGRectMake(0, 0, 100, 35))
+        defaultAddress = CheckView.init(frame: CGRectZero)
         MainView.addSubview(defaultAddress)
-        defaultAddress.backgroundColor =  UIColor.blueColor()
         
 
         defaultAddress.snp_makeConstraints { (make) in
             make.left.equalTo(name)
-            make.width.lessThanOrEqualTo(100)
+            make.width.greaterThanOrEqualTo(100)
             make.top.equalTo(marginView.snp_bottom).offset(8)
             make.height.equalTo(35)
             make.bottom.equalTo(MainView.snp_bottom).offset(-8)
         }
         
-        print(defaultAddress.frame)
         
         deleteView = AddressEditView.init(frame: CGRectZero)
         MainView.addSubview(deleteView)
@@ -149,6 +148,9 @@ class CheckView: UIView {
     var checkImageView: UIImageView!
     var addressLabel: UILabel!
     
+    var id: Int64 = 0
+    var clickHandler:(Int64 -> Void)?
+
     var choosen: Bool = false {
         willSet{
             if newValue {
@@ -185,10 +187,11 @@ class CheckView: UIView {
         self.userInteractionEnabled = true
     }
     
-    var clickHandler:(Void -> Void)?
     
     func setDefault() {
-        self.clickHandler?()
+        if !choosen {
+            self.clickHandler?(id)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
