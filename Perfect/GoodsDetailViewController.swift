@@ -67,7 +67,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     
     func configureTopBanner() {
         topBanner = SDCycleScrollView.init()
-        topBanner.placeholderImage = UIImage.init(named: "placeholder")!
+        topBanner.placeholderImage = UIImage.init(named: "introduce")!
         topBanner.clickItemOperationBlock = { index in
             
         }
