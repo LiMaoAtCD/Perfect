@@ -11,13 +11,12 @@ target 'Perfect' do
 	pod 'Kingfisher'
 	pod 'MJRefresh'
 	pod 'SnapKit'
-	pod 'ChameleonFramework/Swift'
 	pod 'AlamofireObjectMapper', '~> 3.0'
     pod 'FDFullscreenPopGesture', '~> 1.1'
     pod 'SwiftyUserDefaults'
     pod 'AsyncSwift'
     pod 'SVProgressHUD'
-	pod 'SnappingStepper', '~> 2.3.0'
+    pod 'SwiftHEXColors'
     
 end
 

@@ -41,7 +41,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         self.title = "注册"
         
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.init(hexString: "#ffffff", withAlpha: 1.0)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         //背景
         let imageview = UIImageView()
@@ -114,7 +114,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         let line0 = UIView()
-        line0.backgroundColor = UIColor.flatGrayColor()
+        line0.backgroundColor = UIColor.lightGrayColor()
         scrollView.addSubview(line0)
         
         line0.snp_makeConstraints { (make) in
@@ -149,7 +149,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         let line1 = UIView()
-        line1.backgroundColor = UIColor.flatGrayColor()
+        line1.backgroundColor = UIColor.lightGrayColor()
         scrollView.addSubview(line1)
         line1.snp_makeConstraints { (make) in
             make.left.right.equalTo(line0)
@@ -181,7 +181,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         verifyButton = UIButton.init(type: .Custom)
-        verifyButton.setAttributedTitle(NSAttributedString(string: "获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+        verifyButton.setAttributedTitle(NSAttributedString(string: "获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor(),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
 
         verifyButton.addTarget(self, action: #selector(self.verify), forControlEvents: .TouchUpInside)
         scrollView.addSubview(verifyButton)
@@ -202,7 +202,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
 
         let line2 = UIView()
-        line2.backgroundColor = UIColor.flatGrayColor()
+        line2.backgroundColor = UIColor.lightGrayColor()
         scrollView.addSubview(line2)
         line2.snp_makeConstraints { (make) in
             make.left.right.equalTo(line0)
@@ -402,11 +402,11 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         if mode == .Timer {
             let string = "\(timerCount) s"
             verifyButton.userInteractionEnabled = false
-            verifyButton.setAttributedTitle(NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+            verifyButton.setAttributedTitle(NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor(),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
         } else {
             
             verifyButton.userInteractionEnabled = true
-            verifyButton.setAttributedTitle(NSAttributedString(string: "重新获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+            verifyButton.setAttributedTitle(NSAttributedString(string: "重新获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor(),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
         }
         
     }

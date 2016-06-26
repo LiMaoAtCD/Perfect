@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnappingStepper
 
 class PayViewController: BaseViewController {
 
@@ -42,7 +41,7 @@ class PayViewController: BaseViewController {
     
     func configureScrollView() {
         scrollView = UIScrollView.init()
-        scrollView.backgroundColor = UIColor(hexString: "#cccccc")
+        scrollView.backgroundColor = UIColor.lightGrayColor()
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { (make) in
             make.top.left.right.equalTo(view)
@@ -209,38 +208,7 @@ class PayViewController: BaseViewController {
             make.top.equalTo(marginView).offset(20)
         }
         
-        let stepper = SnappingStepper(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-        mainView.addSubview(stepper)
-        stepper.snp_makeConstraints { (make) in
-            make.right.equalTo(addressLabel)
-            make.height.equalTo(35)
-            make.centerY.equalTo(priceLabel)
-            make.width.equalTo(100)
-        }
-        stepper.continuous   = true
-        stepper.autorepeat   = true
-        stepper.wraps        = false
-        stepper.minimumValue = 1
-        stepper.maximumValue = 999
-        stepper.stepValue    = 1
-        stepper.value = 1
-        
-        stepper.symbolFont           = UIFont(name: "TrebuchetMS-Bold", size: 20)
-        stepper.symbolFontColor      = UIColor.lightGrayColor()
-//        stepper.backgroundColor      = UIColor(hex: 0xffffff)
-        stepper.thumbWidthRatio      = 0.5
-        stepper.thumbText            = "1"
-        stepper.thumbFont            = UIFont(name: "TrebuchetMS-Bold", size: 20)
-        stepper.thumbBackgroundColor = UIColor.whiteColor()
-        stepper.thumbTextColor       = UIColor.blackColor()
-        stepper.layer.cornerRadius = 5.0
-        stepper.layer.borderColor = UIColor.lightGrayColor().CGColor
-        stepper.layer.borderWidth = 1.0
-        stepper.valueChangedBlock = {
-            (value: Double) in
-            let v = Int(value)
-            stepper.thumbText = "\(v)"
-        }
+
         
         let changeButton = UIButton.init()
         changeButton.backgroundColor = UIColor.redColor()

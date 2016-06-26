@@ -9,6 +9,7 @@
 import UIKit
 import SVProgressHUD
 import Async
+import SwiftHEXColors
 class AddressEditViewController: BaseViewController, UITextViewDelegate {
 
     var scrollView: UIScrollView!
@@ -34,7 +35,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         self.title = "收货地址管理"
         
         scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor(hexString: "#cccccc")
+        scrollView.backgroundColor = UIColor.whiteColor()
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -86,7 +87,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
             make.centerY.equalTo(title0)
         }
         let line0 = UIView()
-        line0.backgroundColor = UIColor(hexString: "#cccccc")
+        line0.backgroundColor = UIColor.init(hexString: "#cccccc")
         upperView.addSubview(line0)
         line0.snp_makeConstraints { (make) in
             make.left.right.equalTo(upperView)
@@ -116,7 +117,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         }
         
         let line1 = UIView()
-        line1.backgroundColor = UIColor(hexString: "#cccccc")
+        line1.backgroundColor = UIColor.init(hexString: "#cccccc")
 
         upperView.addSubview(line1)
         line1.snp_makeConstraints { (make) in
@@ -147,7 +148,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         addressLabel.addGestureRecognizer(tap)
         
         let line2 = UIView()
-        line2.backgroundColor = UIColor(hexString: "#cccccc")
+        line2.backgroundColor = UIColor.init(hexString: "#cccccc")
 
         upperView.addSubview(line2)
         line2.snp_makeConstraints { (make) in

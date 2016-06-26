@@ -43,7 +43,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         self.title = "找回密码"
         scrollView = UIScrollView.init()
         scrollView.alwaysBounceVertical = true
-        scrollView.backgroundColor = UIColor(hexString: "#cccccc")
+        scrollView.backgroundColor = UIColor.lightGrayColor()
         view.addSubview(scrollView)
         
         scrollView.snp_makeConstraints { (make) in
@@ -147,7 +147,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         }
         
         verifyButton = UIButton.init(type: .Custom)
-        verifyButton.setAttributedTitle(NSAttributedString(string: "发送验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+        verifyButton.setAttributedTitle(NSAttributedString(string: "发送验证码", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor(),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
         
         verifyButton.addTarget(self, action: #selector(self.verify), forControlEvents: .TouchUpInside)
         view1.addSubview(verifyButton)
@@ -237,7 +237,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         sureButton.addTarget(self, action: #selector(self.sure), forControlEvents: .TouchUpInside)
         sureButton.setTitle("确定", forState: .Normal)
         sureButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        sureButton.backgroundColor = UIColor.flatMintColor()
+        sureButton.backgroundColor = UIColor.lightGrayColor()
         sureButton.layer.cornerRadius = 3.0
         sureButton.layer.masksToBounds = true
         scrollView.addSubview(sureButton)
@@ -377,11 +377,11 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         if mode == .Timer {
             let string = "\(timerCount) s"
             verifyButton.userInteractionEnabled = false
-            verifyButton.setAttributedTitle(NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+            verifyButton.setAttributedTitle(NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor(),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
         } else {
             
             verifyButton.userInteractionEnabled = true
-            verifyButton.setAttributedTitle(NSAttributedString(string: "重新获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#666666"),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+            verifyButton.setAttributedTitle(NSAttributedString(string: "重新获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor(),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
         }
         
     }

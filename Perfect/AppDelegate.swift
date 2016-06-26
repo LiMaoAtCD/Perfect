@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
         
         // 现在我们已经告诉了 Realm 如何处理架构的变化，打开文件之后将会自动执行迁移
-        let realm = try! Realm()
+        _ = try! Realm()
     }
 }
 

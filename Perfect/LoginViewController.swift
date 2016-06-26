@@ -37,7 +37,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.init(hexString: "#ffffff", withAlpha: 1.0)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.lightGrayColor()]
 
         setupViews()
         
@@ -109,7 +109,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
         cellphoneTextfield = UITextField()
         cellphoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe")])
+        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor()])
         cellphoneTextfield.textColor = UIColor.whiteColor()
         cellphoneTextfield.keyboardType = .NumberPad
         view.addSubview(cellphoneTextfield)
@@ -165,7 +165,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         loginButton.addTarget(self, action: #selector(self.login), forControlEvents: .TouchUpInside)
         loginButton.setTitle("登录", forState: .Normal)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        loginButton.backgroundColor = UIColor.flatRedColor()
+        loginButton.backgroundColor = UIColor.redColor()
         loginButton.layer.cornerRadius = 10.0
         loginButton.layer.masksToBounds = true
         view.addSubview(loginButton)
