@@ -190,7 +190,7 @@ extension Float {
 
 
 extension UIColor {
-    var globalBackGroundColor: UIColor {
+    class func globalBackGroundColor() -> UIColor {
         return UIColor.init(hexString: "#e4ebf0", withAlpha: 1.0)
     }
 }

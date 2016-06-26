@@ -284,6 +284,50 @@ class HistoryOrderItemAddress: Mappable {
 }
 
 
+//MARK: 订单详情
+class OrderDetailEntity: Mappable {
+    
+    var moduleId: Int64 = 0
+    var status: Int = 0
+    var statusName: String?
+    var moduleName: String?
+    var image: Int64 = 0
+    var statusTextColor: String?
+    var orderNo: String?
+    var price: Float = 0.0
+    var address: HistoryOrderItemAddress?
+    var quantity: Int = 0
+    var fullName: String?
+    var orderId: Int64 = 0
+    var totalPrice: Float = 0.0
+    var orderTime: String?
+    
+    required init?(_ map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        moduleId <- (map["moduleId"], TransformOfUtils.TransformOfInt64())
+        price <- map["price"]
+        status <- map["status"]
+        statusName <- map["statusName"]
+        moduleName <- map["moduleName"]
+        statusTextColor <- map["statusTextColor"]
+        orderNo <- map["orderNo"]
+        image <- (map["image"], TransformOfUtils.TransformOfInt64())
+        address <- map["address"]
+        quantity <- map["quantity"]
+        fullName <- map["fullName"]
+        orderId <- (map["orderId"], TransformOfUtils.TransformOfInt64())
+        totalPrice <- map["totalPrice"]
+        orderTime <- map["orderTime"]
+        
+    }
+
+}
+
+
 //登录    
 class LoginEntity: Mappable {
     var memberInfo: memberInfoItem?
@@ -541,6 +585,8 @@ class AddressEntity: Object, Mappable {
     }
 }
 
+
+
 class AddressItemsEntity:Object, Mappable {
     dynamic var id: Int64 = 0
     dynamic var contactPhone: String?
@@ -571,6 +617,10 @@ class AddressItemsEntity:Object, Mappable {
         return "id"
     }
 }
+
+
+
+
 
 
 

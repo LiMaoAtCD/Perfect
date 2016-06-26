@@ -54,6 +54,8 @@ enum URLConstant: String {
     case getLoginMemberDeliveryAddresses = "getLoginMemberDeliveryAddresses"
     case deleteLoginMemberDeliveryAddress = "deleteLoginMemberDeliveryAddress"
     case saveOrUpdateLoginMemberDeliveryAddress = "saveOrUpdateLoginMemberDeliveryAddress"
+    case appOrderDetail = "appOrderDetail"
+    
     var contant: String {
         return url + self.rawValue
     }

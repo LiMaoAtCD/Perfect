@@ -15,6 +15,7 @@ class OrderDetailViewController: BaseViewController {
     var bottomView: UIView!
     
     var mainView: UIView!
+    var priceView: UIView!
     var packageImageView: UIImageView!
     //    var deliverTypeLabel: UILabel!
     //    var deliverNumberTitleLabel: UILabel!
@@ -46,6 +47,27 @@ class OrderDetailViewController: BaseViewController {
     var orderTimeLabel: UILabel!
     var payTimeTitleLabel: UILabel!
     var payTimeLabel: UILabel!
+    
+    
+    var priceTotalLabel: UILabel!
+    
+    var price: Float = 0.0 {
+        willSet {
+            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length - 1))
+            priceLabel.attributedText = attributeString
+        }
+    }
+    
+    var totalPrice: Float = 0.0 {
+        willSet {
+            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length - 1))
+            priceTotalLabel.attributedText = attributeString
+        }
+    }
 
     
 
@@ -56,6 +78,7 @@ class OrderDetailViewController: BaseViewController {
         
         
         scrollView = UIScrollView()
+        scrollView.backgroundColor = UIColor.globalBackGroundColor()
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { (make) in
             make.top.left.right.equalTo(view)
@@ -63,6 +86,7 @@ class OrderDetailViewController: BaseViewController {
         }
         
         setupScrollSubViews()
+        
         
         bottomView = UIView()
         view.addSubview(bottomView)
@@ -140,6 +164,7 @@ class OrderDetailViewController: BaseViewController {
         }
         
         nameLabel = UILabel()
+        nameLabel.text = "张三"
         nameLabel.textColor = UIColor.init(hexString: "#333333")
         nameLabel.font = UIFont.systemFontOfSize(13)
         mainView.addSubview(nameLabel)
@@ -170,7 +195,7 @@ class OrderDetailViewController: BaseViewController {
         addressLabel.numberOfLines = 0
         addressLabel.font = UIFont.systemFontOfSize(13.0)
         addressLabel.textColor = UIColor.init(hexString: "#333333")
-        addressLabel.text = "成都市高新区天府软件区G9 dfkajhfjkdfakfakfja"
+        addressLabel.text = "成都市高新区天府软件区G9 成都市高新区天府软件区G9成都市高新区天府软件区G9"
         mainView.addSubview(addressLabel)
         addressLabel.snp_makeConstraints { (make) in
             make.top.equalTo(nameTitleLabel.snp_bottom).offset(20.pixelToPoint)
@@ -201,6 +226,7 @@ class OrderDetailViewController: BaseViewController {
         goodTitleLabel.font = UIFont.systemFontOfSize(14.0)
         goodTitleLabel.textColor = UIColor.blackColor()
         goodTitleLabel.numberOfLines = 0
+        goodTitleLabel.text = "成都市高新区天府软件区G9 成都市高新区天府软件区G9成都市高新区天府软件区G9"
         mainView.addSubview(goodTitleLabel)
         goodTitleLabel.snp_makeConstraints { (make) in
             make.left.equalTo(goodsImageView.snp_right).offset(27.pixelToPoint)
@@ -279,7 +305,7 @@ class OrderDetailViewController: BaseViewController {
         moduleLabel.textColor = UIColor.init(hexString: "#666666")
         moduleLabel.font = UIFont.systemFontOfSize(12.0)
         moduleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(moduleTitleLabel.snp_right)
+            make.left.equalTo(moduleTitleLabel.snp_right).offset(8)
             make.centerY.lessThanOrEqualTo(moduleTitleLabel)
         }
         
@@ -298,7 +324,7 @@ class OrderDetailViewController: BaseViewController {
         orderNumberLabel.text = "1021213232112"
         orderNumberLabel.textColor = UIColor.init(hexString: "#666666")
         orderNumberLabel.font = UIFont.systemFontOfSize(12.0)
-        orderNumberTitleLabel.snp_makeConstraints { (make) in
+        orderNumberLabel.snp_makeConstraints { (make) in
             make.left.equalTo(orderNumberTitleLabel.snp_right)
             make.centerY.equalTo(orderNumberTitleLabel)
         }
@@ -345,6 +371,33 @@ class OrderDetailViewController: BaseViewController {
             make.centerY.equalTo(payTimeTitleLabel)
         }
         
+        
+        priceView = UIView()
+        priceView.backgroundColor = UIColor.whiteColor()
+        scrollView.addSubview(priceView)
+        priceView.snp_makeConstraints { (make) in
+            make.left.right.equalTo(mainView)
+            make.top.equalTo(mainView.snp_bottom)
+            make.height.equalTo(105.pixelToPoint)
+        }
+        
+        let priceTitleLabel: UILabel = UILabel()
+        priceView.addSubview(priceTitleLabel)
+        priceTitleLabel.text = "订单总价"
+        priceTitleLabel.textColor = UIColor.init(hexString: "#959595")
+        priceTitleLabel.font = UIFont.systemFontOfSize(14.0)
+
+        priceTitleLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(priceView).offset(15.pixelToPoint)
+            make.centerY.equalTo(priceView)
+        }
+        
+        priceTotalLabel = UILabel()
+        priceView.addSubview(priceTotalLabel)
+        priceTotalLabel.snp_makeConstraints { (make) in
+            make.right.equalTo(priceView).offset(-25.pixelToPoint)
+            make.centerY.equalTo(priceView)
+        }
     }
     
     override func didReceiveMemoryWarning() {

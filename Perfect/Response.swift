@@ -207,6 +207,21 @@ class HistoryOrderResponse: DataResponse {
 }
 
 
+//MARK: 订单详情
+class OrderDetailResponse: DataResponse {
+    var retObj: HistoryOrderEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        retObj <- map["retObj"]
+    }
+}
+
+
 
 
 
