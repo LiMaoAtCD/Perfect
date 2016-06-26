@@ -209,7 +209,6 @@ class PersonalMemberInfoItem: Mappable {
 //历史订单（全部订单）
 
 class HistoryOrderEntity: Mappable {
-    var memberInfo: PersonalMemberInfoItem?
     var total: Int = 0
     var rows: [HistoryOrderItem]?
     required init?(_ map: Map) {
@@ -224,15 +223,19 @@ class HistoryOrderEntity: Mappable {
 class HistoryOrderItem: Mappable {
     
     var moduleId: Int64 = 0
-    var price: Float = 0.0
     var status: Int = 0
     var statusName: String?
     var moduleName: String?
     var image: Int64 = 0
+    var statusTextColor: String?
+    var orderNo: String?
+    var price: Float = 0.0
+    var address: HistoryOrderItemAddress?
     var quantity: Int = 0
     var fullName: String?
     var orderId: Int64 = 0
     var totalPrice: Float = 0.0
+    var orderTime: String?
     
     required init?(_ map: Map) {
         
@@ -245,14 +248,40 @@ class HistoryOrderItem: Mappable {
         status <- map["status"]
         statusName <- map["statusName"]
         moduleName <- map["moduleName"]
+        statusTextColor <- map["statusTextColor"]
+        orderNo <- map["orderNo"]
         image <- (map["image"], TransformOfUtils.TransformOfInt64())
+        address <- map["address"]
         quantity <- map["quantity"]
         fullName <- map["fullName"]
         orderId <- (map["orderId"], TransformOfUtils.TransformOfInt64())
         totalPrice <- map["totalPrice"]
+        orderTime <- map["orderTime"]
+
     }
 }
 
+class HistoryOrderItemAddress: Mappable {
+    var id: Int64 = 0
+    var contactPhone: String?
+    var areaName: String?
+    var contactName: String?
+    var areaFullName: String?
+    var areaId: Int64 = 0
+    var contactAddress: String?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        id <- (map["id"], TransformOfUtils.TransformOfInt64())
+        contactPhone <- map["contactPhone"]
+        areaName <- map["areaName"]
+        contactName <- map["contactName"]
+        areaFullName <- map["areaFullName"]
+        areaId <- (map["areaId"], TransformOfUtils.TransformOfInt64())
+        contactAddress <- map["contactAddress"]
+    }
+}
 
 
 //登录    

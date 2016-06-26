@@ -17,6 +17,8 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        item = [HistoryOrderItem]()
+
         tableView = UITableView.init(frame: CGRectZero, style: .Plain)
         self.view.addSubview(tableView)
         tableView.snp_makeConstraints { (make) in
@@ -27,10 +29,9 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
         tableView.estimatedRowHeight = 500.0
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.tableFooterView = UIView()
         tableView.registerClass(AllOrderCell.self, forCellReuseIdentifier: "AllOrderCell")
-        item = [HistoryOrderItem]()
-        
+        tableView.tableFooterView = UIView()
+
         
         NetworkHelper.instance.request(.GET, url: URLConstant.appOrderHistory.contant, parameters: nil, completion: { (result: HistoryOrderResponse?) in
                 if let _ = result?.retObj?.rows {
@@ -74,12 +75,7 @@ class AllOrderCell: UITableViewCell {
     
     var mainView: UIView!
     var packageImageView: UIImageView!
-//    var deliverTypeLabel: UILabel!
-//    var deliverNumberTitleLabel: UILabel!
-//    var deliverNumberLabel: UILabel!
-    
     var topLabel: UILabel!
-
     var deliverMarginView: UIView!
     var addressTagImageView: UIImageView!
     var nameTitleLabel: UILabel!
@@ -100,10 +96,36 @@ class AllOrderCell: UITableViewCell {
     var orderTimeTitleLabel: UILabel!
     var orderTimeLabel: UILabel!
     
+    var price: Float = 0.0 {
+        willSet {
+            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length - 1))
+            priceLabel.attributedText = attributeString
+        }
+
+    }
+    
+    
     var entity: HistoryOrderItem? {
         willSet {
             if let _ = newValue {
+                topLabel.text = newValue!.statusName
+                nameLabel.text = newValue!.address?.contactName
+                cellphoneLabel.text = newValue!.address?.contactPhone
+                if let fullname = newValue!.address?.areaFullName {
+                    if let detail = newValue!.address?.contactAddress {
+                        addressLabel.text = fullname + detail
+                    }
+                }
                 
+                goodsImageView.kf_setImageWithURL(NSURL.init(string: newValue!.image.perfectImageurl(157, h: 157, crop: true))!)
+                goodTitleLabel.text = newValue!.fullName
+                self.price = newValue!.price
+                self.quantityLabel.text = "x\(newValue!.quantity)"
+                orderNumberLabel.text = newValue!.orderNo
+                modelLabel.text = newValue!.moduleName
+                orderTimeLabel.text = newValue!.orderTime
             }
         }
     }
