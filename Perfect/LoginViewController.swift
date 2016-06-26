@@ -10,10 +10,8 @@ import UIKit
 import SwiftyUserDefaults
 import Async
 import SVProgressHUD
-import SwiftHEXColors
 
 class LoginNavigationController: UINavigationController {
-    
 }
 
 class LoginViewController: BaseViewController, UITextFieldDelegate {
@@ -31,10 +29,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        self.navigationController?.navigationBar.translucent = false
         self.title = "登录"
-        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.lightGrayColor()]

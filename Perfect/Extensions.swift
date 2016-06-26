@@ -171,7 +171,13 @@ extension String {
 
 extension Int {
     var pixelToPoint: CGFloat {
-        return CGFloat(Float(self) / 2)
+        if Tool.height == 1136 / 2 {
+            return CGFloat(Float(self) / 2) * 1136 / 1334
+        } else if Tool.height == 1920 / 3 {
+            return CGFloat(Float(self) / 2)
+        } else {
+            return CGFloat(Float(self) / 2)
+        }
     }
 }
 extension Float {
@@ -179,6 +185,7 @@ extension Float {
         return CGFloat(self / 2)
     }
 }
+
 
 
 

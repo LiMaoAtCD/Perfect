@@ -9,7 +9,6 @@
 import UIKit
 import SVProgressHUD
 import Async
-import SwiftHEXColors
 class AddressEditViewController: BaseViewController, UITextViewDelegate {
 
     var scrollView: UIScrollView!

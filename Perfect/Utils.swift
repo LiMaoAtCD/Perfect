@@ -40,6 +40,8 @@ struct Tool {
     static let width = UIScreen.mainScreen().bounds.size.width
     static let sb = UIStoryboard.init(name: "Main", bundle: nil)
     static let root = UIApplication.sharedApplication().keyWindow?.rootViewController as! RootNavigationController
+    static let height = UIScreen.mainScreen().bounds.size.height
+    
 
 }
 
