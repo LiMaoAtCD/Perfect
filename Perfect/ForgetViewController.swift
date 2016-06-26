@@ -39,11 +39,11 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-
+        self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "")
         self.title = "找回密码"
         scrollView = UIScrollView.init()
         scrollView.alwaysBounceVertical = true
-        scrollView.backgroundColor = UIColor.lightGrayColor()
+        scrollView.backgroundColor = UIColor.globalBackGroundColor()
         view.addSubview(scrollView)
         
         scrollView.snp_makeConstraints { (make) in
@@ -56,7 +56,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.blackColor()), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
         
         super.viewWillAppear(animated)
     }
