@@ -9,6 +9,7 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - FDFullscreenPopGesture (1.1)
   - Kingfisher (2.4.1)
+  - KMNavigationBarTransition (0.0.9)
   - MJRefresh (3.1.0)
   - ObjectMapper (1.3.0)
   - Realm (1.0.0):
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - ChameleonFramework
   - FDFullscreenPopGesture (~> 1.1)
   - Kingfisher
+  - KMNavigationBarTransition
   - MJRefresh
   - ObjectMapper (~> 1.3)
   - RealmSwift
@@ -47,6 +49,7 @@ SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
+  KMNavigationBarTransition: cc9dce7baa86d054bc9998d9ce6be8b12ae9a961
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   Realm: e15cd8e7c11d3e576f628ba0b7cb855269b4991c

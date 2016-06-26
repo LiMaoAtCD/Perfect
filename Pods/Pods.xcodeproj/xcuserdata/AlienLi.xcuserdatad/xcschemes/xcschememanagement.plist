@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KMNavigationBarTransition.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,12 +92,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>08A7E3CDA40A59D0865C567FA2701033</key>
+		<key>05C5934EF22E0C686BED83C5D9B9B177</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1BFF305FA58528E921599B0829CFEC6F</key>
+		<key>1A20A6A6AFC4E497BD55AB818955FED3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,17 +112,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>521E09B0AFD85CD733BD72080419E475</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>55B42591971381746F1BC2B0B7E4D382</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5DE2E26B6959448FA96A08B4987B2DF9</key>
+		<key>66644B1EA317A637AFC7693EBC602BAE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,7 +127,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>85C9315AAAD05B9563CA39B3C55ED18F</key>
+		<key>7B0E2FFF0708D128A72AC24F56CF53EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8D0E3713D80BCC1D0A8CDE5A3B485AC0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8F42D96EC9D95B756BB7540EC443957D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9671B3C75B772FC726EE8AB0F247E855</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,17 +152,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AB6433534749B2CB2D9B65F51715334D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>C5CBCAA97E951CC882334464FBDF983D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D06E1D5A9873F2173F62CB28E76D596B</key>
+		<key>D6ED4BC7521365F0AE3F63497B314EAA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D762F459C8DD377D326B4AE86976B255</key>
 		<dict>
 			<key>primary</key>
 			<true/>

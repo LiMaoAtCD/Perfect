@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '014565E9260EADCB81AB555C'
-               BlueprintName = 'Kingfisher'
+               BlueprintIdentifier = 'FB729413F7FDE300565FEFC4'
+               BlueprintName = 'KMNavigationBarTransition'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Kingfisher.framework'>
+               BuildableName = 'KMNavigationBarTransition.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

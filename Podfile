@@ -17,6 +17,8 @@ target 'Perfect' do
     pod 'AsyncSwift'
     pod 'SVProgressHUD'
     pod 'ChameleonFramework'
+    pod 'KMNavigationBarTransition'
+
 end
 
 target 'PerfectTests' do
