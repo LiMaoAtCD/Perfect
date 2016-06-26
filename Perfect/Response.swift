@@ -192,6 +192,20 @@ class AddressResponse: DataResponse {
         retObj <- map["retObj"]
     }
 }
+//MARK: 全部订单
+class HistoryOrderResponse: DataResponse {
+    var retObj: HistoryOrderEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        retObj <- map["retObj"]
+    }
+}
+
 
 
 

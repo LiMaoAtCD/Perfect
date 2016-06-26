@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     var tableView: UITableView!
-    var item: [String]!
+    var item: [HistoryOrderItem]!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,8 +26,17 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(AllOrderCell.self, forCellReuseIdentifier: "AllOrderCell")
-        item = [String]()
+        item = [HistoryOrderItem]()
         
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.appOrderHistory.contant, parameters: nil, completion: { (result: HistoryOrderResponse?) in
+                if let _ = result?.retObj?.rows {
+                    self.item = result?.retObj?.rows!
+                    self.tableView.reloadData()
+                }
+            }) { (errmsg, errcode) in
+                SVProgressHUD.showErrorWithStatus(errmsg ?? "订单列表获取失败")
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -34,13 +44,12 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return item.count
     }
     
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AllOrderCell", forIndexPath: indexPath)
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("AllOrderCell", forIndexPath: indexPath) as!  AllOrderCell
+        cell.entity = self.item[indexPath.row]
         return cell
     }
 
@@ -78,7 +87,13 @@ class AllOrderCell: UITableViewCell {
     var orderTimeTitleLabel: UILabel!
     var orderTimeLabel: UILabel!
     
-//    var entity: []
+    var entity: HistoryOrderItem? {
+        willSet {
+            if let _ = newValue {
+                
+            }
+        }
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -28,6 +28,8 @@ class FirstEntity: Mappable {
     
 }
 
+
+
 class FirstBannerItem: Mappable{
     
     required convenience init?(_ map: Map) {
@@ -204,7 +206,52 @@ class PersonalMemberInfoItem: Mappable {
     }
 }
 
+//历史订单（全部订单）
 
+class HistoryOrderEntity: Mappable {
+    var memberInfo: PersonalMemberInfoItem?
+    var total: Int = 0
+    var rows: [HistoryOrderItem]?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        total <- map["total"]
+        rows <- map["rows"]
+    }
+}
+
+class HistoryOrderItem: Mappable {
+    
+    var moduleId: Int64 = 0
+    var price: Float = 0.0
+    var status: Int = 0
+    var statusName: String?
+    var moduleName: String?
+    var image: Int64 = 0
+    var quantity: Int = 0
+    var fullName: String?
+    var orderId: Int64 = 0
+    var totalPrice: Float = 0.0
+    
+    required init?(_ map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        moduleId <- (map["moduleId"], TransformOfUtils.TransformOfInt64())
+        price <- map["price"]
+        status <- map["status"]
+        statusName <- map["statusName"]
+        moduleName <- map["moduleName"]
+        image <- (map["image"], TransformOfUtils.TransformOfInt64())
+        quantity <- map["quantity"]
+        fullName <- map["fullName"]
+        orderId <- (map["orderId"], TransformOfUtils.TransformOfInt64())
+        totalPrice <- map["totalPrice"]
+    }
+}
 
 
 

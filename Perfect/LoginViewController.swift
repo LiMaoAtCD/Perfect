@@ -160,7 +160,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         loginButton.addTarget(self, action: #selector(self.login), forControlEvents: .TouchUpInside)
         loginButton.setTitle("登录", forState: .Normal)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        loginButton.backgroundColor = UIColor(hexString: "#a83042")
+        loginButton.backgroundColor = UIColor(hexString: "#ee304e")
         loginButton.layer.cornerRadius = 10.0
         loginButton.layer.masksToBounds = true
         view.addSubview(loginButton)
