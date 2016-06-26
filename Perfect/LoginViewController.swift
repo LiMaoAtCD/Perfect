@@ -58,7 +58,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     override func configurePopNavigationItem() {
         
-        let image = UIImage(named: "ic_back")
+        let image = UIImage(named: "navi_back")
         let backButton = UIButton(type: .Custom)
         backButton.setImage(image, forState: .Normal)
         backButton.frame = CGRectMake(0, 0, image!.size.width, image!.size.height)
@@ -110,7 +110,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         cellphoneTextfield = UITextField()
         cellphoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
-        cellphoneTextfield.textColor = UIColor.whiteColor()
+        cellphoneTextfield.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
         cellphoneTextfield.keyboardType = .NumberPad
         view.addSubview(cellphoneTextfield)
         
@@ -122,7 +122,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         }
         
         let line0 = UIView()
-        line0.backgroundColor = UIColor.whiteColor()
+        line0.backgroundColor = UIColor.init(hexString: "#bcbabb", withAlpha: 0.7)
         view.addSubview(line0)
         
         line0.snp_makeConstraints { (make) in
@@ -153,7 +153,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             make.centerY.equalTo(lockTagImageview)
         }
         let line1 = UIView()
-        line1.backgroundColor = UIColor.whiteColor()
+        line1.backgroundColor = UIColor.init(hexString: "#bcbabb", withAlpha: 0.7)
         view.addSubview(line1)
         
         line1.snp_makeConstraints { (make) in

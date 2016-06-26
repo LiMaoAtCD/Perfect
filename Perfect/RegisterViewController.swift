@@ -49,7 +49,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         imageview.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
         }
-        imageview.image = UIImage.init(named: "loginBg")
+        imageview.image = UIImage.init(named: "login_bg")
         
         
         scrollView = UIScrollView.init()
@@ -82,60 +82,60 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     func setupViews() {
         //图标
         let icon = UIImageView()
-        icon.image = UIImage.init(named: "h6")
+        icon.image = UIImage.init(named: "login_logo")
         scrollView.addSubview(icon)
         icon.snp_makeConstraints { (make) in
             make.centerX.equalTo(view)
-            make.width.height.equalTo(80)
-            make.top.equalTo(scrollView.snp_top).offset(60)
+            make.width.height.equalTo(168.pixelToPoint)
+            make.bottom.equalTo(scrollView.snp_top).offset(430.pixelToPoint)
         }
         
         let userTagImageView = UIImageView()
-        userTagImageView.image = UIImage.init(named: "perfect")
+        userTagImageView.image = UIImage.init(named: "login_user")
         scrollView.addSubview(userTagImageView)
         userTagImageView.snp_makeConstraints { (make) in
-            make.left.equalTo(30)
-            make.width.height.equalTo(25)
-            make.top.equalTo(icon.snp_bottom).offset(80)
+            make.left.equalTo(88.pixelToPoint)
+            make.width.height.equalTo(43.pixelToPoint)
+            make.top.equalTo(icon.snp_bottom).offset(180.pixelToPoint)
         }
         
         cellphoneTextfield = UITextField()
         cellphoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-        cellphoneTextfield.textColor = UIColor.whiteColor()
+        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
+        cellphoneTextfield.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
         cellphoneTextfield.keyboardType = .NumberPad
         scrollView.addSubview(cellphoneTextfield)
         
         cellphoneTextfield.snp_makeConstraints { (make) in
-            make.left.equalTo(userTagImageView.snp_right).offset(8)
+            make.left.equalTo(userTagImageView.snp_right).offset(40.pixelToPoint)
             make.centerY.equalTo(userTagImageView)
-            make.right.equalTo(view).offset(-20)
-            make.height.equalTo(35)
+            make.right.equalTo(view).offset(-40.pixelToPoint)
+            make.height.equalTo(125.pixelToPoint)
         }
         
         let line0 = UIView()
-        line0.backgroundColor = UIColor.lightGrayColor()
+        line0.backgroundColor = UIColor.init(hexString: "#bcbabb", withAlpha: 0.7)
         scrollView.addSubview(line0)
         
         line0.snp_makeConstraints { (make) in
-            make.left.equalTo(view).offset(14)
-            make.right.equalTo(view).offset(-14)
-            make.top.equalTo(userTagImageView.snp_bottom).offset(14)
-            make.height.equalTo(1)
+            make.left.equalTo(38.pixelToPoint)
+            make.right.equalTo(view).offset(-38.pixelToPoint)
+            make.top.equalTo(userTagImageView.snp_bottom).offset(31.pixelToPoint)
+            make.height.equalTo(1.pixelToPoint)
         }
 
         let passwordTagImageView = UIImageView()
-        passwordTagImageView.image = UIImage.init(named: "perfect")
+        passwordTagImageView.image = UIImage.init(named: "login_lock")
         scrollView.addSubview(passwordTagImageView)
         passwordTagImageView.snp_makeConstraints { (make) in
-            make.left.equalTo(30)
-            make.width.height.equalTo(25)
-            make.centerY.equalTo(userTagImageView.snp_centerY).offset(50)
+            make.left.equalTo(userTagImageView)
+            make.width.height.equalTo(userTagImageView)
+            make.top.equalTo(userTagImageView).offset(125.pixelToPoint)
         }
 
         passwordTextfield = UITextField()
-        passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "密码", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-        passwordTextfield.textColor = UIColor.whiteColor()
+        passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "密码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
+        passwordTextfield.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
 
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         passwordTextfield.secureTextEntry = true
@@ -143,89 +143,91 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         
         passwordTextfield.snp_makeConstraints { (make) in
-            make.centerY.equalTo(cellphoneTextfield).offset(50)
-            make.left.right.equalTo(cellphoneTextfield)
-            make.height.equalTo(cellphoneTextfield)
+            make.left.right.height.equalTo(cellphoneTextfield)
+            make.centerY.equalTo(passwordTagImageView)
         }
         
         let line1 = UIView()
-        line1.backgroundColor = UIColor.lightGrayColor()
+        line1.backgroundColor = UIColor.init(hexString: "#bcbabb", withAlpha: 0.7)
         scrollView.addSubview(line1)
         line1.snp_makeConstraints { (make) in
-            make.left.right.equalTo(line0)
-            make.centerY.equalTo(line0.snp_centerY).offset(50)
-            make.height.equalTo(1)
+            make.left.right.height.equalTo(line0)
+            make.centerY.equalTo(line0.snp_centerY).offset(126.pixelToPoint)
         }
         
         let verifyTagImageView = UIImageView()
-        verifyTagImageView.image = UIImage.init(named: "perfect")
+        verifyTagImageView.image = UIImage.init(named: "register_verify")
         scrollView.addSubview(verifyTagImageView)
         verifyTagImageView.snp_makeConstraints { (make) in
-            make.left.equalTo(30)
-            make.width.height.equalTo(25)
-            make.centerY.equalTo(passwordTagImageView.snp_centerY).offset(50)
+            make.left.equalTo(userTagImageView)
+            make.width.height.equalTo(43.pixelToPoint)
+            make.centerY.equalTo(passwordTagImageView.snp_centerY).offset(126.pixelToPoint)
         }
         
         verifyTextField = UITextField()
         verifyTextField.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        verifyTextField.attributedPlaceholder = NSAttributedString.init(string: "验证码", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-        verifyTextField.textColor = UIColor.whiteColor()
+        verifyTextField.attributedPlaceholder = NSAttributedString.init(string: "验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
+        verifyTextField.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
         verifyTextField.keyboardType = .NumberPad
 
         scrollView.addSubview(verifyTextField)
         
-        verifyTextField.snp_makeConstraints { (make) in
-            make.left.height.equalTo(cellphoneTextfield)
-            make.centerY.equalTo(passwordTextfield).offset(50)
-            make.width.lessThanOrEqualTo(150)
-        }
+      
         
         verifyButton = UIButton.init(type: .Custom)
-        verifyButton.setAttributedTitle(NSAttributedString(string: "获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor(),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+        verifyButton.setAttributedTitle(NSAttributedString(string: "获取验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7) ,NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
 
         verifyButton.addTarget(self, action: #selector(self.verify), forControlEvents: .TouchUpInside)
         scrollView.addSubview(verifyButton)
         verifyButton.snp_makeConstraints { (make) in
-            make.right.equalTo(view).offset(-10)
+            make.right.equalTo(view).offset(0)
             make.centerY.equalTo(verifyTextField.snp_centerY)
-            make.width.lessThanOrEqualTo(100)
+            make.width.equalTo(242.pixelToPoint)
+        }
+        verifyTextField.snp_makeConstraints { (make) in
+            make.left.height.equalTo(cellphoneTextfield)
+            make.centerY.equalTo(passwordTextfield).offset(126.pixelToPoint)
+            make.right.equalTo(verifyButton.snp_left)
         }
         
         let marginView = UIView()
         scrollView.addSubview(marginView)
-        marginView.backgroundColor = UIColor.lightGrayColor()
+        marginView.backgroundColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
         marginView.snp_makeConstraints { (make) in
-            make.right.equalTo(view).offset(-100)
-            make.width.equalTo(1)
+            make.right.equalTo(view).offset(-242.pixelToPoint)
+            make.width.equalTo(1.pixelToPoint)
             make.height.equalTo(30)
             make.centerY.equalTo(verifyButton)
         }
 
         let line2 = UIView()
-        line2.backgroundColor = UIColor.lightGrayColor()
+        line2.backgroundColor = UIColor.init(hexString: "#bcbabb", withAlpha: 0.7)
         scrollView.addSubview(line2)
         line2.snp_makeConstraints { (make) in
-            make.left.right.equalTo(line0)
-            make.top.equalTo(line1.snp_bottom).offset(50)
-            make.height.equalTo(1)
+            make.left.right.height.equalTo(line0)
+            make.top.equalTo(line1.snp_bottom).offset(126.pixelToPoint)
         }
         
         protocolCheckButton = UIButton.init(type: .Custom)
         protocolCheckButton.addTarget(self, action: #selector(self.checkProtocol), forControlEvents: .TouchUpInside)
-        protocolCheckButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+        protocolCheckButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
         scrollView.addSubview(protocolCheckButton)
         protocolCheckButton.snp_makeConstraints { (make) in
-            make.left.equalTo(view).offset(20)
-            make.width.height.equalTo(25)
-            make.top.equalTo(line2.snp_bottom).offset(20)
+            make.left.equalTo(view).offset(64.pixelToPoint)
+            make.width.height.equalTo(33.pixelToPoint)
+            make.top.equalTo(line2.snp_bottom).offset(52.pixelToPoint)
         }
         
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.gotoProtocol))
         protocolLabel = UILabel()
         let agree: NSString = "同意注册协议"
         let attributeString = NSMutableAttributedString.init(string: "同意注册协议", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-        attributeString.addAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], range: NSMakeRange(0, 2))
-        attributeString.addAttributes([NSForegroundColorAttributeName: UIColor.greenColor()], range: NSMakeRange(2, agree.length - 2))
+        attributeString.addAttributes([NSForegroundColorAttributeName:
+            UIColor.init(hexString: "#fefefe", withAlpha: 0.7)],
+                                      range: NSMakeRange(0, 2))
+        attributeString.addAttributes([NSForegroundColorAttributeName:
+            UIColor.init(hexString: "#66b389", withAlpha: 0.7)],
+                                      range: NSMakeRange(2, agree.length - 2))
         protocolLabel.attributedText = attributeString
 
         protocolLabel.addGestureRecognizer(tap)
@@ -238,7 +240,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         let enterpriseLabel = UILabel()
         enterpriseLabel.text = "企业"
-        enterpriseLabel.textColor = UIColor.whiteColor()
+        enterpriseLabel.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
         scrollView.addSubview(enterpriseLabel)
         enterpriseLabel.snp_makeConstraints { (make) in
             make.right.equalTo(line2.snp_right)
@@ -247,17 +249,17 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         enterPriseButton = UIButton.init(type: .Custom)
         enterPriseButton.addTarget(self, action: #selector(self.choosePersonalOrEnterprise), forControlEvents: .TouchUpInside)
-        enterPriseButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+        enterPriseButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
         scrollView.addSubview(enterPriseButton)
         enterPriseButton.snp_makeConstraints { (make) in
             make.width.height.equalTo(protocolCheckButton)
-            make.right.equalTo(enterpriseLabel.snp_left)
+            make.right.equalTo(enterpriseLabel.snp_left).offset(-8)
             make.centerY.equalTo(enterpriseLabel)
         }
         
         let personalLabel = UILabel()
         personalLabel.text = " 个人  /"
-        personalLabel.textColor = UIColor.whiteColor()
+        personalLabel.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
 
         scrollView.addSubview(personalLabel)
         personalLabel.snp_makeConstraints { (make) in
@@ -268,12 +270,12 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         personalButton = UIButton.init(type: .Custom)
         personalButton.addTarget(self, action: #selector(self.choosePersonalOrEnterprise), forControlEvents: .TouchUpInside)
 
-        personalButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+        personalButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
         scrollView.addSubview(personalButton)
         personalButton.snp_makeConstraints { (make) in
             make.width.height.equalTo(enterPriseButton)
             make.centerY.equalTo(enterPriseButton)
-            make.right.equalTo(personalLabel.snp_left).offset(8)
+            make.right.equalTo(personalLabel.snp_left).offset(-8)
         }
         
         
@@ -282,17 +284,17 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         registerButton.setTitle("注册", forState: .Normal)
         registerButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         registerButton.backgroundColor = UIColor.clearColor()
-        registerButton.layer.cornerRadius = 3.0
+        registerButton.layer.cornerRadius = 10.0
         registerButton.layer.masksToBounds = true
-        registerButton.layer.borderWidth = 1
-        registerButton.layer.borderColor = UIColor.whiteColor().CGColor
+        registerButton.layer.borderWidth = 1.pixelToPoint
+        registerButton.layer.borderColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7).CGColor
         scrollView.addSubview(registerButton)
 
         registerButton.snp_makeConstraints { (make) in
-            make.top.equalTo(line2.snp_bottom).offset(60)
+            make.top.equalTo(protocolCheckButton.snp_bottom).offset(90.pixelToPoint)
             make.centerX.equalTo(scrollView)
-            make.height.equalTo(45)
-            make.left.equalTo(14)
+            make.height.equalTo(106.pixelToPoint)
+            make.left.equalTo(39.pixelToPoint)
         }
 
 
@@ -313,22 +315,22 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     func checkProtocol() {
         if userProtocolChecked {
             userProtocolChecked = false
-            protocolCheckButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+            protocolCheckButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
         } else {
             userProtocolChecked = true
-            protocolCheckButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+            protocolCheckButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
         }
     }
     
     func choosePersonalOrEnterprise() {
         if personalRegister {
             personalRegister = false
-            enterPriseButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
-            personalButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+            enterPriseButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
+            personalButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
         } else {
             personalRegister = true
-            enterPriseButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
-            personalButton.setImage(UIImage.init(named: "perfect"), forState: .Normal)
+            enterPriseButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
+            personalButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
         }
     }
     
