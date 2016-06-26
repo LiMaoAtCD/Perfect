@@ -84,41 +84,41 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         imageview.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
         }
-        imageview.image = UIImage.init(named: "loginBg")
+        imageview.image = UIImage.init(named: "login_bg")
         
-        //图标
+        //app图标
         let icon = UIImageView()
         self.view.addSubview(icon)
         icon.snp_makeConstraints { (make) in
             make.centerX.equalTo(view)
-            make.width.height.equalTo(80)
-            make.top.equalTo(self.snp_topLayoutGuideBottom).offset(60)
+            make.width.height.equalTo(168.pixelToPoint)
+            make.bottom.equalTo(self.snp_topLayoutGuideTop).offset(430.pixelToPoint)
         }
         
-        icon.image = UIImage.init(named: "h6")
+        icon.image = UIImage.init(named: "login_logo")
         
         
         let userTagImageView = UIImageView()
-        userTagImageView.image = UIImage.init(named: "perfect")
+        userTagImageView.image = UIImage.init(named: "login_user")
         view.addSubview(userTagImageView)
         userTagImageView.snp_makeConstraints { (make) in
-            make.left.equalTo(30)
-            make.width.height.equalTo(25)
-            make.top.equalTo(icon.snp_bottom).offset(80)
+            make.left.equalTo(88.pixelToPoint)
+            make.width.height.equalTo(43.pixelToPoint)
+            make.top.equalTo(icon.snp_bottom).offset(180.pixelToPoint)
         }
         
         cellphoneTextfield = UITextField()
         cellphoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe")])
         cellphoneTextfield.textColor = UIColor.whiteColor()
         cellphoneTextfield.keyboardType = .NumberPad
         view.addSubview(cellphoneTextfield)
         
         cellphoneTextfield.snp_makeConstraints { (make) in
-            make.left.equalTo(userTagImageView.snp_right).offset(20)
+            make.left.equalTo(userTagImageView.snp_right).offset(40.pixelToPoint)
             make.centerY.equalTo(userTagImageView)
-            make.right.equalTo(-50)
-            make.height.equalTo(35)
+            make.right.equalTo(-40.pixelToPoint)
+            make.height.equalTo(125.pixelToPoint)
         }
         
         let line0 = UIView()
@@ -126,19 +126,19 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         view.addSubview(line0)
         
         line0.snp_makeConstraints { (make) in
-            make.left.equalTo(20)
-            make.right.equalTo(-20)
-            make.top.equalTo(userTagImageView.snp_bottom).offset(14)
-            make.height.equalTo(1)
+            make.left.equalTo(38.pixelToPoint)
+            make.right.equalTo(-38.pixelToPoint)
+            make.top.equalTo(userTagImageView.snp_bottom).offset(31.pixelToPoint)
+            make.height.equalTo(1.pixelToPoint)
         }
         
         let lockTagImageview = UIImageView()
-        lockTagImageview.image = UIImage.init(named: "perfect")
+        lockTagImageview.image = UIImage.init(named: "login_lock")
         view.addSubview(lockTagImageview)
         lockTagImageview.snp_makeConstraints { (make) in
-            make.left.equalTo(30)
-            make.width.height.equalTo(25)
-            make.top.equalTo(userTagImageView).offset(50)
+            make.left.equalTo(userTagImageView)
+            make.width.height.equalTo(userTagImageView)
+            make.top.equalTo(userTagImageView).offset(125.pixelToPoint)
         }
         
         passwordTextfield = UITextField()
@@ -158,7 +158,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
         line1.snp_makeConstraints { (make) in
             make.left.height.right.equalTo(line0)
-            make.top.equalTo(line0.snp_bottom).offset(50)
+            make.top.equalTo(line0.snp_bottom).offset(125.pixelToPoint)
         }
         
         loginButton = UIButton.init(type: .Custom)

@@ -17,7 +17,7 @@ extension UIViewController {
     }
     
     func configurePopNavigationItem() {
-        let image = UIImage(named: "ic_back")
+        let image = UIImage(named: "navi_back")
         let backButton = UIButton(type: .Custom)
         backButton.setImage(image, forState: .Normal)
         backButton.frame = CGRectMake(0, 0, image!.size.width, image!.size.height)
@@ -166,6 +166,17 @@ extension String {
         {
             return false
         }
+    }
+}
+
+extension Int {
+    var pixelToPoint: CGFloat {
+        return CGFloat(Float(self) / 2)
+    }
+}
+extension Float {
+    var pixelToPoint: CGFloat {
+        return CGFloat(self / 2)
     }
 }
 
