@@ -23,6 +23,8 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
             make.edges.equalTo(view)
         }
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 500.0
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(AllOrderCell.self, forCellReuseIdentifier: "AllOrderCell")
@@ -37,6 +39,8 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
             }) { (errmsg, errcode) in
                 SVProgressHUD.showErrorWithStatus(errmsg ?? "订单列表获取失败")
         }
+        
+        self.tableView.backgroundColor = UIColor.init(hexString: "#e4ebf0")
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -63,9 +67,11 @@ class AllOrderCell: UITableViewCell {
     
     var mainView: UIView!
     var packageImageView: UIImageView!
-    var deliverTypeLabel: UILabel!
-    var deliverNumberTitleLabel: UILabel!
-    var deliverNumberLabel: UILabel!
+//    var deliverTypeLabel: UILabel!
+//    var deliverNumberTitleLabel: UILabel!
+//    var deliverNumberLabel: UILabel!
+    
+    var topLabel: UILabel!
 
     var deliverMarginView: UIView!
     var addressTagImageView: UIImageView!
@@ -98,7 +104,11 @@ class AllOrderCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = UIColor.clearColor()
+        self.selectionStyle = .None
+        
         mainView = UIView()
+        mainView.backgroundColor = UIColor.whiteColor()
+        
         self.addSubview(mainView)
         mainView.snp_makeConstraints { (make) in
             make.left.equalTo(21.pixelToPoint)
@@ -116,34 +126,19 @@ class AllOrderCell: UITableViewCell {
         }
         packageImageView.image = UIImage.init(named: "order_package")
         
-        deliverTypeLabel = UILabel()
-        mainView.addSubview(deliverTypeLabel)
-        deliverTypeLabel.snp_makeConstraints { (make) in
+        
+        topLabel = UILabel()
+        mainView.addSubview(topLabel)
+        topLabel.font = UIFont.systemFontOfSize(13)
+        topLabel.text = "圆通快递"
+        topLabel.textColor = UIColor.init(hexString: "#2fb76c")
+        
+        topLabel.snp_makeConstraints { (make) in
             make.centerY.equalTo(packageImageView)
             make.left.equalTo(packageImageView.snp_right).offset(27.pixelToPoint)
+            make.right.equalTo(-8)
         }
-        deliverTypeLabel.textColor = UIColor.init(hexString: "#2fb76c")
-        deliverTypeLabel.font = UIFont.systemFontOfSize(13)
-        deliverTypeLabel.text = "圆通快递"
-        
-        deliverNumberTitleLabel = UILabel()
-        mainView.addSubview(deliverNumberTitleLabel)
-        deliverNumberTitleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(deliverTypeLabel.snp_right).offset(14)
-            make.centerY.equalTo(deliverTypeLabel)
-        }
-        deliverNumberTitleLabel.font = UIFont.systemFontOfSize(13)
-        deliverNumberTitleLabel.text = "快递单号:"
-        
-        deliverNumberLabel = UILabel()
-        mainView.addSubview(deliverNumberLabel)
-        deliverNumberLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(deliverNumberTitleLabel.snp_right).offset(14)
-            make.centerY.equalTo(deliverTypeLabel)
-        }
-        deliverNumberLabel.font = UIFont.systemFontOfSize(13)
-        deliverNumberLabel.text = "1213243423232323"
-        
+
         
         deliverMarginView = UIView()
         deliverMarginView.backgroundColor = UIColor.init(hexString: "#ebebeb")
@@ -200,18 +195,19 @@ class AllOrderCell: UITableViewCell {
         addressTitleLabel.snp_makeConstraints { (make) in
             make.top.equalTo(nameTitleLabel.snp_bottom).offset(20.pixelToPoint)
             make.left.equalTo(nameTitleLabel)
+            make.width.lessThanOrEqualTo(80)
         }
         
         addressLabel = UILabel()
-        
-        addressTitleLabel.font = UIFont.systemFontOfSize(13)
-        addressTitleLabel.textColor = UIColor.init(hexString: "#333333")
         addressLabel.numberOfLines = 0
+        addressLabel.font = UIFont.systemFontOfSize(13.0)
+        addressLabel.textColor = UIColor.init(hexString: "#333333")
+        addressLabel.text = "成都市高新区天府软件区G9 dfkajhfjkdfakfakfja"
         mainView.addSubview(addressLabel)
         addressLabel.snp_makeConstraints { (make) in
             make.top.equalTo(nameTitleLabel.snp_bottom).offset(20.pixelToPoint)
             make.left.equalTo(addressTitleLabel.snp_right)
-            make.right.equalTo(cellphoneLabel.snp_right)
+            make.right.equalTo(mainView).offset(-21.pixelToPoint)
         }
         
         addressMarginView = UIView()
@@ -226,6 +222,7 @@ class AllOrderCell: UITableViewCell {
         
         goodsImageView = UIImageView()
         mainView.addSubview(goodsImageView)
+        goodsImageView.image = UIImage.init(named: "placeholder")
         goodsImageView.snp_makeConstraints { (make) in
             make.width.height.equalTo(157.pixelToPoint)
             make.top.equalTo(addressMarginView.snp_bottom).offset(25.pixelToPoint)
@@ -247,13 +244,13 @@ class AllOrderCell: UITableViewCell {
         let price: NSString = "￥1000"
         let attributeString = NSMutableAttributedString.init(string: "￥1000", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#ee304e")])
         attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(10)], range: NSMakeRange(0, 1))
-        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(18)], range: NSMakeRange(1, price.length - 1))
+        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, price.length - 1))
         priceLabel.attributedText = attributeString
         
         mainView.addSubview(priceLabel)
         priceLabel.snp_makeConstraints { (make) in
             make.left.equalTo(goodTitleLabel)
-            make.top.equalTo(goodTitleLabel.snp_bottom).offset(51.pixelToPoint)
+            make.baseline.equalTo(goodsImageView.snp_bottom)
         }
         
         
@@ -264,10 +261,12 @@ class AllOrderCell: UITableViewCell {
         
         quantityLabel.snp_makeConstraints { (make) in
             make.right.equalTo(goodTitleLabel.snp_right)
+            make.baseline.equalTo(priceLabel)
         }
         quantityLabel.text = "x2"
         
         goodMariginView = UIView()
+        goodMariginView.backgroundColor = UIColor.init(hexString: "#ebebeb")
         mainView.addSubview(goodMariginView)
         goodMariginView.snp_makeConstraints { (make) in
             make.left.right.height.equalTo(addressMarginView)
@@ -293,7 +292,7 @@ class AllOrderCell: UITableViewCell {
         }
         orderNumberLabel.textColor = UIColor.init(hexString: "#999999")
         orderNumberLabel.font = UIFont.systemFontOfSize(12.0)
-        
+        orderNumberLabel.text = "112123323232"
         
         modelTitleLabel = UILabel()
         modelTitleLabel.textColor = UIColor.init(hexString: "#999999")
@@ -301,8 +300,8 @@ class AllOrderCell: UITableViewCell {
         mainView.addSubview(modelTitleLabel)
         modelTitleLabel.snp_makeConstraints { (make) in
             make.left.equalTo(orderNumberTitleLabel)
-            make.top.equalTo(orderNumberTitleLabel.snp_bottom)
-            .offset(20.pixelToPoint)
+            make.top.equalTo(orderNumberTitleLabel.snp_bottom).offset(20.pixelToPoint)
+            make.width.lessThanOrEqualTo(80)
         }
         modelTitleLabel.text = "模块定制:"
         
@@ -320,8 +319,9 @@ class AllOrderCell: UITableViewCell {
         mainView.addSubview(orderTimeTitleLabel)
         orderTimeTitleLabel.snp_makeConstraints { (make) in
             make.left.equalTo(modelTitleLabel)
-            make.centerY.equalTo(modelTitleLabel)
-            make.bottom.equalTo(mainView).offset(-31.pixelToPoint)
+            make.top.equalTo(modelTitleLabel.snp_bottom).offset(20.pixelToPoint)
+            make.bottom.equalTo(mainView.snp_bottom).offset(-31.pixelToPoint)
+            make.width.lessThanOrEqualTo(80)
         }
         orderTimeTitleLabel.textColor = UIColor.init(hexString: "#999999")
         orderTimeTitleLabel.font = UIFont.systemFontOfSize(12.0)
@@ -334,9 +334,9 @@ class AllOrderCell: UITableViewCell {
             make.centerY.equalTo(orderTimeTitleLabel)
             
         }
-        orderTimeTitleLabel.textColor = UIColor.init(hexString: "#999999")
-        orderTimeTitleLabel.font = UIFont.systemFontOfSize(12.0)
-        orderTimeTitleLabel.text = "2011-39-12 12:00:00"
+        orderTimeLabel.textColor = UIColor.init(hexString: "#999999")
+        orderTimeLabel.font = UIFont.systemFontOfSize(12.0)
+        orderTimeLabel.text = "2011-39-12 12:00:00"
 
     }
     
