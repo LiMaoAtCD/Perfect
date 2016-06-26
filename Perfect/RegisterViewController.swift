@@ -23,6 +23,8 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     var personalButton: UIButton!
     var enterPriseButton: UIButton!
     
+    var activeField: UITextField!
+    
     var timer: NSTimer?
     var timerCount: Int = 60
     
@@ -65,12 +67,16 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RegisterViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RegisterViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
     }
     
     func dismissKeyboard() {
         self.cellphoneTextfield.resignFirstResponder()
         self.passwordTextfield.resignFirstResponder()
         self.verifyTextField.resignFirstResponder()
+        activeField = nil
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -104,6 +110,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
         cellphoneTextfield.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
         cellphoneTextfield.keyboardType = .NumberPad
+        cellphoneTextfield.delegate = self
         scrollView.addSubview(cellphoneTextfield)
         
         cellphoneTextfield.snp_makeConstraints { (make) in
@@ -139,7 +146,9 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
 
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         passwordTextfield.secureTextEntry = true
+        passwordTextfield.delegate = self
         scrollView.addSubview(passwordTextfield)
+        
         
         
         passwordTextfield.snp_makeConstraints { (make) in
@@ -165,6 +174,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         
         verifyTextField = UITextField()
+        verifyTextField.delegate = self
         verifyTextField.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         verifyTextField.attributedPlaceholder = NSAttributedString.init(string: "验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
         verifyTextField.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
@@ -296,8 +306,38 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
             make.height.equalTo(106.pixelToPoint)
             make.left.equalTo(39.pixelToPoint)
         }
+    }
+    
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        activeField = textField
+        return true
+    }
+    
 
-
+    
+    
+    
+    func keyboardWillShow(notification:NSNotification){
+        
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
+        
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.scrollView.contentInset = contentInset
+        
+        var aRect = self.view.frame
+        aRect.size.height -= keyboardFrame.size.height
+        let point = CGPointMake(0, activeField.y - keyboardFrame.size.height)
+        scrollView.setContentOffset(point, animated: true)
+    }
+    
+    func keyboardWillHide(notification:NSNotification){
+        
+        let contentInset:UIEdgeInsets = UIEdgeInsetsZero
+        self.scrollView.contentInset = contentInset
     }
     
     //MARK: 注册
@@ -478,6 +518,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     deinit{
         self.timer?.invalidate()
         self.timer = nil
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 
