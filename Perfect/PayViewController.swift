@@ -343,8 +343,6 @@ class PayViewController: BaseViewController {
         self.navigationController?.pushViewController(customVC, animated: true)
     }
     
-    
-    
     func submitOrder() {
         NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmOrder.contant, parameters: ["productId":productId.toNSNumber,"quantity":quantity, "areaId": areaId.toNSNumber,"contactAddress": contactAddress, "contactName": contactName, "contactPhone": contactPhone, "customImgId": customImgId.toNSNumber, "payType":"alipay"], completion: { (result: ConfirmOrderResponse?) in
             

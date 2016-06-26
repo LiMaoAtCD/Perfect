@@ -271,14 +271,14 @@
 		DA1A6B2A1D12515700FD4FB0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				878F22881D1833830074E1A2 /* Collect */,
 				870F38281CF9757C00AFF1AF /* BaseViewController.swift */,
 				DA417B591CF5EDD100F61304 /* Main.storyboard */,
 				DA1A6B6D1D127F4500FD4FB0 /* RootTabBarController.swift */,
 				DA1A6B6F1D127F6C00FD4FB0 /* RootNavigationController.swift */,
 				870F38211CF9488700AFF1AF /* Login */,
-				870F38171CF9332D00AFF1AF /* Me */,
 				DA57ED151CF7D56500A8083A /* First */,
+				878F22881D1833830074E1A2 /* Collect */,
+				870F38171CF9332D00AFF1AF /* Me */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

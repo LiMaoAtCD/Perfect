@@ -25,8 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         configureSVProgressHUD()
         
-        fetchAreaID()
         
+        hello()
+        fetchAreaID()
         return true
     }
     
@@ -90,6 +91,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 现在我们已经告诉了 Realm 如何处理架构的变化，打开文件之后将会自动执行迁移
         _ = try! Realm()
+    }
+    
+    func hello() {
+        NetworkHelper.instance.request(.GET, url: URLConstant.hello.contant, parameters: nil, completion: nil, failed: nil)
     }
 }
 

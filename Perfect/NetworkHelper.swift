@@ -33,6 +33,7 @@ enum httpMethod {
     case POST
 }
 enum URLConstant: String {
+    case hello = "hello"
     case FirstPage = "appQueryIndexStaticContent" //首页上部
     case ProductList = "appQueryProductList"    //首页下部
     case appProductDetail = "appProductDetail"  //商品详情
