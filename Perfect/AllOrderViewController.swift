@@ -27,6 +27,7 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
         tableView.estimatedRowHeight = 500.0
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         tableView.registerClass(AllOrderCell.self, forCellReuseIdentifier: "AllOrderCell")
         item = [HistoryOrderItem]()
         
@@ -55,6 +56,12 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCellWithIdentifier("AllOrderCell", forIndexPath: indexPath) as!  AllOrderCell
         cell.entity = self.item[indexPath.row]
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let orderDetailVC = OrderDetailViewController.someController(OrderDetailViewController.self, ofStoryBoard: UIStoryboard.main)
+        
+        self.navigationController?.pushViewController(orderDetailVC, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

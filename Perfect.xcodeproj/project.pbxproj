@@ -16,6 +16,7 @@
 		870F382B1CF97AF600AFF1AF /* ProtocolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F382A1CF97AF600AFF1AF /* ProtocolViewController.swift */; };
 		870F382F1CF987C900AFF1AF /* PeronalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F382E1CF987C900AFF1AF /* PeronalViewController.swift */; };
 		870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38301CF988C100AFF1AF /* AddressViewController.swift */; };
+		8718901E1D1FF2AA00F11311 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8718901D1D1FF2AA00F11311 /* OrderDetailViewController.swift */; };
 		8721877C1D19888E00281A19 /* NSObject+UIAppearanceSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = 8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */; };
 		8721877E1D19921000281A19 /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721877D1D19921000281A19 /* AvatarViewController.swift */; };
 		8752BF3A1D14E28100ED58D3 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */; };
@@ -75,6 +76,7 @@
 		870F382A1CF97AF600AFF1AF /* ProtocolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolViewController.swift; sourceTree = "<group>"; };
 		870F382E1CF987C900AFF1AF /* PeronalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeronalViewController.swift; sourceTree = "<group>"; };
 		870F38301CF988C100AFF1AF /* AddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
+		8718901D1D1FF2AA00F11311 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		8721877A1D19888E00281A19 /* NSObject+UIAppearanceSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UIAppearanceSwift.h"; sourceTree = "<group>"; };
 		8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UIAppearanceSwift.m"; sourceTree = "<group>"; };
 		8721877D1D19921000281A19 /* AvatarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				878F228A1D18347C0074E1A2 /* AllOrderViewController.swift */,
+				8718901D1D1FF2AA00F11311 /* OrderDetailViewController.swift */,
 			);
 			name = OrderViewController;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				DA1A6B251D124A3600FD4FB0 /* MarketLabel.swift in Sources */,
 				8768B2A31D1E1BCD003A6201 /* AddressChooseViewController.swift in Sources */,
 				87A5AA5F1D10C636000A1B41 /* GoodsDetailViewController.swift in Sources */,
+				8718901E1D1FF2AA00F11311 /* OrderDetailViewController.swift in Sources */,
 				870F38251CF973CC00AFF1AF /* RegisterViewController.swift in Sources */,
 				870F38291CF9757C00AFF1AF /* BaseViewController.swift in Sources */,
 				DA1A6B2C1D1257F400FD4FB0 /* CustomGoodViewController.swift in Sources */,
