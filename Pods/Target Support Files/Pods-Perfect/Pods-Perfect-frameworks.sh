@@ -87,6 +87,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Perfect/Alamofire.framework"
   install_framework "Pods-Perfect/AlamofireObjectMapper.framework"
   install_framework "Pods-Perfect/Async.framework"
+  install_framework "Pods-Perfect/ChameleonFramework.framework"
   install_framework "Pods-Perfect/FDFullscreenPopGesture.framework"
   install_framework "Pods-Perfect/Kingfisher.framework"
   install_framework "Pods-Perfect/MJRefresh.framework"
@@ -97,13 +98,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Perfect/SDWebImage.framework"
   install_framework "Pods-Perfect/SVProgressHUD.framework"
   install_framework "Pods-Perfect/SnapKit.framework"
-  install_framework "Pods-Perfect/SwiftHEXColors.framework"
   install_framework "Pods-Perfect/SwiftyUserDefaults.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Perfect/Alamofire.framework"
   install_framework "Pods-Perfect/AlamofireObjectMapper.framework"
   install_framework "Pods-Perfect/Async.framework"
+  install_framework "Pods-Perfect/ChameleonFramework.framework"
   install_framework "Pods-Perfect/FDFullscreenPopGesture.framework"
   install_framework "Pods-Perfect/Kingfisher.framework"
   install_framework "Pods-Perfect/MJRefresh.framework"
@@ -114,6 +115,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Perfect/SDWebImage.framework"
   install_framework "Pods-Perfect/SVProgressHUD.framework"
   install_framework "Pods-Perfect/SnapKit.framework"
-  install_framework "Pods-Perfect/SwiftHEXColors.framework"
   install_framework "Pods-Perfect/SwiftyUserDefaults.framework"
 fi

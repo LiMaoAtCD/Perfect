@@ -16,8 +16,7 @@ target 'Perfect' do
     pod 'SwiftyUserDefaults'
     pod 'AsyncSwift'
     pod 'SVProgressHUD'
-    pod 'SwiftHEXColors'
-    
+    pod 'ChameleonFramework'
 end
 
 target 'PerfectTests' do

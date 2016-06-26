@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ChameleonFramework.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FDFullscreenPopGesture.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -74,11 +79,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwiftHEXColors.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SwiftyUserDefaults.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,27 +87,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>08A7E3CDA40A59D0865C567FA2701033</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1BFF305FA58528E921599B0829CFEC6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>303B3AC6DD17B1EE7D98EF8BF8898BEB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3C1C6CE2CFED9F22868289C6CF09FCBB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3E734FF707119BE8AADDD6597DA63C03</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4AF1E63D33E25A1D83214520E6A353E3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>4E155FBB6070C868840C7A2BB6E75E85</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>521E09B0AFD85CD733BD72080419E475</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>55B42591971381746F1BC2B0B7E4D382</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5DE2E26B6959448FA96A08B4987B2DF9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,17 +132,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B5DE491711124DD23370E1A435D1F20</key>
+		<key>85C9315AAAD05B9563CA39B3C55ED18F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>99EE1BFC4CFBC370A3DD5FEC7FA87D0E</key>
+		<key>9B57F4EE4746045CEAE2D933A3C8EC9E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9F9F549B1685D30E91D0839F3A67772A</key>
+		<key>AB6433534749B2CB2D9B65F51715334D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,22 +152,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CAD5FE136FCA554290219E134E21D000</key>
+		<key>D06E1D5A9873F2173F62CB28E76D596B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E96E13C4D3B5B5FC0651440734C2BF4D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F506D20E3EB66476A0AB3F8AE54632C7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F8A5768EE0ECC757EEB96879EC80981D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

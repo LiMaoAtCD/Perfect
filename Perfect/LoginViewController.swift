@@ -10,7 +10,7 @@ import UIKit
 import SwiftyUserDefaults
 import Async
 import SVProgressHUD
-import ChameleonFramework
+import SwiftHEXColors
 
 class LoginNavigationController: UINavigationController {
     
@@ -109,7 +109,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
         cellphoneTextfield = UITextField()
         cellphoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
         cellphoneTextfield.textColor = UIColor.whiteColor()
         cellphoneTextfield.keyboardType = .NumberPad
         view.addSubview(cellphoneTextfield)
@@ -144,7 +144,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         passwordTextfield = UITextField()
         passwordTextfield.secureTextEntry = true
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "密码", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "密码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
         passwordTextfield.textColor = UIColor.whiteColor()
         view.addSubview(passwordTextfield)
         
@@ -165,15 +165,15 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         loginButton.addTarget(self, action: #selector(self.login), forControlEvents: .TouchUpInside)
         loginButton.setTitle("登录", forState: .Normal)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        loginButton.backgroundColor = UIColor.redColor()
+        loginButton.backgroundColor = UIColor(hexString: "#a83042")
         loginButton.layer.cornerRadius = 10.0
         loginButton.layer.masksToBounds = true
         view.addSubview(loginButton)
         
         
         loginButton.snp_makeConstraints { (make) in
-            make.top.equalTo(line1.snp_bottom).offset(60)
-            make.height.equalTo(45)
+            make.top.equalTo(line1.snp_bottom).offset(124.pixelToPoint)
+            make.height.equalTo(106.pixelToPoint)
             make.left.right.equalTo(line0)
         }
         
@@ -190,19 +190,19 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
         registerButton.snp_makeConstraints { (make) in
             make.left.height.right.equalTo(loginButton)
-            make.top.equalTo(loginButton.snp_bottom).offset(14)
+            make.top.equalTo(loginButton.snp_bottom).offset(21.pixelToPoint)
         }
         
         
         forgetpasswordButton = UIButton.init(type: .Custom)
         forgetpasswordButton.setTitle("忘记密码", forState: .Normal)
-        forgetpasswordButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        forgetpasswordButton.setTitleColor(UIColor.init(hexString: "#fefefe", withAlpha: 0.7), forState: .Normal)
         forgetpasswordButton.addTarget(self, action: #selector(self.forget), forControlEvents: .TouchUpInside)
         view.addSubview(forgetpasswordButton)
         forgetpasswordButton.snp_makeConstraints { (make) in
             make.centerX.equalTo(loginButton)
             make.width.equalTo(100)
-            make.top.equalTo(registerButton.snp_bottom).offset(50)
+            make.top.equalTo(registerButton.snp_bottom).offset(73.pixelToPoint)
         }
   
 
