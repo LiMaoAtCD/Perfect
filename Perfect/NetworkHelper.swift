@@ -18,20 +18,6 @@ let ArticleURL = "http://101.200.131.198:8090/custwine/article/mobile/"
 let NetWorkImageUrl = "http://101.200.131.198:8090/custwine/dimg/"
 
 
-extension Int64 {
-    func perfectImageurl(w: CGFloat, h: CGFloat, crop: Bool) -> String {
-        
-        return NetWorkImageUrl + String(self) + "_"
-            + String(Int(w)) + "_"
-            + String(Int(h)) + "_"
-            + (crop ? "1" : "0")
-            + ".png"
-    }
-    
-    var article: String {
-        return ArticleURL + String(self) + ".page"
-    }
-}
 
 
 //文章读取地址为： http://服务器地址/article/mobile/id.page

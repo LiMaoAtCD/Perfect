@@ -8,11 +8,6 @@
 
 import UIKit
 
-extension Float {
-    var currency: String {
-        return "￥\(self)"
-    }
-}
 
 class MarketLabel: UILabel {
 

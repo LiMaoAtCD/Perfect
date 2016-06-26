@@ -418,11 +418,7 @@ class PayViewController: BaseViewController {
 
 }
 
-extension Int64 {
-    var toNSNumber: NSNumber {
-        return NSNumber.init(longLong: self)
-    }
-}
+
 
 class PayTypeView: UIView {
     var checkImageView: UIImageView!

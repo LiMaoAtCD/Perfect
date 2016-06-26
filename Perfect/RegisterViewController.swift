@@ -503,34 +503,7 @@ enum CMValidateButtonMode {
 }
 
 
-public typealias TimerExcuteClosure = @convention(block)()->()
-extension NSTimer{
-    public class func YQ_scheduledTimerWithTimeInterval(ti:NSTimeInterval, closure:TimerExcuteClosure, repeats yesOrNo: Bool) -> NSTimer{
-        return self.scheduledTimerWithTimeInterval(ti, target: self, selector: #selector(NSTimer.excuteTimerClosure(_:)), userInfo: unsafeBitCast(closure, AnyObject.self), repeats: true)
-    }
-    
-    class func excuteTimerClosure(timer: NSTimer)
-    {
-        let closure = unsafeBitCast(timer.userInfo, TimerExcuteClosure.self)
-        closure()
-    }
-}
 
 
-extension UIViewController {
-    
-    func showAlertWithMessage(message: String?, block: (Void -> Void)?) {
-        
-        let alertController = UIAlertController(title: "", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let action: UIAlertAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default) { (_) -> Void in
-            if let _ = block {
-                block!()
-            }
-        }
-        
-        alertController.addAction(action)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-}
+
 

@@ -500,24 +500,4 @@ class SegmentControlView : UIView {
 }
 
 
-extension String {
-    var actionID: Int64 {
-        let arr = self.componentsSeparatedByString(":")
-        if arr.count > 0 {
-            let id = Int64(arr.last!)
-            return id ?? 0
-        } else {
-            return 0
-        }
-        
-    }
-    var actionType: String {
-        let arr = self.componentsSeparatedByString(":")
-        if arr.count > 0 {
-            let type = arr[1]
-            return type
-        } else {
-            return ""
-        }
-    }
-}
+

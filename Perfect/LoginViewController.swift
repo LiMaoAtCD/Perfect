@@ -292,15 +292,4 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 
 }
 
-extension UIImage {
-    class func imageFromColor(color: UIColor) -> UIImage {
-        let rect = CGRectMake(0, 0, 100, 100)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSetFillColor(context, CGColorGetComponents(color.CGColor))
-        CGContextFillRect(context, rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
-}
+

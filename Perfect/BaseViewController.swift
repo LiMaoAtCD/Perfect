@@ -8,23 +8,6 @@
 
 import UIKit
 
-extension UIViewController {
-    func configurePopNavigationItem() {
-        let image = UIImage(named: "ic_back")
-        let backButton = UIButton(type: .Custom)
-        backButton.setImage(image, forState: .Normal)
-        backButton.frame = CGRectMake(0, 0, image!.size.width, image!.size.height)
-        backButton.addTarget(self, action: #selector(UIViewController.pop), forControlEvents: .TouchUpInside)
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-    }
-    
-    func pop() {
-        if self.navigationController?.viewControllers.count > 1 {
-            self.navigationController?.popViewControllerAnimated(true)
-        }
-    }
-}
 
 class BaseViewController: UIViewController {
 
@@ -53,16 +36,5 @@ class BaseViewController: UIViewController {
 
 }
 
-extension UIViewController {
-    
-    class func someController<T: UIViewController>(vc: T.Type,ofStoryBoard storyBoard: String) -> T {
-        let vc = UIStoryboard.init(name: storyBoard, bundle: nil).instantiateViewControllerWithIdentifier(String.init(T)) as! T
-        return vc
-    }
-    
-}
 
-extension UIStoryboard {
-    @nonobjc static let main = "Main"
-}
 
