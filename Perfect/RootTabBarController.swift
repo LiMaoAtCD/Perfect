@@ -15,6 +15,19 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate {
 
         // Do any additional setup after loading the view.
         self.delegate = self
+        
+        if let _ = self.tabBar.items {
+            
+            var items = self.tabBar.items!
+            items[0].image = UIImage(named: "tab_main_0")
+            items[0].selectedImage = UIImage(named: "tab_main_1")
+            items[1].image = UIImage(named: "tab_collection_0")
+            items[1].selectedImage = UIImage(named: "tab_collection_1")
+            items[2].image = UIImage(named: "tab_personal_0")
+            items[2].selectedImage = UIImage(named: "tab_personal_1")
+        }
+        self.tabBar.tintColor = UIColor.redColor()
+
 
     }
 
