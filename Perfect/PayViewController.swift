@@ -11,7 +11,6 @@ import UIKit
 class PayViewController: BaseViewController {
 
     var scrollView: UIScrollView!
-    
     var buyerView: UIView! //顶部信息
     var nameLabel: UILabel!//收货人
     var contactLabel: UILabel!//联系电话
@@ -29,12 +28,13 @@ class PayViewController: BaseViewController {
     var totalPriceLabel = UILabel()
 
     
+    var goodEntity: ProductDetailEntity?
     var productId: Int64 = 0
-    var quantity: Int = 0
-    var areaId: Int64 = -1
+    var quantity: Int = 1
     var contactAddress = ""
     var contactName = ""
     var contactPhone = ""
+    var areaId: Int64 = -1
     var customImgId: Int64 = 0
     var payType: String = ""
     
@@ -357,6 +357,9 @@ class PayViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.productId = goodEntity!.id
+        
+        
         configureScrollView()
         configureBuyerView()
         configureGoodView()

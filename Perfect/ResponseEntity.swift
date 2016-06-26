@@ -115,6 +115,7 @@ class ProductItem: Mappable {
 //商品详情
 
 class ProductDetailEntity: Mappable {
+    var id: Int64 = 0
     var deliverMemo: String?
     var deliverRegionGroup: Int = 0
     var marketPrice: Float = 0
@@ -132,6 +133,8 @@ class ProductDetailEntity: Mappable {
     }
     
     func mapping(map: Map) {
+        
+        id <- map["id"]
         deliverMemo <- map["deliverMemo"]
         deliverRegionGroup <- map["deliverRegionGroup"]
         marketPrice <- map["marketPrice"]
