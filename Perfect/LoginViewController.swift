@@ -160,7 +160,9 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         loginButton.addTarget(self, action: #selector(self.login), forControlEvents: .TouchUpInside)
         loginButton.setTitle("登录", forState: .Normal)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        loginButton.backgroundColor = UIColor(hexString: "#ee304e")
+        loginButton.setBackgroundImage(UIImage.init(named: "login_button_0"), forState: .Normal)
+        loginButton.setBackgroundImage(UIImage.init(named: "login_button_1"), forState: .Highlighted)
+
         loginButton.layer.cornerRadius = 10.0
         loginButton.layer.masksToBounds = true
         view.addSubview(loginButton)
@@ -176,7 +178,8 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         registerButton.addTarget(self, action: #selector(self.register), forControlEvents: .TouchUpInside)
         registerButton.setTitle("注册", forState: .Normal)
         registerButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        registerButton.backgroundColor = UIColor.clearColor()
+        registerButton.setBackgroundImage(UIImage.init(named: "login_register_0"), forState: .Normal)
+        registerButton.setBackgroundImage(UIImage.init(named: "login_register_1"), forState: .Highlighted)
         registerButton.layer.cornerRadius = 10.0
         registerButton.layer.masksToBounds = true
         registerButton.layer.borderColor = UIColor.whiteColor().CGColor

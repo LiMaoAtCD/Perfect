@@ -220,7 +220,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         protocolCheckButton = UIButton.init(type: .Custom)
         protocolCheckButton.addTarget(self, action: #selector(self.checkProtocol), forControlEvents: .TouchUpInside)
-        protocolCheckButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
+        protocolCheckButton.setImage(UIImage.init(named: "register_uncheck"), forState: .Normal)
         scrollView.addSubview(protocolCheckButton)
         protocolCheckButton.snp_makeConstraints { (make) in
             make.left.equalTo(view).offset(64.pixelToPoint)
@@ -259,7 +259,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         enterPriseButton = UIButton.init(type: .Custom)
         enterPriseButton.addTarget(self, action: #selector(self.choosePersonalOrEnterprise), forControlEvents: .TouchUpInside)
-        enterPriseButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
+        enterPriseButton.setImage(UIImage.init(named: "register_uncheck"), forState: .Normal)
         scrollView.addSubview(enterPriseButton)
         enterPriseButton.snp_makeConstraints { (make) in
             make.width.height.equalTo(protocolCheckButton)
@@ -280,7 +280,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         personalButton = UIButton.init(type: .Custom)
         personalButton.addTarget(self, action: #selector(self.choosePersonalOrEnterprise), forControlEvents: .TouchUpInside)
 
-        personalButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
+        personalButton.setImage(UIImage.init(named: "register_checked"), forState: .Normal)
         scrollView.addSubview(personalButton)
         personalButton.snp_makeConstraints { (make) in
             make.width.height.equalTo(enterPriseButton)
@@ -293,7 +293,8 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         registerButton.addTarget(self, action: #selector(self.register), forControlEvents: .TouchUpInside)
         registerButton.setTitle("注册", forState: .Normal)
         registerButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        registerButton.backgroundColor = UIColor.clearColor()
+        registerButton.setBackgroundImage(UIImage.init(named: "login_register_0"), forState: .Normal)
+        registerButton.setBackgroundImage(UIImage.init(named: "login_register_1"), forState: .Highlighted)
         registerButton.layer.cornerRadius = 10.0
         registerButton.layer.masksToBounds = true
         registerButton.layer.borderWidth = 1.pixelToPoint
@@ -355,22 +356,22 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     func checkProtocol() {
         if userProtocolChecked {
             userProtocolChecked = false
-            protocolCheckButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
+            protocolCheckButton.setImage(UIImage.init(named: "register_uncheck"), forState: .Normal)
         } else {
             userProtocolChecked = true
-            protocolCheckButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
+            protocolCheckButton.setImage(UIImage.init(named: "register_checked"), forState: .Normal)
         }
     }
     
     func choosePersonalOrEnterprise() {
         if personalRegister {
             personalRegister = false
-            enterPriseButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
-            personalButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
+            enterPriseButton.setImage(UIImage.init(named: "register_checked"), forState: .Normal)
+            personalButton.setImage(UIImage.init(named: "register_uncheck"), forState: .Normal)
         } else {
             personalRegister = true
-            enterPriseButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
-            personalButton.setImage(UIImage.init(named: "register_checkbox"), forState: .Normal)
+            enterPriseButton.setImage(UIImage.init(named: "register_uncheck"), forState: .Normal)
+            personalButton.setImage(UIImage.init(named: "register_checked"), forState: .Normal)
         }
     }
     
