@@ -94,7 +94,8 @@ extension UIImage {
 
 extension Float {
     var currency: String {
-        return "￥\(self)"
+        let temp = String(format: "%.2f", self)
+        return "￥\(temp)"
     }
 }
 
