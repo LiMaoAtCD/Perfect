@@ -38,13 +38,15 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         
         
         
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .None
         tableView.registerClass(AddressTableViewCell.self, forCellReuseIdentifier: "address")
-        tableView.backgroundColor = UIColor.init(hexString: "#cccccc")
+        tableView.backgroundColor = UIColor.globalBackGroundColor()
         
         
         
@@ -59,6 +61,9 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         let addAddressButon = UIButton.init(type: .Custom)
         addAddressButon.setTitle("添加新地址", forState: .Normal)
         addAddressButon.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        addAddressButon.setBackgroundImage(UIImage.init(named: "address_add_0"), forState: .Normal)
+        addAddressButon.setBackgroundImage(UIImage.init(named: "address_add_1"), forState: .Highlighted)
+
         footer.addSubview(addAddressButon)
         
         addAddressButon.addTarget(self, action: #selector(self.addAddress), forControlEvents: .TouchUpInside)
