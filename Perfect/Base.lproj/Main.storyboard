@@ -218,7 +218,7 @@
         <!--Root View Controller-->
         <scene sceneID="vBX-rM-TCc">
             <objects>
-                <tableViewController id="uty-UY-WJR" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CollectionTableViewController" id="uty-UY-WJR" customClass="CollectionTableViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Wv-zg-qA1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
