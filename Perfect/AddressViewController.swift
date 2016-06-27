@@ -20,7 +20,7 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        self.title = "收货地址管理"
         addressItems = [AddressItemsEntity]()
         let realm = try! Realm()
         let addresses = realm.objects(AddressItemsEntity)

@@ -111,7 +111,7 @@ class AddressTableViewCell: UITableViewCell {
         defaultAddress.snp_makeConstraints { (make) in
             make.left.equalTo(name)
             make.width.greaterThanOrEqualTo(100)
-            make.top.equalTo(marginView.snp_bottom).offset(89.pixelToPoint / 2)
+            make.centerY.equalTo(marginView.snp_bottom).offset(89.pixelToPoint / 2)
             make.height.equalTo(35)
             make.bottom.equalTo(MainView.snp_bottom).offset(-8)
         }
