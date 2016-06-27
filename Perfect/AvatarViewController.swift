@@ -18,7 +18,7 @@ class AvatarViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.blackColor()
+        backgroundView.backgroundColor = UIColor.init(hexString:"#dbdbdb")
         self.view.addSubview(backgroundView)
         backgroundView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -38,7 +38,7 @@ class AvatarViewController: BaseViewController {
         
         
         let titleView = UIView()
-        titleView.backgroundColor = UIColor.lightGrayColor()
+        titleView.backgroundColor = UIColor.globalBackGroundColor()
         mainView.addSubview(titleView)
         titleView.snp_makeConstraints { (make) in
             make.top.left.right.equalTo(mainView)
@@ -48,7 +48,7 @@ class AvatarViewController: BaseViewController {
         let titleLabel = UILabel()
         titleView.addSubview(titleLabel)
         titleLabel.text = "修改头像"
-        titleLabel.textColor = UIColor.blackColor()
+        titleLabel.textColor = UIColor.init(hexString:"#333333")
         titleLabel.font = UIFont.systemFontOfSize(18)
         titleLabel.snp_makeConstraints { (make) in
             make.center.equalTo(titleView)
@@ -68,10 +68,11 @@ class AvatarViewController: BaseViewController {
         
         let cameraImageview = UIImageView()
         centerView.addSubview(cameraImageview)
+        cameraImageview.image = UIImage.init(named: "me_camera")
         cameraImageview.snp_makeConstraints { (make) in
-            make.height.width.equalTo(25)
+            make.height.width.equalTo(40.pixelToPoint)
             make.centerY.equalTo(centerView)
-            make.left.equalTo(20)
+            make.left.equalTo(40.pixelToPoint)
         }
         
         let cameraTitle = UILabel()
@@ -80,7 +81,7 @@ class AvatarViewController: BaseViewController {
             make.left.equalTo(cameraImageview.snp_right).offset(14)
             make.centerY.equalTo(cameraImageview)
         }
-        cameraTitle.textColor = UIColor.blackColor()
+        cameraTitle.textColor = UIColor.init(hexString:"#333333")
         cameraTitle.text = "拍照上传"
         cameraTitle.font = UIFont.systemFontOfSize(15)
         
@@ -98,11 +99,12 @@ class AvatarViewController: BaseViewController {
 
         
         let photolibraryImageview = UIImageView()
+        photolibraryImageview.image = UIImage.init(named: "me_album")
         bottomView.addSubview(photolibraryImageview)
         photolibraryImageview.snp_makeConstraints { (make) in
-            make.height.width.equalTo(25)
+            make.height.width.equalTo(40.pixelToPoint)
             make.centerY.equalTo(bottomView)
-            make.left.equalTo(20)
+            make.left.equalTo(40.pixelToPoint)
         }
         
         let libraryLabel = UILabel()
@@ -111,7 +113,7 @@ class AvatarViewController: BaseViewController {
             make.left.equalTo(photolibraryImageview.snp_right).offset(14)
             make.centerY.equalTo(photolibraryImageview)
         }
-        libraryLabel.textColor = UIColor.blackColor()
+        libraryLabel.textColor = UIColor.init(hexString:"#333333")
         libraryLabel.text = "本地上传"
         libraryLabel.font = UIFont.systemFontOfSize(15)
         
@@ -143,7 +145,7 @@ class AvatarViewController: BaseViewController {
         super.viewDidAppear(animated)
         
         UIView.animateWithDuration(0.3, animations: { 
-            self.backgroundView.alpha = 0.3
+            self.backgroundView.alpha = 0.5
             }) { (_) in
                 
         }

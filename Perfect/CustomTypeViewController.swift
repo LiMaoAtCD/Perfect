@@ -157,7 +157,6 @@ class FirstDetailCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
 }
 
 class CustomTypeBannerCell: UICollectionViewCell {
