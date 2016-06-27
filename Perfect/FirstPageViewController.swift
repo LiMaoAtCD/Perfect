@@ -372,7 +372,7 @@ class CollectionViewBannerCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.clearColor()
         
         banner = SDCycleScrollView.init()
         self.addSubview(banner)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDCycleScrollView
 
 class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
@@ -17,12 +18,12 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
+        self.title = "定制"
         fd_prefersNavigationBarHidden = false
         
         items = [ProductItem]()
         collectionView = UICollectionView.init(frame: view.bounds, collectionViewLayout: CustomCollectionLayout())
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.backgroundColor = UIColor.globalBackGroundColor()
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
@@ -35,7 +36,7 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         }
         
         collectionView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
-        collectionView.registerClass(CollectionViewBannerCell.self, forCellWithReuseIdentifier: CollectionViewBannerCell.identifier)
+        collectionView.registerClass(CustomTypeBannerCell.self, forCellWithReuseIdentifier: CustomTypeBannerCell.identifier)
         
         NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: id)], completion: { [weak self](product: ProductListResponse?) in
             print(product)
@@ -60,7 +61,7 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewBannerCell.identifier, forIndexPath: indexPath) as! CollectionViewBannerCell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CustomTypeBannerCell.identifier, forIndexPath: indexPath) as! CustomTypeBannerCell
             //MARK: 处理banner 跳转
             cell.banner.clickItemOperationBlock = {
                 currentIndex in
@@ -96,9 +97,9 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSizeMake(Tool.width, 250)
+            return CGSizeMake(Tool.width, 236 / 750 * Tool.width)
         }else {
-            return CGSizeMake(Tool.width / 2 - 5, 200)
+            return CGSizeMake(Tool.width / 2, Tool.width * 510.0 / 750)
         }
     }
 
@@ -123,8 +124,8 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
 class CustomCollectionLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
-        self.minimumInteritemSpacing = 0.5
-        self.minimumLineSpacing = 0.5
+        self.minimumInteritemSpacing = 0.0
+        self.minimumLineSpacing = 0.0
         if #available(iOS 9.0, *) {
             self.sectionHeadersPinToVisibleBounds = true
         } else {
@@ -157,4 +158,28 @@ class FirstDetailCollectionCell: UICollectionViewCell {
     }
     
     
+}
+
+class CustomTypeBannerCell: UICollectionViewCell {
+    static let identifier = "CustomTypeBannerCell"
+    var banner: SDCycleScrollView!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.clearColor()
+        
+        banner = SDCycleScrollView.init()
+        self.addSubview(banner)
+        banner.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter
+        banner.currentPageDotColor = UIColor.init(hexString: "#f04848")
+        banner.pageDotColor = UIColor.whiteColor()
+        banner.snp_makeConstraints { (make) in
+            make.edges.equalTo(self).offset(UIEdgeInsetsMake(0, 0, -20.pixelToPoint, 0))
+        }
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
