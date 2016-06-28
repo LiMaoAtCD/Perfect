@@ -27,6 +27,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     let bottomHeight = 44
     
     var id: Int64 = 0
+    var favorite: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +37,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         NetworkHelper.instance.request(.GET, url: URLConstant.appProductDetail.contant, parameters: ["id": NSNumber.init(longLong: id)], completion: { [weak self](response: ProductDetailResponse?) in
                 SVProgressHUD.dismiss()
                 self?.detail = response?.retObj
+                self?.favorite = response!.retObj!.favorite
                 self?.updateViews()
             }) { (errMsg: String?, errCode: Int) in
                 SVProgressHUD.showErrorWithStatus(errMsg ?? "商品信息获取失败")
@@ -334,7 +336,19 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     func tapBottomItems(tap: UITapGestureRecognizer) {
         let tag = tap.view?.tag
         if tag == 0 {
-            //collect
+            //收藏
+            if !favorite {
+                
+            } else {
+                NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberGoodsFavorite.contant, parameters: ["productId": NSNumber.init(longLong: self.id),"isFavorite": true], completion: { (result: DataResponse?) in
+                        self.favorite = true
+                    
+                    }, failed: { (errmsg, code) in
+                        SVProgressHUD.showErrorWithStatus(errmsg)
+                })
+            }
+
+            
         } else if tag == 1 {
             //chat whth qq
             let webview = UIWebView.init()
@@ -344,10 +358,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             view.addSubview(webview)
 
         } else {
-            let payment = Tool.sb.instantiateViewControllerWithIdentifier("PayViewController") as! PayViewController
-                payment.goodEntity =  detail
-            self.navigationController?.pushViewController(payment, animated: true)
-        }
+    }
 
     }
     
@@ -372,7 +383,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         collect.addGestureRecognizer(collectionTap)
         
         let collectImageview = UIImageView()
-        collectImageview.image = UIImage.init(named: "fourtag")
+        collectImageview.image = UIImage.init(named: "detail_collect")
         collect.addSubview(collectImageview)
         collectImageview.snp_makeConstraints { (make) in
             make.centerX.equalTo(collect)
@@ -384,7 +395,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         let collectionTitle = UILabel()
         collect.addSubview(collectionTitle)
         collectionTitle.text = "收藏"
-        collectionTitle.textColor = UIColor.blackColor()
+        collectionTitle.textColor = UIColor.init(hexString: "#333333")
         collectionTitle.font = UIFont.systemFontOfSize(14.0)
 
         collectionTitle.textAlignment = .Center
@@ -412,7 +423,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         }
         
         let serviceImageview = UIImageView()
-        serviceImageview.image = UIImage.init(named: "fourtag")
+        serviceImageview.image = UIImage.init(named: "detail_kefu")
         service.addSubview(serviceImageview)
         serviceImageview.snp_makeConstraints { (make) in
             make.centerX.equalTo(service)
@@ -431,35 +442,23 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             make.left.right.equalTo(service)
             make.top.equalTo(serviceImageview.snp_bottom)
         }
-
         
-        
-        
-        let ok = UIView()
-        
-        let okTap = UITapGestureRecognizer.init(target: self, action: #selector(self.tapBottomItems(_:)))
-        
-        ok.tag = 2
-        ok.addGestureRecognizer(okTap)
-        ok.backgroundColor = UIColor.redColor()
-        bottomView.addSubview(ok)
-        ok.snp_makeConstraints { (make) in
+        let okbutton = UIButton.init(type: .Custom)
+        okbutton.setTitle("立即定制", forState: .Normal)
+        okbutton.setBackgroundImage(UIImage.init(named: "detail_custom_0"), forState: .Normal)
+        okbutton.setBackgroundImage(UIImage.init(named: "detail_custom_1"), forState: .Highlighted)
+        okbutton.snp_makeConstraints { (make) in
             make.top.right.bottom.equalTo(bottomView)
             make.width.equalTo(bottomView).multipliedBy(1.0 / 3)
         }
-        
-        let okLabel = UILabel()
-        okLabel.text = "立即定制"
-        okLabel.textColor = UIColor.whiteColor()
-        okLabel.font = UIFont.systemFontOfSize(16)
-        okLabel.textAlignment = .Center
-        ok.addSubview(okLabel)
-        okLabel.snp_makeConstraints { (make) in
-            make.center.equalTo(ok)
-        }
-        
-        
-        
+        okbutton.addTarget(self, action: #selector(self.Custom), forControlEvents: .TouchUpInside)
+    }
+    
+    func Custom() {
+        let payment = Tool.sb.instantiateViewControllerWithIdentifier("PayViewController") as! PayViewController
+        payment.goodEntity =  detail
+        self.navigationController?.pushViewController(payment, animated: true)
+
     }
 
     override func didReceiveMemoryWarning() {
