@@ -17,6 +17,7 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = "查看订单"
         item = [HistoryOrderItem]()
 
         tableView = UITableView.init(frame: CGRectZero, style: .Plain)
@@ -100,7 +101,7 @@ class AllOrderCell: UITableViewCell {
         willSet {
             let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
             attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length - 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length))
             priceLabel.attributedText = attributeString
         }
 
@@ -210,6 +211,7 @@ class AllOrderCell: UITableViewCell {
         }
         
         cellphoneLabel = UILabel()
+        cellphoneLabel.font = UIFont.systemFontOfSize(13)
         mainView.addSubview(cellphoneLabel)
         cellphoneLabel.snp_makeConstraints { (make) in
             make.right.equalTo(mainView).offset(-21.pixelToPoint)

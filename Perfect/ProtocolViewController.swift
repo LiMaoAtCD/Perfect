@@ -18,7 +18,7 @@ class ProtocolViewController: BaseViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.blackColor()), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
         
         super.viewWillAppear(animated)
     }

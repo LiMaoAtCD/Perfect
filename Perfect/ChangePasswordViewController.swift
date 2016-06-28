@@ -38,7 +38,7 @@ class ChangePasswordViewController: BaseViewController {
         scrollView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
         }
-        
+        scrollView.backgroundColor = UIColor.globalBackGroundColor()
         setupViews()
         
     }
@@ -50,30 +50,33 @@ class ChangePasswordViewController: BaseViewController {
         
         view0.snp_makeConstraints { (make) in
             make.left.right.equalTo(view)
-            make.top.equalTo(scrollView).offset(20)
+            make.top.equalTo(scrollView).offset(32.pixelToPoint)
             make.height.equalTo(50)
         }
         
         oldPasswordLabel = UILabel()
         oldPasswordLabel.text = "旧密码"
-        oldPasswordLabel.textColor = UIColor.blackColor()
+        oldPasswordLabel.font = UIFont.systemFontOfSize(14)
+
+        oldPasswordLabel.textColor = UIColor.init(hexString: "#333333")
         view0.addSubview(oldPasswordLabel)
         oldPasswordLabel.snp_makeConstraints { (make) in
             make.left.equalTo(10)
             make.centerY.equalTo(view0.snp_centerY)
-            make.width.lessThanOrEqualTo(80)
+            make.width.lessThanOrEqualTo(60)
         }
         oldPasswordTextfield = UITextField()
         oldPasswordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         oldPasswordTextfield.placeholder = "请输入您的密码"
         oldPasswordTextfield.keyboardType = .NumberPad
+        oldPasswordTextfield.attributedPlaceholder = NSAttributedString.init(string: "请输入您的密码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#d9d9d9", withAlpha: 1.0)])
+        
         view0.addSubview(oldPasswordTextfield)
         
         oldPasswordTextfield.snp_makeConstraints { (make) in
             make.left.equalTo(oldPasswordLabel.snp_right).offset(14)
             make.centerY.equalTo(oldPasswordLabel)
             make.right.equalTo(view0).offset(-14)
-            make.height.equalTo(35)
         }
         
         
@@ -83,12 +86,14 @@ class ChangePasswordViewController: BaseViewController {
         
         view1.snp_makeConstraints { (make) in
             make.left.right.height.equalTo(view0)
-            make.top.equalTo(view0.snp_bottom).offset(20)
+            make.top.equalTo(view0.snp_bottom).offset(24.pixelToPoint)
         }
         
         passwordLabel = UILabel()
         passwordLabel.text = "新密码"
-        passwordLabel.textColor = UIColor.blackColor()
+        passwordLabel.font = UIFont.systemFontOfSize(14)
+
+        passwordLabel.textColor = UIColor.init(hexString: "#333333")
         
         view1.addSubview(passwordLabel)
         
@@ -99,7 +104,7 @@ class ChangePasswordViewController: BaseViewController {
         
         passwordTextfield = UITextField()
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        passwordTextfield.placeholder = "请输入6-16位密码"
+        passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "请输入6-16位密码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#d9d9d9", withAlpha: 1.0)])
         passwordTextfield.secureTextEntry = true
         view1.addSubview(passwordTextfield)
         
@@ -114,13 +119,14 @@ class ChangePasswordViewController: BaseViewController {
         scrollView.addSubview(view2)
         view2.snp_makeConstraints { (make) in
             make.left.right.height.equalTo(view1)
-            make.top.equalTo(view1.snp_bottom).offset(20)
+            make.top.equalTo(view1.snp_bottom).offset(24.pixelToPoint)
         }
         
         confirmLabel = UILabel()
         confirmLabel.text = "确认密码"
-        confirmLabel.textColor = UIColor.blackColor()
-        
+        confirmLabel.font = UIFont.systemFontOfSize(14)
+
+        confirmLabel.textColor = UIColor.init(hexString: "#333333")
         view2.addSubview(confirmLabel)
         
         confirmLabel.snp_makeConstraints { (make) in
@@ -130,7 +136,8 @@ class ChangePasswordViewController: BaseViewController {
         
         comfirmTextfield = UITextField()
         comfirmTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        comfirmTextfield.placeholder = "请输入6-16位密码"
+        comfirmTextfield.attributedPlaceholder = NSAttributedString.init(string: "", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#d9d9d9", withAlpha: 1.0)])
+
         comfirmTextfield.secureTextEntry = true
         view2.addSubview(comfirmTextfield)
         
@@ -146,16 +153,18 @@ class ChangePasswordViewController: BaseViewController {
         sureButton.addTarget(self, action: #selector(self.sure), forControlEvents: .TouchUpInside)
         sureButton.setTitle("确定", forState: .Normal)
         sureButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        sureButton.backgroundColor = UIColor.flatMintColor()
+        sureButton.setBackgroundImage(UIImage.init(named: "address_add_0"), forState: .Normal)
+        sureButton.setBackgroundImage(UIImage.init(named: "address_add_1"), forState: .Highlighted)
+
         sureButton.layer.cornerRadius = 3.0
         sureButton.layer.masksToBounds = true
         scrollView.addSubview(sureButton)
         
         sureButton.snp_makeConstraints { (make) in
-            make.top.equalTo(view2.snp_bottom).offset(30)
+            make.top.equalTo(view2.snp_bottom).offset(37.pixelToPoint)
             make.centerX.equalTo(scrollView)
             make.height.equalTo(45)
-            make.left.equalTo(14)
+            make.left.equalTo(24.pixelToPoint)
         }
    }
     

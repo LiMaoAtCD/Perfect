@@ -35,8 +35,11 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         
         collection = UICollectionView.init(frame: view.bounds, collectionViewLayout: CollectionLayout())
         view.addSubview(collection)
+        collection.snp_makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
         
-        collection.backgroundColor = UIColor.lightGrayColor()
+        collection.backgroundColor = UIColor.globalBackGroundColor()
         collection.delegate = self
         collection.dataSource = self
         collection.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
@@ -129,7 +132,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             if let _ = topBanners {
                 for item in topBanners! {
                     
-                    let imageurl = item.imageId.perfectImageurl(Tool.width, h: 1000, crop: false)
+                    let imageurl = item.imageId.perfectImageurl(375, h: 183, crop: true)
                     imageUrls.append(imageurl)
                 }
             }
@@ -143,7 +146,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             var buttonsUrl = [String]()
             if let _ = customButtons {
                 for item in customButtons! {
-                    let imageurl = item.imageId.perfectImageurl(Tool.width, h: 50, crop: false)
+                    let imageurl = item.imageId.perfectImageurl(374, h: 150, crop: true)
                     buttonsUrl.append(imageurl)
                 }
             }
@@ -199,19 +202,19 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSizeMake(Tool.width, 250)
+            return CGSizeMake(Tool.width, Tool.width * (365.0 + 20.0) / 750.0)
         } else if indexPath.section == 1 {
-            return CGSizeMake(Tool.width / 2 - 0.5, 50)
+            return CGSizeMake(Tool.width / 2 , 150.pixelToPoint)
         } else if indexPath.section == 2 {
-            return CGSizeMake(Tool.width, 50)
+            return CGSizeMake(Tool.width, 70.pixelToPoint)
         }else {
-            return CGSizeMake(Tool.width / 2 - 5, 200)
+            return CGSizeMake(Tool.width / 2, Tool.width * 510.0 / 750)
         }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 3 {
-            return CGSizeMake(Tool.width, 50)
+            return CGSizeMake(Tool.width, 124.pixelToPoint)
         } else {
             return CGSizeZero
         }
@@ -252,8 +255,8 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
 class CollectionLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
-        self.minimumInteritemSpacing = 0.5
-        self.minimumLineSpacing = 0.5
+        self.minimumInteritemSpacing = 0.0
+        self.minimumLineSpacing = 0.0
         if #available(iOS 9.0, *) {
             self.sectionHeadersPinToVisibleBounds = true
         } else {
@@ -268,58 +271,89 @@ class CollectionLayout: UICollectionViewFlowLayout {
 //MARK: CollectionViewCells
 class CollectionViewCell: UICollectionViewCell {
     static let identifier = "cell"
-    
+    var mainView: UIView!
     var imageView: UIImageView!
     var title: UILabel!
-    var price: UILabel!
+    var priceLabel: UILabel!
     var marketPrice: MarketLabel!
+    
+    var price: Float = 0.0 {
+        willSet {
+            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(16)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length))
+            priceLabel.attributedText = attributeString
+        }
+        
+    }
     
     var entity: ProductItem? {
         willSet{
             if let _ = newValue {
-                let url = newValue!.imageId.perfectImageurl(Tool.width / 2, h: 300, crop: false)
+                let url = newValue!.imageId.perfectImageurl(355, h: 352, crop: true)
                 imageView.kf_setImageWithURL(NSURL.init(string: url)!)
                 title.text = newValue!.fullName
                 marketPrice.text = newValue!.marketPrice.currency
-                price.text = newValue!.price.currency
+                price = newValue!.price
             }
         }
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        imageView = UIImageView()
-        self.addSubview(imageView)
-        imageView.snp_makeConstraints { (make) in
-            make.left.right.top.equalTo(self)
-            make.height.equalTo(100)
+        self.backgroundColor = UIColor.clearColor()
+        
+        mainView = UIView()
+        self.addSubview(mainView)
+        mainView.snp_makeConstraints { (make) in
+            make.left.equalTo(5.pixelToPoint)
+            make.right.equalTo(-5.pixelToPoint)
+            make.top.equalTo(21.pixelToPoint)
+            make.bottom.equalTo(0)
         }
+        mainView.backgroundColor = UIColor.whiteColor()
+        mainView.layer.borderColor = UIColor.init(hexString: "#ebebeb").CGColor
+        mainView.layer.borderWidth = 0.3
+
+        
+        
+        
+        imageView = UIImageView()
+        mainView.addSubview(imageView)
+        imageView.snp_makeConstraints { (make) in
+            make.left.right.top.equalTo(mainView)
+            make.height.equalTo(imageView.snp_width).multipliedBy(352.0 / 355.0)
+            make.bottom.equalTo(mainView).offset(-155.pixelToPoint)
+        }
+        imageView.layer.borderColor = UIColor.init(hexString: "#ebebeb").CGColor
+        imageView.layer.borderWidth = 0.3
+        
         title = UILabel.init()
-        self.addSubview(title)
-        title.textColor = UIColor.blackColor()
+        mainView.addSubview(title)
+        title.textColor = UIColor.init(hexString: "#333333")
         title.numberOfLines = 0
         title.font = UIFont.systemFontOfSize(14)
         title.snp_makeConstraints { (make) in
-            make.left.right.equalTo(self)
-            make.top.equalTo(imageView.snp_bottom)
+            make.left.equalTo(16.pixelToPoint)
+            make.top.equalTo(imageView.snp_bottom).offset(19.pixelToPoint)
         }
         
-        price = UILabel.init()
-        self.addSubview(price)
-        price.textColor = UIColor.redColor()
-        price.font = UIFont.systemFontOfSize(14)
-        price.snp_makeConstraints { (make) in
+        priceLabel = UILabel.init()
+        self.addSubview(priceLabel)
+        priceLabel.textColor = UIColor.redColor()
+        priceLabel.font = UIFont.systemFontOfSize(14)
+        priceLabel.snp_makeConstraints { (make) in
             make.left.equalTo(title)
-            make.top.equalTo(title.snp_bottom)
+            make.top.equalTo(title.snp_bottom).offset(28.pixelToPoint)
         }
         
         marketPrice = MarketLabel.init()
         self.addSubview(marketPrice)
-        marketPrice.labelColor = UIColor.lightGrayColor()
-        marketPrice.font = UIFont.systemFontOfSize(12)
+        marketPrice.labelColor = UIColor.init(hexString: "#999999")
+        marketPrice.font = UIFont.systemFontOfSize(13)
         marketPrice.snp_makeConstraints { (make) in
-            make.left.equalTo(price.snp_right).offset(8)
-            make.centerY.equalTo(price.snp_centerY)
+            make.left.equalTo(priceLabel.snp_right).offset(7)
+            make.baseline.equalTo(priceLabel)
         }
         
         
@@ -338,15 +372,15 @@ class CollectionViewBannerCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.clearColor()
         
         banner = SDCycleScrollView.init()
         self.addSubview(banner)
-        banner.pageControlAliment = SDCycleScrollViewPageContolAlimentRight
-        banner.currentPageDotColor = UIColor.whiteColor()
-        
+        banner.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter
+        banner.currentPageDotColor = UIColor.init(hexString: "#f04848")
+        banner.pageDotColor = UIColor.whiteColor()
         banner.snp_makeConstraints { (make) in
-            make.edges.equalTo(self).offset(UIEdgeInsetsMake(0, 0, -20, 0))
+            make.edges.equalTo(self).offset(UIEdgeInsetsMake(0, 0, -20.pixelToPoint, 0))
         }
        
     }
@@ -362,13 +396,15 @@ class CollectionViewButtonsCell: UICollectionViewCell {
     var imageView: UIImageView!
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.yellowColor()
+        self.backgroundColor = UIColor.whiteColor()
         
         imageView = UIImageView()
         self.addSubview(imageView)
         imageView.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
         }
+        imageView.layer.borderWidth = 0.3
+        imageView.layer.borderColor = UIColor.init(hexString: "#dadada").CGColor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -381,17 +417,39 @@ class CollectionViewFootCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.lightGrayColor()
+        self.backgroundColor = UIColor.clearColor()
         
         let title = UILabel()
-        title.text = "预览"
+        title.text = "定制酒-览"
         title.textAlignment = .Center
-        title.textColor = UIColor.whiteColor()
+        title.font = UIFont.systemFontOfSize(13.0)
+        title.textColor = UIColor.init(hexString: "#d0d0d0")
         self.addSubview(title)
         
         title.snp_makeConstraints { (make) in
-            make.edges.equalTo(self)
+            make.center.equalTo(self)
         }
+        
+        let leftMargin = UIView()
+        self.addSubview(leftMargin)
+        leftMargin.backgroundColor = UIColor.init(hexString: "#d0d0d0")
+        leftMargin.snp_makeConstraints { (make) in
+            make.right.equalTo(title.snp_left).offset(-35.pixelToPoint)
+            make.centerY.equalTo(self)
+            make.width.equalTo(61.pixelToPoint)
+            make.height.equalTo(1.pixelToPoint)
+        }
+        
+        let rightMargin = UIView()
+        self.addSubview(rightMargin)
+        rightMargin.backgroundColor = UIColor.init(hexString: "#d0d0d0")
+        rightMargin.snp_makeConstraints { (make) in
+            make.left.equalTo(title.snp_right).offset(35.pixelToPoint)
+            make.centerY.equalTo(self)
+            make.width.equalTo(61.pixelToPoint)
+            make.height.equalTo(1.pixelToPoint)
+        }
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -438,9 +496,9 @@ class SegmentControlView : UIView {
             for i in 0...2 {
                 if newValue == i {
                     self.buttons?[i].setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                    self.buttons?[i].backgroundColor = UIColor.brownColor()
+                    self.buttons?[i].backgroundColor = UIColor.init(hexString: "#ee304e")
                 } else {
-                    self.buttons?[i].setTitleColor(UIColor.blackColor(), forState: .Normal)
+                    self.buttons?[i].setTitleColor(UIColor.init(hexString: "#333333"), forState: .Normal)
                     self.buttons?[i].backgroundColor = UIColor.whiteColor()
                 }
             }
@@ -474,9 +532,9 @@ class SegmentControlView : UIView {
             let leftOffset = buttonMargin * ((CGFloat(i) * 2) + 1) + CGFloat(i) * buttonWidth
             button.snp_makeConstraints(closure: { (make) in
                 make.left.equalTo(self).offset(leftOffset)
-                make.top.equalTo(3)
+                make.top.equalTo(20.pixelToPoint)
                 make.width.equalTo(buttonWidth)
-                make.bottom.equalTo(-3)
+                make.bottom.equalTo(-20.pixelToPoint)
             })
             
             button.layer.cornerRadius = 20

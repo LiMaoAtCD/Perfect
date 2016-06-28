@@ -58,45 +58,51 @@ class AddressTableViewCell: UITableViewCell {
         MainView.snp_makeConstraints { (make) in
             make.left.right.equalTo(self)
             make.top.equalTo(self).offset(10)
-            make.bottom.equalTo(self).offset(-10)
+            make.bottom.equalTo(self)
         }
         
         
         name = UILabel()
         MainView.addSubview(name)
         name.font = UIFont.systemFontOfSize(15)
+        name.textColor = UIColor.init(hexString: "#333333")
         name.snp_makeConstraints { (make) in
-            make.left.equalTo(8)
-            make.top.equalTo(14)
+            make.left.equalTo(24.pixelToPoint)
+            make.top.equalTo(27.pixelToPoint)
             make.width.greaterThanOrEqualTo(50)
         }
         
         cellphone = UILabel()
         MainView.addSubview(cellphone)
         cellphone.snp_makeConstraints { (make) in
-            make.right.equalTo(MainView.snp_right).offset(-20)
-            make.baseline.equalTo(name.snp_baseline)
+            make.right.equalTo(MainView.snp_right).offset(-44.pixelToPoint)
+            make.top.equalTo(MainView).offset(36.pixelToPoint)
         }
+        
         cellphone.textAlignment = .Right
-
+        cellphone.font = UIFont.systemFontOfSize(13)
+        cellphone.textColor = UIColor.init(hexString: "#333333")
         
         address = UILabel()
         MainView.addSubview(address)
+        address.font = UIFont.systemFontOfSize(13)
+        address.textColor = UIColor.init(hexString: "#333333")
+        address.numberOfLines = 0
         address.snp_makeConstraints { (make) in
             make.left.equalTo(name)
-            make.top.equalTo(name.snp_bottom).offset(14)
-            make.right.equalTo(self)
+            make.top.equalTo(name.snp_bottom).offset(60.pixelToPoint)
+            make.right.equalTo(cellphone)
         }
 
         marginView = UIView()
-        marginView.backgroundColor = UIColor.grayColor()
+        marginView.backgroundColor = UIColor.init(hexString: "#ebebeb")
         MainView.addSubview(marginView)
         marginView.snp_makeConstraints { (make) in
             make.left.right.equalTo(self)
             make.height.equalTo(0.3)
             make.top.equalTo(address.snp_bottom).offset(20)
+            make.bottom.equalTo(-89.pixelToPoint)
         }
-        
         
         defaultAddress = CheckView.init(frame: CGRectZero)
         MainView.addSubview(defaultAddress)
@@ -105,7 +111,7 @@ class AddressTableViewCell: UITableViewCell {
         defaultAddress.snp_makeConstraints { (make) in
             make.left.equalTo(name)
             make.width.greaterThanOrEqualTo(100)
-            make.top.equalTo(marginView.snp_bottom).offset(8)
+            make.centerY.equalTo(marginView.snp_bottom).offset(89.pixelToPoint / 2)
             make.height.equalTo(35)
             make.bottom.equalTo(MainView.snp_bottom).offset(-8)
         }
@@ -116,10 +122,10 @@ class AddressTableViewCell: UITableViewCell {
         deleteView.snp_makeConstraints { (make) in
             make.right.equalTo(cellphone)
             make.centerY.equalTo(defaultAddress)
-            make.width.greaterThanOrEqualTo(80)
+            make.width.greaterThanOrEqualTo(60)
             make.height.equalTo(35)
         }
-        deleteView.imageView.image = UIImage.init(named: "perfect")
+        deleteView.imageView.image = UIImage.init(named: "address_delete")
         deleteView.title.text = "删除"
         
         editView = AddressEditView.init(frame: CGRectMake(0, 0, 200, 100))
@@ -128,10 +134,10 @@ class AddressTableViewCell: UITableViewCell {
         editView.snp_makeConstraints { (make) in
             make.right.equalTo(deleteView.snp_left).offset(-14)
             make.centerY.equalTo(defaultAddress)
-            make.width.greaterThanOrEqualTo(80)
+            make.width.greaterThanOrEqualTo(60)
             make.height.equalTo(35)
         }
-        editView.imageView.image = UIImage.init(named: "perfect")
+        editView.imageView.image = UIImage.init(named: "address_edit")
         editView.title.text = "编辑"
         
     }
@@ -154,11 +160,13 @@ class CheckView: UIView {
     var choosen: Bool = false {
         willSet{
             if newValue {
-                self.addressLabel.textColor = UIColor.redColor()
-                self.checkImageView.image = UIImage.init(named: "perfect")
+                self.addressLabel.textColor = UIColor.init(hexString: "#ee304e")
+                self.addressLabel.text = "默认地址"
+                self.checkImageView.image = UIImage.init(named: "pay_checked")
             } else {
-                self.addressLabel.textColor = UIColor.blackColor()
-                self.checkImageView.image = UIImage.init(named: "perfect")
+                self.addressLabel.textColor = UIColor.init(hexString: "#333333")
+                self.addressLabel.text = "设为默认"
+                self.checkImageView.image = UIImage.init(named: "pay_uncheck")
             }
         }
     }
@@ -166,19 +174,19 @@ class CheckView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         checkImageView = UIImageView()
+        checkImageView.image = UIImage.init(named: "pay_uncheck")
         self.addSubview(checkImageView)
         checkImageView.snp_makeConstraints { (make) in
             make.left.equalTo(self)
-            make.width.height.equalTo(20)
+            make.width.height.equalTo(37.pixelToPoint)
             make.centerY.equalTo(self.snp_centerY)
         }
 
         addressLabel = UILabel()
         self.addSubview(addressLabel)
-        addressLabel.text = "默认地址"
         addressLabel.font = UIFont.systemFontOfSize(14)
         addressLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(checkImageView.snp_right).offset(14)
+            make.left.equalTo(checkImageView.snp_right).offset(18.pixelToPoint)
             make.centerY.equalTo(checkImageView)
         }
         
@@ -216,7 +224,7 @@ class AddressEditView: UIView {
         self.addSubview(imageView)
         
         title = UILabel()
-        title.textColor = UIColor.flatGrayColor()
+        title.textColor = UIColor.init(hexString: "#333333")
         title.font = UIFont.systemFontOfSize(14)
         self.addSubview(title)
        
@@ -227,11 +235,11 @@ class AddressEditView: UIView {
         
         imageView.snp_makeConstraints { (make) in
             make.left.equalTo(self)
-            make.width.height.equalTo(25)
+            make.width.height.equalTo(38.pixelToPoint)
             make.centerY.equalTo(self.snp_centerY)
         }
         title.snp_makeConstraints { (make) in
-            make.left.equalTo(imageView.snp_right).offset(14)
+            make.left.equalTo(imageView.snp_right).offset(12.pixelToPoint)
             make.centerY.equalTo(imageView)
         }
 

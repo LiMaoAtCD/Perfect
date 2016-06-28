@@ -83,26 +83,27 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         
         view0.snp_makeConstraints { (make) in
             make.left.right.equalTo(view)
-            make.top.equalTo(scrollView).offset(20)
+            make.top.equalTo(scrollView).offset(37.pixelToPoint)
             make.height.equalTo(50)
         }
         
         cellphoneLabel = UILabel()
         cellphoneLabel.text = "手机号"
+        cellphoneLabel.textColor = UIColor.init(hexString: "#333333")
+
         cellphoneLabel.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, forAxis: UILayoutConstraintAxis.Horizontal)
         cellphoneLabel.textColor = UIColor.blackColor()
         view0.addSubview(cellphoneLabel)
         cellphoneLabel.snp_makeConstraints { (make) in
             make.left.equalTo(10)
             make.centerY.equalTo(view0.snp_centerY)
-            make.width.lessThanOrEqualTo(80)
+            make.width.lessThanOrEqualTo(60)
         }
-        
         
         
         cellphoneTextfield = UITextField()
         cellphoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        cellphoneTextfield.placeholder = "请输入号码"
+        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#d9d9d9", withAlpha: 1.0)])
         cellphoneTextfield.keyboardType = .NumberPad
         view0.addSubview(cellphoneTextfield)
         
@@ -119,12 +120,12 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         
         view1.snp_makeConstraints { (make) in
             make.left.right.height.equalTo(view0)
-            make.top.equalTo(view0.snp_bottom).offset(20)
+            make.top.equalTo(view0.snp_bottom).offset(24.pixelToPoint)
         }
         
         verifyCodeLabel = UILabel()
         verifyCodeLabel.text = "验证码"
-        verifyCodeLabel.textColor = UIColor.blackColor()
+        verifyCodeLabel.textColor = UIColor.init(hexString: "#333333")
         view1.addSubview(verifyCodeLabel)
         
         verifyCodeLabel.snp_makeConstraints { (make) in
@@ -134,7 +135,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         
         verifyTextField = UITextField()
         verifyTextField.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        verifyTextField.placeholder = "短信验证码"
+        verifyTextField.attributedPlaceholder = NSAttributedString.init(string: "短信验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#d9d9d9", withAlpha: 1.0)])
         verifyTextField.keyboardType = .NumberPad
         
         view1.addSubview(verifyTextField)
@@ -147,19 +148,19 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         }
         
         verifyButton = UIButton.init(type: .Custom)
-        verifyButton.setAttributedTitle(NSAttributedString(string: "发送验证码", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor(),NSFontAttributeName: UIFont.systemFontOfSize(12)]), forState: .Normal)
+        verifyButton.setAttributedTitle(NSAttributedString(string: "发送验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#d9d9d9"),NSFontAttributeName: UIFont.systemFontOfSize(13)]), forState: .Normal)
         
         verifyButton.addTarget(self, action: #selector(self.verify), forControlEvents: .TouchUpInside)
         view1.addSubview(verifyButton)
         
         verifyButton.snp_makeConstraints { (make) in
-            make.right.equalTo(view).offset(-10)
+            make.right.equalTo(view).offset(0)
             make.centerY.equalTo(verifyTextField.snp_centerY)
-            make.width.lessThanOrEqualTo(100)
+            make.width.equalTo(100)
         }
         
         let marginView = UIView()
-        marginView.backgroundColor = UIColor.lightGrayColor()
+        marginView.backgroundColor = UIColor.init(hexString: "#d9d9d9")
         view1.addSubview(marginView)
         
         marginView.snp_makeConstraints { (make) in
@@ -174,12 +175,12 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         scrollView.addSubview(view2)
         view2.snp_makeConstraints { (make) in
             make.left.right.height.equalTo(view1)
-            make.top.equalTo(view1.snp_bottom).offset(20)
+            make.top.equalTo(view1.snp_bottom).offset(24.pixelToPoint)
         }
         
         passwordLabel = UILabel()
         passwordLabel.text = "新密码"
-        passwordLabel.textColor = UIColor.blackColor()
+        passwordLabel.textColor = UIColor.init(hexString: "#333333")
         
         view2.addSubview(passwordLabel)
         
@@ -190,7 +191,8 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         
         passwordTextfield = UITextField()
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        passwordTextfield.placeholder = "请输入6-16位密码"
+        passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "请输入6-16位密码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#d9d9d9", withAlpha: 1.0)])
+
         passwordTextfield.secureTextEntry = true
         view2.addSubview(passwordTextfield)
         
@@ -205,12 +207,12 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         scrollView.addSubview(view3)
         view3.snp_makeConstraints { (make) in
             make.left.right.height.equalTo(view0)
-            make.top.equalTo(view2.snp_bottom).offset(20)
+            make.top.equalTo(view2.snp_bottom).offset(24.pixelToPoint)
         }
         
         confirmLabel = UILabel()
         confirmLabel.text = "确认密码"
-        confirmLabel.textColor = UIColor.blackColor()
+        confirmLabel.textColor = UIColor.init(hexString: "#333333")
         
         view3.addSubview(confirmLabel)
         
@@ -221,7 +223,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         
         confirmTextfield = UITextField()
         confirmTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        confirmTextfield.placeholder = "请输入6-16位密码"
+        confirmTextfield.placeholder = ""
         confirmTextfield.secureTextEntry = true
         view3.addSubview(confirmTextfield)
         
@@ -237,16 +239,17 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
         sureButton.addTarget(self, action: #selector(self.sure), forControlEvents: .TouchUpInside)
         sureButton.setTitle("确定", forState: .Normal)
         sureButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        sureButton.backgroundColor = UIColor.lightGrayColor()
+        sureButton.setBackgroundImage(UIImage.init(named: "address_add_0"), forState: .Normal)
+        sureButton.setBackgroundImage(UIImage.init(named: "address_add_1"), forState: .Highlighted)
         sureButton.layer.cornerRadius = 3.0
         sureButton.layer.masksToBounds = true
         scrollView.addSubview(sureButton)
 
         sureButton.snp_makeConstraints { (make) in
-            make.top.equalTo(view3.snp_bottom).offset(30)
+            make.top.equalTo(view3.snp_bottom).offset(37.pixelToPoint)
             make.centerX.equalTo(scrollView)
-            make.height.equalTo(45)
-            make.left.equalTo(14)
+            make.height.equalTo(50)
+            make.left.equalTo(24.pixelToPoint)
         }
         
     }
