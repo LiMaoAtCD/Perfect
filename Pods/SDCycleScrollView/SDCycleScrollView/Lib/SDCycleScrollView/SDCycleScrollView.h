@@ -173,4 +173,8 @@ typedef enum {
 /** 清除图片缓存（兼容旧版本方法） */
 - (void)clearCache;
 
+
+- (int)currentIndex;
+- (void)automaticScroll;
+- (void)setScrollToIndex:(NSInteger)index;
 @end

@@ -145,6 +145,7 @@ class ProductDetailEntity: Mappable {
         favorite <- map["favorite"]
         intro <- map["intro"]
         discount <- map["discount"]
+        products <- map["products"]
 
     }
 }

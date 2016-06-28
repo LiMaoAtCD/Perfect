@@ -416,6 +416,21 @@ NSString * const ID = @"cycleCell";
     [_mainView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:targetIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
 }
 
+- (void)setScrollToIndex:(NSInteger)index
+{
+    int currentIndex = index;
+    int targetIndex = currentIndex + 1;
+    if (targetIndex >= _totalItemsCount) {
+        if (self.infiniteLoop) {
+            targetIndex = _totalItemsCount * 0.5;
+            [_mainView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:targetIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+        }
+        return;
+    }
+    [_mainView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:targetIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+}
+
+
 - (int)currentIndex
 {
     if (_mainView.sd_width == 0 || _mainView.sd_height == 0) {

@@ -18,14 +18,10 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     var goodIntroView: UIView!
     var introImageViews: [UIImageView]!
     var webview: UIWebView!
-    
-    
     var bottomView: UIView!
-    
     var detail: ProductDetailEntity?
     
     let bottomHeight = 44
-    
     var id: Int64 = 0
     var favorite: Bool = false
     
@@ -34,11 +30,14 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         willSet {
             let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
             attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length - 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length))
             priceLabel.attributedText = attributeString
-            
         }
     }
+    
+    var products: [ProductDetailModuleItem]?
+    var bannerIds: [Int64] = [Int64]()
+    var moduleButtons: [UIButton]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,15 +66,8 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     func updateViews() {
         configureTopBanner()
         configureGoodInfoView()
-//        configureGoodIntroView()
         configureGoodIntrowebView()
-        
-        bottomView = UIView()
-        view.addSubview(bottomView)
-        bottomView.snp_makeConstraints { (make) in
-            make.left.right.bottom.equalTo(view)
-            make.height.equalTo(bottomHeight)
-        }
+
         
         configureBottomView()
     }
@@ -92,6 +84,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             for imageId in images {
                 let imageurl = imageId.perfectImageurl(664, h: 750, crop: true)
                 imageUrls.append(imageurl)
+                bannerIds.append(imageId)
             }
 
             topBanner.imageURLStringsGroup = imageUrls
@@ -226,29 +219,65 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         
         if let products = self.detail?.products {
             if products.count > 0 {
+                
+                self.products = products
                 let moduleMargin  = 24.pixelToPoint
                 let itemWidth = (Tool.width - CGFloat(products.count) * moduleMargin * 2) / CGFloat(products.count)
+                moduleButtons = [UIButton]()
                 for i in 0 ..< products.count {
                     let moduleView = UIButton.init(type: .Custom)
                     moduleView.tag = i
                     moduleView.layer.borderColor = UIColor.redColor().CGColor
                     moduleView.layer.borderWidth = 0.3
-                    
+                    moduleView.layer.cornerRadius = 5
+                    moduleView.layer.masksToBounds = true
+                    moduleView.addTarget(self, action: #selector(self.switchProduct(_:)), forControlEvents: .TouchUpInside)
                     goodsInfoView.addSubview(moduleView)
                     moduleView.snp_makeConstraints(closure: { (make) in
                         make.left.equalTo(moduleMargin + CGFloat(i) * (itemWidth + moduleMargin * 2))
                         make.top.equalTo(moduleTitleLabel.snp_bottom).offset(33.pixelToPoint)
                         make.width.equalTo(itemWidth)
-                        make.height.equalTo(40.pixelToPoint)
+                        make.height.equalTo(60.pixelToPoint)
                         make.bottom.equalTo(goodsInfoView.snp_bottom).offset(-20.pixelToPoint)
                     })
+                    
+                    if i == 0 {
+                        moduleView.setTitle("模块一", forState: .Normal)
+                    } else if i == 1 {
+                        moduleView.setTitle("模块二", forState: .Normal)
+                    } else if i == 2 {
+                        moduleView.setTitle("模块三", forState: .Normal)
+                    } else if i == 3 {
+                        moduleView.setTitle("模块四", forState: .Normal)
+                    }
+                    moduleButtons.append(moduleView)
                 }
-
+                configureModuleButtonsSelectedStatus(0)
             }
         }
+    }
+    
+    func switchProduct(btn: UIButton) {
+        configureModuleButtonsSelectedStatus(btn.tag)
+        let imgid = self.products![btn.tag].imgId
         
-        
-
+        for i in 0 ..< self.bannerIds.count {
+            if self.bannerIds[i] == imgid {
+                self.topBanner.setScrollToIndex(i)
+            }
+        }
+    }
+    
+    func configureModuleButtonsSelectedStatus(index: Int) {
+        for i in 0 ..< moduleButtons.count {
+            if i == index {
+                moduleButtons[i].setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                moduleButtons[i].backgroundColor = UIColor.init(hexString: "#f15353")
+            } else {
+                moduleButtons[i].setTitleColor(UIColor.blackColor(), forState: .Normal)
+                moduleButtons[i].backgroundColor = UIColor.clearColor()
+            }
+        }
     }
     
     func configureGoodIntrowebView() {
@@ -272,12 +301,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             widthString = webView.stringByEvaluatingJavaScriptFromString("document.width"),
             height = Float(heightString),
             _ = Float(widthString) {
-            
-//            var rect = webView.frame
-//            rect.size.height = CGFloat(height)
-//            rect.size.width = CGFloat(width)
-//            webView.frame = rect
-            
+
             webview.snp_remakeConstraints(closure: { (make) in
                 make.left.right.equalTo(view)
                 make.width.equalTo(Tool.width)
@@ -286,95 +310,6 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
                 make.height.equalTo(height)
             })
         }
-    }
-    
-    func configureGoodIntroView() {
-        
-        goodIntroView = UIView()
-        scrollView.addSubview(goodIntroView)
-        goodIntroView.snp_makeConstraints { (make) in
-            make.left.right.equalTo(topBanner)
-            make.top.equalTo(goodsInfoView.snp_bottom)
-        }
-        
-        let introDetailLabel = UILabel()
-        goodIntroView.addSubview(introDetailLabel)
-        introDetailLabel.text = "xcaada"
-        introDetailLabel.textColor = UIColor.whiteColor()
-        introDetailLabel.textAlignment = .Center
-        introDetailLabel.snp_makeConstraints { (make) in
-            make.top.left.right.equalTo(goodIntroView)
-            make.height.equalTo(40)
-        }
-        
-        introImageViews = [UIImageView]()
-        for i in 0...2 {
-            let imageview = UIImageView()
-            goodIntroView.addSubview(imageview)
-            imageview.tag = i
-            
-            imageview.snp_makeConstraints(closure: { (make) in
-                make.left.right.equalTo(goodIntroView)
-                make.top.equalTo(introDetailLabel.snp_bottom).offset(i * 300)
-                make.height.equalTo(300)
-            })
-            
-            imageview.image = UIImage.init(named: "fourtag")
-            introImageViews.append(imageview)
-        }
-        
-        let customStepLabel = UILabel()
-        goodIntroView.addSubview(customStepLabel)
-        customStepLabel.text = "xcaada"
-        customStepLabel.textColor = UIColor.whiteColor()
-        customStepLabel.textAlignment = .Center
-        customStepLabel.snp_makeConstraints { (make) in
-            make.left.right.equalTo(goodIntroView)
-            make.top.equalTo(introImageViews.last!.snp_bottom)
-            make.height.equalTo(40)
-        }
-        
-        let helperView = UIView.init()
-        goodIntroView.addSubview(helperView)
-        helperView.snp_makeConstraints { (make) in
-            make.left.right.equalTo(goodIntroView)
-            make.top.equalTo(customStepLabel.snp_bottom)
-            make.height.equalTo(100)
-        }
-        
-        let margin: CGFloat = 10.0
-        let width: CGFloat = (Tool.width - 6 * margin) / 5
-        for i in 0...4 {
-            let imageview = UIImageView.init()
-            imageview.image = UIImage.init(named: "fourtag")
-
-            helperView.addSubview(imageview)
-            imageview.snp_makeConstraints(closure: { (make) in
-                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i) + margin)
-                make.width.equalTo(width)
-                make.height.equalTo(width)
-                make.top.equalTo(helperView).offset(20)
-            })
-            
-            
-            let label = UILabel.init()
-            label.textColor = UIColor.blackColor()
-            label.text = "xxxx"
-            label.textAlignment = .Center
-            
-            helperView.addSubview(label)
-            label.snp_makeConstraints(closure: { (make) in
-                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i) + margin)
-                make.width.equalTo(width)
-                make.height.equalTo(width)
-                make.top.equalTo(imageview.snp_bottom).offset(20)
-                make.bottom.equalTo(scrollView.snp_bottom)
-            })
-            
-        }
-        
-        
-        
     }
     
     func tapBottomItems(tap: UITapGestureRecognizer) {
@@ -407,9 +342,13 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     }
     
     func configureBottomView() {
-//        bottomView.layer.borderWidth = 0.5
-//        bottomView.layer.borderColor = UIColor.lightGrayColor().CGColor
         
+        bottomView = UIView()
+        view.addSubview(bottomView)
+        bottomView.snp_makeConstraints { (make) in
+            make.left.right.bottom.equalTo(view)
+            make.height.equalTo(bottomHeight)
+        }
         
         let collect = UIView()
         
@@ -510,6 +449,97 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func configureGoodIntroView() {
+        
+        goodIntroView = UIView()
+        scrollView.addSubview(goodIntroView)
+        goodIntroView.snp_makeConstraints { (make) in
+            make.left.right.equalTo(topBanner)
+            make.top.equalTo(goodsInfoView.snp_bottom)
+        }
+        
+        let introDetailLabel = UILabel()
+        goodIntroView.addSubview(introDetailLabel)
+        introDetailLabel.text = "xcaada"
+        introDetailLabel.textColor = UIColor.whiteColor()
+        introDetailLabel.textAlignment = .Center
+        introDetailLabel.snp_makeConstraints { (make) in
+            make.top.left.right.equalTo(goodIntroView)
+            make.height.equalTo(40)
+        }
+        
+        introImageViews = [UIImageView]()
+        for i in 0...2 {
+            let imageview = UIImageView()
+            goodIntroView.addSubview(imageview)
+            imageview.tag = i
+            
+            imageview.snp_makeConstraints(closure: { (make) in
+                make.left.right.equalTo(goodIntroView)
+                make.top.equalTo(introDetailLabel.snp_bottom).offset(i * 300)
+                make.height.equalTo(300)
+            })
+            
+            imageview.image = UIImage.init(named: "fourtag")
+            introImageViews.append(imageview)
+        }
+        
+        let customStepLabel = UILabel()
+        goodIntroView.addSubview(customStepLabel)
+        customStepLabel.text = "xcaada"
+        customStepLabel.textColor = UIColor.whiteColor()
+        customStepLabel.textAlignment = .Center
+        customStepLabel.snp_makeConstraints { (make) in
+            make.left.right.equalTo(goodIntroView)
+            make.top.equalTo(introImageViews.last!.snp_bottom)
+            make.height.equalTo(40)
+        }
+        
+        let helperView = UIView.init()
+        goodIntroView.addSubview(helperView)
+        helperView.snp_makeConstraints { (make) in
+            make.left.right.equalTo(goodIntroView)
+            make.top.equalTo(customStepLabel.snp_bottom)
+            make.height.equalTo(100)
+        }
+        
+        let margin: CGFloat = 10.0
+        let width: CGFloat = (Tool.width - 6 * margin) / 5
+        for i in 0...4 {
+            let imageview = UIImageView.init()
+            imageview.image = UIImage.init(named: "fourtag")
+            
+            helperView.addSubview(imageview)
+            imageview.snp_makeConstraints(closure: { (make) in
+                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i) + margin)
+                make.width.equalTo(width)
+                make.height.equalTo(width)
+                make.top.equalTo(helperView).offset(20)
+            })
+            
+            
+            let label = UILabel.init()
+            label.textColor = UIColor.blackColor()
+            label.text = "xxxx"
+            label.textAlignment = .Center
+            
+            helperView.addSubview(label)
+            label.snp_makeConstraints(closure: { (make) in
+                make.left.equalTo(goodIntroView).offset((margin + width) * CGFloat(i) + margin)
+                make.width.equalTo(width)
+                make.height.equalTo(width)
+                make.top.equalTo(imageview.snp_bottom).offset(20)
+                make.bottom.equalTo(scrollView.snp_bottom)
+            })
+            
+        }
+        
+        
+        
+    }
+
 
 }
 
@@ -533,3 +563,6 @@ class GoodDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+
+
