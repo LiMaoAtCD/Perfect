@@ -121,6 +121,7 @@ class FourthTableViewController: UITableViewController {
  
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         if indexPath == NSIndexPath.init(forRow: 0, inSection: 0) {
             let personal = PeronalViewController.someController(PeronalViewController.self, ofStoryBoard: UIStoryboard.main)
@@ -174,7 +175,9 @@ class FourthTableViewController: UITableViewController {
         let avatarVC = AvatarViewController.someController(AvatarViewController.self, ofStoryBoard: UIStoryboard.main)
         avatarVC.modalPresentationStyle = .OverCurrentContext
         avatarVC.view.backgroundColor = UIColor.clearColor()
-        self.presentViewController(avatarVC, animated: false, completion: nil)
+        
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        delegate.window!.rootViewController!.presentViewController(avatarVC, animated: false, completion: nil)
     }
     
     

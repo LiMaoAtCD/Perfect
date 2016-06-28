@@ -18,7 +18,7 @@ class AvatarViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.init(hexString:"#dbdbdb")
+        backgroundView.backgroundColor = UIColor.init(hexString:"#000000")
         self.view.addSubview(backgroundView)
         backgroundView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)

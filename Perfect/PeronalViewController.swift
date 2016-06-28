@@ -28,7 +28,7 @@ class PeronalViewController: BaseViewController, UITableViewDelegate, UITableVie
             SVProgressHUD.showErrorWithStatus(errMsg ?? "个人信息获取失败")
         }
         
-        items = ["姓名","性别","生日"]
+        items = ["姓名","性别","生日","用户类别"]
 
         
         let tableView = UITableView.init(frame: CGRectZero, style: UITableViewStyle.Grouped)
@@ -36,9 +36,9 @@ class PeronalViewController: BaseViewController, UITableViewDelegate, UITableVie
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor.globalBackGroundColor()
         tableView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
-            
         }
         tableView.registerClass(PersonalCell.self, forCellReuseIdentifier: "Personal")
         tableView.scrollEnabled = false
@@ -73,7 +73,7 @@ class PeronalViewController: BaseViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -94,17 +94,6 @@ class PeronalViewController: BaseViewController, UITableViewDelegate, UITableVie
 
 class PersonalCell: UITableViewCell {
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
     var title: UILabel!
     var detail: UILabel!
     
@@ -112,6 +101,8 @@ class PersonalCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         title = UILabel()
+        detail.font = UIFont.systemFontOfSize(14.0)
+        detail.textColor = UIColor.init(hexString: "#333333")
         self.addSubview(title)
         title.snp_makeConstraints { (make) in
             make.left.equalTo(self).offset(8)
@@ -119,12 +110,16 @@ class PersonalCell: UITableViewCell {
         }
         
         detail = UILabel()
+        detail.textAlignment = .Right
+        detail.font = UIFont.systemFontOfSize(14.0)
+        detail.textColor = UIColor.init(hexString: "#666666")
         self.addSubview(detail)
         detail.snp_makeConstraints { (make) in
             make.right.equalTo(self).offset(-8)
             make.centerY.equalTo(self)
+            make.left.equalTo(title.snp_right).offset(20)
+            make.width.greaterThanOrEqualTo(150)
         }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
