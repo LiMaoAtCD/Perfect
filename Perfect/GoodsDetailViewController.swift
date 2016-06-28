@@ -352,8 +352,8 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         
         let collect = UIView()
         
-        collect.layer.borderColor = UIColor.lightGrayColor().CGColor
-        collect.layer.borderWidth = 0.5
+        collect.layer.borderColor = UIColor.init(hexString: "#d8d8d8").CGColor
+        collect.layer.borderWidth = 0.3
         bottomView.addSubview(collect)
         collect.snp_makeConstraints { (make) in
             make.left.top.bottom.equalTo(bottomView)
@@ -370,27 +370,27 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         collect.addSubview(collectImageview)
         collectImageview.snp_makeConstraints { (make) in
             make.centerX.equalTo(collect)
-            make.width.equalTo(20)
-            make.height.equalTo(20)
-            make.top.equalTo(collect).offset(10)
+            make.width.equalTo(33.pixelToPoint)
+            make.height.equalTo(33.pixelToPoint)
+            make.top.equalTo(collect).offset(10.pixelToPoint)
         }
         
         let collectionTitle = UILabel()
         collect.addSubview(collectionTitle)
         collectionTitle.text = "收藏"
-        collectionTitle.textColor = UIColor.init(hexString: "#333333")
-        collectionTitle.font = UIFont.systemFontOfSize(14.0)
+        collectionTitle.textColor = UIColor.init(hexString: "#666666")
+        collectionTitle.font = UIFont.systemFontOfSize(12.0)
 
         collectionTitle.textAlignment = .Center
         collectionTitle.snp_makeConstraints { (make) in
             make.left.right.equalTo(collect)
-            make.top.equalTo(collectImageview.snp_bottom)
+            make.bottom.equalTo(-15.pixelToPoint)
         }
         
         
         let service = UIView()
-        service.layer.borderColor = UIColor.lightGrayColor().CGColor
-        service.layer.borderWidth = 0.5
+        service.layer.borderColor = UIColor.init(hexString: "#d8d8d8").CGColor
+        service.layer.borderWidth = 0.3
         
         let serviceTap = UITapGestureRecognizer.init(target: self, action: #selector(self.tapBottomItems(_:)))
         
@@ -410,20 +410,20 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         service.addSubview(serviceImageview)
         serviceImageview.snp_makeConstraints { (make) in
             make.centerX.equalTo(service)
-            make.width.equalTo(20)
-            make.height.equalTo(20)
-            make.top.equalTo(service).offset(10)
+            make.width.equalTo(33.pixelToPoint)
+            make.height.equalTo(33.pixelToPoint)
+            make.top.equalTo(service).offset(10.pixelToPoint)
         }
         
         let serviceTitle = UILabel()
         service.addSubview(serviceTitle)
         serviceTitle.text = "联系客服"
-        serviceTitle.textColor = UIColor.blackColor()
-        serviceTitle.font = UIFont.systemFontOfSize(14.0)
+        serviceTitle.textColor = UIColor.init(hexString: "#666666")
+        serviceTitle.font = UIFont.systemFontOfSize(12.0)
         serviceTitle.textAlignment = .Center
         serviceTitle.snp_makeConstraints { (make) in
             make.left.right.equalTo(service)
-            make.top.equalTo(serviceImageview.snp_bottom)
+            make.bottom.equalTo(-15.pixelToPoint)
         }
         
         let okbutton = UIButton.init(type: .Custom)
