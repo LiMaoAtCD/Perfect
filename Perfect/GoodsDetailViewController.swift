@@ -34,7 +34,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         // Do any additional setup after loading the view.
         
         SVProgressHUD.showWithStatus("正在获取商品详情")
-        NetworkHelper.instance.request(.GET, url: URLConstant.appProductDetail.contant, parameters: ["id": NSNumber.init(longLong: id)], completion: { [weak self](response: ProductDetailResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appGoodsDetail.contant, parameters: ["id": NSNumber.init(longLong: id)], completion: { [weak self](response: ProductDetailResponse?) in
                 SVProgressHUD.dismiss()
                 self?.detail = response?.retObj
                 self?.favorite = response!.retObj!.favorite

@@ -93,12 +93,26 @@ class ProductEntity: Mappable {
     }
 }
 
+//
+//"total": 1,
+//"rows": [
+//{
+//"id": 1,
+//"categoryName": "1919天猫旗舰店",
+//"marketPrice": 33.0,
+//"price": 3.3,
+//"categoryId": 2,
+//"name": "国窖1573",
+//"discount": 1.0
+//}
+//]
+
 class ProductItem: Mappable {
     
     var marketPrice: Float = 0.0
     var price: Float = 0.0
     var imageId: Int64 = 0
-    var fullName: String?
+    var name: String?
     var id: Int64 = 0
     
     required init?(_ map: Map) {
@@ -108,7 +122,7 @@ class ProductItem: Mappable {
         marketPrice <- map["marketPrice"]
         price <- map["price"]
         imageId <- (map["imageId"], TransformOfUtils.TransformOfInt64())
-        fullName <- map["fullName"]
+        name <- map["name"]
         id <- (map["id"], TransformOfUtils.TransformOfInt64())
     }
 }

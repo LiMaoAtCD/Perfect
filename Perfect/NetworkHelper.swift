@@ -34,9 +34,9 @@ enum httpMethod {
 }
 enum URLConstant: String {
     case hello = "hello"
-    case FirstPage = "appQueryIndexStaticContent" //首页上部
-    case ProductList = "appQueryProductList"    //首页下部
-    case appProductDetail = "appProductDetail"  //商品详情
+    case appQueryIndexStaticContent = "appQueryIndexStaticContent" //首页上部
+    case appQueryGoodsList = "appQueryGoodsList"    //首页下部
+    case appGoodsDetail = "appGoodsDetail"  //商品详情
     case appMemberCenterIndex = "appMemberCenterIndex" //个人
     case appSubOrder = "appSubOrder" //提交订单
     case Register = "memberRegister" //注册
