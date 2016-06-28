@@ -152,6 +152,14 @@ class MemberInfoResponse : DataResponse {
     }
 }
 
+
+//"phone": "13568927473",
+//"birth": null,
+//"username": "13568927473",
+//"name": "haha",
+//"gender": null,
+//"type": "person"
+
 //获取配送区域
 class AreaResponse: DataResponse {
     var retObj: AreaIDEntity?
