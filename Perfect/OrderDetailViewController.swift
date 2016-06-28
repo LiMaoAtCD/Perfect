@@ -95,6 +95,8 @@ class OrderDetailViewController: BaseViewController {
             make.height.equalTo(50)
         }
         
+//        NetworkHelper.instance.request(.GET, url: URLConstant.appOrderDetail.contant, parameters: ["id":1, "page": 1, "rows": 10], completion: <#T##(T? -> Void)?##(T? -> Void)?##T? -> Void#>, failed: <#T##((String?, Int) -> Void)?##((String?, Int) -> Void)?##(String?, Int) -> Void#>)
+        
         
     }
 
