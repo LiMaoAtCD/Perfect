@@ -34,7 +34,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         self.title = "收货地址管理"
         
         scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor.whiteColor()
+        scrollView.backgroundColor = UIColor.globalBackGroundColor()
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -46,12 +46,12 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         scrollView.addSubview(finishedButton)
         finishedButton.snp_makeConstraints { (make) in
             make.left.right.equalTo(view)
-            make.height.equalTo(50)
-            make.top.equalTo(upperView.snp_bottom).offset(15)
+            make.height.equalTo(95.pixelToPoint)
+            make.top.equalTo(upperView.snp_bottom).offset(20.pixelToPoint)
         }
         finishedButton.backgroundColor = UIColor.whiteColor()
         finishedButton.setTitle("完成", forState: .Normal)
-        finishedButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+        finishedButton.setTitleColor(UIColor.init(hexString: "#ee304e"), forState: .Normal)
         finishedButton.addTarget(self, action: #selector(self.finishEdit), forControlEvents: .TouchUpInside)
     }
     
@@ -62,27 +62,29 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         scrollView.addSubview(upperView)
         upperView.snp_makeConstraints { (make) in
             make.left.right.equalTo(view)
-            make.top.equalTo(scrollView).offset(20)
+            make.top.equalTo(scrollView).offset(25.pixelToPoint)
             make.height.equalTo(300).priority(500)
         }
         
         let title0 = UILabel()
         title0.text = "收货人"
+        title0.textColor = UIColor.init(hexString: "#333333")
+        title0.font = UIFont.systemFontOfSize(15.0)
         upperView.addSubview(title0)
         title0.snp_makeConstraints { (make) in
-            make.left.equalTo(upperView).offset(10)
-            make.top.equalTo(upperView).offset(20)
+            make.left.equalTo(upperView).offset(24.pixelToPoint)
+            make.top.equalTo(upperView).offset(31.pixelToPoint)
             make.width.lessThanOrEqualTo(70)
         }
         
         nameTextfield = UITextField.init()
         upperView.addSubview(nameTextfield)
-        nameTextfield.placeholder = "请输入您的姓名"
+        nameTextfield.attributedPlaceholder = NSAttributedString.init(string: "请输入姓名", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#333333", withAlpha: 1.0),NSFontAttributeName: UIFont.systemFontOfSize(15.0)])
+        nameTextfield.textColor = UIColor.init(hexString: "#333333", withAlpha: 1.0)
         nameTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         nameTextfield.snp_makeConstraints { (make) in
             make.left.equalTo(title0.snp_right).offset(10)
             make.right.equalTo(upperView)
-            make.height.equalTo(35)
             make.centerY.equalTo(title0)
         }
         let line0 = UIView()
@@ -91,19 +93,23 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         line0.snp_makeConstraints { (make) in
             make.left.right.equalTo(upperView)
             make.height.equalTo(0.3)
-            make.top.equalTo(upperView).offset(50)
+            make.top.equalTo(upperView).offset(95.pixelToPoint)
         }
         
         let title1 = UILabel()
         title1.text = "联系电话"
+        title1.textColor = UIColor.init(hexString: "#333333")
+        title1.font = UIFont.systemFontOfSize(15.0)
+
         upperView.addSubview(title1)
         title1.snp_makeConstraints { (make) in
-            make.left.equalTo(upperView).offset(10)
-            make.top.equalTo(line0).offset(20)
+            make.left.equalTo(upperView).offset(24.pixelToPoint)
+            make.top.equalTo(title0).offset(95.pixelToPoint)
         }
         
         phoneTextfield = UITextField.init()
-        phoneTextfield.placeholder = "请输入您的电话"
+        phoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "请输入联系电话", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#333333", withAlpha: 1.0),NSFontAttributeName: UIFont.systemFontOfSize(15.0)])
+        phoneTextfield.textColor = UIColor.init(hexString: "#333333", withAlpha: 1.0)
         phoneTextfield.keyboardType = .NumberPad
         phoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
 
@@ -122,23 +128,27 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         line1.snp_makeConstraints { (make) in
             make.left.right.equalTo(upperView)
             make.height.equalTo(0.3)
-            make.top.equalTo(upperView).offset(50 * 2)
+            make.top.equalTo(line0).offset(95.pixelToPoint)
         }
         
         
         let title2 = UILabel()
         title2.text = "所在地区"
+        title2.textColor = UIColor.init(hexString: "#333333")
+        title2.font = UIFont.systemFontOfSize(15.0)
         upperView.addSubview(title2)
         title2.snp_makeConstraints { (make) in
-            make.left.equalTo(upperView).offset(10)
-            make.top.equalTo(line1).offset(20)
+            make.left.equalTo(title0)
+            make.top.equalTo(title1).offset(95.pixelToPoint)
         }
         
         addressLabel = UILabel.init()
+        addressLabel.textColor = UIColor.init(hexString: "#333333")
+        addressLabel.font = UIFont.systemFontOfSize(15.0)
         upperView.addSubview(addressLabel)
         addressLabel.userInteractionEnabled = true
         addressLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(title2.snp_right).offset(10)
+            make.left.equalTo(phoneTextfield)
             make.right.equalTo(upperView)
             make.height.equalTo(35)
             make.centerY.equalTo(title2)
@@ -153,17 +163,19 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         line2.snp_makeConstraints { (make) in
             make.left.right.equalTo(upperView)
             make.height.equalTo(0.3)
-            make.top.equalTo(upperView).offset(50 * 3)
+            make.top.equalTo(line1).offset(95.pixelToPoint)
         }
         
         let detailAddress = UITextView.init()
+        detailAddress.font = UIFont.systemFontOfSize(15.0)
+        detailAddress.textColor = UIColor.init(hexString: "#333333")
         detailAddress.delegate = self
         upperView.addSubview(detailAddress)
         detailAddress.snp_makeConstraints { (make) in
-            make.left.equalTo(upperView).offset(8)
-            make.right.equalTo(upperView).offset(-8)
-            make.top.equalTo(line2).offset(10)
-            make.height.equalTo(100)
+            make.left.equalTo(title2)
+            make.right.equalTo(upperView).offset(-14)
+            make.top.equalTo(line2).offset(43.pixelToPoint)
+            make.height.equalTo(176.pixelToPoint)
             make.bottom.equalTo(upperView.snp_bottom)
         }
         detailAddress.text = "详细地址"
