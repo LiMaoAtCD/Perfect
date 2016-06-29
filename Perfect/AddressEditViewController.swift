@@ -143,6 +143,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         }
         
         addressLabel = UILabel.init()
+        addressLabel.text = "请选择所在地区"
         addressLabel.textColor = UIColor.init(hexString: "#333333")
         addressLabel.font = UIFont.systemFontOfSize(15.0)
         upperView.addSubview(addressLabel)

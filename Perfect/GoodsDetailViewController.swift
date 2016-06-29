@@ -49,6 +49,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
                 SVProgressHUD.dismiss()
                 self?.detail = response?.retObj
                 self?.favorite = response!.retObj!.favorite
+            
                 self?.updateViews()
             }) { (errMsg: String?, errCode: Int) in
                 SVProgressHUD.showErrorWithStatus(errMsg ?? "商品信息获取失败")
@@ -284,7 +285,8 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         webview = UIWebView()
         scrollView.addSubview(webview)
         
-        let url  = NSURL.init(string: "http://ic.snssdk.com/wenda/wapshare/answer/brow/?ansid=6296220727066493186&iid=4584663589&app=news_article&tt_from=mobile_qq&utm_source=mobile_qq&utm_medium=toutiao_ios&utm_campaign=client_share")
+        let urlString = id.article        
+        let url  = NSURL.init(string: urlString)
         webview.loadRequest(NSURLRequest.init(URL: url!))
         webview.delegate = self
         webview.snp_makeConstraints(closure: { (make) in
