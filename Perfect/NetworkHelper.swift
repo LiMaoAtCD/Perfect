@@ -89,10 +89,10 @@ class NetworkHelper: NSObject {
                         Defaults[.sessionID] = session
 
                     }
-                } else if let value = response.result.value where value.retCode != RetErrorCode.Success.rawValue  {
-                    
-                    failedHandler?(value.retMsg, value.retCode)
-
+                } else if let value = response.result.value where value.retCode == RetErrorCode.NeedLogin.rawValue  {
+                    AppDelegate.login()
+                } else if let value = response.result.value where value.retCode != RetErrorCode.Success.rawValue {
+                
                 } else {
                     assertionFailure("network data format error")
                 }

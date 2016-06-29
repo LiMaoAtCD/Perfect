@@ -7,35 +7,32 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class CollectionTableViewController: UITableViewController {
 
-    var colletionList: [String]!
+    var colletionList: [CollectProductItem]!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+        colletionList = [CollectProductItem]()
         self.title = "我的收藏"
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 200
         self.tableView.registerClass(CollectCell.self, forCellReuseIdentifier: "CollectCell")
         self.tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = UIColor.globalBackGroundColor()
-        
-        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberFavoriteGoodsList.contant, parameters: ["rows": 15,"page": 1], completion: { (result: CollectProductResponse?) in
-            
-            }) { (msg, code) in
-                if code == -2 {
-                    
-                }
-        }
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberFavoriteGoodsList.contant, parameters: ["rows": 15,"page": 1], completion: { [weak self](result: CollectProductResponse?) in
+            self?.colletionList = result?.retObj?.rows
+            self?.tableView.reloadData()
+        }) { (msg, code) in
+            SVProgressHUD.showErrorWithStatus(msg)
+        }
 
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -50,7 +47,7 @@ class CollectionTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return colletionList.count
     }
 
     
@@ -58,8 +55,25 @@ class CollectionTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("CollectCell", forIndexPath: indexPath) as! CollectCell
 
         // Configure the cell...
+        cell.entity = colletionList[indexPath.row]
+        cell.deleteHandler = {
+            [weak self] tag in
+            self?.deleteCollectItem(self!.colletionList[indexPath.row].goodsId)
+        }
 
         return cell
+    }
+    
+    
+    func deleteCollectItem(ID: Int64) {
+        NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberGoodsFavorite.contant, parameters: ["productId":NSNumber.init(longLong: ID), "isFavorite": false], completion: { (result: DataResponse?) in
+                self.colletionList = self.colletionList.filter({ (item) -> Bool in
+                    return item.goodsId != ID
+                })
+                self.tableView.reloadData()
+            }) { (msg, code) in
+                SVProgressHUD.showErrorWithStatus(msg)
+        }
     }
 }
 
@@ -81,6 +95,16 @@ class CollectCell: UITableViewCell {
             priceLabel.attributedText = attributeString
         }
         
+    }
+    
+    var entity: CollectProductItem? {
+        willSet {
+            if let _ = newValue {
+                self.price = newValue!.price
+                self.goodTitleLabel.text = newValue!.goodsName
+                self.goodImageView.kf_setImageWithURL(NSURL.init(string: newValue!.imageId.perfectImageurl(200, h: 200, crop: true))!)
+            }
+        }
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
