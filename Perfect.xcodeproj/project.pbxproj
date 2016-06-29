@@ -18,6 +18,10 @@
 		870F38311CF988C100AFF1AF /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F38301CF988C100AFF1AF /* AddressViewController.swift */; };
 		8718901E1D1FF2AA00F11311 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8718901D1D1FF2AA00F11311 /* OrderDetailViewController.swift */; };
 		871890201D2158C100F11311 /* CollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8718901F1D2158C100F11311 /* CollectionTableViewController.swift */; };
+		871890231D23FA8400F11311 /* CMProfileGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871890211D23FA8400F11311 /* CMProfileGenderViewController.swift */; };
+		871890241D23FA8400F11311 /* CMProfileGenderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871890221D23FA8400F11311 /* CMProfileGenderViewController.xib */; };
+		871890271D24087300F11311 /* RegisterTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871890251D24087300F11311 /* RegisterTypeViewController.swift */; };
+		871890281D24087300F11311 /* RegisterTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871890261D24087300F11311 /* RegisterTypeViewController.xib */; };
 		8721877C1D19888E00281A19 /* NSObject+UIAppearanceSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = 8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */; };
 		8721877E1D19921000281A19 /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721877D1D19921000281A19 /* AvatarViewController.swift */; };
 		8752BF3A1D14E28100ED58D3 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */; };
@@ -80,6 +84,10 @@
 		870F38301CF988C100AFF1AF /* AddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
 		8718901D1D1FF2AA00F11311 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		8718901F1D2158C100F11311 /* CollectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTableViewController.swift; sourceTree = "<group>"; };
+		871890211D23FA8400F11311 /* CMProfileGenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMProfileGenderViewController.swift; sourceTree = "<group>"; };
+		871890221D23FA8400F11311 /* CMProfileGenderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMProfileGenderViewController.xib; sourceTree = "<group>"; };
+		871890251D24087300F11311 /* RegisterTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTypeViewController.swift; sourceTree = "<group>"; };
+		871890261D24087300F11311 /* RegisterTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterTypeViewController.xib; sourceTree = "<group>"; };
 		8721877A1D19888E00281A19 /* NSObject+UIAppearanceSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UIAppearanceSwift.h"; sourceTree = "<group>"; };
 		8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UIAppearanceSwift.m"; sourceTree = "<group>"; };
 		8721877D1D19921000281A19 /* AvatarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
@@ -200,7 +208,11 @@
 		870F383B1CF9CC6000AFF1AF /* Personal */ = {
 			isa = PBXGroup;
 			children = (
+				871890211D23FA8400F11311 /* CMProfileGenderViewController.swift */,
+				871890221D23FA8400F11311 /* CMProfileGenderViewController.xib */,
 				870F382E1CF987C900AFF1AF /* PeronalViewController.swift */,
+				871890251D24087300F11311 /* RegisterTypeViewController.swift */,
+				871890261D24087300F11311 /* RegisterTypeViewController.xib */,
 			);
 			name = Personal;
 			sourceTree = "<group>";
@@ -490,8 +502,10 @@
 				878F22871D182AE70074E1A2 /* AddressEditViewController.xib in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */,
+				871890281D24087300F11311 /* RegisterTypeViewController.xib in Resources */,
 				DABE57C41D23CC6D0004B6D7 /* perfect.paw in Resources */,
 				DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */,
+				871890241D23FA8400F11311 /* CMProfileGenderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +581,7 @@
 				870F38231CF9489400AFF1AF /* LoginViewController.swift in Sources */,
 				87A5AA5B1D0F11BB000A1B41 /* FirstPageViewController.swift in Sources */,
 				DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */,
+				871890231D23FA8400F11311 /* CMProfileGenderViewController.swift in Sources */,
 				870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */,
 				8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */,
 				DA1A6B251D124A3600FD4FB0 /* MarketLabel.swift in Sources */,
@@ -585,6 +600,7 @@
 				8721877E1D19921000281A19 /* AvatarViewController.swift in Sources */,
 				878F22861D182AE70074E1A2 /* AddressEditViewController.swift in Sources */,
 				8721877C1D19888E00281A19 /* NSObject+UIAppearanceSwift.m in Sources */,
+				871890271D24087300F11311 /* RegisterTypeViewController.swift in Sources */,
 				8768B2A11D1C1387003A6201 /* CustomTypeViewController.swift in Sources */,
 				871890201D2158C100F11311 /* CollectionTableViewController.swift in Sources */,
 				DA417B561CF5EDD100F61304 /* AppDelegate.swift in Sources */,

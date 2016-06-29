@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireObjectMapper
 import SwiftyUserDefaults
-
+import SVProgressHUD
 
 let url = "http://101.200.131.198:8090/custwine/gw?cmd="
 
@@ -90,6 +90,7 @@ class NetworkHelper: NSObject {
 
                     }
                 } else if let value = response.result.value where value.retCode == RetErrorCode.NeedLogin.rawValue  {
+                    SVProgressHUD.dismiss()
                     AppDelegate.login()
                 } else if let value = response.result.value where value.retCode != RetErrorCode.Success.rawValue {
                 

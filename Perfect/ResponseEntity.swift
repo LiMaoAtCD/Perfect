@@ -447,16 +447,20 @@ class MemberInfoEntity: Mappable {
     var phone: String?
     var username:  String?
     var type: String?
+    var birth: String?
+    var gender: String?
+    
     required init?(_ map: Map) {
     }
     
     func mapping(map: Map) {
+        phone <- map["phone"]
         username <- map["username"]
         type <- map["type"]
-        phone <- map["phone"]
+        birth <- map["birth"]
+        gender <- map["gender"]
     }
 }
-
 
 class AreaIDEntity: Mappable {
     var areas: [AreaIDItemEntity]?
