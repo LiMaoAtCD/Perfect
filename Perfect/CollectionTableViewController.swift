@@ -128,6 +128,8 @@ class CollectCell: UITableViewCell {
             make.left.equalTo(20.pixelToPoint)
             make.top.equalTo(24.pixelToPoint)
             make.width.height.equalTo(200.pixelToPoint)
+            make.bottom.equalTo(-25.pixelToPoint)
+
         }
         
         goodTitleLabel = UILabel()
