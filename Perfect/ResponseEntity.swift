@@ -93,12 +93,13 @@ class ProductEntity: Mappable {
     }
 }
 
+
 class ProductItem: Mappable {
     
     var marketPrice: Float = 0.0
     var price: Float = 0.0
     var imageId: Int64 = 0
-    var fullName: String?
+    var name: String?
     var id: Int64 = 0
     
     required init?(_ map: Map) {
@@ -108,7 +109,7 @@ class ProductItem: Mappable {
         marketPrice <- map["marketPrice"]
         price <- map["price"]
         imageId <- (map["imageId"], TransformOfUtils.TransformOfInt64())
-        fullName <- map["fullName"]
+        name <- map["name"]
         id <- (map["id"], TransformOfUtils.TransformOfInt64())
     }
 }
@@ -119,18 +120,16 @@ class ProductItem: Mappable {
 class ProductDetailEntity: Mappable {
     var id: Int64 = 0
     var deliverMemo: String?
-    var deliverRegionGroup: Int = 0
     var marketPrice: Float = 0
     var price: Float = 0
     var merchantName: String?
-    var images: [String]?
+    var images: [Int64]?
     
-    var fullName: String?
+    var name: String?
     var favorite: Bool = false
     var intro: String?
-    
-    var tabs:[ProductDetailSectionItem]?
-    
+    var products: [ProductDetailModuleItem]?
+    var discount: Float = 0.0
     required init?(_ map: Map) {
     }
     
@@ -138,17 +137,36 @@ class ProductDetailEntity: Mappable {
         
         id <- map["id"]
         deliverMemo <- map["deliverMemo"]
-        deliverRegionGroup <- map["deliverRegionGroup"]
         marketPrice <- map["marketPrice"]
         price <- map["price"]
         merchantName <- map["merchantName"]
-        images <- map["images"]
-        fullName <- map["fullName"]
+        images <- (map["images"],TransformOfUtils.TransformOfInt64())
+        name <- map["name"]
         favorite <- map["favorite"]
         intro <- map["intro"]
-        tabs <- map["tabs"]
+        discount <- map["discount"]
+        products <- map["products"]
+
     }
 }
+
+class ProductDetailModuleItem: Mappable {
+
+    var id: Int64 = 0
+    var imgId: Int64 = 0
+    var price: Float = 0.0
+    var name: String?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        id <- (map["id"],TransformOfUtils.TransformOfInt64())
+        imgId <- (map["imgId"],TransformOfUtils.TransformOfInt64())
+        price <- map["price"]
+        name <- map["name"]
+    }
+}
+
 
 class ProductDetailSectionItem: Mappable {
     var content: [ProductDetailIntroItem]?

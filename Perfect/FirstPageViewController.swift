@@ -50,7 +50,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         collection.hidden = true
         
         SVProgressHUD.showWithStatus("正在获取商品信息")
-        NetworkHelper.instance.request(.GET, url: URLConstant.FirstPage.contant, parameters: nil, completion: { [weak self](res: FirstPageResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryIndexStaticContent.contant, parameters: nil, completion: { [weak self](res: FirstPageResponse?) in
                 SVProgressHUD.dismiss()
                 self?.topBanners = res?.retObj?.topBanners
                 self?.customButtons = res?.retObj?.buttons
@@ -75,7 +75,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             }
         }
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": 1], completion: { [weak self](product: ProductListResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": 1], completion: { [weak self](product: ProductListResponse?) in
                 self?.goods = product?.retObj?.rows
                 self?.collection.reloadSections(NSIndexSet.init(index: 3))
             }) { (errMsg: String?, errCode: Int) in
@@ -184,7 +184,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             header.segmentControl.selectionHandler = { index in
                 print("index: \(index)")
                 self.selectionSection = index
-                NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id)], completion: { [weak self](product: ProductListResponse?) in
+                NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id)], completion: { [weak self](product: ProductListResponse?) in
                     self?.goods = product?.retObj?.rows
                  
                     self?.collection.reloadSections(NSIndexSet.init(index: 3))
@@ -292,7 +292,7 @@ class CollectionViewCell: UICollectionViewCell {
             if let _ = newValue {
                 let url = newValue!.imageId.perfectImageurl(355, h: 352, crop: true)
                 imageView.kf_setImageWithURL(NSURL.init(string: url)!)
-                title.text = newValue!.fullName
+                title.text = newValue!.name
                 marketPrice.text = newValue!.marketPrice.currency
                 price = newValue!.price
             }

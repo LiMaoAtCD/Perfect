@@ -38,7 +38,7 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         collectionView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
         collectionView.registerClass(CustomTypeBannerCell.self, forCellWithReuseIdentifier: CustomTypeBannerCell.identifier)
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.ProductList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: id)], completion: { [weak self](product: ProductListResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: id)], completion: { [weak self](product: ProductListResponse?) in
             print(product)
             self?.items = product?.retObj?.rows
             self?.collectionView.reloadSections(NSIndexSet.init(index: 1))

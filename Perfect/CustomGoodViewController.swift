@@ -31,34 +31,41 @@ class CustomGoodViewController: BaseViewController, UINavigationControllerDelega
             make.top.equalTo(self.snp_topLayoutGuideBottom).offset(50)
         }
         
+        let uploadButton  = UIButton.init(type: .Custom)
+        uploadButton.addTarget(self, action: #selector(self.uploadImage), forControlEvents: .TouchUpInside)
+        view.addSubview(uploadButton)
+        uploadButton.snp_makeConstraints { (make) in
+            make.left.equalTo(24.pixelToPoint)
+            make.right.equalTo(-24.pixelToPoint)
+            make.height.equalTo(45)
+            make.bottom.equalTo(-250.pixelToPoint)
+        }
+        uploadButton.setTitle("上传图片", forState: .Normal)
+        uploadButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        uploadButton.setBackgroundImage(UIImage.init(named: "detail_custom_0"), forState: .Normal)
+        uploadButton.setBackgroundImage(UIImage.init(named: "detail_custom_1"), forState: .Highlighted)
+
+        uploadButton.layer.cornerRadius = 5
+        uploadButton.layer.masksToBounds = true
+        
         let helperLabel = UILabel.init()
         view.addSubview(helperLabel)
         helperLabel.text = "素材要求：1260 * 880像素"
+        helperLabel.textColor = UIColor.init(hexString: "#333333")
         helperLabel.snp_makeConstraints { (make) in
             make.centerX.equalTo(view)
-            make.top.equalTo(effectImageView.snp_bottom).offset(50)
+            make.bottom.equalTo(uploadButton.snp_top).offset(-62.pixelToPoint)
         }
-        
         helperLabel.textColor = UIColor.blackColor()
         
-        
-        let uploadButton  = UIButton.init(type: .Custom)
-        uploadButton.addTarget(self, action: #selector(self.uploadImage), forControlEvents: .TouchUpInside)
-        
-        view.addSubview(uploadButton)
-        
-        uploadButton.snp_makeConstraints { (make) in
-            make.left.equalTo(20)
-            make.right.equalTo(-20)
-            make.height.equalTo(40)
-            make.top.equalTo(helperLabel.snp_bottom).offset(50)
+        let shadowImageView = UIImageView()
+        view.addSubview(shadowImageView)
+        shadowImageView.image = UIImage.init(named: "detail_shadow")
+        shadowImageView.snp_makeConstraints { (make) in
+            make.left.right.equalTo(view)
+            make.height.equalTo(9.pixelToPoint)
+            make.bottom.equalTo(helperLabel.snp_top).offset(-34.pixelToPoint)
         }
-        
-        uploadButton.setTitle("上传图片", forState: .Normal)
-        uploadButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        uploadButton.backgroundColor = UIColor.brownColor()
-        uploadButton.layer.cornerRadius = 5
-        
         
         
         imagePicker = UIImagePickerController()
