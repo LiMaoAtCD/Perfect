@@ -54,7 +54,7 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
 
         super.viewWillAppear(animated)

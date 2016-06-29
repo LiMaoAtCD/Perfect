@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         configureSVProgressHUD()
         
-        
         hello()
         fetchAreaID()
         return true
@@ -111,5 +110,7 @@ extension AppDelegate {
             }
         }
     }
+    
+
 }
 

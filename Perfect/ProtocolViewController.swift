@@ -15,7 +15,7 @@ class ProtocolViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
         self.title = "注册协议"
     }
