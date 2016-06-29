@@ -45,6 +45,7 @@
 		DA417B6B1CF5EDD100F61304 /* PerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B6A1CF5EDD100F61304 /* PerfectTests.swift */; };
 		DA417B761CF5EDD100F61304 /* PerfectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA417B751CF5EDD100F61304 /* PerfectUITests.swift */; };
 		DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */; };
+		DABE57C41D23CC6D0004B6D7 /* perfect.paw in Resources */ = {isa = PBXBuildFile; fileRef = DABE57C31D23CC6D0004B6D7 /* perfect.paw */; };
 		DAE24CCC1D0D4BA300B4A2B1 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */; };
 		F417D554CD143DFAA2CFA261 /* Pods_Perfect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */; };
 /* End PBXBuildFile section */
@@ -116,6 +117,7 @@
 		DA417B771CF5EDD100F61304 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
 		DA57ED111CF7D53F00A8083A /* Perfect-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Perfect-Bridging-Header.h"; sourceTree = "<group>"; };
+		DABE57C31D23CC6D0004B6D7 /* perfect.paw */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = perfect.paw; sourceTree = "<group>"; };
 		DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -260,6 +262,7 @@
 		DA1A6B271D124F8B00FD4FB0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DABE57C31D23CC6D0004B6D7 /* perfect.paw */,
 				DA417B5C1CF5EDD100F61304 /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -487,6 +490,7 @@
 				878F22871D182AE70074E1A2 /* AddressEditViewController.xib in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */,
+				DABE57C41D23CC6D0004B6D7 /* perfect.paw in Resources */,
 				DA417B5B1CF5EDD100F61304 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
