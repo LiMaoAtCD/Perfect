@@ -98,3 +98,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+
+extension AppDelegate {
+    class func login() {
+        let delegate = UIApplication.sharedApplication().delegate as? AppDelegate
+        if let _ = delegate {
+            if let window = delegate!.window {
+                if let vc = window.rootViewController {
+                    let login = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginNavigationController") as! LoginNavigationController
+                    vc.presentViewController(login, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+}
+

@@ -636,6 +636,41 @@ class AddressItemsEntity:Object, Mappable {
     }
 }
 
+class CollectProductEntity: Mappable {
+    var total: Int = 0
+    var rows: [CollectProductItem]?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        total <- map["total"]
+        rows <- map["rows"]
+    }
+}
+
+
+class CollectProductItem: Mappable {
+    
+    var marketPrice: Float = 0.0
+    var price: Float = 0.0
+    var imageId: Int64 = 0
+    var productName: String?
+    var goodsName: String?
+    var goodsId: Int64 = 0
+    
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        marketPrice <- map["marketPrice"]
+        price <- map["price"]
+        imageId <- (map["imageId"], TransformOfUtils.TransformOfInt64())
+        productName <- map["productName"]
+        goodsName <- map["goodsName"]
+        goodsId <- (map["goodsId"], TransformOfUtils.TransformOfInt64())
+        
+    }
+}
 
 
 

@@ -26,6 +26,14 @@ class CollectionTableViewController: UITableViewController {
         self.tableView.registerClass(CollectCell.self, forCellReuseIdentifier: "CollectCell")
         self.tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = UIColor.globalBackGroundColor()
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberFavoriteGoodsList.contant, parameters: ["rows": 15,"page": 1], completion: { (result: CollectProductResponse?) in
+            
+            }) { (msg, code) in
+                if code == -2 {
+                    
+                }
+        }
     }
 
     override func didReceiveMemoryWarning() {
