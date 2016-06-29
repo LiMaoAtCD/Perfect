@@ -14,7 +14,9 @@ class CollectionTableViewController: UITableViewController {
     var colletionList: [CollectProductItem]!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
+        
         colletionList = [CollectProductItem]()
         self.title = "我的收藏"
         self.tableView.rowHeight = UITableViewAutomaticDimension

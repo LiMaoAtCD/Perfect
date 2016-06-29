@@ -47,7 +47,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         super.viewWillAppear(animated)
     }
     

@@ -27,7 +27,7 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate {
             items[2].selectedImage = UIImage(named: "tab_personal_1")
         }
         self.tabBar.tintColor = UIColor.redColor()
-
+        self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
 
     }
 

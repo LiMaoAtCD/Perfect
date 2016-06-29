@@ -42,7 +42,6 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         self.title = "注册"
         
-        self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         //背景
@@ -81,7 +80,8 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+
         super.viewWillAppear(animated)
     }
     
