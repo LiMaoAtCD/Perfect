@@ -20,8 +20,9 @@ class FourthViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
+
         self.fd_prefersNavigationBarHidden = true
         edgesForExtendedLayout = UIRectEdge.None
 

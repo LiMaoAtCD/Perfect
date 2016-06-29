@@ -26,8 +26,10 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
+        self.navigationController?.navigationBar.translucent = false
+
         fd_prefersNavigationBarHidden = true
         edgesForExtendedLayout = UIRectEdge.None
 

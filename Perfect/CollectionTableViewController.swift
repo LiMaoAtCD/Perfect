@@ -14,8 +14,10 @@ class CollectionTableViewController: UITableViewController {
     var colletionList: [CollectProductItem]!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
+        self.navigationController?.navigationBar.translucent = false
+
         
         colletionList = [CollectProductItem]()
         self.title = "我的收藏"
@@ -66,7 +68,6 @@ class CollectionTableViewController: UITableViewController {
         return cell
     }
     
-    
     func deleteCollectItem(ID: Int64) {
         NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberGoodsFavorite.contant, parameters: ["productId":NSNumber.init(longLong: ID), "isFavorite": false], completion: { (result: DataResponse?) in
                 self.colletionList = self.colletionList.filter({ (item) -> Bool in
@@ -76,6 +77,15 @@ class CollectionTableViewController: UITableViewController {
             }) { (msg, code) in
                 SVProgressHUD.showErrorWithStatus(msg)
         }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let detail = GoodsDetailViewController.someController(GoodsDetailViewController.self, ofStoryBoard: UIStoryboard.main)
+        detail.id = self.colletionList![indexPath.row].goodsId
+        detail.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 }
 

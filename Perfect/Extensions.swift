@@ -24,7 +24,7 @@ extension UIViewController {
         backButton.addTarget(self, action: #selector(UIViewController.pop), forControlEvents: .TouchUpInside)
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(14), NSForegroundColorAttributeName: UIColor.init(hexString: "#333333")]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(18), NSForegroundColorAttributeName: UIColor.init(hexString: "#333333")]
     }
     
     func pop() {
