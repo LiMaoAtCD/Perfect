@@ -22,6 +22,8 @@
 		871890241D23FA8400F11311 /* CMProfileGenderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871890221D23FA8400F11311 /* CMProfileGenderViewController.xib */; };
 		871890271D24087300F11311 /* RegisterTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871890251D24087300F11311 /* RegisterTypeViewController.swift */; };
 		871890281D24087300F11311 /* RegisterTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871890261D24087300F11311 /* RegisterTypeViewController.xib */; };
+		8718902C1D240FEC00F11311 /* BirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8718902A1D240FEC00F11311 /* BirthdayViewController.swift */; };
+		8718902D1D240FEC00F11311 /* BirthdayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8718902B1D240FEC00F11311 /* BirthdayViewController.xib */; };
 		8721877C1D19888E00281A19 /* NSObject+UIAppearanceSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = 8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */; };
 		8721877E1D19921000281A19 /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721877D1D19921000281A19 /* AvatarViewController.swift */; };
 		8752BF3A1D14E28100ED58D3 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752BF391D14E28100ED58D3 /* ChangePasswordViewController.swift */; };
@@ -88,6 +90,8 @@
 		871890221D23FA8400F11311 /* CMProfileGenderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMProfileGenderViewController.xib; sourceTree = "<group>"; };
 		871890251D24087300F11311 /* RegisterTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTypeViewController.swift; sourceTree = "<group>"; };
 		871890261D24087300F11311 /* RegisterTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterTypeViewController.xib; sourceTree = "<group>"; };
+		8718902A1D240FEC00F11311 /* BirthdayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthdayViewController.swift; sourceTree = "<group>"; };
+		8718902B1D240FEC00F11311 /* BirthdayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BirthdayViewController.xib; sourceTree = "<group>"; };
 		8721877A1D19888E00281A19 /* NSObject+UIAppearanceSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UIAppearanceSwift.h"; sourceTree = "<group>"; };
 		8721877B1D19888E00281A19 /* NSObject+UIAppearanceSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UIAppearanceSwift.m"; sourceTree = "<group>"; };
 		8721877D1D19921000281A19 /* AvatarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
@@ -208,13 +212,23 @@
 		870F383B1CF9CC6000AFF1AF /* Personal */ = {
 			isa = PBXGroup;
 			children = (
-				871890211D23FA8400F11311 /* CMProfileGenderViewController.swift */,
-				871890221D23FA8400F11311 /* CMProfileGenderViewController.xib */,
+				871890291D240FCB00F11311 /* change */,
 				870F382E1CF987C900AFF1AF /* PeronalViewController.swift */,
-				871890251D24087300F11311 /* RegisterTypeViewController.swift */,
-				871890261D24087300F11311 /* RegisterTypeViewController.xib */,
 			);
 			name = Personal;
+			sourceTree = "<group>";
+		};
+		871890291D240FCB00F11311 /* change */ = {
+			isa = PBXGroup;
+			children = (
+				871890211D23FA8400F11311 /* CMProfileGenderViewController.swift */,
+				871890221D23FA8400F11311 /* CMProfileGenderViewController.xib */,
+				871890251D24087300F11311 /* RegisterTypeViewController.swift */,
+				871890261D24087300F11311 /* RegisterTypeViewController.xib */,
+				8718902A1D240FEC00F11311 /* BirthdayViewController.swift */,
+				8718902B1D240FEC00F11311 /* BirthdayViewController.xib */,
+			);
+			name = change;
 			sourceTree = "<group>";
 		};
 		872187791D19888000281A19 /* UIAppearance */ = {
@@ -500,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				878F22871D182AE70074E1A2 /* AddressEditViewController.xib in Resources */,
+				8718902D1D240FEC00F11311 /* BirthdayViewController.xib in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */,
 				871890281D24087300F11311 /* RegisterTypeViewController.xib in Resources */,
@@ -583,6 +598,7 @@
 				DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */,
 				871890231D23FA8400F11311 /* CMProfileGenderViewController.swift in Sources */,
 				870F38191CF9336400AFF1AF /* FourthTableViewController.swift in Sources */,
+				8718902C1D240FEC00F11311 /* BirthdayViewController.swift in Sources */,
 				8763BC291CFC82CC00FAB8D7 /* AddressTableViewCell.swift in Sources */,
 				DA1A6B251D124A3600FD4FB0 /* MarketLabel.swift in Sources */,
 				8768B2A31D1E1BCD003A6201 /* AddressChooseViewController.swift in Sources */,

@@ -8,7 +8,8 @@
 
 import UIKit
 import SVProgressHUD
-class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSelectionDelegate{
+import Async
+class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSelectionDelegate, DateSelectionDelegate, UITextFieldDelegate{
 
     var name: String? = "" {
         willSet {
@@ -90,11 +91,14 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
         nameTextField.text = "长大"
         nameTextField.font = UIFont.systemFontOfSize(14)
         nameTextField.textAlignment = .Right
+        nameTextField.returnKeyType = .Done
+        nameTextField.addTarget(self, action: #selector(self.textdidChanged(_:)), forControlEvents: .EditingChanged)
+        nameTextField.delegate = self
         mainView.addSubview(nameTextField)
         nameTextField.snp_makeConstraints { (make) in
             make.right.equalTo(mainView).offset(-24.pixelToPoint)
             make.centerY.equalTo(nameTitleLabel)
-            make.width.equalTo(200)
+            make.width.equalTo(300)
         }
         
         let line0 = UIView()
@@ -118,7 +122,7 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
         
         genderLabel = UILabel()
         mainView.addSubview(genderLabel)
-        genderLabel.text = "男"
+        genderLabel.text = ""
         genderLabel.textColor = UIColor.init(hexString: "#333333")
         genderLabel.font = UIFont.systemFontOfSize(14)
         genderLabel.snp_makeConstraints { (make) in
@@ -221,7 +225,7 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
         NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberInfo.contant, parameters: nil, completion: { (result: MemberInfoResponse?) in
                 SVProgressHUD.dismiss()
 
-                self.name = result?.retObj?.username
+                self.name = result?.retObj?.name
                 self.gender = result?.retObj?.gender
                 self.birth = result?.retObj?.birth
                 self.type = result?.retObj?.type
@@ -267,7 +271,7 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
     func changeType() {
         let typeVC = RegisterTypeViewController.init(nibName: "RegisterTypeViewController", bundle: nil)
         typeVC.modalPresentationStyle = .OverCurrentContext
-        
+        typeVC.delegate  = self
         self.presentViewController(typeVC, animated: true, completion: nil)
     }
     
@@ -296,7 +300,46 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
     
     
     func changeBirth() {
+        let birthVC = BirthdayViewController.init(nibName: "BirthdayViewController", bundle: nil)
+        birthVC.delegate  = self
+        birthVC.modalPresentationStyle = .OverCurrentContext
+        self.presentViewController(birthVC, animated: true, completion: nil)
+
+    }
     
+    func didselectedDate(date: String) {
+        SVProgressHUD.show()
+        NetworkHelper.instance.request(.GET, url: URLConstant.updateLoginMemberInfo.contant, parameters: ["birth": date], completion: { (result: DataResponse?) in
+            self.birth = date
+            SVProgressHUD.dismiss()
+            }, failed: { (msg, code) in
+                SVProgressHUD.showErrorWithStatus(msg)
+        })
+    }
+    
+    func textdidChanged(textfield: UITextField) {
+        let name = textfield.text! as NSString
+        if name.length > 20 {
+            textfield.text = name.substringToIndex(20)
+        }
+        
+        self.name = textfield.text
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        SVProgressHUD.show()
+        NetworkHelper.instance.request(.GET, url: URLConstant.updateLoginMemberInfo.contant, parameters: ["name": self.name!], completion: { (result: DataResponse?) in
+            SVProgressHUD.showSuccessWithStatus("修改成功")
+            Async.main(after: 1.0, block: { 
+                self.navigationController?.popViewControllerAnimated(true)
+            })
+            }, failed: { (msg, code) in
+                SVProgressHUD.showErrorWithStatus(msg)
+        })
+        
+        
+        
+        return true
     }
 
     override func didReceiveMemoryWarning() {
