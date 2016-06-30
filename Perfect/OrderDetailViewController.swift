@@ -11,6 +11,7 @@ import UIKit
 class OrderDetailViewController: BaseViewController {
 
     
+    var entity: HistoryOrderItem?
     var scrollView: UIScrollView!
     var bottomView: UIView!
     
@@ -22,7 +23,6 @@ class OrderDetailViewController: BaseViewController {
     //    var deliverNumberLabel: UILabel!
     
     var topLabel: UILabel!
-    
     var deliverMarginView: UIView!
     var addressTagImageView: UIImageView!
     var nameTitleLabel: UILabel!
@@ -95,9 +95,7 @@ class OrderDetailViewController: BaseViewController {
             make.height.equalTo(50)
         }
         
-//        NetworkHelper.instance.request(.GET, url: URLConstant.appOrderDetail.contant, parameters: ["id":1, "page": 1, "rows": 10], completion: <#T##(T? -> Void)?##(T? -> Void)?##T? -> Void#>, failed: <#T##((String?, Int) -> Void)?##((String?, Int) -> Void)?##(String?, Int) -> Void#>)
-        
-        
+        setupBottomViews()
     }
 
     func setupScrollSubViews() {
@@ -124,7 +122,7 @@ class OrderDetailViewController: BaseViewController {
         topLabel = UILabel()
         mainView.addSubview(topLabel)
         topLabel.font = UIFont.systemFontOfSize(13)
-        topLabel.text = "圆通快递"
+        topLabel.text = self.entity?.statusName
         topLabel.textColor = UIColor.init(hexString: "#2fb76c")
         
         topLabel.snp_makeConstraints { (make) in
@@ -166,7 +164,7 @@ class OrderDetailViewController: BaseViewController {
         }
         
         nameLabel = UILabel()
-        nameLabel.text = "张三"
+        nameLabel.text = self.entity?.address?.contactName
         nameLabel.textColor = UIColor.init(hexString: "#333333")
         nameLabel.font = UIFont.systemFontOfSize(13)
         mainView.addSubview(nameLabel)
@@ -176,6 +174,9 @@ class OrderDetailViewController: BaseViewController {
         }
         
         cellphoneLabel = UILabel()
+        cellphoneLabel.textColor = UIColor.init(hexString: "#333333")
+        cellphoneLabel.font = UIFont.systemFontOfSize(13)
+        cellphoneLabel.text = self.entity?.address?.contactPhone
         mainView.addSubview(cellphoneLabel)
         cellphoneLabel.snp_makeConstraints { (make) in
             make.right.equalTo(mainView).offset(-21.pixelToPoint)
@@ -197,7 +198,9 @@ class OrderDetailViewController: BaseViewController {
         addressLabel.numberOfLines = 0
         addressLabel.font = UIFont.systemFontOfSize(13.0)
         addressLabel.textColor = UIColor.init(hexString: "#333333")
-        addressLabel.text = "成都市高新区天府软件区G9 成都市高新区天府软件区G9成都市高新区天府软件区G9"
+        let areaFullName = self.entity?.address?.areaFullName ?? ""
+        let contactAddress = self.entity?.address?.contactAddress ?? ""
+        addressLabel.text = areaFullName + contactAddress
         mainView.addSubview(addressLabel)
         addressLabel.snp_makeConstraints { (make) in
             make.top.equalTo(nameTitleLabel.snp_bottom).offset(20.pixelToPoint)
@@ -217,7 +220,7 @@ class OrderDetailViewController: BaseViewController {
         
         goodsImageView = UIImageView()
         mainView.addSubview(goodsImageView)
-        goodsImageView.image = UIImage.init(named: "placeholder")
+        goodsImageView.kf_setImageWithURL(NSURL.init(string: self.entity!.image.perfectImageurl(157, h: 157, crop: true))!, placeholderImage: UIImage.init(named: "placeholder")!, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         goodsImageView.snp_makeConstraints { (make) in
             make.width.height.equalTo(157.pixelToPoint)
             make.top.equalTo(addressMarginView.snp_bottom).offset(25.pixelToPoint)
@@ -228,7 +231,7 @@ class OrderDetailViewController: BaseViewController {
         goodTitleLabel.font = UIFont.systemFontOfSize(14.0)
         goodTitleLabel.textColor = UIColor.blackColor()
         goodTitleLabel.numberOfLines = 0
-        goodTitleLabel.text = "成都市高新区天府软件区G9 成都市高新区天府软件区G9成都市高新区天府软件区G9"
+        goodTitleLabel.text = self.entity!.fullName
         mainView.addSubview(goodTitleLabel)
         goodTitleLabel.snp_makeConstraints { (make) in
             make.left.equalTo(goodsImageView.snp_right).offset(27.pixelToPoint)
@@ -237,10 +240,10 @@ class OrderDetailViewController: BaseViewController {
         }
         
         priceLabel = UILabel()
-        let price: NSString = "￥1000"
-        let attributeString = NSMutableAttributedString.init(string: "￥1000", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#ee304e")])
+        let price: NSString = self.entity!.price.currency as NSString
+        let attributeString = NSMutableAttributedString.init(string: self.entity!.price.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#ee304e")])
         attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(10)], range: NSMakeRange(0, 1))
-        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, price.length - 1))
+        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, price.length))
         priceLabel.attributedText = attributeString
         
         mainView.addSubview(priceLabel)
@@ -259,7 +262,7 @@ class OrderDetailViewController: BaseViewController {
             make.right.equalTo(goodTitleLabel.snp_right)
             make.baseline.equalTo(priceLabel)
         }
-        quantityLabel.text = "x2"
+        quantityLabel.text = "x \(self.entity!.quantity)"
         
         goodMariginView = UIView()
         goodMariginView.backgroundColor = UIColor.init(hexString: "#ebebeb")
@@ -270,7 +273,8 @@ class OrderDetailViewController: BaseViewController {
         }
 
         customImageView = UIImageView()
-        customImageView.image = UIImage.init(named: "pay_placeholder")
+        customImageView.kf_setImageWithURL(NSURL.init(string: self.entity!.image.perfectImageurl(121, h: 157, crop: true))!, placeholderImage: UIImage.init(named: "pay_placeholder")!, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+
         mainView.addSubview(customImageView)
         customImageView.snp_makeConstraints { (make) in
             make.left.equalTo(goodsImageView)
@@ -303,7 +307,7 @@ class OrderDetailViewController: BaseViewController {
         
         moduleLabel = UILabel()
         mainView.addSubview(moduleLabel)
-        moduleLabel.text = "模块-"
+        moduleLabel.text = self.entity!.moduleName
         moduleLabel.textColor = UIColor.init(hexString: "#666666")
         moduleLabel.font = UIFont.systemFontOfSize(12.0)
         moduleLabel.snp_makeConstraints { (make) in
@@ -323,7 +327,7 @@ class OrderDetailViewController: BaseViewController {
         
         orderNumberLabel = UILabel()
         mainView.addSubview(orderNumberLabel)
-        orderNumberLabel.text = "1021213232112"
+        orderNumberLabel.text = self.entity!.orderNo
         orderNumberLabel.textColor = UIColor.init(hexString: "#666666")
         orderNumberLabel.font = UIFont.systemFontOfSize(12.0)
         orderNumberLabel.snp_makeConstraints { (make) in
@@ -343,7 +347,7 @@ class OrderDetailViewController: BaseViewController {
         
         orderTimeLabel = UILabel()
         mainView.addSubview(orderTimeLabel)
-        orderTimeLabel.text = "2016-01-21 12:00:00"
+        orderTimeLabel.text = self.entity!.orderTime
         orderTimeLabel.textColor = UIColor.init(hexString: "#666666")
         orderTimeLabel.font = UIFont.systemFontOfSize(12.0)
         orderTimeLabel.snp_makeConstraints { (make) in
@@ -365,7 +369,7 @@ class OrderDetailViewController: BaseViewController {
         
         payTimeLabel = UILabel()
         mainView.addSubview(payTimeLabel)
-        payTimeLabel.text = "2016-01-21 12:00:00"
+        payTimeLabel.text = "无"
         payTimeLabel.textColor = UIColor.init(hexString: "#666666")
         payTimeLabel.font = UIFont.systemFontOfSize(12.0)
         payTimeLabel.snp_makeConstraints { (make) in
@@ -395,11 +399,59 @@ class OrderDetailViewController: BaseViewController {
         }
         
         priceTotalLabel = UILabel()
+        let totalPrice: NSString = self.entity!.totalPrice.currency as NSString
+        let totalPriceAttributeString = NSMutableAttributedString.init(string: self.entity!.totalPrice.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#ee304e")])
+        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(10)], range: NSMakeRange(0, 1))
+        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, totalPrice.length))
+        priceLabel.attributedText = totalPriceAttributeString
+        
         priceView.addSubview(priceTotalLabel)
         priceTotalLabel.snp_makeConstraints { (make) in
             make.right.equalTo(priceView).offset(-25.pixelToPoint)
             make.centerY.equalTo(priceView)
         }
+    }
+    
+    func setupBottomViews() {
+        let kefuImageView = UIImageView()
+        kefuImageView.image = UIImage.init(named: "order_kefu")
+        bottomView.addSubview(kefuImageView)
+        kefuImageView.snp_makeConstraints { (make) in
+            make.left.equalTo(31.pixelToPoint)
+            make.centerY.equalTo(bottomView)
+            make.width.height.equalTo(65.pixelToPoint)
+        }
+        
+        let contactKefu = UILabel()
+        bottomView.addSubview(contactKefu)
+        contactKefu.text = "联系客服"
+        contactKefu.font = UIFont.systemFontOfSize(15)
+        contactKefu.textColor = UIColor.init(hexString: "#666666")
+        contactKefu.snp_makeConstraints { (make) in
+            make.left.equalTo(kefuImageView.snp_right).offset(17.pixelToPoint)
+            make.centerY.equalTo(kefuImageView)
+        }
+        
+        let bottom_right_button = UIButton.init(type: .Custom)
+        bottomView.addSubview(bottom_right_button)
+        bottom_right_button.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
+        bottom_right_button.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
+        bottom_right_button.snp_makeConstraints { (make) in
+            make.right.equalTo(-42.pixelToPoint)
+            make.centerY.equalTo(bottomView)
+            make.width.equalTo(150.pixelToPoint)
+        }
+        
+        let bottom_left_button = UIButton.init(type: .Custom)
+        bottomView.addSubview(bottom_left_button)
+        bottom_right_button.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
+        bottom_right_button.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
+        bottom_right_button.snp_makeConstraints { (make) in
+            make.right.equalTo(bottom_right_button.snp_left).offset(-39.pixelToPoint)
+            make.centerY.equalTo(bottomView)
+            make.width.equalTo(150.pixelToPoint)
+        }
+
     }
     
     override func didReceiveMemoryWarning() {

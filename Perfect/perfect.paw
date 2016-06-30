@@ -219,7 +219,7 @@
     </object>
     <object type="LMREQUEST" id="z117">
         <attribute name="uuid" type="string">53F64F7F-A5DD-4DB0-940C-D8F0DFDF9984</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appOrderHistory\u2600rows=10\u2600page=1</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appOrderHistory\u2600rows=10\u2600page=1\u2600sessionId=5ae1edb6-da26-4112-beff-1d12ed789736</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>

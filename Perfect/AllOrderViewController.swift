@@ -62,7 +62,7 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let orderDetailVC = OrderDetailViewController.someController(OrderDetailViewController.self, ofStoryBoard: UIStoryboard.main)
-        
+        orderDetailVC.entity = self.item[indexPath.row]
         self.navigationController?.pushViewController(orderDetailVC, animated: true)
     }
 

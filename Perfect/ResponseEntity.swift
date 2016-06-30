@@ -340,9 +340,7 @@ class OrderDetailEntity: Mappable {
         orderId <- (map["orderId"], TransformOfUtils.TransformOfInt64())
         totalPrice <- map["totalPrice"]
         orderTime <- map["orderTime"]
-        
     }
-
 }
 
 
@@ -410,17 +408,6 @@ class ConfirmOrderEntity: Mappable {
         payToken <- map["payToken"]
     }
 }
-
-
-//{
-//    "retCode": 0,
-//    "sessionId": "f2dd6816-eaae-4fc1-be2a-9854de682bec",
-//    "retMsg": "操作成功",
-//    "retObj": {
-//        "payToken": "1231sfjas;dfjkweiasdfasdf",
-//        "orderId": 1
-//    }
-//}
 
 
 class TransformOfUtils {
