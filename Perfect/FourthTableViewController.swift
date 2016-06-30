@@ -11,16 +11,17 @@ import SVProgressHUD
 import Async
 
 
-class FourthTableViewController: UITableViewController {
+class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let items = [["个人信息","修改密码","收货地址管理"],["查看订单","清除缓存"]]
     var header: UIView!
     var avatarImageView: UIImageView!
     var nickNameLabel: UILabel!
-    
+    var imagePicker: UIImagePickerController?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        imagePicker = UIImagePickerController.init()
+        imagePicker?.delegate = self
         self.tableView.registerClass(MeCell.self, forCellReuseIdentifier: MeCell.identifier)
         
         header = UIView.init(frame: CGRectMake(0, 0, Tool.width, 525.pixelToPoint))
@@ -57,7 +58,7 @@ class FourthTableViewController: UITableViewController {
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.changeAvatar))
         avatarImageView.addGestureRecognizer(tap)
         nickNameLabel = UILabel()
-        nickNameLabel.text = "超人"
+        nickNameLabel.text = ""
         nickNameLabel.textColor = UIColor.whiteColor()
         nickNameLabel.font = UIFont.systemFontOfSize(18)
         header.addSubview(nickNameLabel)
@@ -175,9 +176,36 @@ class FourthTableViewController: UITableViewController {
         let avatarVC = AvatarViewController.someController(AvatarViewController.self, ofStoryBoard: UIStoryboard.main)
         avatarVC.modalPresentationStyle = .OverCurrentContext
         avatarVC.view.backgroundColor = UIColor.clearColor()
-        
+        avatarVC.delegate = self
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         delegate.window!.rootViewController!.presentViewController(avatarVC, animated: false, completion: nil)
+    }
+    
+    func didSelectItem(item: PhotoType) {
+        if item == .Camera {
+            imagePicker?.sourceType = .Camera
+            imagePicker?.allowsEditing = true
+        } else {
+            imagePicker?.sourceType = .PhotoLibrary
+            imagePicker?.allowsEditing = true
+        }
+        
+        self.presentViewController(imagePicker!, animated: true, completion: nil)
+    }
+    
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
+        
+        picker.dismissViewControllerAnimated(true) { 
+            
+            //上传头像
+            self.avatarImageView.image = image
+        }
     }
     
     

@@ -529,7 +529,7 @@
     </object>
     <object type="LMREQUEST" id="z142">
         <attribute name="uuid" type="string">B0BBC343-36D7-4C46-B4F9-82CA12E3E8F2</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=getLoginMemberInfo\u2600sessionId=2bb1be3b-2c35-41f0-bd55-1c6d056c4c29</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=getLoginMemberInfo\u2600sessionId=d1b8173d-2c85-43df-ac00-1a15af6cc32f</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>

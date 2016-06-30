@@ -68,7 +68,7 @@ class ChangePasswordViewController: BaseViewController {
         oldPasswordTextfield = UITextField()
         oldPasswordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         oldPasswordTextfield.placeholder = "请输入您的密码"
-        oldPasswordTextfield.keyboardType = .NumberPad
+        oldPasswordTextfield.secureTextEntry = true
         oldPasswordTextfield.attributedPlaceholder = NSAttributedString.init(string: "请输入您的密码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#d9d9d9", withAlpha: 1.0)])
         
         view0.addSubview(oldPasswordTextfield)

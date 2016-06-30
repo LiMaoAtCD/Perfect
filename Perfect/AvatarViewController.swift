@@ -8,10 +8,21 @@
 
 import UIKit
 
+
+enum PhotoType: Int {
+    case Camera = 0
+    case Library = 1
+}
+protocol AvatarDelegate: class {
+    func didSelectItem(item: PhotoType)
+}
+
 class AvatarViewController: BaseViewController {
 
     var backgroundView: UIView!
     var mainView: UIView!
+    
+    weak var delegate: AvatarDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,11 +145,15 @@ class AvatarViewController: BaseViewController {
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     func camera() {
-        
+        self.dismissViewControllerAnimated(false) { 
+            self.delegate?.didSelectItem(.Camera)
+        }
     }
     
     func library() {
-    
+        self.dismissViewControllerAnimated(false) {
+            self.delegate?.didSelectItem(.Library)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
