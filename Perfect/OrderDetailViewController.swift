@@ -243,7 +243,7 @@ class OrderDetailViewController: BaseViewController {
         let price: NSString = self.entity!.price.currency as NSString
         let attributeString = NSMutableAttributedString.init(string: self.entity!.price.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#ee304e")])
         attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(10)], range: NSMakeRange(0, 1))
-        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, price.length))
+        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, price.length - 1))
         priceLabel.attributedText = attributeString
         
         mainView.addSubview(priceLabel)
@@ -400,10 +400,10 @@ class OrderDetailViewController: BaseViewController {
         
         priceTotalLabel = UILabel()
         let totalPrice: NSString = self.entity!.totalPrice.currency as NSString
-        let totalPriceAttributeString = NSMutableAttributedString.init(string: self.entity!.totalPrice.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#ee304e")])
-        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(10)], range: NSMakeRange(0, 1))
-        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, totalPrice.length))
-        priceLabel.attributedText = totalPriceAttributeString
+        let totalPriceAttributeString = NSMutableAttributedString.init(string: totalPrice as String, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#ee304e")])
+        totalPriceAttributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(10)], range: NSMakeRange(0, 1))
+        totalPriceAttributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, totalPrice.length - 1))
+        priceTotalLabel.attributedText = totalPriceAttributeString
         
         priceView.addSubview(priceTotalLabel)
         priceTotalLabel.snp_makeConstraints { (make) in
@@ -444,8 +444,8 @@ class OrderDetailViewController: BaseViewController {
         
         let bottom_left_button = UIButton.init(type: .Custom)
         bottomView.addSubview(bottom_left_button)
-        bottom_right_button.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
-        bottom_right_button.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
+        bottom_left_button.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
+        bottom_left_button.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
         bottom_right_button.snp_makeConstraints { (make) in
             make.right.equalTo(bottom_right_button.snp_left).offset(-39.pixelToPoint)
             make.centerY.equalTo(bottomView)
