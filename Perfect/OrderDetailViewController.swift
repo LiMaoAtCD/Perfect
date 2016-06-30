@@ -446,7 +446,7 @@ class OrderDetailViewController: BaseViewController {
         bottomView.addSubview(bottom_left_button)
         bottom_left_button.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
         bottom_left_button.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
-        bottom_right_button.snp_makeConstraints { (make) in
+        bottom_left_button.snp_makeConstraints { (make) in
             make.right.equalTo(bottom_right_button.snp_left).offset(-39.pixelToPoint)
             make.centerY.equalTo(bottomView)
             make.width.equalTo(150.pixelToPoint)
