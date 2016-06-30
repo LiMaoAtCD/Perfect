@@ -344,6 +344,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     //MARK: 注册
     func register() {
         if checkValidation() {
+            SVProgressHUD.showWithStatus("注册中")
             NetworkHelper.instance.request(.GET, url: URLConstant.Register.contant, parameters: ["username": cellphone,"password": password, "validCode": validCode, "phone": cellphone, "type": (personalRegister ? "person" : "company")], completion: { (result: RegisterResponse?) in
                     Defaults[.password] = self.password
                     SVProgressHUD.showSuccessWithStatus("注册成功")
@@ -494,9 +495,9 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
                     }
                 }, repeats: true)
             
+            SVProgressHUD.show()
             NetworkHelper.instance.request(.GET, url: URLConstant.getMobileValidCode.contant, parameters: ["username": cellphone, "phone":cellphone,"busiType": "reg"], completion: { (result: DataResponse?) in
                 SVProgressHUD.showSuccessWithStatus("验证码获取成功")
-                self.restoreTimer()
                 
             }) { (errMsg, errCode) in
                 SVProgressHUD.showErrorWithStatus(errMsg ?? "验证码获取失败")

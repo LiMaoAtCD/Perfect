@@ -93,7 +93,7 @@ class NetworkHelper: NSObject {
                     SVProgressHUD.dismiss()
                     AppDelegate.login()
                 } else if let value = response.result.value where value.retCode != RetErrorCode.Success.rawValue {
-                
+                    failedHandler?(value.retMsg, value.retCode)
                 } else {
                     assertionFailure("network data format error")
                 }

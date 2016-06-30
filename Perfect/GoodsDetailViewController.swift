@@ -285,7 +285,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         webview = UIWebView()
         scrollView.addSubview(webview)
         
-        let urlString = id.article        
+        let urlString = id.article
         let url  = NSURL.init(string: urlString)
         webview.loadRequest(NSURLRequest.init(URL: url!))
         webview.delegate = self
