@@ -35,10 +35,6 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
             make.top.equalTo(self.snp_topLayoutGuideBottom)
             make.bottom.equalTo(view.snp_bottom).offset(-50)
         }
-        
-        
-        
-        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -156,6 +152,7 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         cell.editView.clickHandler = { [weak self](id, isDefault) in
             
             let edit = AddressEditViewController.init(nibName: "AddressEditViewController", bundle: nil)
+            edit.entity = self?.addressItems?[indexPath.row]
             self?.navigationController?.pushViewController(edit, animated: true)
         }
         cell.deleteView.clickHandler = { [weak self](id, isDefault) in

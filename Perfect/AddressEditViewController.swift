@@ -19,13 +19,25 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
     
     var addressLabel: UILabel!
     
-    var addressString: String = ""
+    var addressString: String! = ""
     var areaID: Int64 = 0
     var cellphone: String! = ""
     var name: String! = ""
     var detailAddress: String! = ""
     
     var id: Int64 = -1
+    
+    var entity: AddressItemsEntity? {
+        willSet {
+            if let item = newValue {
+                self.name = item.contactName
+                self.cellphone = item.contactPhone
+                self.addressString = item.areaFullName ?? ""
+                self.detailAddress = item.contactAddress ?? ""
+                self.id = item.id
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +91,13 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         
         nameTextfield = UITextField.init()
         upperView.addSubview(nameTextfield)
-        nameTextfield.attributedPlaceholder = NSAttributedString.init(string: "请输入姓名", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#333333", withAlpha: 1.0),NSFontAttributeName: UIFont.systemFontOfSize(15.0)])
+        if self.name == "" {
+            nameTextfield.attributedPlaceholder = NSAttributedString.init(string: "请输入姓名", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#333333", withAlpha: 1.0),NSFontAttributeName: UIFont.systemFontOfSize(15.0)])
+
+        } else {
+            nameTextfield.attributedPlaceholder = NSAttributedString.init(string: self.name, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#333333", withAlpha: 1.0),NSFontAttributeName: UIFont.systemFontOfSize(15.0)])
+
+        }
         nameTextfield.textColor = UIColor.init(hexString: "#333333", withAlpha: 1.0)
         nameTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         nameTextfield.snp_makeConstraints { (make) in
@@ -97,7 +115,8 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         }
         
         let title1 = UILabel()
-        title1.text = "联系电话"
+            title1.text = "联系电话"
+      
         title1.textColor = UIColor.init(hexString: "#333333")
         title1.font = UIFont.systemFontOfSize(15.0)
 
@@ -108,7 +127,12 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         }
         
         phoneTextfield = UITextField.init()
-        phoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "请输入联系电话", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#333333", withAlpha: 1.0),NSFontAttributeName: UIFont.systemFontOfSize(15.0)])
+        if self.cellphone == "" {
+            phoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "请输入联系电话", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#333333", withAlpha: 1.0),NSFontAttributeName: UIFont.systemFontOfSize(15.0)])
+
+        } else {
+            phoneTextfield.attributedPlaceholder = NSAttributedString.init(string: self.cellphone, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#333333", withAlpha: 1.0),NSFontAttributeName: UIFont.systemFontOfSize(15.0)])
+        }
         phoneTextfield.textColor = UIColor.init(hexString: "#333333", withAlpha: 1.0)
         phoneTextfield.keyboardType = .NumberPad
         phoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
@@ -143,7 +167,11 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         }
         
         addressLabel = UILabel.init()
-        addressLabel.text = "请选择所在地区"
+        if self.addressString == "" {
+            addressLabel.text = "请选择所在地区"
+        } else {
+            addressLabel.text = self.addressString
+        }
         addressLabel.textColor = UIColor.init(hexString: "#333333")
         addressLabel.font = UIFont.systemFontOfSize(15.0)
         upperView.addSubview(addressLabel)
@@ -179,7 +207,12 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
             make.height.equalTo(176.pixelToPoint)
             make.bottom.equalTo(upperView.snp_bottom)
         }
-        detailAddress.text = "详细地址"
+        
+        if self.detailAddress == "" {
+            detailAddress.text = "请输入详细地址(例如 xxx 街道 xxx 号)"
+        } else {
+            detailAddress.text = self.detailAddress
+        }
     }
     
     
@@ -224,7 +257,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
     }
     
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        if textView.text == "详细地址" {
+        if textView.text == "请输入详细地址(例如 xxx 街道 xxx 号)" {
             textView.text = ""
         }
         
