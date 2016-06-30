@@ -38,6 +38,7 @@
 		87A5AA591D0F0948000A1B41 /* ResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */; };
 		87A5AA5B1D0F11BB000A1B41 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */; };
 		87A5AA5F1D10C636000A1B41 /* GoodsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */; };
+		87AB61AE1D25E7A60056E805 /* issues.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 87AB61AD1D25E7A60056E805 /* issues.rtf */; };
 		87CC28C61D1EDB650068DC1D /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CC28C51D1EDB650068DC1D /* ArticleViewController.swift */; };
 		DA1A6B231D124A0B00FD4FB0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1A6B221D124A0B00FD4FB0 /* Extensions.swift */; };
 		DA1A6B251D124A3600FD4FB0 /* MarketLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1A6B241D124A3600FD4FB0 /* MarketLabel.swift */; };
@@ -107,6 +108,7 @@
 		87A5AA581D0F0948000A1B41 /* ResponseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEntity.swift; sourceTree = "<group>"; };
 		87A5AA5A1D0F11BB000A1B41 /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
 		87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsDetailViewController.swift; sourceTree = "<group>"; };
+		87AB61AD1D25E7A60056E805 /* issues.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = issues.rtf; sourceTree = "<group>"; };
 		87CC28C51D1EDB650068DC1D /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +290,7 @@
 		DA1A6B271D124F8B00FD4FB0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				87AB61AD1D25E7A60056E805 /* issues.rtf */,
 				DABE57C31D23CC6D0004B6D7 /* perfect.paw */,
 				DA417B5C1CF5EDD100F61304 /* Assets.xcassets */,
 			);
@@ -515,6 +518,7 @@
 			files = (
 				878F22871D182AE70074E1A2 /* AddressEditViewController.xib in Resources */,
 				8718902D1D240FEC00F11311 /* BirthdayViewController.xib in Resources */,
+				87AB61AE1D25E7A60056E805 /* issues.rtf in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
 				DA417B5D1CF5EDD100F61304 /* Assets.xcassets in Resources */,
 				871890281D24087300F11311 /* RegisterTypeViewController.xib in Resources */,
