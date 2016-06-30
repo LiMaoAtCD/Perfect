@@ -155,7 +155,7 @@ class CheckView: UIView {
     var addressLabel: UILabel!
     
     var id: Int64 = 0
-    var clickHandler:(Int64 -> Void)?
+    var clickHandler:((Int64, Bool) -> Void)?
 
     var choosen: Bool = false {
         willSet{
@@ -197,9 +197,7 @@ class CheckView: UIView {
     
     
     func setDefault() {
-        if !choosen {
-            self.clickHandler?(id)
-        }
+        self.clickHandler?(id, !choosen)
     }
     
     required init?(coder aDecoder: NSCoder) {

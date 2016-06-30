@@ -119,34 +119,67 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCellWithIdentifier("address", forIndexPath: indexPath) as! AddressTableViewCell
         cell.entity = addressItems[indexPath.row]
         
-        cell.defaultAddress.clickHandler = { [weak self](id) in
+        cell.defaultAddress.clickHandler = { [weak self](id, isDefault) in
             
             //MARK: 设为默认
-            print(id)
-            NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberDefaultDeliveryAddress.contant, parameters: ["id": NSNumber.init(longLong: id),"isDefault": true], completion: { (result: DataResponse?) in
-                    let realm = try! Realm()
-                    let addresses = realm.objects(AddressItemsEntity)
-                    if !addresses.isEmpty {
-                        
-                        for address in addresses {
-                            if address.id == id {
-                                try! realm.write({
-                                    address.isDefault = true
-                                })
-                            } else {
-                                try! realm.write({
-                                    address.isDefault = false
-                                })
-                            }
+            
+            var params = [String:AnyObject]()
+            params["id"] = NSNumber.init(longLong: id)
+            params["name"] = self?.addressItems[indexPath.row].contactName
+            params["phone"] =  self?.addressItems[indexPath.row].contactPhone
+            params["address"] = self?.addressItems[indexPath.row].contactAddress
+            params["areaId"] = NSNumber.init(longLong:  self!.addressItems[indexPath.row].areaId)
+            params["isDefault"] = isDefault
+
+            NetworkHelper.instance.request(.GET, url: URLConstant.saveOrUpdateLoginMemberDeliveryAddress.contant, parameters: params, completion: { (result: DataResponse?) in
+                let realm = try! Realm()
+                let addresses = realm.objects(AddressItemsEntity)
+                if !addresses.isEmpty {
+                    
+                    for address in addresses {
+                        if address.id == id {
+                            try! realm.write({
+                                address.isDefault = true
+                            })
+                        } else {
+                            try! realm.write({
+                                address.isDefault = false
+                            })
                         }
                     }
+                }
                 
-                    self?.tableView.reloadData()
+                self?.tableView.reloadData()
 
-                }, failed: { (errMsg, errCode) in
-                    SVProgressHUD.showErrorWithStatus(errMsg ?? "操作失败")
-            })
+            }) { (errormsg, errcode) in
+                SVProgressHUD.showErrorWithStatus(errormsg ?? "地址修改失败")
+            }
+
             
+//            NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberDefaultDeliveryAddress.contant, parameters: ["id": NSNumber.init(longLong: id),"isDefault": NSNumber.init(bool: isDefault)], completion: { (result: DataResponse?) in
+//                
+//                    let realm = try! Realm()
+//                    let addresses = realm.objects(AddressItemsEntity)
+//                    if !addresses.isEmpty {
+//                        
+//                        for address in addresses {
+//                            if address.id == id {
+//                                try! realm.write({
+//                                    address.isDefault = true
+//                                })
+//                            } else {
+//                                try! realm.write({
+//                                    address.isDefault = false
+//                                })
+//                            }
+//                        }
+//                    }
+//                    
+//                self?.tableView.reloadData()
+//                }, failed: { (msg, code) in
+//                    SVProgressHUD.showErrorWithStatus(msg ?? "操作失败")
+//
+//            })
         }
         
         cell.editView.clickHandler = { [weak self](id, isDefault) in
