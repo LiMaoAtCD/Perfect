@@ -167,7 +167,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         let companyLabel: UILabel!  = UILabel()
         
         goodsInfoView.addSubview(companyLabel)
-        companyLabel.text = self.detail?.merchantName
+        companyLabel.text = self.detail?.merchantName ?? "无"
         companyLabel.font = UIFont.systemFontOfSize(14)
         companyLabel.textColor = UIColor.init(hexString: "#666666")
         
@@ -285,7 +285,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         webview = UIWebView()
         scrollView.addSubview(webview)
         
-        let urlString = id.article
+        let urlString = id.goodDescription
         let url  = NSURL.init(string: urlString)
         webview.loadRequest(NSURLRequest.init(URL: url!))
         webview.delegate = self

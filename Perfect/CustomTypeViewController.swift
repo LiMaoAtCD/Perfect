@@ -18,7 +18,7 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.title = "定制"
+        self.title = "定制分类"
         fd_prefersNavigationBarHidden = false
         
         items = [ProductItem]()

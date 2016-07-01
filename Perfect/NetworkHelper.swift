@@ -12,11 +12,12 @@ import AlamofireObjectMapper
 import SwiftyUserDefaults
 import SVProgressHUD
 
+
 let url = "http://101.200.131.198:8090/custwine/gw?cmd="
 
 let ArticleURL = "http://101.200.131.198:8090/custwine/article/mobile/"
 let NetWorkImageUrl = "http://101.200.131.198:8090/custwine/dimg/"
-
+let GoodDetailURL = "http://101.200.131.198:8090/custwine/goods/mobile/"
 
 
 

@@ -123,19 +123,19 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
                 currentIndex in
                 
                 let item = self.topBanners![currentIndex]
-                let id = item.id
-//                let action  = item.linkAction!
-                
-                let articleVC = ArticleViewController.someController(ArticleViewController.self, ofStoryBoard: UIStoryboard.main)
-                articleVC.hidesBottomBarWhenPushed = true
-                articleVC.id = id
-                self.navigationController?.pushViewController(articleVC, animated: true)
+                if let action = item.linkAction {
+                    UIViewController.gotoAction( action, from: self)
+                } else {
+                    let articleVC = ArticleViewController.someController(ArticleViewController.self, ofStoryBoard: UIStoryboard.main)
+                    articleVC.hidesBottomBarWhenPushed = true
+                    articleVC.id = item.id
+                    self.navigationController?.pushViewController(articleVC, animated: true)
+                }
             }
             
             var imageUrls = [String]()
             if let _ = topBanners {
                 for item in topBanners! {
-                    
                     let imageurl = item.imageId.perfectImageurl(375, h: 183, crop: true)
                     imageUrls.append(imageurl)
                 }
@@ -228,17 +228,12 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         if indexPath.section == 1 {
             //MARK: 处理button 点击
             let item = self.customButtons![indexPath.row]
-            let action = item.linkAction
-            print("action: \(action)")
-            
-            let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
-            detail.id = action!.actionID
-            detail.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(detail, animated: true)
+            if let action = item.linkAction {
+                UIViewController.gotoAction(action, from: self)
+            }
             
         } else if indexPath.section == 3 {
             //MARK: 处理普通商品
-            
             let detail = GoodsDetailViewController.someController(GoodsDetailViewController.self, ofStoryBoard: UIStoryboard.main)
             detail.id = self.goods![indexPath.row].id
             detail.hidesBottomBarWhenPushed = true

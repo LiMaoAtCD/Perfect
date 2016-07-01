@@ -78,6 +78,58 @@ extension String {
     }
 }
 
+extension UIViewController {
+    class func gotoAction(linkAction: String, from currentController: UIViewController) {
+    
+        let actionType = linkAction.actionType
+        let id = linkAction.actionID
+        let type = ActionType(rawValue: actionType)!
+        switch type {
+        case .showGoodsListByTag:
+            let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
+            detail.id = id
+            detail.hidesBottomBarWhenPushed = true
+            currentController.navigationController?.pushViewController(detail, animated: true)
+        case .showArticleContent:
+            
+            let articleVC = ArticleViewController.someController(ArticleViewController.self, ofStoryBoard: UIStoryboard.main)
+            articleVC.hidesBottomBarWhenPushed = true
+            articleVC.id = id
+            currentController.navigationController?.pushViewController(articleVC, animated: true)
+        case .showGoodsDetail:
+            
+            let detail = GoodsDetailViewController.someController(GoodsDetailViewController.self, ofStoryBoard: UIStoryboard.main)
+            detail.id = id
+            detail.hidesBottomBarWhenPushed = true
+            currentController.navigationController?.pushViewController(detail, animated: true)
+        
+        case .showGoodsListByCategory:
+            let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
+            detail.id = id
+            detail.hidesBottomBarWhenPushed = true
+            currentController.navigationController?.pushViewController(detail, animated: true)
+        
+        case .showArticleListByCategory:
+            break
+        case .openUri:
+            break
+        case .openUrl:
+            break
+        }
+
+    }
+}
+
+enum ActionType: String {
+    case showGoodsListByTag = "showGoodsListByTag"
+    case showGoodsDetail = "showGoodsDetail"
+    case showArticleContent = "showArticleContent"
+    case showGoodsListByCategory = "showGoodsListByCategory"
+    case showArticleListByCategory = "showArticleListByCategory"
+    case openUri = "openUri"
+    case openUrl = "openUrl"
+}
+
 extension UIImage {
     class func imageFromColor(color: UIColor) -> UIImage {
         let rect = CGRectMake(0, 0, 100, 100)
@@ -115,6 +167,11 @@ extension Int64 {
     
     var toNSNumber: NSNumber {
         return NSNumber.init(longLong: self)
+    }
+    
+    
+    var goodDescription: String {
+        return GoodDetailURL + String(self) + "/description.page"
     }
 }
 
