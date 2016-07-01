@@ -19,7 +19,7 @@ let ArticleURL = "http://101.200.131.198:8090/custwine/article/mobile/"
 let NetWorkImageUrl = "http://101.200.131.198:8090/custwine/dimg/"
 let GoodDetailURL = "http://101.200.131.198:8090/custwine/goods/mobile/"
 
-
+let avatarUploadURL = "http://101.200.131.198:8090/custwine/dimg/upload"
 
 //文章读取地址为： http://服务器地址/article/mobile/id.page
 //例如：
@@ -28,6 +28,13 @@ let GoodDetailURL = "http://101.200.131.198:8090/custwine/goods/mobile/"
 //图片访问方式为：
 //"http://地址/dimg/id_图片宽_图片最大高_是否裁减(1/0).png
 //示例：http://101.200.131.198:8090/custwine/dimg/1_1_1_0.png"
+
+
+//示例：http://101.200.131.198:8090/custwine/dimg/upload
+//参数：category-图片分类，avatar-头像,custwine-定制酒
+//fileTitle-图片名称
+//fileIntro-图片说明（可不传）
+//file:通过POST传递的图片文件
 
 enum httpMethod {
     case GET
@@ -105,6 +112,73 @@ class NetworkHelper: NSObject {
             print(response.result.value)
         }
     }
+    
+    func uploadImage<T: DataResponse>(image: UIImage, forType type: Int, completion completionHandler: (T? -> Void)?, failed failedHandler: ((String?,Int) -> Void)?){
+        
+        let urlRequest = urlRequestWithComponents(url, parameters: ["":""], imageDatas: [UIImageJPEGRepresentation(image, 0.5)!])
+        Manager.sharedInstance.upload(urlRequest.0, data: urlRequest.1)
+            .progress { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) in
+            }.responseObject { (response: Response<T, NSError>) in
+                
+                if let _ = response.result.error {
+                    failedHandler?("网络连接失败", RetErrorCode.NetworkError.rawValue)
+                } else {
+                    if let value = response.result.value where value.retCode == RetErrorCode.Success.rawValue {
+                        completionHandler?(response.result.value)
+                        if let session = response.result.value?.sessionId {
+                            Defaults[.sessionID] = session
+                            
+                        }
+                    } else if let value = response.result.value where value.retCode == RetErrorCode.NeedLogin.rawValue  {
+                        SVProgressHUD.dismiss()
+                        AppDelegate.login()
+                    } else if let value = response.result.value where value.retCode != RetErrorCode.Success.rawValue {
+                        failedHandler?(value.retMsg, value.retCode)
+                    } else {
+                        assertionFailure("network data format error")
+                    }
+                }
+
+        }
+
+    }
+    
+    
+    private func urlRequestWithComponents(urlString: String, parameters:Dictionary<String, String>, imageDatas:[NSData]) -> (URLRequestConvertible, NSData) {
+        // create url request to send
+        let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+        mutableURLRequest.HTTPMethod = Alamofire.Method.POST.rawValue
+        let boundaryConstant = "myRandomBoundary12345";
+        let contentType = "multipart/form-data;boundary="+boundaryConstant
+        mutableURLRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
+        
+        
+        
+        // create upload data to send
+        let uploadData = NSMutableData()
+        
+        for imageData in imageDatas {
+            // add image
+            uploadData.appendData("\r\n--\(boundaryConstant)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            uploadData.appendData("Content-Disposition: form-data; name=\"file\"; filename=\"file.png\"\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            uploadData.appendData("Content-Type: image/png\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            uploadData.appendData(imageData)
+        }
+        
+        // add parameters
+        for (key, value) in parameters {
+            uploadData.appendData("\r\n--\(boundaryConstant)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            uploadData.appendData("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n\(value)".dataUsingEncoding(NSUTF8StringEncoding)!)
+        }
+        uploadData.appendData("\r\n--\(boundaryConstant)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        
+        
+        // return URLRequestConvertible and NSData
+        return (Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: nil).0, uploadData)
+        
+    }
+
 }
 
 

@@ -289,7 +289,7 @@ class CollectionViewCell: UICollectionViewCell {
     var entity: ProductItem? {
         willSet{
             if let _ = newValue {
-                let url = newValue!.imageId.perfectImageurl(355, h: 352, crop: true)
+                let url = newValue!.thumbnailId.perfectImageurl(355, h: 352, crop: true)
                 imageView.kf_setImageWithURL(NSURL.init(string: url)!)
                 title.text = newValue!.name
                 marketPrice.text = newValue!.marketPrice.currency

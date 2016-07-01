@@ -71,19 +71,15 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
 //                self.navigationController?.pushViewController(detail, animated: true)
             }
             
+            let imageIds: [Int64] = [1,2,3,4]
+            
             let imageUrl =  [
-                "https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
-                "https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
-                "https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg"
+                imageIds[0].perfectImageurl(750, h: 236, crop: true),
+                imageIds[1].perfectImageurl(750, h: 236, crop: true),
+                imageIds[2].perfectImageurl(750, h: 236, crop: true),
+                imageIds[3].perfectImageurl(750, h: 236, crop: true)
             ]
-            
-            //            if let _ = topBanners {
-            //                for item in topBanners! {
-            //                    imageUrl.append(item.imgUrl!)
-            //                }
-            //            }
-            
-            cell.banner.placeholderImage = UIImage.init(named: "h8")
+
             cell.banner.imageURLStringsGroup = imageUrl
             
             return cell
