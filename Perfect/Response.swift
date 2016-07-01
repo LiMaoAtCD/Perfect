@@ -236,6 +236,21 @@ class CollectProductResponse: DataResponse {
     }
 }
 
+//MARK: 上传图片
+class UploadImageResponse: DataResponse {
+    var retObj: UploadImageEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        retObj <- map["retObj"]
+    }
+}
+
+
 
 
 

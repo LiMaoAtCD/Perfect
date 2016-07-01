@@ -78,9 +78,6 @@ class NetworkHelper: NSObject {
     private override init() {
         super.init()
     }
-//    ["sessionId":Defaults[.sessionID] ?? ""]
-    
-    
     
     func request<T: DataResponse>(method:httpMethod, url: String, parameters: [String: AnyObject]?,completion completionHandler: (T? -> Void)?, failed failedHandler: ((String?,Int) -> Void)?){
         
@@ -108,78 +105,60 @@ class NetworkHelper: NSObject {
             }
         }
             //Debug
-            .responseString { (response) in
-            print(response.result.value)
+//            .responseString { (response) in
+//            print(response.result.value)
         }
-    }
-    
-    func uploadImage<T: DataResponse>(image: UIImage, forType type: Int, completion completionHandler: (T? -> Void)?, failed failedHandler: ((String?,Int) -> Void)?){
+
+
+    func uploadImage1<T: DataResponse>(image: UIImage, forType parameters: [String: String]?, completion completionHandler: (T? -> Void)?, failed failedHandler: ((String?,Int) -> Void)?){
         
-        let urlRequest = urlRequestWithComponents(url, parameters: ["":""], imageDatas: [UIImageJPEGRepresentation(image, 0.5)!])
-        Manager.sharedInstance.upload(urlRequest.0, data: urlRequest.1)
-            .progress { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) in
-            }.responseObject { (response: Response<T, NSError>) in
-                
-                if let _ = response.result.error {
-                    failedHandler?("网络连接失败", RetErrorCode.NetworkError.rawValue)
-                } else {
-                    if let value = response.result.value where value.retCode == RetErrorCode.Success.rawValue {
-                        completionHandler?(response.result.value)
-                        if let session = response.result.value?.sessionId {
-                            Defaults[.sessionID] = session
-                            
-                        }
-                    } else if let value = response.result.value where value.retCode == RetErrorCode.NeedLogin.rawValue  {
-                        SVProgressHUD.dismiss()
-                        AppDelegate.login()
-                    } else if let value = response.result.value where value.retCode != RetErrorCode.Success.rawValue {
-                        failedHandler?(value.retMsg, value.retCode)
-                    } else {
-                        assertionFailure("network data format error")
-                    }
+        Alamofire.upload(.POST, avatarUploadURL, multipartFormData: {
+            multipartFormData in
+            
+            if let imageData = UIImageJPEGRepresentation(image, 0.5) {
+                multipartFormData.appendBodyPart(data: imageData, name: "file", fileName: "file.png", mimeType: "image/png")
+            }
+            if let _ = parameters {
+                for (key, value) in parameters! {
+                    multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key)
                 }
-
-        }
-
-    }
+            }
+            
+            }, encodingCompletion: {
+                encodingResult in
+                
+                switch encodingResult {
+                case .Success(let upload, _, _):
+                    upload.responseObject(completionHandler: { (response: Response<T, NSError>) in
+                            if let _ = response.result.error {
+                                failedHandler?("网络连接失败", RetErrorCode.NetworkError.rawValue)
+                            } else {
+                                if let value = response.result.value where value.retCode == RetErrorCode.Success.rawValue {
+                                    completionHandler?(response.result.value)
+                                    if let session = response.result.value?.sessionId {
+                                        Defaults[.sessionID] = session
+                                        
+                                    }
+                                } else if let value = response.result.value where value.retCode == RetErrorCode.NeedLogin.rawValue  {
+                                    SVProgressHUD.dismiss()
+                                    AppDelegate.login()
+                                } else if let value = response.result.value where value.retCode != RetErrorCode.Success.rawValue {
+                                    failedHandler?(value.retMsg, value.retCode)
+                                } else {
+                                    assertionFailure("network data format error")
+                                }
+                            }
+                    }).responseString(completionHandler: { (response) in
+                        print(response)
+                    })
+                case .Failure(let encodingError):
+                    print(encodingError)
+                }
+        })
     
-    
-    private func urlRequestWithComponents(urlString: String, parameters:Dictionary<String, String>, imageDatas:[NSData]) -> (URLRequestConvertible, NSData) {
-        // create url request to send
-        let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: urlString)!)
-        mutableURLRequest.HTTPMethod = Alamofire.Method.POST.rawValue
-        let boundaryConstant = "myRandomBoundary12345";
-        let contentType = "multipart/form-data;boundary="+boundaryConstant
-        mutableURLRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
-        
-        
-        
-        // create upload data to send
-        let uploadData = NSMutableData()
-        
-        for imageData in imageDatas {
-            // add image
-            uploadData.appendData("\r\n--\(boundaryConstant)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-            uploadData.appendData("Content-Disposition: form-data; name=\"file\"; filename=\"file.png\"\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-            uploadData.appendData("Content-Type: image/png\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-            uploadData.appendData(imageData)
-        }
-        
-        // add parameters
-        for (key, value) in parameters {
-            uploadData.appendData("\r\n--\(boundaryConstant)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-            uploadData.appendData("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n\(value)".dataUsingEncoding(NSUTF8StringEncoding)!)
-        }
-        uploadData.appendData("\r\n--\(boundaryConstant)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-        
-        
-        
-        // return URLRequestConvertible and NSData
-        return (Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: nil).0, uploadData)
-        
     }
-
 }
+
 
 
 

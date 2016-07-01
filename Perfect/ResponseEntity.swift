@@ -667,6 +667,17 @@ class CollectProductItem: Mappable {
 }
 
 
+class UploadImageEntity: Mappable {
+    var imgId: Int64 = 0
+    
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        imgId <- (map["imgId"], TransformOfUtils.TransformOfInt64())
+    }
+}
+
 
 
 

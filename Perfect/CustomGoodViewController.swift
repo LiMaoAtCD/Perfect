@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class CustomGoodViewController: BaseViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     
@@ -22,7 +22,6 @@ class CustomGoodViewController: BaseViewController, UINavigationControllerDelega
         
         effectImageView = UIImageView.init()
         view.addSubview(effectImageView)
-        effectImageView.image = UIImage.init(named: "customEffect")
         
         effectImageView.snp_makeConstraints { (make) in
             make.left.equalTo(50)
@@ -95,10 +94,17 @@ class CustomGoodViewController: BaseViewController, UINavigationControllerDelega
         if size.width * image.scale >= 1260 && size.height * image.scale >= 880 {
             picker.dismissViewControllerAnimated(true, completion: {
                 self.effectImageView.image = image
+                NetworkHelper.instance.uploadImage1(image, forType: nil, completion: { (result: UploadImageResponse?) in
+                    
+                    }, failed: { (msg, code) in
+                        SVProgressHUD.showErrorWithStatus(msg)
+                })
+                
             })
         } else {
             self.dismissViewControllerAnimated(true, completion: { 
                 //提示素材不对
+                SVProgressHUD.showErrorWithStatus("您上传的图片尺寸太小")
             })
         }
         
