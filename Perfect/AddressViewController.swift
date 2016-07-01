@@ -156,7 +156,7 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
 //            }
 
             
-            NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberDefaultDeliveryAddress.contant, parameters: ["id": NSNumber.init(longLong: id),"isDefault": NSNumber.init(bool: isDefault)], completion: { (result: DataResponse?) in
+            NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberDefaultDeliveryAddress.contant, parameters: ["id": NSNumber.init(longLong: id),"isDefault": isDefault], completion: { (result: DataResponse?) in
                 
                     let realm = try! Realm()
                     let addresses = realm.objects(AddressItemsEntity)
@@ -176,6 +176,7 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
                     }
                     
                 self?.tableView.reloadData()
+                
                 }, failed: { (msg, code) in
                     SVProgressHUD.showErrorWithStatus(msg ?? "操作失败")
 

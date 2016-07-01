@@ -100,6 +100,10 @@ class NetworkHelper: NSObject {
                 }
             }
         }
+            //Debug
+            .responseString { (response) in
+            print(response.result.value)
+        }
     }
 }
 

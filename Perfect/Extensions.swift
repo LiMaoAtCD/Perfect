@@ -81,6 +81,10 @@ extension String {
 extension UIViewController {
     class func gotoAction(linkAction: String, from currentController: UIViewController) {
     
+        if linkAction == "" {
+            print("找服务端")
+            return
+        }
         let actionType = linkAction.actionType
         let id = linkAction.actionID
         let type = ActionType(rawValue: actionType)!

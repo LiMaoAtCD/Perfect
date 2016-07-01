@@ -37,6 +37,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     
     var products: [ProductDetailModuleItem]?
     var bannerIds: [Int64] = [Int64]()
+    var prices: [Float] = [Float]()
     var moduleButtons: [UIButton]!
     
     override func viewDidLoad() {
@@ -222,6 +223,12 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             if products.count > 0 {
                 
                 self.products = products
+                if let _ = self.products {
+                    for product in self.products! {
+                        self.prices.append(product.price)
+                    }
+                }
+             
                 let moduleMargin  = 24.pixelToPoint
                 let itemWidth = (Tool.width - CGFloat(products.count) * moduleMargin * 2) / CGFloat(products.count)
                 moduleButtons = [UIButton]()
@@ -265,6 +272,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         for i in 0 ..< self.bannerIds.count {
             if self.bannerIds[i] == imgid {
                 self.topBanner.setScrollToIndex(i)
+                self.price = self.prices[i]
             }
         }
     }
