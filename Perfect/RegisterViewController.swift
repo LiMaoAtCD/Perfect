@@ -10,6 +10,7 @@ import UIKit
 import ChameleonFramework
 import SVProgressHUD
 import SwiftyUserDefaults
+import Async
 
 class RegisterViewController: BaseViewController, UITextFieldDelegate {
 
@@ -348,6 +349,9 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
             NetworkHelper.instance.request(.GET, url: URLConstant.Register.contant, parameters: ["username": cellphone,"password": password, "validCode": validCode, "phone": cellphone, "type": (personalRegister ? "person" : "company")], completion: { (result: RegisterResponse?) in
                     Defaults[.password] = self.password
                     SVProgressHUD.showSuccessWithStatus("注册成功")
+                    Async.main(after: 1.0, block: { 
+                        self.navigationController?.popViewControllerAnimated(true)
+                    })
                 }, failed: { (errMsg: String?, errCode: Int) in
                     SVProgressHUD.showErrorWithStatus(errMsg ?? "注册失败")
             })
