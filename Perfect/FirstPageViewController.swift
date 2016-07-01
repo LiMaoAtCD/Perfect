@@ -285,7 +285,7 @@ class CollectionViewCell: UICollectionViewCell {
         willSet {
             let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
             attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(16)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
             priceLabel.attributedText = attributeString
         }
         
