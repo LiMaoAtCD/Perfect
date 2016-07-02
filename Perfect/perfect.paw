@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>CC30C93C-02B2-4D0D-AAF0-45602E474408</UUID>
-        <nextObjectID>148</nextObjectID>
+        <nextObjectID>150</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -311,7 +311,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="order" type="int64">19</attribute>
+        <attribute name="order" type="int64">20</attribute>
         <attribute name="name" type="string">saveOrUpdateLoginMemberDeliveryAddress</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -336,7 +336,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="order" type="int64">20</attribute>
+        <attribute name="order" type="int64">21</attribute>
         <attribute name="name" type="string">deleteLoginMemberDeliveryAddress</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -351,7 +351,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="order" type="int64">18</attribute>
+        <attribute name="order" type="int64">19</attribute>
         <attribute name="name" type="string">getLoginMemberDeliveryAddresses</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -603,7 +603,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="order" type="int64">17</attribute>
+        <attribute name="order" type="int64">18</attribute>
         <attribute name="name" type="string">appQueryIndexStaticContent</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -618,5 +618,31 @@
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z147"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z149">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z150"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z150">
+        <attribute name="body" type="string">[{"data":{"keyValues":[[["file"],[{"data":{"bookmarkData":"Ym9va7QCAAAAAAQQMAAAAGAivRI+YyFv\\/WUgeiaCPnErVhuteR59Vc1rIcmLn7azsAEAAAQAAAADAwAAABgAKAUAAAABAQAAVXNlcnMAAAAFAAAAAQEAAGxpbWFvAAAABwAAAAEBAABEZXNrdG9wAAUAAAABAQAAMS5wbmcAAAAQAAAAAQYAABAAAAAgAAAAMAAAAEAAAAAIAAAABAMAAPAsBgAAAAAACAAAAAQDAACHZgkAAAAAAAgAAAAEAwAAmGYJAAAAAAAIAAAABAMAAGUz9wAAAAAAEAAAAAEGAABoAAAAeAAAAIgAAACYAAAACAAAAAAEAABBvSd4sQAAABgAAAABAgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAACAAAAAQDAAACAAAAAAAAAAQAAAADAwAA9QEAAAgAAAABCQAAZmlsZTovLy8MAAAAAQEAAE1hY2ludG9zaCBIRAgAAAAEAwAAAAAAKToAAAAIAAAAAAQAAEG8ECa1AAAAJAAAAAEBAABEOURBMDIzOS0xMzIxLTNFQzktQUUxNy0zNUM1QkU3M0JEOTMYAAAAAQIAAIEAAAABAAAA7xMAAAEAAAAAAAAAAAAAAAEAAAABAQAALwAAAAAAAAABBQAAzAAAAP7\\/\\/\\/8BAAAAAAAAABAAAAAEEAAAUAAAAAAAAAAFEAAAqAAAAAAAAAAQEAAA0AAAAAAAAABAEAAAwAAAAAAAAAACIAAAnAEAAAAAAAAFIAAADAEAAAAAAAAQIAAAHAEAAAAAAAARIAAAUAEAAAAAAAASIAAAMAEAAAAAAAATIAAAQAEAAAAAAAAgIAAAfAEAAAAAAAAwIAAAqAEAAAAAAAABwAAA8AAAAAAAAAARwAAAIAAAAAAAAAASwAAAAAEAAAAAAAAQ0AAABAAAAAAAAAA="},"identifier":"com.luckymarmot.FileContentDynamicValue"}],true]]},"identifier":"com.luckymarmot.BodyMultipartFormDataDynamicValue"}]</attribute>
+        <attribute name="uuid" type="string">DA8AF84E-7E54-4720-BDD3-7D1BD7B49BCE</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/dimg/upload</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">POST</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="order" type="int64">17</attribute>
+        <attribute name="name" type="string">uploadImage</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z149"></relationship>
     </object>
 </database>

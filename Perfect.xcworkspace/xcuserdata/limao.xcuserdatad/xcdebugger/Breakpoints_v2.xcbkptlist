@@ -36,7 +36,7 @@
                   moduleName = "Perfect"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/limao/Perfect/Perfect/CustomGoodViewController.swift"
-                  timestampString = "489079319.501299"
+                  timestampString = "489138433.595309"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "99"
@@ -51,7 +51,7 @@
                   moduleName = "Perfect"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/limao/Perfect/Perfect/CustomGoodViewController.swift"
-                  timestampString = "489079319.501457"
+                  timestampString = "489138433.595503"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "100"
@@ -67,45 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Perfect/NetworkHelper.swift"
-            timestampString = "489079206.430807"
+            filePath = "Perfect/FourthTableViewController.swift"
+            timestampString = "489126830.69788"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "uploadImage1(_:forType:completion:failed:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Perfect/NetworkHelper.swift"
-            timestampString = "489079308.417521"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "uploadImage1(_:forType:completion:failed:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Perfect/NetworkHelper.swift"
-            timestampString = "489079290.326592"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "uploadImage1(_:forType:completion:failed:)"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

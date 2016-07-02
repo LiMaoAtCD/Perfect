@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 enum PayType: Int {
     case Offline = 0
@@ -18,14 +19,34 @@ class PayViewController: BaseViewController {
 
     var scrollView: UIScrollView!
     
-    var buyerView: UIView!
-    var customView: UIView!
-
-    
+    var buyerView: UIView! //
     var nameLabel: UILabel!//收货人
     var contactLabel: UILabel!//联系电话
     var addressLabel: UILabel!//地址
+    var addressItemEntity: AddressItemsEntity? {
+        willSet{
+            if let _ = newValue {
+                self.addressLabel.text = newValue!.areaFullName! + newValue!.contactAddress!
+                self.contactName = newValue!.contactName!
+                self.contactPhone = newValue!.contactPhone!
+                self.detailAddress = newValue!.contactAddress!
+            }
+        }
+    }
     
+    var detailAddress = "" //详细地址
+    var contactName = "" {
+        willSet {
+            self.nameLabel.text = newValue
+        }
+    }
+    var contactPhone = "" {
+        willSet {
+            self.contactLabel.text = newValue
+        }
+    }
+    
+    var customView: UIView!
 
     var previewImageview: UIImageView! //商品预览图
     var goodsTitle: UILabel! //商品信息
@@ -38,7 +59,7 @@ class PayViewController: BaseViewController {
             attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
             priceLabel.attributedText = attributeString
             
-            self.totalPrice = newValue * Float(number)
+            self.totalPrice = newValue * Float(quantity)
         }
     }
     
@@ -52,13 +73,9 @@ class PayViewController: BaseViewController {
     }
     
     var numberTextField: UITextField! //商品数量输入框
-    var number: Int  = 1 // 商品数量
     var mininumber = 1   //最小数量
-    
     var moduleLabel: UILabel! //定制模块
-    
     var payType: PayType = .Offline
-    
     
     //支付信息
     var payTypeViews: [PayTypeView]!
@@ -66,18 +83,14 @@ class PayViewController: BaseViewController {
     //底部合计
     var bottomView: UIView!
     var totalPriceLabel = UILabel()
-
     
     var goodEntity: ProductDetailEntity?
     var productId: Int64 = 0
     var quantity: Int = 1
-    var contactAddress = ""
-    var contactName = ""
-    var contactPhone = ""
     var areaId: Int64 = -1
     var customImgId: Int64 = 0
-    
-
+    var selectedIndex: Int = 0 //用于模块ID，模块价格 和对应图片
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,10 +102,30 @@ class PayViewController: BaseViewController {
         configurePayView()
         configureTotalView()
         
-        self.productId = goodEntity!.id
-        self.price = 100.00
-    
+        let realm = try! Realm()
+        let addresses = realm.objects(AddressItemsEntity)
+        if !addresses.isEmpty {
+            addressItemEntity = addresses.first
+        } else {
+        }
         
+        if let entity = goodEntity {
+            self.goodsTitle.text = entity.name
+            self.productId = entity.products![selectedIndex].id
+            self.price = entity.products![selectedIndex].price
+            
+            if selectedIndex == 0 {
+                self.moduleLabel.text = "模块一"
+            } else if selectedIndex == 1 {
+                self.moduleLabel.text = "模块二"
+            }else if selectedIndex == 2 {
+                self.moduleLabel.text = "模块三"
+            }else if selectedIndex == 3 {
+                self.moduleLabel.text = "模块四"
+            } else {
+                self.moduleLabel.text = "模块五"
+            }
+        }
     }
     
     //MARK: scrollview
@@ -155,7 +188,7 @@ class PayViewController: BaseViewController {
         contactLabel.font = UIFont.systemFontOfSize(14)
         
         addressLabel = UILabel()
-        addressLabel.text = "四川省成都市武侯区跪下了的骄傲付款了就发离开家地方"
+        addressLabel.text = "请填写您的收货信息"
         addressLabel.numberOfLines = 0
         addressLabel.textColor = UIColor.init(hexString: "#333333")
         addressLabel.font = UIFont.systemFontOfSize(14)
@@ -286,7 +319,7 @@ class PayViewController: BaseViewController {
         numberTextField = UITextField()
         numberView.addSubview(numberTextField)
         numberTextField.font = UIFont.systemFontOfSize(12.0)
-        numberTextField.text = String(self.number)
+        numberTextField.text = String(self.quantity)
         numberTextField.snp_makeConstraints { (make) in
             make.edges.equalTo(numberView)
         }
@@ -530,19 +563,19 @@ class PayViewController: BaseViewController {
     }
     
     func addNumber() {
-        self.number = self.number + 1
-        self.numberTextField.text = String(self.number)
+        self.quantity = self.quantity + 1
+        self.numberTextField.text = String(self.quantity)
         
-        self.totalPrice = price * Float(self.number)
+        self.totalPrice = price * Float(self.quantity)
     }
     
     func increaseNumber() {
-        self.number = self.number - 1
-        if self.number < mininumber {
-            self.number = mininumber
+        self.quantity = self.quantity - 1
+        if self.quantity < mininumber {
+            self.quantity = mininumber
         }
-        self.numberTextField.text = String(self.number)
-        self.totalPrice = price * Float(self.number)
+        self.numberTextField.text = String(self.quantity)
+        self.totalPrice = price * Float(self.quantity)
 
     }
     
@@ -550,14 +583,14 @@ class PayViewController: BaseViewController {
         if let _ = textfield.text {
             let number = Int(textfield.text!)
             if let _ = number {
-                self.number = number!
-                if self.number < mininumber {
-                    self.number = mininumber
+                self.quantity = number!
+                if self.quantity < mininumber {
+                    self.quantity = mininumber
                 }
             }
         }
         
-        self.totalPrice = price * Float(self.number)
+        self.totalPrice = price * Float(self.quantity)
 
     }
     
@@ -573,7 +606,7 @@ class PayViewController: BaseViewController {
     
     
     func submitOrder() {
-        NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmOrder.contant, parameters: ["productId":productId.toNSNumber,"quantity":quantity, "areaId": areaId.toNSNumber,"contactAddress": contactAddress, "contactName": contactName, "contactPhone": contactPhone, "customImgId": customImgId.toNSNumber, "payType":"alipay"], completion: { (result: ConfirmOrderResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmOrder.contant, parameters: ["productId":productId.toNSNumber,"quantity":quantity, "areaId": areaId.toNSNumber,"contactAddress": detailAddress, "contactName": contactName, "contactPhone": contactPhone, "customImgId": customImgId.toNSNumber, "payType":"alipay"], completion: { (result: ConfirmOrderResponse?) in
             
         }) { (errMsg, errCode) in
             

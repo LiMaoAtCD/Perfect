@@ -201,10 +201,15 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
         
-        picker.dismissViewControllerAnimated(true) { 
+        picker.dismissViewControllerAnimated(false) {
             
             //上传头像
             self.avatarImageView.image = image
+            NetworkHelper.instance.uploadImage1(image, forType: ["avatar": "avatar"], completion: { (result: DataResponse?) in
+                    print(result)
+                }, failed: { (msg, code) in
+                    SVProgressHUD.showErrorWithStatus(msg)
+            })
         }
     }
     

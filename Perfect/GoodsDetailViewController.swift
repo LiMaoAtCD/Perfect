@@ -26,6 +26,9 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     var favorite: Bool = false
     
     var priceLabel: UILabel!
+    
+    var selectedModuleIndex: Int = 0 // 当先选择的模块
+    
     var price: Float = 0.0 {
         willSet {
             let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
@@ -69,8 +72,6 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         configureTopBanner()
         configureGoodInfoView()
         configureGoodIntrowebView()
-
-        
         configureBottomView()
     }
     
@@ -110,7 +111,9 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             make.height.equalTo(9)
         }
     }
+    
     func configureGoodInfoView() {
+        
         goodsInfoView = UIView.init()
         goodsInfoView.backgroundColor = UIColor.whiteColor()
         scrollView.addSubview(goodsInfoView)
@@ -142,7 +145,6 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             make.top.equalTo(titleLabel.snp_bottom).offset(35.pixelToPoint)
         }
         self.price = self.detail?.price ?? 0.00
-        
         
         let marketPriceLabel: MarketLabel!  = MarketLabel()
         
@@ -266,6 +268,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     }
     
     func switchProduct(btn: UIButton) {
+        self.selectedModuleIndex = btn.tag
         configureModuleButtonsSelectedStatus(btn.tag)
         let imgid = self.products![btn.tag].imgId
         
@@ -290,9 +293,9 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     }
     
     func configureGoodIntrowebView() {
+        
         webview = UIWebView()
         scrollView.addSubview(webview)
-        
         let urlString = id.goodDescription
         let url  = NSURL.init(string: urlString)
         webview.loadRequest(NSURLRequest.init(URL: url!))
@@ -331,13 +334,10 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             } else {
                 NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberGoodsFavorite.contant, parameters: ["productId": NSNumber.init(longLong: self.id),"isFavorite": true], completion: { (result: DataResponse?) in
                         self.favorite = true
-                    
                     }, failed: { (errmsg, code) in
                         SVProgressHUD.showErrorWithStatus(errmsg)
                 })
             }
-
-            
         } else if tag == 1 {
             //chat whth qq
             let webview = UIWebView.init()
@@ -346,8 +346,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             webview.delegate = self
             view.addSubview(webview)
 
-        } else {
-    }
+        } else { }
 
     }
     
@@ -450,7 +449,9 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     
     func Custom() {
         let payment = Tool.sb.instantiateViewControllerWithIdentifier("PayViewController") as! PayViewController
-        payment.goodEntity =  detail
+        payment.goodEntity = detail
+        payment.selectedIndex = self.selectedModuleIndex
+//        payment.productId = 
         self.navigationController?.pushViewController(payment, animated: true)
 
     }
