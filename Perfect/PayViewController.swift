@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SVProgressHUD
 
 enum PayType: Int {
     case Offline = 0
@@ -117,6 +118,7 @@ class PayViewController: BaseViewController {
             }
         }
 
+
         configureScrollView()
         configureBuyerView()
         configureGoodView()
@@ -130,7 +132,8 @@ class PayViewController: BaseViewController {
         } else {}
         
         self.price = self.products![self.selectedIndex].price
-        
+        self.productId = self.products![selectedIndex].id
+
     }
     
     //MARK: scrollview
@@ -608,6 +611,10 @@ class PayViewController: BaseViewController {
     func changeAddress() {
         let addressVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AddressViewController") as! AddressViewController
         addressVC.hidesBottomBarWhenPushed = true
+        addressVC.selectedHandler = {
+            [weak self] item in
+            self?.addressItemEntity = item
+        }
         self.navigationController?.pushViewController(addressVC, animated: true)
     }
     
@@ -653,17 +660,50 @@ class PayViewController: BaseViewController {
         self.navigationController?.pushViewController(customVC, animated: true)
     }
     
-    func changeModule() {
-        
-    }
-    
-    
+
     
     func submitOrder() {
-        NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmOrder.contant, parameters: ["productId":productId.toNSNumber,"quantity":quantity, "areaId": areaId.toNSNumber,"contactAddress": detailAddress, "contactName": contactName, "contactPhone": contactPhone, "customImgId": customImgId.toNSNumber, "payType":"alipay"], completion: { (result: ConfirmOrderResponse?) in
-            
+        
+        if productId == 0 {
+            SVProgressHUD.showErrorWithStatus("未选择模块")
+            return
+        }
+        
+        guard let _ = addressItemEntity else {
+            SVProgressHUD.showErrorWithStatus("收货信息不能为空")
+            return
+        }
+        
+        guard customImgId != 0 else {
+            SVProgressHUD.showErrorWithStatus("请上传定制图片")
+            return
+        }
+        
+        var payTypeString: String = ""
+        if payType == .Offline {
+            payTypeString = "offline"
+        } else if payType == .Wechat {
+            payTypeString = "wechat"
+        } else {
+            payTypeString = "alipay"
+        }
+
+        
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmOrder.contant, parameters: [
+            "productId":productId.toNSNumber,
+            "quantity":quantity,
+            "addressId": addressItemEntity!.id.toNSNumber,
+            "contactAddress": detailAddress,
+            "contactName": contactName,
+            "contactPhone": contactPhone,
+            "customImgId": customImgId.toNSNumber,
+            "payType": payTypeString],
+                                       
+           completion: { (result: ConfirmOrderResponse?) in
+                
         }) { (errMsg, errCode) in
-            
+            SVProgressHUD.showErrorWithStatus(errMsg)
         }
     }
     

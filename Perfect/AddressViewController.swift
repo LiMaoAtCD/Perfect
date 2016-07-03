@@ -16,6 +16,8 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
     
     var tableView: UITableView!
     var addressItems: [AddressItemsEntity]!
+    
+    var selectedHandler: (AddressItemsEntity -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -216,6 +218,10 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         
 
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.selectedHandler?(addressItems[indexPath.row])
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

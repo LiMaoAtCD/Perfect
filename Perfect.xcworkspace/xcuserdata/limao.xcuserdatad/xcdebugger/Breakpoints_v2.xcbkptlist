@@ -36,7 +36,7 @@
                   moduleName = "Perfect"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/limao/Perfect/Perfect/FourthTableViewController.swift"
-                  timestampString = "489244561.35428"
+                  timestampString = "489245847.063105"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "218"
@@ -51,7 +51,7 @@
                   moduleName = "Perfect"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/limao/Perfect/Perfect/FourthTableViewController.swift"
-                  timestampString = "489244561.354401"
+                  timestampString = "489245847.063301"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "219"
@@ -75,6 +75,70 @@
             endingLineNumber = "219"
             landmarkName = "updateAvatarID(_:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Perfect/PayViewController.swift"
+            timestampString = "489245825.185762"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "693"
+            endingLineNumber = "693"
+            landmarkName = "submitOrder()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Perfect/PayViewController.swift"
+            timestampString = "489245928.144831"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "703"
+            endingLineNumber = "703"
+            landmarkName = "submitOrder()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Perfect.PayViewController.submitOrder () -&gt; ()"
+                  moduleName = "Perfect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/limao/Perfect/Perfect/PayViewController.swift"
+                  timestampString = "489245928.149733"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "703"
+                  endingLineNumber = "703"
+                  offsetFromSymbolStart = "1948">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Perfect.PayViewController.(submitOrder () -&gt; ()).(closure #1)"
+                  moduleName = "Perfect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/limao/Perfect/Perfect/PayViewController.swift"
+                  timestampString = "489245928.149907"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "705"
+                  endingLineNumber = "705"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

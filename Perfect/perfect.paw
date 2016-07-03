@@ -244,7 +244,7 @@
     </object>
     <object type="LMREQUEST" id="z119">
         <attribute name="uuid" type="string">722C6ACD-B02E-4A81-8108-932FCE390BE2</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appConfirmOrder\u2600productId=1\u2600quantity=10\u2600areaId=2041\u2600contactAddress=%E5%9C%B0%E5%9D%80\u2600contactName=%E5%A5%A5%E8%BF%AA\u2600contactPhone=13511111111\u2600customImgId=1\u2600payType=offline</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appConfirmOrder\u2600productId=1\u2600quantity=10\u2600addressId=52\u2600contactAddress=%E5%9C%B0%E5%9D%80\u2600contactName=%E5%A5%A5%E8%BF%AA\u2600contactPhone=13511111111\u2600customImgId=415\u2600payType=offline\u2600sessionId=7fce02b3-c573-49c3-b966-04a2a70d558a</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
