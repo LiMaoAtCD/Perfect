@@ -12,7 +12,7 @@ import AlamofireObjectMapper
 import SVProgressHUD
 import RealmSwift
 import Async
-
+import SwiftyUserDefaults
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -58,17 +58,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func fetchAreaID(){
-        let realm = try! Realm()
-        let citys = realm.objects(CityItem)
-        if citys.isEmpty {
-            NetworkHelper.instance.request(.GET, url: URLConstant.getAreasTreeJson.contant, parameters: ["areaTreeVer": NSNumber.init(longLong: 160620000000)], completion: { (result: AreaTreeResponse?) in
-                    if let data = result?.retObj {
-                        try! realm.write({ realm.add(data, update: true) })
-                    }
-            }) { (msg: String?, code: Int) in
-                print("area json error")
-            }
-
+        
+        let version = NSUserDefaults.standardUserDefaults().objectForKey("AddressAreaVersion") as? NSNumber
+        NetworkHelper.instance.request(.GET, url: URLConstant.getAreasTreeJson.contant, parameters: ["areaTreeVer": version ?? 0], completion: { (result: AreaTreeResponse?) in
+            
+                NSUserDefaults.standardUserDefaults().setObject(NSNumber.init(longLong: result!.retObj!.areaTreeVer), forKey: "AddressAreaVersion")
+                if let data = result?.retObj {
+                    let realm = try! Realm()
+                    try! realm.write({ realm.add(data, update: true) })
+                }
+            
+        }) { (msg: String?, code: Int) in
         }
     }
 
