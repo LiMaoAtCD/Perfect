@@ -654,7 +654,8 @@ class PayViewController: BaseViewController {
         let customVC = Tool.sb.instantiateViewControllerWithIdentifier("CustomGoodViewController") as! CustomGoodViewController
         customVC.completeHandler = {
             [weak self](imgId, image) in
-            self?.myGoodImageView.image = image
+//            self?.myGoodImageView.image = image
+            self?.myGoodImageView.kf_setImageWithURL(NSURL.init(string: imgId.perfectImageurl(200, h: 151, crop: true))!)
             self?.customImgId = imgId
         }
         self.navigationController?.pushViewController(customVC, animated: true)
