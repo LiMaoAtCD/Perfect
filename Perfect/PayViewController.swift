@@ -456,6 +456,7 @@ class PayViewController: BaseViewController {
             if self.goodImageIds[i] == imgid {
                 self.price = self.prices[i]
                 self.currentGoodImageId = imgid
+                self.productId = self.products![i].id
             }
         }
     }
