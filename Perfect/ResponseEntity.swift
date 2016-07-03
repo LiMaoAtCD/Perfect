@@ -209,8 +209,8 @@ class PersonalEntity: Mappable {
 }
 
 class PersonalMemberInfoItem: Mappable {
-    var id: Int = 0
-    var avatarImgId: Int = 0
+    var id: Int64 = 0
+    var avatarImgId: Int64 = 0
     var nick : String?
     var name: String?
     required init?(_ map: Map) {
@@ -219,8 +219,8 @@ class PersonalMemberInfoItem: Mappable {
     func mapping(map: Map) {
         name <- map["name"]
         nick <- map["nick"]
-        avatarImgId <- map["avatarImgId"]
-        id <- map["id"]
+        avatarImgId <- (map["avatarImgId"], TransformOfUtils.TransformOfInt64())
+        id <- (map["id"], TransformOfUtils.TransformOfInt64())
 
     }
 }

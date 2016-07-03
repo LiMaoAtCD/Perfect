@@ -110,7 +110,7 @@ class NetworkHelper: NSObject {
         }
 
 
-    func uploadImage1<T: DataResponse>(image: UIImage, forType parameters: [String: String]?, completion completionHandler: (T? -> Void)?, failed failedHandler: ((String?,Int) -> Void)?){
+    func uploadImage<T: DataResponse>(image: UIImage, forType parameters: [String: String]?, completion completionHandler: (T? -> Void)?, failed failedHandler: ((String?,Int) -> Void)?){
         
         Alamofire.upload(.POST, avatarUploadURL, multipartFormData: {
             multipartFormData in

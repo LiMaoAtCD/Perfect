@@ -205,11 +205,20 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
             
             //上传头像
             self.avatarImageView.image = image
-            NetworkHelper.instance.uploadImage1(image, forType: ["avatar": "avatar"], completion: { (result: DataResponse?) in
-                    print(result)
+            NetworkHelper.instance.uploadImage(image, forType: ["category": "avatar"], completion: { (result: UploadImageResponse?) in
+                    let imgId = result?.retObj?.imgId
+                    self.updateAvatarID(imgId!)
                 }, failed: { (msg, code) in
                     SVProgressHUD.showErrorWithStatus(msg)
             })
+        }
+    }
+    
+    func updateAvatarID(imageId: Int64) {
+        NetworkHelper.instance.request(.GET, url: URLConstant.updateLoginMemberInfo.contant, parameters: ["avatarId": imageId.toNSNumber], completion: { (result: DataResponse?) in
+                print(result?.retMsg)
+            }) { (msg, code) in
+                SVProgressHUD.showErrorWithStatus(msg)
         }
     }
     

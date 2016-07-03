@@ -46,16 +46,17 @@ class FourthViewController: BaseViewController {
         
         //
         NetworkHelper.instance.request(.GET, url: URLConstant.appMemberCenterIndex.contant, parameters: ["rows": 0, "page": 1], completion: { [weak self](res: PersonalCenterResponse?) in
-                let personalEntity = res?.retObj
+                let memberInfo = res?.retObj?.memberInfo
+            
+                self?.fourthTableViewController.avatarImageView.kf_setImageWithURL(NSURL.init(string: memberInfo!.avatarImgId.perfectImageurl(200, h: 200, crop: true))!, placeholderImage: UIImage.init(named: "me_avatar"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+                self?.fourthTableViewController.nickNameLabel.text = memberInfo?.name
             
             
-                self?.fourthTableViewController.avatarImageView.image =  UIImage.init(named: "me_avatar")
-            
-                self?.fourthTableViewController.nickNameLabel.text = personalEntity?.memberInfo?.name
             }) { (errMsg: String?, errCode: Int) in
                 
         }
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

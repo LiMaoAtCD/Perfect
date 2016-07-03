@@ -76,7 +76,7 @@ class PayViewController: BaseViewController {
     var mininumber = 1   //最小数量
     var moduleLabel: UILabel! //定制模块
     var payType: PayType = .Offline
-    
+    var myGoodImageView: UIImageView!
     //支付信息
     var payTypeViews: [PayTypeView]!
     
@@ -342,7 +342,7 @@ class PayViewController: BaseViewController {
             make.width.equalTo(numberView).multipliedBy(0.3)
         }
         
-        let myGoodImageView = UIImageView()
+        myGoodImageView = UIImageView()
         mainView.addSubview(myGoodImageView)
         myGoodImageView.image = UIImage.init(named: "pay_placeholder")
         
@@ -596,6 +596,11 @@ class PayViewController: BaseViewController {
     
     func custom() {
         let customVC = Tool.sb.instantiateViewControllerWithIdentifier("CustomGoodViewController") as! CustomGoodViewController
+        customVC.completeHandler = {
+            [weak self](imgId, image) in
+            self?.myGoodImageView.image = image
+            self?.customImgId = imgId
+        }
         self.navigationController?.pushViewController(customVC, animated: true)
     }
     

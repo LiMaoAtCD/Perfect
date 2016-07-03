@@ -13,6 +13,8 @@ class CustomGoodViewController: BaseViewController, UINavigationControllerDelega
     
     var imagePicker: UIImagePickerController!
     var effectImageView: UIImageView!
+    var completeHandler: ((Int64, UIImage) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -87,14 +89,13 @@ class CustomGoodViewController: BaseViewController, UINavigationControllerDelega
         
         let size = image.size
         
-        print(size)
-        
         
 //        1260 * 880
         if size.width * image.scale >= 1260 && size.height * image.scale >= 880 {
             picker.dismissViewControllerAnimated(true, completion: {
                 self.effectImageView.image = image
-                NetworkHelper.instance.uploadImage1(image, forType: nil, completion: { (result: UploadImageResponse?) in
+                NetworkHelper.instance.uploadImage(image, forType: ["category": "custwine"], completion: { (result: UploadImageResponse?) in
+                        self.completeHandler?(result!.retObj!.imgId, image)
                     
                     }, failed: { (msg, code) in
                         SVProgressHUD.showErrorWithStatus(msg)

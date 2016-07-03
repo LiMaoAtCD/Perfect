@@ -194,7 +194,7 @@
     </object>
     <object type="LMREQUEST" id="z115">
         <attribute name="uuid" type="string">9D45D317-D62C-4973-8197-FDFE1D9A21B5</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=getAreasTreeJson\u2600areaTreeVer=160701134824</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=getAreasTreeJson\u2600areaTreeVer=0</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
