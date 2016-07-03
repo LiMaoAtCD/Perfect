@@ -18,22 +18,11 @@ enum PayType: Int {
 class PayViewController: BaseViewController {
 
     var scrollView: UIScrollView!
+    var buyerView: UIView! // 收货信息视图
     
-    var buyerView: UIView! //
     var nameLabel: UILabel!//收货人
     var contactLabel: UILabel!//联系电话
     var addressLabel: UILabel!//地址
-    var addressItemEntity: AddressItemsEntity? {
-        willSet{
-            if let _ = newValue {
-                self.addressLabel.text = newValue!.areaFullName! + newValue!.contactAddress!
-                self.contactName = newValue!.contactName!
-                self.contactPhone = newValue!.contactPhone!
-                self.detailAddress = newValue!.contactAddress!
-            }
-        }
-    }
-    
     var detailAddress = "" //详细地址
     var contactName = "" {
         willSet {
@@ -46,19 +35,30 @@ class PayViewController: BaseViewController {
         }
     }
     
-    var customView: UIView!
+    var areaId: Int64 = -1
+    var addressItemEntity: AddressItemsEntity? {
+        willSet{
+            if let _ = newValue {
+                self.addressLabel.text = newValue!.areaFullName! + newValue!.contactAddress!
+                self.contactName = newValue!.contactName!
+                self.contactPhone = newValue!.contactPhone!
+                self.detailAddress = newValue!.contactAddress!
+                self.areaId = newValue!.areaId
+            }
+        }
+    }
 
-    var previewImageview: UIImageView! //商品预览图
+    //订单部分
+    var customView: UIView!
     var goodsTitle: UILabel! //商品信息
+    var previewImageview: UIImageView! //商品预览图
     var priceLabel: UILabel! //商品单价
-    
     var price: Float = 0.0 {
         willSet {
             let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
             attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
             attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
             priceLabel.attributedText = attributeString
-            
             self.totalPrice = newValue * Float(quantity)
         }
     }
@@ -74,12 +74,10 @@ class PayViewController: BaseViewController {
     
     var numberTextField: UITextField! //商品数量输入框
     var mininumber = 1   //最小数量
-    var moduleLabel: UILabel! //定制模块
     var payType: PayType = .Offline
     var myGoodImageView: UIImageView!
     //支付信息
     var payTypeViews: [PayTypeView]!
-    
     //底部合计
     var bottomView: UIView!
     var totalPriceLabel = UILabel()
@@ -87,15 +85,38 @@ class PayViewController: BaseViewController {
     var goodEntity: ProductDetailEntity?
     var productId: Int64 = 0
     var quantity: Int = 1
-    var areaId: Int64 = -1
     var customImgId: Int64 = 0
     var selectedIndex: Int = 0 //用于模块ID，模块价格 和对应图片
- 
+    
+    
+    var moduleButtons: [UIButton]!   //模块按钮
+    var products: [ProductDetailModuleItem]?
+    var goodImageIds: [Int64] = [Int64]()
+    var prices: [Float] = [Float]()
+    var moduleIds: [Int64] = [Int64]()
+    
+    var currentGoodImageId: Int64 = 0 {
+        willSet {
+            self.previewImageview.kf_setImageWithURL(NSURL.init(string: newValue.perfectImageurl(200, h: 200, crop: true))!)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.prices = [Float]()
+        self.goodImageIds = [Int64]()
+        self.moduleIds = [Int64]()
         
+        if let products = goodEntity?.products {
+            for product in products {
+                self.prices.append(product.price)
+                self.goodImageIds.append(product.imgId)
+                self.moduleIds.append(product.id)
+            }
+        }
+
         configureScrollView()
         configureBuyerView()
         configureGoodView()
@@ -106,26 +127,10 @@ class PayViewController: BaseViewController {
         let addresses = realm.objects(AddressItemsEntity)
         if !addresses.isEmpty {
             addressItemEntity = addresses.first
-        } else {
-        }
+        } else {}
         
-        if let entity = goodEntity {
-            self.goodsTitle.text = entity.name
-            self.productId = entity.products![selectedIndex].id
-            self.price = entity.products![selectedIndex].price
-            
-            if selectedIndex == 0 {
-                self.moduleLabel.text = "模块一"
-            } else if selectedIndex == 1 {
-                self.moduleLabel.text = "模块二"
-            }else if selectedIndex == 2 {
-                self.moduleLabel.text = "模块三"
-            }else if selectedIndex == 3 {
-                self.moduleLabel.text = "模块四"
-            } else {
-                self.moduleLabel.text = "模块五"
-            }
-        }
+        self.price = self.products![self.selectedIndex].price
+        
     }
     
     //MARK: scrollview
@@ -173,7 +178,7 @@ class PayViewController: BaseViewController {
             make.left.equalTo(titleLabel.snp_right).offset(105.pixelToPoint)
             make.baseline.equalTo(titleLabel)
         }
-        nameLabel.text = "张一山"
+        nameLabel.text = ""
         nameLabel.textColor = UIColor.init(hexString: "#333333")
         nameLabel.font = UIFont.systemFontOfSize(14)
         
@@ -183,12 +188,12 @@ class PayViewController: BaseViewController {
             make.left.equalTo(nameLabel.snp_right).offset(49.pixelToPoint)
             make.centerY.equalTo(nameLabel)
         }
-        contactLabel.text = "14311111111"
+        contactLabel.text = ""
         contactLabel.textColor = UIColor.init(hexString: "#333333")
         contactLabel.font = UIFont.systemFontOfSize(14)
         
         addressLabel = UILabel()
-        addressLabel.text = "请填写您的收货信息"
+        addressLabel.text = "请完善您的收货信息"
         addressLabel.numberOfLines = 0
         addressLabel.textColor = UIColor.init(hexString: "#333333")
         addressLabel.font = UIFont.systemFontOfSize(14)
@@ -224,7 +229,6 @@ class PayViewController: BaseViewController {
             make.bottom.equalTo(buyerView)
             make.top.equalTo(addressLabel.snp_bottom).offset(30.pixelToPoint)
         }
-        
     }
     
     func configureGoodView() {
@@ -258,7 +262,7 @@ class PayViewController: BaseViewController {
         }
         
         previewImageview = UIImageView()
-        previewImageview.image = UIImage.init(named: "customEffect")
+        previewImageview.kf_setImageWithURL(NSURL.init(string: self.goodImageIds[self.selectedIndex].perfectImageurl(200, h: 200, crop: true))!)
         mainView.addSubview(previewImageview)
         previewImageview.snp_makeConstraints { (make) in
             make.left.equalTo(18.pixelToPoint)
@@ -276,7 +280,7 @@ class PayViewController: BaseViewController {
             make.right.equalTo(mainView).offset(-39.pixelToPoint)
             make.top.equalTo(mainView).offset(38.pixelToPoint)
         }
-        goodsTitle.text = "飞天毛衣他空间打客服哈卡积分换发客服哈就开发好"
+        goodsTitle.text = self.goodEntity!.name
         
         priceLabel = UILabel()
         mainView.addSubview(priceLabel)
@@ -297,7 +301,6 @@ class PayViewController: BaseViewController {
             make.height.equalTo(0.3)
             make.top.equalTo(previewImageview.snp_bottom).offset(8)
         }
-        
         
         //数量选择器
         let numberView = UIView()
@@ -363,7 +366,6 @@ class PayViewController: BaseViewController {
             make.top.equalTo(marginView).offset(34.pixelToPoint)
         }
         
-        
         let changeButton = UIButton.init()
         changeButton.setTitle("更换定制图", forState: .Normal)
         changeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -391,37 +393,83 @@ class PayViewController: BaseViewController {
         let moduleChoosenLabel = UILabel()
         mainView.addSubview(moduleChoosenLabel)
         moduleChoosenLabel.text = "模块选择"
-        moduleChoosenLabel.font = UIFont.systemFontOfSize(14.0)
+        moduleChoosenLabel.font = UIFont.systemFontOfSize(15.0)
         moduleChoosenLabel.textColor = UIColor.init(hexString: "333333")
         moduleChoosenLabel.snp_makeConstraints { (make) in
             make.left.equalTo(mainView).offset(36.pixelToPoint)
             make.top.equalTo(moduleMarginView).offset(42.pixelToPoint)
         }
         
-        moduleLabel = UILabel()
-        mainView.addSubview(moduleLabel)
-        moduleLabel.text = "模块一"
-        moduleLabel.font = UIFont.systemFontOfSize(14.0)
-        moduleLabel.textColor = UIColor.init(hexString: "333333")
-        moduleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(moduleChoosenLabel.snp_right).offset(80.pixelToPoint)
-            make.centerY.equalTo(moduleChoosenLabel)
+        if let products = self.goodEntity?.products {
+            if products.count > 0 {
+                
+                self.products = products
+                if let _ = self.products {
+                    for product in self.products! {
+                        self.prices.append(product.price)
+                    }
+                }
+                
+                let moduleMargin = 10.pixelToPoint
+                let itemWidth = (Tool.width - 28 - CGFloat(products.count) * moduleMargin * 2) / CGFloat(products.count)
+                moduleButtons = [UIButton]()
+                for i in 0 ..< products.count {
+                    let moduleView = UIButton.init(type: .Custom)
+                    moduleView.tag = i
+                    moduleView.layer.borderColor = UIColor.redColor().CGColor
+                    moduleView.layer.borderWidth = 0.3
+                    moduleView.layer.cornerRadius = 5
+                    moduleView.layer.masksToBounds = true
+                    moduleView.addTarget(self, action: #selector(self.switchProduct(_:)), forControlEvents: .TouchUpInside)
+                    mainView.addSubview(moduleView)
+                    moduleView.snp_makeConstraints(closure: { (make) in
+                        make.left.equalTo(moduleMargin + CGFloat(i) * (itemWidth + moduleMargin * 2))
+                        make.top.equalTo(moduleChoosenLabel.snp_bottom).offset(33.pixelToPoint)
+                        make.width.equalTo(itemWidth)
+                        make.height.equalTo(60.pixelToPoint)
+                        make.bottom.equalTo(mainView.snp_bottom).offset(-20.pixelToPoint)
+                    })
+                    
+                    if i == 0 {
+                        moduleView.setTitle("模块一", forState: .Normal)
+                    } else if i == 1 {
+                        moduleView.setTitle("模块二", forState: .Normal)
+                    } else if i == 2 {
+                        moduleView.setTitle("模块三", forState: .Normal)
+                    } else if i == 3 {
+                        moduleView.setTitle("模块四", forState: .Normal)
+                    } else if i == 4 {
+                        moduleView.setTitle("模块五", forState: .Normal)
+                    }
+                    moduleButtons.append(moduleView)
+                }
+                configureModuleButtonsSelectedStatus(self.selectedIndex)
+            }
         }
-        
-        let changeModuleButton = UIButton.init(type: .Custom)
-        mainView.addSubview(changeModuleButton)
-        changeModuleButton.setTitle("更换模块", forState: .Normal)
-        changeModuleButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        changeModuleButton.setBackgroundImage(UIImage.init(named: "pay_module_change_0"), forState: .Normal)
-        changeModuleButton.setBackgroundImage(UIImage.init(named: "pay_module_change_1"), forState: .Highlighted)
-        
-        changeModuleButton.addTarget(self, action: #selector(self.changeModule), forControlEvents: .TouchUpInside)
-        changeModuleButton.snp_makeConstraints { (make) in
-            make.left.right.height.equalTo(changeButton)
-            make.top.equalTo(moduleMarginView).offset(21.pixelToPoint)
-            make.bottom.equalTo(mainView.snp_bottom).offset(-25.pixelToPoint)
+
+    }
+    
+    func switchProduct(btn: UIButton) {
+        configureModuleButtonsSelectedStatus(btn.tag)
+        let imgid = self.products![btn.tag].imgId
+        for i in 0 ..< self.goodImageIds.count {
+            if self.goodImageIds[i] == imgid {
+                self.price = self.prices[i]
+                self.currentGoodImageId = imgid
+            }
         }
-        
+    }
+    
+    func configureModuleButtonsSelectedStatus(index: Int) {
+        for i in 0 ..< moduleButtons.count {
+            if i == index {
+                moduleButtons[i].setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                moduleButtons[i].backgroundColor = UIColor.init(hexString: "#f15353")
+            } else {
+                moduleButtons[i].setTitleColor(UIColor.blackColor(), forState: .Normal)
+                moduleButtons[i].backgroundColor = UIColor.clearColor()
+            }
+        }
     }
     
     func configurePayView() {

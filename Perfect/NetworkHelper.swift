@@ -92,7 +92,6 @@ class NetworkHelper: NSObject {
                     completionHandler?(response.result.value)
                     if let session = response.result.value?.sessionId {
                         Defaults[.sessionID] = session
-
                     }
                 } else if let value = response.result.value where value.retCode == RetErrorCode.NeedLogin.rawValue  {
                     SVProgressHUD.dismiss()
@@ -103,11 +102,11 @@ class NetworkHelper: NSObject {
                     assertionFailure("network data format error")
                 }
             }
+            }     //Debug
+            .responseString { (response) in
+                print(response.result.value)
         }
-            //Debug
-//            .responseString { (response) in
-//            print(response.result.value)
-        }
+    }
 
 
     func uploadImage<T: DataResponse>(image: UIImage, forType parameters: [String: String]?, completion completionHandler: (T? -> Void)?, failed failedHandler: ((String?,Int) -> Void)?){
@@ -130,7 +129,6 @@ class NetworkHelper: NSObject {
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseObject(completionHandler: { (response: Response<T, NSError>) in
-                        print(response.result.value?.retCode)
                         
                             if let _ = response.result.error {
                                 failedHandler?("网络连接失败", RetErrorCode.NetworkError.rawValue)
@@ -150,7 +148,6 @@ class NetworkHelper: NSObject {
                                 }
                             }
                     })
-                    
                     
                 case .Failure(let encodingError):
                     print(encodingError)

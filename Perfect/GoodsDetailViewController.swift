@@ -451,7 +451,6 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         let payment = Tool.sb.instantiateViewControllerWithIdentifier("PayViewController") as! PayViewController
         payment.goodEntity = detail
         payment.selectedIndex = self.selectedModuleIndex
-//        payment.productId = 
         self.navigationController?.pushViewController(payment, animated: true)
 
     }

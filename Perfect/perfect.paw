@@ -344,7 +344,7 @@
     </object>
     <object type="LMREQUEST" id="z127">
         <attribute name="uuid" type="string">14731B67-62FB-4864-86C0-974CE12B5322</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=getLoginMemberDeliveryAddresses\u2600sessionId=30f306e9-937d-4715-bf11-3bdfbd6cfc72</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=getLoginMemberDeliveryAddresses\u2600sessionId=5a5b40d4-c666-4cba-9035-c766e00d4130</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -381,7 +381,7 @@
         <attribute name="clientcertificate" type="string">[{"data":{"mode":0},"identifier":"com.luckymarmot.CertificateDynamicValue"}]</attribute>
         <attribute name="body" type="string"></attribute>
         <attribute name="uuid" type="string">FDB02C6A-EDC4-4F3D-BDFF-019AF01C289B</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=setLoginMemberDefaultDeliveryAddress\u2600id=52\u2600isDefault=true\u2600sessionId=30f306e9-937d-4715-bf11-3bdfbd6cfc72</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=setLoginMemberDefaultDeliveryAddress\u2600id=52\u2600isDefault=false\u2600sessionId=5a5b40d4-c666-4cba-9035-c766e00d4130</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
