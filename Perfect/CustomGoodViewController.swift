@@ -100,9 +100,7 @@ class CustomGoodViewController: BaseViewController, UINavigationControllerDelega
                         self.completeHandler?(result!.retObj!.imgId, image)
                         SVProgressHUD.dismiss()
                         self.effectImageView.image = image
-                        Async.main(after: 1.0, block: {
                         self.navigationController?.popViewControllerAnimated(true)
-                        })
                     }, failed: { (msg, code) in
                         SVProgressHUD.showErrorWithStatus(msg)
                 })

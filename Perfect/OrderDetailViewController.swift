@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class OrderDetailViewController: BaseViewController {
 
     
+    var orderId: Int64 = 0
     var entity: HistoryOrderItem?
     var scrollView: UIScrollView!
     var bottomView: UIView!
@@ -85,17 +87,48 @@ class OrderDetailViewController: BaseViewController {
             make.bottom.equalTo(view).offset(-50)
         }
         
-        setupScrollSubViews()
+       
         
+        //从商品详情进入
         
-        bottomView = UIView()
-        view.addSubview(bottomView)
-        bottomView.snp_makeConstraints { (make) in
-            make.left.right.bottom.equalTo(view)
-            make.height.equalTo(50)
+        if let _ = entity {
+            
+            setupScrollSubViews()
+            bottomView = UIView()
+            view.addSubview(bottomView)
+            bottomView.snp_makeConstraints { (make) in
+                make.left.right.bottom.equalTo(view)
+                make.height.equalTo(50)
+            }
+            setupBottomViews()
+            
+        } else {
+            self.fd_interactivePopDisabled = true
+            SVProgressHUD.show()
+            NetworkHelper.instance.request(.GET, url: URLConstant.appOrderDetail.contant, parameters: ["id": orderId.toNSNumber, "rows":10, "page": 1], completion: { (result: OrderDetailResponse?) in
+                    SVProgressHUD.dismiss()
+                    self.entity = result?.retObj
+                    self.setupScrollSubViews()
+                    self.bottomView = UIView()
+                    self.view.addSubview(self.bottomView)
+                    self.bottomView.snp_makeConstraints { (make) in
+                        make.left.right.bottom.equalTo(self.view)
+                        make.height.equalTo(50)
+                    }
+                    self.setupBottomViews()
+            }) { (msg, code) in
+                SVProgressHUD.showErrorWithStatus(msg)
+            }
+
         }
+  
         
-        setupBottomViews()
+        
+        
+    }
+    
+    override func pop() {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
 
     func setupScrollSubViews() {
@@ -122,8 +155,10 @@ class OrderDetailViewController: BaseViewController {
         topLabel = UILabel()
         mainView.addSubview(topLabel)
         topLabel.font = UIFont.systemFontOfSize(13)
-        topLabel.text = self.entity?.statusName
-        topLabel.textColor = UIColor.init(hexString: "#2fb76c")
+        topLabel.text = self.entity?.orderStatusName
+        if let color = self.entity?.orderStatusTextColor {
+            topLabel.textColor = UIColor.init(hexString: color)
+        }
         
         topLabel.snp_makeConstraints { (make) in
             make.centerY.equalTo(packageImageView)
@@ -164,7 +199,7 @@ class OrderDetailViewController: BaseViewController {
         }
         
         nameLabel = UILabel()
-        nameLabel.text = self.entity?.address?.contactName
+        nameLabel.text = self.entity?.address?.consignee
         nameLabel.textColor = UIColor.init(hexString: "#333333")
         nameLabel.font = UIFont.systemFontOfSize(13)
         mainView.addSubview(nameLabel)
@@ -199,7 +234,7 @@ class OrderDetailViewController: BaseViewController {
         addressLabel.font = UIFont.systemFontOfSize(13.0)
         addressLabel.textColor = UIColor.init(hexString: "#333333")
         let areaFullName = self.entity?.address?.areaFullName ?? ""
-        let contactAddress = self.entity?.address?.contactAddress ?? ""
+        let contactAddress = self.entity?.address?.address ?? ""
         addressLabel.text = areaFullName + contactAddress
         mainView.addSubview(addressLabel)
         addressLabel.snp_makeConstraints { (make) in
@@ -220,7 +255,7 @@ class OrderDetailViewController: BaseViewController {
         
         goodsImageView = UIImageView()
         mainView.addSubview(goodsImageView)
-        goodsImageView.kf_setImageWithURL(NSURL.init(string: self.entity!.image.perfectImageurl(157, h: 157, crop: true))!, placeholderImage: UIImage.init(named: "placeholder")!, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+        goodsImageView.kf_setImageWithURL(NSURL.init(string: self.entity!.productImageId.perfectImageurl(157, h: 157, crop: true))!, placeholderImage: UIImage.init(named: "placeholder")!, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         goodsImageView.snp_makeConstraints { (make) in
             make.width.height.equalTo(157.pixelToPoint)
             make.top.equalTo(addressMarginView.snp_bottom).offset(25.pixelToPoint)
@@ -231,7 +266,7 @@ class OrderDetailViewController: BaseViewController {
         goodTitleLabel.font = UIFont.systemFontOfSize(14.0)
         goodTitleLabel.textColor = UIColor.blackColor()
         goodTitleLabel.numberOfLines = 0
-        goodTitleLabel.text = self.entity!.fullName
+        goodTitleLabel.text = self.entity!.goodsName
         mainView.addSubview(goodTitleLabel)
         goodTitleLabel.snp_makeConstraints { (make) in
             make.left.equalTo(goodsImageView.snp_right).offset(27.pixelToPoint)
@@ -240,8 +275,8 @@ class OrderDetailViewController: BaseViewController {
         }
         
         priceLabel = UILabel()
-        let price: NSString = self.entity!.price.currency as NSString
-        let attributeString = NSMutableAttributedString.init(string: self.entity!.price.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#ee304e")])
+        let price: NSString = self.entity!.totalPrice.currency as NSString
+        let attributeString = NSMutableAttributedString.init(string: self.entity!.totalPrice.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#ee304e")])
         attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(10)], range: NSMakeRange(0, 1))
         attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, price.length - 1))
         priceLabel.attributedText = attributeString
@@ -273,7 +308,7 @@ class OrderDetailViewController: BaseViewController {
         }
 
         customImageView = UIImageView()
-        customImageView.kf_setImageWithURL(NSURL.init(string: self.entity!.image.perfectImageurl(121, h: 157, crop: true))!, placeholderImage: UIImage.init(named: "pay_placeholder")!, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+        customImageView.kf_setImageWithURL(NSURL.init(string: self.entity!.productImageId.perfectImageurl(121, h: 157, crop: true))!, placeholderImage: UIImage.init(named: "pay_placeholder")!, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
 
         mainView.addSubview(customImageView)
         customImageView.snp_makeConstraints { (make) in
@@ -307,7 +342,7 @@ class OrderDetailViewController: BaseViewController {
         
         moduleLabel = UILabel()
         mainView.addSubview(moduleLabel)
-        moduleLabel.text = self.entity!.moduleName
+        moduleLabel.text = self.entity!.productName
         moduleLabel.textColor = UIColor.init(hexString: "#666666")
         moduleLabel.font = UIFont.systemFontOfSize(12.0)
         moduleLabel.snp_makeConstraints { (make) in
@@ -327,7 +362,7 @@ class OrderDetailViewController: BaseViewController {
         
         orderNumberLabel = UILabel()
         mainView.addSubview(orderNumberLabel)
-        orderNumberLabel.text = self.entity!.orderNo
+        orderNumberLabel.text = self.entity!.orderSn
         orderNumberLabel.textColor = UIColor.init(hexString: "#666666")
         orderNumberLabel.font = UIFont.systemFontOfSize(12.0)
         orderNumberLabel.snp_makeConstraints { (make) in
@@ -347,7 +382,7 @@ class OrderDetailViewController: BaseViewController {
         
         orderTimeLabel = UILabel()
         mainView.addSubview(orderTimeLabel)
-        orderTimeLabel.text = self.entity!.orderTime
+        orderTimeLabel.text = self.entity!.orderCreateDate
         orderTimeLabel.textColor = UIColor.init(hexString: "#666666")
         orderTimeLabel.font = UIFont.systemFontOfSize(12.0)
         orderTimeLabel.snp_makeConstraints { (make) in

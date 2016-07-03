@@ -241,20 +241,35 @@ class HistoryOrderEntity: Mappable {
 
 class HistoryOrderItem: Mappable {
     
-    var moduleId: Int64 = 0
-    var status: Int = 0
-    var statusName: String?
-    var moduleName: String?
-    var image: Int64 = 0
-    var statusTextColor: String?
-    var orderNo: String?
-    var price: Float = 0.0
+    var orderStatusTextColor: String?
+    var orderStatusName: String?
     var address: HistoryOrderItemAddress?
+
+    var productImageId: Int64 = 0
+    var paymentTime: String?
+    var orderCreateDate: String?
+    var orderOrderStatus: String?
     var quantity: Int = 0
-    var fullName: String?
+    var orderSn: String?
+    var productName: String?
+    var goodsName: String?
     var orderId: Int64 = 0
     var totalPrice: Float = 0.0
-    var orderTime: String?
+    var productId: Int64 = 0
+    
+    
+//    var moduleId: Int64 = 0
+//    var status: Int = 0
+//    var statusName: String?
+//    var moduleName: String?
+//    var image: Int64 = 0
+//    var statusTextColor: String?
+//    var orderNo: String?
+//    var price: Float = 0.0
+//    var fullName: String?
+//    var orderId: Int64 = 0
+//    var totalPrice: Float = 0.0
+//    var orderTime: String?
     
     required init?(_ map: Map) {
         
@@ -262,43 +277,41 @@ class HistoryOrderItem: Mappable {
     
     func mapping(map: Map) {
         
-        moduleId <- (map["moduleId"], TransformOfUtils.TransformOfInt64())
-        price <- map["price"]
-        status <- map["status"]
-        statusName <- map["statusName"]
-        moduleName <- map["moduleName"]
-        statusTextColor <- map["statusTextColor"]
-        orderNo <- map["orderNo"]
-        image <- (map["image"], TransformOfUtils.TransformOfInt64())
+        orderStatusTextColor <- map["orderStatusTextColor"]
+        orderStatusName <- map["orderStatusName"]
         address <- map["address"]
+        productImageId <- (map["productImageId"], TransformOfUtils.TransformOfInt64())
+        paymentTime <- map["paymentTime"]
+        orderCreateDate <- map["orderCreateDate"]
+        orderOrderStatus <- map["orderOrderStatus"]
         quantity <- map["quantity"]
-        fullName <- map["fullName"]
+        orderSn <- map["orderSn"]
+        productName <- map["productName"]
+        goodsName <- map["goodsName"]
         orderId <- (map["orderId"], TransformOfUtils.TransformOfInt64())
         totalPrice <- map["totalPrice"]
-        orderTime <- map["orderTime"]
-
+        productId <- (map["productId"], TransformOfUtils.TransformOfInt64())
     }
 }
 
 class HistoryOrderItemAddress: Mappable {
-    var id: Int64 = 0
-    var contactPhone: String?
     var areaName: String?
-    var contactName: String?
     var areaFullName: String?
     var areaId: Int64 = 0
-    var contactAddress: String?
+    var consignee: String?
+    var address: String?
+    var contactPhone: String?
+    
     required init?(_ map: Map) {
     }
     
     func mapping(map: Map) {
-        id <- (map["id"], TransformOfUtils.TransformOfInt64())
         contactPhone <- map["contactPhone"]
+        address <- map["address"]
         areaName <- map["areaName"]
-        contactName <- map["contactName"]
+        consignee <- map["areaName"]
         areaFullName <- map["areaFullName"]
         areaId <- (map["areaId"], TransformOfUtils.TransformOfInt64())
-        contactAddress <- map["contactAddress"]
     }
 }
 
@@ -401,8 +414,7 @@ class ConfirmOrderEntity: Mappable {
     
     var payToken: String?
     var orderId: Int64 = 0
-    required init?(_ map: Map) {
-    }
+    required init?(_ map: Map) {}
     
     func mapping(map: Map) {
         orderId <- (map["orderId"], TransformOfUtils.TransformOfInt64())
@@ -670,14 +682,12 @@ class CollectProductItem: Mappable {
 class UploadImageEntity: Mappable {
     var imgId: Int64 = 0
     
-    required init?(_ map: Map) {
-    }
+    required init?(_ map: Map) {}
     
     func mapping(map: Map) {
         imgId <- (map["imgId"], TransformOfUtils.TransformOfInt64())
     }
 }
-
 
 
 

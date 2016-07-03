@@ -111,22 +111,25 @@ class AllOrderCell: UITableViewCell {
     var entity: HistoryOrderItem? {
         willSet {
             if let _ = newValue {
-                topLabel.text = newValue!.statusName
-                nameLabel.text = newValue!.address?.contactName
+                topLabel.text = newValue!.orderStatusName
+                if let color = newValue!.orderStatusTextColor {
+                    topLabel.textColor = UIColor.init(hexString: color)
+                }
+                nameLabel.text = newValue!.address?.consignee
                 cellphoneLabel.text = newValue!.address?.contactPhone
                 if let fullname = newValue!.address?.areaFullName {
-                    if let detail = newValue!.address?.contactAddress {
+                    if let detail = newValue!.address?.address {
                         addressLabel.text = fullname + detail
                     }
                 }
                 
-                goodsImageView.kf_setImageWithURL(NSURL.init(string: newValue!.image.perfectImageurl(157, h: 157, crop: true))!)
-                goodTitleLabel.text = newValue!.fullName
-                self.price = newValue!.price
+                goodsImageView.kf_setImageWithURL(NSURL.init(string: newValue!.productImageId.perfectImageurl(157, h: 157, crop: true))!)
+                goodTitleLabel.text = newValue!.goodsName
+                self.price = newValue!.totalPrice
                 self.quantityLabel.text = "x\(newValue!.quantity)"
-                orderNumberLabel.text = newValue!.orderNo
-                modelLabel.text = newValue!.moduleName
-                orderTimeLabel.text = newValue!.orderTime
+                orderNumberLabel.text = newValue!.orderSn
+                modelLabel.text = newValue!.productName
+                orderTimeLabel.text = newValue!.orderCreateDate
             }
         }
     }

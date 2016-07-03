@@ -701,7 +701,9 @@ class PayViewController: BaseViewController {
             "payType": payTypeString],
                                        
            completion: { (result: ConfirmOrderResponse?) in
-                
+                let orderDetailVC = OrderDetailViewController.someController(OrderDetailViewController.self, ofStoryBoard: UIStoryboard.main)
+                orderDetailVC.orderId = result!.retObj!.orderId
+            self.navigationController?.pushViewController(orderDetailVC, animated: true)
         }) { (errMsg, errCode) in
             SVProgressHUD.showErrorWithStatus(errMsg)
         }

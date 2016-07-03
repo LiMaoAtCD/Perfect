@@ -219,7 +219,7 @@
     </object>
     <object type="LMREQUEST" id="z117">
         <attribute name="uuid" type="string">53F64F7F-A5DD-4DB0-940C-D8F0DFDF9984</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appOrderHistory\u2600rows=10\u2600page=1\u2600sessionId=5ae1edb6-da26-4112-beff-1d12ed789736</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appOrderHistory\u2600rows=10\u2600page=1\u2600sessionId=4d585c97-c2dc-4c8d-bd06-b8fac773a976</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -269,7 +269,7 @@
     </object>
     <object type="LMREQUEST" id="z121">
         <attribute name="uuid" type="string">460CF1C3-A4D9-436C-AAAF-68C6639AADEA</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appOrderDetail\u2600rows=10\u2600page=1\u2600id=1</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appOrderDetail\u2600rows=10\u2600page=1\u2600id=52\u2600sessionId=4d585c97-c2dc-4c8d-bd06-b8fac773a976</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -546,7 +546,7 @@
     </object>
     <object type="LMREQUEST" id="z143">
         <attribute name="uuid" type="string">010447EE-014C-4122-A8E2-F8843B1A3379</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appGoodsDetail\u2600id=1</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appGoodsDetail\u2600id=1\u2600sessionId=4d585c97-c2dc-4c8d-bd06-b8fac773a976</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>

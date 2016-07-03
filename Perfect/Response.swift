@@ -137,6 +137,8 @@ class ConfirmOrderResponse: DataResponse {
     
 }
 
+
+
 // 个人信息
 
 class MemberInfoResponse : DataResponse {
@@ -210,7 +212,7 @@ class HistoryOrderResponse: DataResponse {
 
 //MARK: 订单详情
 class OrderDetailResponse: DataResponse {
-    var retObj: HistoryOrderEntity?
+    var retObj: HistoryOrderItem?
     
     required init?(_ map: Map) {
         super.init(map)
@@ -222,7 +224,7 @@ class OrderDetailResponse: DataResponse {
     }
 }
 
-//MARK: 订单详情
+//MARK: 收藏
 class CollectProductResponse: DataResponse {
     var retObj: CollectProductEntity?
     
