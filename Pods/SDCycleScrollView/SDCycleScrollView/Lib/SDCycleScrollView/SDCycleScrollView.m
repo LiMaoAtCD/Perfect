@@ -419,7 +419,7 @@ NSString * const ID = @"cycleCell";
 - (void)setScrollToIndex:(NSInteger)index
 {
     int currentIndex = index;
-    int targetIndex = currentIndex + 1;
+    int targetIndex = currentIndex;
     if (targetIndex >= _totalItemsCount) {
         if (self.infiniteLoop) {
             targetIndex = _totalItemsCount * 0.5;

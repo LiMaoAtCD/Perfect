@@ -263,6 +263,9 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
                     moduleButtons.append(moduleView)
                 }
                 configureModuleButtonsSelectedStatus(0)
+                self.topBanner.setScrollToIndex(0)
+                self.price = self.prices[0]
+
             }
         }
     }
