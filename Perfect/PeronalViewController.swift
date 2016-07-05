@@ -88,7 +88,7 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
         
         nameTextField = UITextField()
         nameTextField.textColor = UIColor.init(hexString: "#333333")
-        nameTextField.text = "长大"
+        nameTextField.text = ""
         nameTextField.font = UIFont.systemFontOfSize(14)
         nameTextField.textAlignment = .Right
         nameTextField.returnKeyType = .Done
@@ -106,7 +106,7 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
         mainView.addSubview(line0)
         line0.snp_makeConstraints { (make) in
             make.left.right.equalTo(mainView)
-            make.height.equalTo(0.3)
+            make.height.equalTo(0.5)
             make.top.equalTo(nameTitleLabel.snp_bottom).offset(34.pixelToPoint)
         }
         
@@ -137,7 +137,7 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
         genderbutton.snp_makeConstraints { (make) in
             make.left.equalTo(genderTitleLabel)
             make.right.equalTo(genderLabel)
-            make.height.equalTo(95.pixelToPoint)
+            make.height.equalTo(90.pixelToPoint)
             make.centerY.equalTo(genderLabel)
         }
         
@@ -146,7 +146,8 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
         
         mainView.addSubview(line1)
         line1.snp_makeConstraints { (make) in
-            make.left.right.height.equalTo(line0)
+            make.left.right.equalTo(line0)
+            make.height.equalTo(0.5).priority(1000)
             make.top.equalTo(genderTitleLabel.snp_bottom).offset(34.pixelToPoint)
         }
         
@@ -327,7 +328,14 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if textField.text == "" {
+            SVProgressHUD.showErrorWithStatus("请输入姓名")
+            return false
+        }
+        
         SVProgressHUD.show()
+        
         NetworkHelper.instance.request(.GET, url: URLConstant.updateLoginMemberInfo.contant, parameters: ["name": self.name!], completion: { (result: DataResponse?) in
             SVProgressHUD.showSuccessWithStatus("修改成功")
             Async.main(after: 1.0, block: { 
