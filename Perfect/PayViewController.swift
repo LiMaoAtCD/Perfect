@@ -128,8 +128,19 @@ class PayViewController: BaseViewController {
         let realm = try! Realm()
         let addresses = realm.objects(AddressItemsEntity)
         if !addresses.isEmpty {
-            addressItemEntity = addresses.first
-        } else {}
+            
+            for address in addresses {
+                if address.isDefault {
+                    addressItemEntity = address
+                }
+            }
+            if let _ = addressItemEntity {
+            } else {
+                addressItemEntity = addresses.first
+            }
+        } else {
+        
+        }
         
         self.price = self.products![self.selectedIndex].price
         self.productId = self.products![selectedIndex].id
