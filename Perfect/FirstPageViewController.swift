@@ -123,7 +123,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
                 currentIndex in
                 
                 let item = self.topBanners![currentIndex]
-                if let action = item.linkAction {
+                if let action = item.linkAction where action != "" {
                     UIViewController.gotoAction( action, from: self)
                 } else {
                     let articleVC = ArticleViewController.someController(ArticleViewController.self, ofStoryBoard: UIStoryboard.main)
