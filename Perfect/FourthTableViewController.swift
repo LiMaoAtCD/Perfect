@@ -92,6 +92,11 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         super.viewWillAppear(animated)
 
         if !updateAvatar {
+            
+            if let url = NSUserDefaults.standardUserDefaults().objectForKey("avatar") as? String {
+                self.avatarImageView.kf_setImageWithURL(NSURL.init(string: url)!)
+            }
+            
             NetworkHelper.instance.request(.GET, url: URLConstant.appMemberCenterIndex.contant, parameters: ["rows": 0, "page": 1], completion: { [weak self](res: PersonalCenterResponse?) in
                 
                 let memberInfo = res?.retObj?.memberInfo
