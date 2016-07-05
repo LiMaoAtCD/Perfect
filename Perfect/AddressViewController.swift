@@ -157,15 +157,21 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
 //                SVProgressHUD.showErrorWithStatus(errormsg ?? "地址修改失败")
 //            }
 
+            var defaultString = ""
+            if isDefault {
+                defaultString = "true"
+            } else {
+                defaultString = "false"
+            }
             
-            NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberDefaultDeliveryAddress.contant, parameters: ["id": NSNumber.init(longLong: id),"isDefault": isDefault], completion: { (result: DataResponse?) in
+            NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberDefaultDeliveryAddress.contant, parameters: ["id": NSNumber.init(longLong: id),"isDefault": defaultString], completion: { (result: DataResponse?) in
                 
                     let realm = try! Realm()
                     let addresses = realm.objects(AddressItemsEntity)
                     if !addresses.isEmpty {
                         
                         for address in addresses {
-                            if address.id == id {
+                            if address.id == id && isDefault {
                                 try! realm.write({
                                     address.isDefault = true
                                 })
@@ -176,7 +182,10 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
                             }
                         }
                     }
-                    
+                self?.addressItems.removeAll()
+                if !addresses.isEmpty {
+                    self?.addressItems.appendContentsOf(addresses)
+                }
                 self?.tableView.reloadData()
                 
                 }, failed: { (msg, code) in
