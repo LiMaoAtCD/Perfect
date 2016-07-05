@@ -11,6 +11,7 @@ import SVProgressHUD
 
 class OrderDetailViewController: BaseViewController {
 
+    var fromList: Bool = false
     
     var orderId: Int64 = 0
     var entity: HistoryOrderItem?
@@ -92,7 +93,7 @@ class OrderDetailViewController: BaseViewController {
         //从商品详情进入
         
         if let _ = entity {
-            
+            fromList = true
             setupScrollSubViews()
             bottomView = UIView()
             view.addSubview(bottomView)
@@ -128,7 +129,12 @@ class OrderDetailViewController: BaseViewController {
     }
     
     override func pop() {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        if fromList {
+            self.navigationController?.popViewControllerAnimated(true)
+        } else {
+            self.navigationController?.popToRootViewControllerAnimated(true)
+
+        }
     }
 
     func setupScrollSubViews() {
@@ -211,7 +217,7 @@ class OrderDetailViewController: BaseViewController {
         cellphoneLabel = UILabel()
         cellphoneLabel.textColor = UIColor.init(hexString: "#333333")
         cellphoneLabel.font = UIFont.systemFontOfSize(13)
-        cellphoneLabel.text = self.entity?.address?.contactPhone
+        cellphoneLabel.text = self.entity?.address?.phone
         mainView.addSubview(cellphoneLabel)
         cellphoneLabel.snp_makeConstraints { (make) in
             make.right.equalTo(mainView).offset(-21.pixelToPoint)
@@ -308,7 +314,7 @@ class OrderDetailViewController: BaseViewController {
         }
 
         customImageView = UIImageView()
-        customImageView.kf_setImageWithURL(NSURL.init(string: self.entity!.productImageId.perfectImageurl(121, h: 157, crop: true))!, placeholderImage: UIImage.init(named: "pay_placeholder")!, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+        customImageView.kf_setImageWithURL(NSURL.init(string: self.entity!.customImageId.perfectImageurl(121, h: 157, crop: true))!, placeholderImage: UIImage.init(named: "pay_placeholder")!, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
 
         mainView.addSubview(customImageView)
         customImageView.snp_makeConstraints { (make) in

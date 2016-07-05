@@ -116,7 +116,7 @@ class AllOrderCell: UITableViewCell {
                     topLabel.textColor = UIColor.init(hexString: color)
                 }
                 nameLabel.text = newValue!.address?.consignee
-                cellphoneLabel.text = newValue!.address?.contactPhone
+                cellphoneLabel.text = newValue!.address?.phone
                 if let fullname = newValue!.address?.areaFullName {
                     if let detail = newValue!.address?.address {
                         addressLabel.text = fullname + detail

@@ -256,6 +256,7 @@ class HistoryOrderItem: Mappable {
     var orderId: Int64 = 0
     var totalPrice: Float = 0.0
     var productId: Int64 = 0
+    var customImageId: Int64 = 0
     
     
 //    var moduleId: Int64 = 0
@@ -291,6 +292,7 @@ class HistoryOrderItem: Mappable {
         orderId <- (map["orderId"], TransformOfUtils.TransformOfInt64())
         totalPrice <- map["totalPrice"]
         productId <- (map["productId"], TransformOfUtils.TransformOfInt64())
+        customImageId <- (map["customImageId"], TransformOfUtils.TransformOfInt64())
     }
 }
 
@@ -300,13 +302,13 @@ class HistoryOrderItemAddress: Mappable {
     var areaId: Int64 = 0
     var consignee: String?
     var address: String?
-    var contactPhone: String?
+    var phone: String?
     
     required init?(_ map: Map) {
     }
     
     func mapping(map: Map) {
-        contactPhone <- map["contactPhone"]
+        phone <- map["phone"]
         address <- map["address"]
         areaName <- map["areaName"]
         consignee <- map["areaName"]
