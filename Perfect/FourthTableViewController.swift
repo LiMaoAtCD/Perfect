@@ -18,6 +18,7 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
     var avatarImageView: UIImageView!
     var nickNameLabel: UILabel!
     var imagePicker: UIImagePickerController?
+    var updateAvatar: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker = UIImagePickerController.init()
@@ -43,7 +44,6 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         }
         
         avatarImageView = UIImageView()
-        avatarImageView.image = UIImage.init(named: "me_avatar")
         avatarImageView.userInteractionEnabled = true
         avatarImageView.layer.cornerRadius = 220.pixelToPoint / 2
         avatarImageView.layer.masksToBounds = true
@@ -87,6 +87,28 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         let tab =  Tool.root.viewControllers.first as! RootTabBarController
         tab.selectedIndex = 0
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if !updateAvatar {
+            NetworkHelper.instance.request(.GET, url: URLConstant.appMemberCenterIndex.contant, parameters: ["rows": 0, "page": 1], completion: { [weak self](res: PersonalCenterResponse?) in
+                
+                let memberInfo = res?.retObj?.memberInfo
+                NSUserDefaults.standardUserDefaults().setObject(memberInfo!.avatarImgId.perfectImageurl(200, h: 200, crop: true), forKey: "avatar")
+                self?.avatarImageView.kf_setImageWithURL(NSURL.init(string: memberInfo!.avatarImgId.perfectImageurl(200, h: 200, crop: true))!)
+                self?.nickNameLabel.text = memberInfo?.nick
+                
+            }) { (errMsg: String?, errCode: Int) in
+                
+            }
+        } else {
+            
+        }
+        
+    }
+    
+    
     
 
     override func didReceiveMemoryWarning() {
@@ -216,13 +238,12 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
     
     func updateAvatarID(imageId: Int64) {
         NetworkHelper.instance.request(.GET, url: URLConstant.updateLoginMemberInfo.contant, parameters: ["avatarId": imageId.toNSNumber], completion: { (result: DataResponse?) in
-                print(result?.retMsg)
+                self.updateAvatar = true
             }) { (msg, code) in
                 SVProgressHUD.showErrorWithStatus(msg)
         }
     }
-    
-    
+
 }
 
 class MeCell: UITableViewCell {

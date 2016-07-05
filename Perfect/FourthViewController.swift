@@ -41,21 +41,7 @@ class FourthViewController: BaseViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //
-        NetworkHelper.instance.request(.GET, url: URLConstant.appMemberCenterIndex.contant, parameters: ["rows": 0, "page": 1], completion: { [weak self](res: PersonalCenterResponse?) in
-                let memberInfo = res?.retObj?.memberInfo
-            
-                self?.fourthTableViewController.avatarImageView.kf_setImageWithURL(NSURL.init(string: memberInfo!.avatarImgId.perfectImageurl(200, h: 200, crop: true))!, placeholderImage: UIImage.init(named: "me_avatar"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
-                self?.fourthTableViewController.nickNameLabel.text = memberInfo?.name
-            
-            
-            }) { (errMsg: String?, errCode: Int) in
-                
-        }
-    }
+
 
 
     override func didReceiveMemoryWarning() {
