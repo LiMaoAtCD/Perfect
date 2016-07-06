@@ -46,6 +46,12 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         }) { (errMsg: String?, errCode: Int) in
             
         }
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.appArticleList.contant, parameters: ["categoryName": "场景页轮播"], completion: { (result: DataResponse?) in
+            
+            }) { (msg, code) in
+                
+        }
     }
     
     
