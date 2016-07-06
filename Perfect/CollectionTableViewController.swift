@@ -8,10 +8,12 @@
 
 import UIKit
 import SVProgressHUD
+import MJRefresh
 
 class CollectionTableViewController: UITableViewController {
 
     var colletionList: [CollectProductItem]!
+    var currentPage: Int = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
@@ -26,12 +28,55 @@ class CollectionTableViewController: UITableViewController {
         self.tableView.registerClass(CollectCell.self, forCellReuseIdentifier: "CollectCell")
         self.tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = UIColor.globalBackGroundColor()
+        
+//        let footer = MJRefreshAutoNormalFooter.init { [weak self]() -> Void in
+//            self?.fetchMore()
+//        }
+//        footer.automaticallyHidden = true
+//        self.tableView.mj_footer = footer
+        
+        let header = MJRefreshNormalHeader.init { [weak self]() -> Void in
+            self?.refreshHeader()
+        }
+        self.tableView.mj_header = header
+        
     }
+    
+    func fetchMore() {
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberFavoriteGoodsList.contant, parameters: ["rows": 20,"page": currentPage], completion: { [weak self](result: CollectProductResponse?) in
+            guard let rows = result?.retObj?.rows else {
+                self?.tableView.mj_footer.endRefreshingWithNoMoreData()
+                return
+            }
+            self?.colletionList.appendContentsOf(rows)
+            self?.tableView.reloadData()
+            self?.tableView.mj_footer.endRefreshing()
+        }) { (msg, code) in
+            SVProgressHUD.showErrorWithStatus(msg)
+            self.tableView.mj_footer.endRefreshing()
+        }
+    }
+    
+    func refreshHeader(){
+        currentPage = 1
+        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberFavoriteGoodsList.contant, parameters: ["rows": 20,"page": currentPage], completion: { [weak self](result: CollectProductResponse?) in
+                self?.colletionList = result?.retObj?.rows
+                self?.tableView.reloadData()
+                self?.currentPage = self!.currentPage + 1
+                self?.tableView.mj_header.endRefreshing()
+            }) { (msg, code) in
+                self.tableView.mj_header.endRefreshing()
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberFavoriteGoodsList.contant, parameters: ["rows": 15,"page": 1], completion: { [weak self](result: CollectProductResponse?) in
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberFavoriteGoodsList.contant, parameters: ["rows": 20,"page": 1], completion: { [weak self](result: CollectProductResponse?) in
             self?.colletionList = result?.retObj?.rows
             self?.tableView.reloadData()
+            self?.currentPage = self!.currentPage + 1
         }) { (msg, code) in
             SVProgressHUD.showErrorWithStatus(msg)
         }

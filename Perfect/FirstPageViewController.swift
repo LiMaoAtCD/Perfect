@@ -12,6 +12,7 @@ import SnapKit
 import SDCycleScrollView
 import Kingfisher
 import SVProgressHUD
+import MJRefresh
 
 class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
@@ -20,8 +21,12 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     var customButtons: [FirstButtonItem]?
     var goodTypes: [FirstGoodsTypeItem]?
     var goods: [ProductItem]?
-    
+//    var leftGoods: [ProductItem]?
+//    var centerGoods: [ProductItem]?
+//    var rightGoods: [ProductItem]?
+
     var selectionSection = 0 //  当前选中的分类
+    var currentPage: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +70,26 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         }) { (errMsg: String?, errCode: Int) in
             SVProgressHUD.showErrorWithStatus(errMsg)
         }
+        
+        let footer = MJRefreshAutoNormalFooter.init { [weak self]() -> Void in
+            self?.fetchGoods()
+        }
+        footer.automaticallyHidden = true
+        self.collection.mj_footer = footer
+    }
+    
+    func fetchGoods() {
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": currentPage], completion: { [weak self](product: ProductListResponse?) in
+            self?.goods = product?.retObj?.rows
+            self?.collection.reloadSections(NSIndexSet.init(index: 3))
+            
+            self?.goods?.count > 0 ? self?.collection.mj_footer?.endRefreshing() : self?.collection.mj_footer.endRefreshingWithNoMoreData()
+        }) { (errMsg: String?, errCode: Int) in
+            SVProgressHUD.showErrorWithStatus(errMsg)
+            self.collection.mj_footer?.endRefreshing()
+
+        }
+
     }
     
     //根据分类ID获取商品列表
@@ -79,9 +104,10 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             }
         }
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": 1], completion: { [weak self](product: ProductListResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": currentPage], completion: { [weak self](product: ProductListResponse?) in
                 self?.goods = product?.retObj?.rows
                 self?.collection.reloadSections(NSIndexSet.init(index: 3))
+                self?.currentPage = self!.currentPage + 1
             }) { (errMsg: String?, errCode: Int) in
                 SVProgressHUD.showErrorWithStatus(errMsg)
         }
@@ -186,9 +212,9 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             header.segmentControl.currentIndex = selectionSection
             //MARK: 切换种类
             header.segmentControl.selectionHandler = { index in
-                print("index: \(index)")
                 self.selectionSection = index
-                NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id)], completion: { [weak self](product: ProductListResponse?) in
+                self.currentPage = 1
+                NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": self.currentPage], completion: { [weak self](product: ProductListResponse?) in
                     self?.goods = product?.retObj?.rows
                  
                     self?.collection.reloadSections(NSIndexSet.init(index: 3))
