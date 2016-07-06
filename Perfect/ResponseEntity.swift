@@ -656,15 +656,24 @@ class CollectProductEntity: Mappable {
     }
 }
 
+//"id": 1,
+//"categoryName": "白酒",
+//"marketPrice": 479.424,
+//"price": 2343.52,
+//"categoryId": 1,
+//"name": "泸州老窖 1573",
+//"thumbnailId": 6,
+//"discount": 1.0
 
 class CollectProductItem: Mappable {
     
     var marketPrice: Float = 0.0
     var price: Float = 0.0
-    var imageId: Int64 = 0
-    var productName: String?
-    var goodsName: String?
-    var goodsId: Int64 = 0
+    var thumbnailId: Int64 = 0
+    var categoryId: Int64 = 0
+    var categoryName: String?
+    var name: String?
+    var id: Int64 = 0
     
     required init?(_ map: Map) {
     }
@@ -672,10 +681,11 @@ class CollectProductItem: Mappable {
     func mapping(map: Map) {
         marketPrice <- map["marketPrice"]
         price <- map["price"]
-        imageId <- (map["imageId"], TransformOfUtils.TransformOfInt64())
-        productName <- map["productName"]
-        goodsName <- map["goodsName"]
-        goodsId <- (map["goodsId"], TransformOfUtils.TransformOfInt64())
+        thumbnailId <- (map["thumbnailId"], TransformOfUtils.TransformOfInt64())
+        categoryId <- (map["categoryId"], TransformOfUtils.TransformOfInt64())
+        categoryName <- map["categoryName"]
+        name <- map["name"]
+        id <- (map["id"], TransformOfUtils.TransformOfInt64())
         
     }
 }

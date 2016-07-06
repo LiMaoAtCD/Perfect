@@ -62,16 +62,16 @@ class CollectionTableViewController: UITableViewController {
         cell.entity = colletionList[indexPath.row]
         cell.deleteHandler = {
             [weak self] tag in
-            self?.deleteCollectItem(self!.colletionList[indexPath.row].goodsId)
+            self?.deleteCollectItem(self!.colletionList[indexPath.row].id)
         }
 
         return cell
     }
     
     func deleteCollectItem(ID: Int64) {
-        NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberGoodsFavorite.contant, parameters: ["productId":NSNumber.init(longLong: ID), "isFavorite": false], completion: { (result: DataResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberGoodsFavorite.contant, parameters: ["goodsId":NSNumber.init(longLong: ID), "isFavorite": "false"], completion: { (result: DataResponse?) in
                 self.colletionList = self.colletionList.filter({ (item) -> Bool in
-                    return item.goodsId != ID
+                    return item.id != ID
                 })
                 self.tableView.reloadData()
             }) { (msg, code) in
@@ -83,7 +83,7 @@ class CollectionTableViewController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let detail = GoodsDetailViewController.someController(GoodsDetailViewController.self, ofStoryBoard: UIStoryboard.main)
-        detail.id = self.colletionList![indexPath.row].goodsId
+        detail.id = self.colletionList![indexPath.row].id
         detail.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(detail, animated: true)
     }
@@ -113,8 +113,8 @@ class CollectCell: UITableViewCell {
         willSet {
             if let _ = newValue {
                 self.price = newValue!.price
-                self.goodTitleLabel.text = newValue!.goodsName
-                self.goodImageView.kf_setImageWithURL(NSURL.init(string: newValue!.imageId.perfectImageurl(200, h: 200, crop: true))!)
+                self.goodTitleLabel.text = newValue!.name
+                self.goodImageView.kf_setImageWithURL(NSURL.init(string: newValue!.thumbnailId.perfectImageurl(200, h: 200, crop: true))!)
             }
         }
     }

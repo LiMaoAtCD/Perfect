@@ -24,6 +24,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     let bottomHeight = 44
     var id: Int64 = 0
     var favorite: Bool = false
+    var collectionTitle: UILabel!
     
     var priceLabel: UILabel!
     
@@ -333,21 +334,24 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         if tag == 0 {
             //收藏
             if !favorite {
-                
-            } else {
-                NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberGoodsFavorite.contant, parameters: ["productId": NSNumber.init(longLong: self.id),"isFavorite": true], completion: { (result: DataResponse?) in
-                        self.favorite = true
+                NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberGoodsFavorite.contant, parameters: ["goodsId": NSNumber.init(longLong: self.id),"isFavorite": "true"], completion: { (result: DataResponse?) in
+                    self.favorite = true
+                    self.collectionTitle.text = "已收藏"
+
                     }, failed: { (errmsg, code) in
                         SVProgressHUD.showErrorWithStatus(errmsg)
                 })
+
+            } else {
+                
             }
         } else if tag == 1 {
             //chat whth qq
-            let webview = UIWebView.init()
-            let url = NSURL.init(string: "mqq://im/chat?chat_type=wpa&uin=501863587&version=1&src_type=web")!
-            webview.loadRequest(NSURLRequest.init(URL: url))
-            webview.delegate = self
-            view.addSubview(webview)
+//            let webview = UIWebView.init()
+//            let url = NSURL.init(string: "mqq://im/chat?chat_type=wpa&uin=501863587&version=1&src_type=web")!
+//            webview.loadRequest(NSURLRequest.init(URL: url))
+//            webview.delegate = self
+//            view.addSubview(webview)
 
         } else { }
 
@@ -387,9 +391,8 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             make.top.equalTo(collect).offset(10.pixelToPoint)
         }
         
-        let collectionTitle = UILabel()
+        collectionTitle = UILabel()
         collect.addSubview(collectionTitle)
-        collectionTitle.text = "收藏"
         collectionTitle.textColor = UIColor.init(hexString: "#666666")
         collectionTitle.font = UIFont.systemFontOfSize(12.0)
 
@@ -397,6 +400,12 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         collectionTitle.snp_makeConstraints { (make) in
             make.left.right.equalTo(collect)
             make.bottom.equalTo(-15.pixelToPoint)
+        }
+        
+        if self.favorite {
+            collectionTitle.text = "已收藏"
+        } else {
+            collectionTitle.text = "收藏"
         }
         
         
@@ -535,7 +544,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             
             let label = UILabel.init()
             label.textColor = UIColor.blackColor()
-            label.text = "xxxx"
+            label.text = ""
             label.textAlignment = .Center
             
             helperView.addSubview(label)
