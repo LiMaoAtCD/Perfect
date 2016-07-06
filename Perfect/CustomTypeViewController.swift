@@ -9,6 +9,7 @@
 import UIKit
 import SDCycleScrollView
 import SVProgressHUD
+import MJRefresh
 
 class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
@@ -16,6 +17,7 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
     var collectionView: UICollectionView!
     var items: [ProductItem]?
     var articles: [ArticleItem]?
+    var currentPage = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +43,7 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         collectionView.registerClass(CustomTypeBannerCell.self, forCellWithReuseIdentifier: CustomTypeBannerCell.identifier)
         
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: id)], completion: { [weak self](product: ProductListResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: id), "rows": 20, "page": 1], completion: { [weak self](product: ProductListResponse?) in
             self?.items = product?.retObj?.rows
             self?.collectionView.reloadSections(NSIndexSet.init(index: 1))
             
@@ -56,6 +58,34 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
             }) { (msg, code) in
                 SVProgressHUD.showErrorWithStatus(msg)
 
+        }
+        
+        let footer = MJRefreshAutoNormalFooter.init { [weak self]() -> Void in
+            self?.fetchGoods()
+        }
+        footer.automaticallyHidden = true
+        self.collectionView.mj_footer = footer
+    }
+    
+    func fetchGoods() {
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: id), "rows": 20, "page": 1], completion: { [weak self](product: ProductListResponse?) in
+            
+            guard let rows = product?.retObj?.rows else {
+                self?.collectionView.mj_footer.endRefreshing()
+                return
+            }
+            
+            self?.items?.appendContentsOf(rows)
+            self?.collectionView.reloadSections(NSIndexSet.init(index: 1))
+            
+            if rows.count < 20 {
+                self?.collectionView.mj_footer.endRefreshingWithNoMoreData()
+            } else {
+                self?.collectionView.mj_footer.endRefreshing()
+            }
+        }) { (errMsg: String?, errCode: Int) in
+            SVProgressHUD.showErrorWithStatus(errMsg)
+            self.collectionView.mj_footer.endRefreshing()
         }
     }
     

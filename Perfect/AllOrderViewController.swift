@@ -8,11 +8,13 @@
 
 import UIKit
 import SVProgressHUD
+import MJRefresh
 
 class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     var tableView: UITableView!
     var item: [HistoryOrderItem]!
+    var currentPage: Int = 1
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,16 +36,47 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
         tableView.tableFooterView = UIView()
 
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.appOrderHistory.contant, parameters: nil, completion: { (result: HistoryOrderResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appOrderHistory.contant, parameters: ["rows": 20, "page": 1], completion: { (result: HistoryOrderResponse?) in
                 if let _ = result?.retObj?.rows {
                     self.item = result?.retObj?.rows!
                     self.tableView.reloadData()
+                    self.currentPage = self.currentPage + 1
                 }
             }) { (errmsg, errcode) in
                 SVProgressHUD.showErrorWithStatus(errmsg ?? "订单列表获取失败")
         }
         
         self.tableView.backgroundColor = UIColor.init(hexString: "#e4ebf0")
+        
+        let footer = MJRefreshAutoNormalFooter.init { [weak self]() -> Void in
+            self?.fetchMoreOrder()
+        }
+        footer.automaticallyHidden = true
+        self.tableView.mj_footer = footer
+    }
+    
+    func fetchMoreOrder() {
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.appOrderHistory.contant, parameters: ["rows": 20, "page": currentPage], completion: { (result: HistoryOrderResponse?) in
+            
+            guard let rows = result?.retObj?.rows else {
+                
+                self.tableView.mj_footer.endRefreshing()
+                return
+            }
+            
+            self.item.appendContentsOf(rows)
+            self.tableView.reloadData()
+            if rows.count < 20 {
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            } else {
+                self.tableView.mj_footer.endRefreshing()
+            }
+            self.currentPage = self.currentPage + 1
+        }) { (errmsg, errcode) in
+            SVProgressHUD.showErrorWithStatus(errmsg ?? "订单列表获取失败")
+        }
+        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

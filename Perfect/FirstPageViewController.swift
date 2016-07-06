@@ -80,14 +80,17 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     
     func fetchGoods() {
         NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": currentPage], completion: { [weak self](product: ProductListResponse?) in
-            self?.goods = product?.retObj?.rows
-            self?.collection.reloadSections(NSIndexSet.init(index: 3))
             
+            guard let rows = product?.retObj?.rows else {
+                self?.collection.mj_footer.endRefreshingWithNoMoreData()
+                return
+            }
+            self?.goods?.appendContentsOf(rows)
+            self?.collection.reloadSections(NSIndexSet.init(index: 3))
             self?.goods?.count > 0 ? self?.collection.mj_footer?.endRefreshing() : self?.collection.mj_footer.endRefreshingWithNoMoreData()
         }) { (errMsg: String?, errCode: Int) in
             SVProgressHUD.showErrorWithStatus(errMsg)
             self.collection.mj_footer?.endRefreshing()
-
         }
 
     }
@@ -104,7 +107,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             }
         }
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": currentPage], completion: { [weak self](product: ProductListResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 20, "page": currentPage], completion: { [weak self](product: ProductListResponse?) in
                 self?.goods = product?.retObj?.rows
                 self?.collection.reloadSections(NSIndexSet.init(index: 3))
                 self?.currentPage = self!.currentPage + 1
@@ -214,9 +217,8 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             header.segmentControl.selectionHandler = { index in
                 self.selectionSection = index
                 self.currentPage = 1
-                NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": self.currentPage], completion: { [weak self](product: ProductListResponse?) in
+                NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 20, "page": self.currentPage], completion: { [weak self](product: ProductListResponse?) in
                     self?.goods = product?.retObj?.rows
-                 
                     self?.collection.reloadSections(NSIndexSet.init(index: 3))
                 }) { (errMsg: String?, errCode: Int) in
                 }
