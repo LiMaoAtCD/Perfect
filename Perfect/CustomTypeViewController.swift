@@ -8,12 +8,14 @@
 
 import UIKit
 import SDCycleScrollView
+import SVProgressHUD
 
 class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     var id: Int64 = 0
     var collectionView: UICollectionView!
     var items: [ProductItem]?
+    var articles: [ArticleItem]?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,19 +40,22 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         collectionView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
         collectionView.registerClass(CustomTypeBannerCell.self, forCellWithReuseIdentifier: CustomTypeBannerCell.identifier)
         
+        
         NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: id)], completion: { [weak self](product: ProductListResponse?) in
-            print(product)
             self?.items = product?.retObj?.rows
             self?.collectionView.reloadSections(NSIndexSet.init(index: 1))
             
         }) { (errMsg: String?, errCode: Int) in
-            
+            SVProgressHUD.showErrorWithStatus(errMsg)
         }
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.appArticleList.contant, parameters: ["categoryName": "场景页轮播"], completion: { (result: DataResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appArticleList.contant, parameters: ["categoryName": "场景页轮播"], completion: { (result: ArticleResponse?) in
             
+                self.articles = result?.retObj?.rows
+                self.collectionView.reloadSections(NSIndexSet.init(index: 0))
             }) { (msg, code) in
-                
+                SVProgressHUD.showErrorWithStatus(msg)
+
         }
     }
     
@@ -71,22 +76,29 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
             //MARK: 处理banner 跳转
             cell.banner.clickItemOperationBlock = {
                 currentIndex in
-                
-//                let detail = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("GoodsDetailViewController") as! GoodsDetailViewController
-//                detail.hidesBottomBarWhenPushed = true
-//                self.navigationController?.pushViewController(detail, animated: true)
+                let item = self.articles![currentIndex]
+                if let action = item.linkAction where action != "" {
+                    UIViewController.gotoAction( action, from: self)
+                } else {
+                    let articleVC = ArticleViewController.someController(ArticleViewController.self, ofStoryBoard: UIStoryboard.main)
+                    articleVC.hidesBottomBarWhenPushed = true
+                    articleVC.id = Int64(item.id)
+                    self.navigationController?.pushViewController(articleVC, animated: true)
+                }
             }
             
-            let imageIds: [Int64] = [1,2,3,4]
             
-            let imageUrl =  [
-                imageIds[0].perfectImageurl(750, h: 236, crop: true),
-                imageIds[1].perfectImageurl(750, h: 236, crop: true),
-                imageIds[2].perfectImageurl(750, h: 236, crop: true),
-                imageIds[3].perfectImageurl(750, h: 236, crop: true)
-            ]
-
-            cell.banner.imageURLStringsGroup = imageUrl
+            if let _ = articles {
+                var imageUrl: [String] = [String]()
+                for item in articles! {
+                    imageUrl.append(item.thumbnail.perfectImageurl(750, h: 236, crop: true))
+                }
+                
+                cell.banner.imageURLStringsGroup = imageUrl
+            }
+           
+            
+          
             
             return cell
         }else {

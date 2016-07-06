@@ -224,6 +224,8 @@ class OrderDetailResponse: DataResponse {
     }
 }
 
+
+
 //MARK: 收藏
 class CollectProductResponse: DataResponse {
     var retObj: CollectProductEntity?
@@ -251,6 +253,21 @@ class UploadImageResponse: DataResponse {
         retObj <- map["retObj"]
     }
 }
+
+//MARK: 上传图片
+class ArticleResponse: DataResponse {
+    var retObj: ArticleEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        retObj <- map["retObj"]
+    }
+}
+
 
 
 

@@ -703,6 +703,38 @@ class UploadImageEntity: Mappable {
 
 
 
+//MARK: -文章
+class ArticleEntity: Mappable {
+    var total: Int = 0
+    var rows: [ArticleItem]?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        total <- map["total"]
+        rows <- map["rows"]
+    }
+
+}
+
+class ArticleItem: Mappable {
+    var id: Int64 = 0
+    var title: String?
+    var thumbnail: Int64 = 0
+    var readMark: Bool = false
+    var linkAction: String?
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        id <- (map["id"], TransformOfUtils.TransformOfInt64())
+        title <- map["title"]
+        thumbnail <- (map["thumbnail"], TransformOfUtils.TransformOfInt64())
+        readMark <- map["readMark"]
+        linkAction <- map["linkAction"]
+
+    }
+}
 
 
 

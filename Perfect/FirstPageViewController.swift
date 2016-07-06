@@ -544,11 +544,7 @@ class SegmentControlView : UIView {
     }
     
     func didClickItem(btn: UIButton) {
-        self.currentIndex = btn.tag
-        if prefixIndex != currentIndex {
-            self.selectionHandler?(btn.tag)
-        }
-        self.prefixIndex = self.currentIndex
+        self.selectionHandler?(btn.tag)
     }
     
     required init?(coder aDecoder: NSCoder) {
