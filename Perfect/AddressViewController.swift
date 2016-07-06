@@ -230,7 +230,10 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.selectedHandler?(addressItems[indexPath.row])
+        if let _ = self.selectedHandler {
+            self.selectedHandler!(addressItems[indexPath.row])
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
