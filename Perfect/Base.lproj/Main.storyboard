@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xdm-L1-QGS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xdm-L1-QGS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -181,7 +181,9 @@
         <scene sceneID="TkM-Nk-p6Y">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="SfO-gc-2ha" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" id="Lh5-ES-6Dd"/>
+                    <tabBarItem key="tabBarItem" title="首页" id="Lh5-ES-6Dd">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9N5-5f-KKf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -200,7 +202,9 @@
         <scene sceneID="MLM-sn-6H4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="DAk-Yl-Gtx" customClass="MeNavigationController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="个人中心" id="acW-Jo-EoT"/>
+                    <tabBarItem key="tabBarItem" title="个人中心" id="acW-Jo-EoT">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kwf-g6-DEC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -249,7 +253,9 @@
         <scene sceneID="3O0-kj-ctC">
             <objects>
                 <navigationController id="YQW-J1-meK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的收藏" id="vIY-1W-9Iz"/>
+                    <tabBarItem key="tabBarItem" title="我的收藏" id="vIY-1W-9Iz">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nmC-gW-184">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

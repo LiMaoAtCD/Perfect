@@ -80,14 +80,19 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     
     func fetchGoods() {
         NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": currentPage], completion: { [weak self](product: ProductListResponse?) in
-            
+            self?.collection.mj_footer.hidden = true
             guard let rows = product?.retObj?.rows else {
                 self?.collection.mj_footer.endRefreshingWithNoMoreData()
                 return
             }
+            
+            
+            rows.count == 15 ? self?.collection.mj_footer?.endRefreshing() : self?.collection.mj_footer.endRefreshingWithNoMoreData()
+            
             self?.goods?.appendContentsOf(rows)
             self?.collection.reloadSections(NSIndexSet.init(index: 3))
-            self?.goods?.count > 0 ? self?.collection.mj_footer?.endRefreshing() : self?.collection.mj_footer.endRefreshingWithNoMoreData()
+            self?.collection.mj_footer.hidden = false
+
         }) { (errMsg: String?, errCode: Int) in
             SVProgressHUD.showErrorWithStatus(errMsg)
             self.collection.mj_footer?.endRefreshing()

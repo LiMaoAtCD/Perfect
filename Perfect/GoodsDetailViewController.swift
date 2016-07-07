@@ -125,6 +125,75 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             make.height.equalTo(300)
         }
         
+        let shadow = UIImageView.init(image: UIImage.init(named: "detail_shadow"))
+        goodsInfoView.addSubview(shadow)
+        shadow.snp_makeConstraints { (make) in
+            make.top.left.right.equalTo(goodsInfoView)
+            make.height.equalTo(10.pixelToPoint)
+        }
+        
+        let moduleTitleLabel = UILabel()
+        
+        goodsInfoView.addSubview(moduleTitleLabel)
+        moduleTitleLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(31.pixelToPoint)
+            make.top.equalTo(goodsInfoView).offset(26.pixelToPoint)
+        }
+        
+        moduleTitleLabel.text = "模块选择"
+        moduleTitleLabel.textColor = UIColor.init(hexString: "#333333")
+        moduleTitleLabel.font = UIFont.systemFontOfSize(16.0)
+        
+        if let products = self.detail?.products {
+            if products.count > 0 {
+                
+                self.products = products
+                if let _ = self.products {
+                    for product in self.products! {
+                        self.prices.append(product.price)
+                    }
+                }
+                
+                let moduleMargin  = 24.pixelToPoint
+                let itemWidth = (Tool.width - CGFloat(products.count) * moduleMargin * 2) / CGFloat(products.count)
+                moduleButtons = [UIButton]()
+                for i in 0 ..< products.count {
+                    let moduleView = UIButton.init(type: .Custom)
+                    moduleView.tag = i
+                    moduleView.layer.borderColor = UIColor.redColor().CGColor
+                    moduleView.layer.borderWidth = 0.3
+                    moduleView.layer.cornerRadius = 5
+                    moduleView.layer.masksToBounds = true
+                    moduleView.addTarget(self, action: #selector(self.switchProduct(_:)), forControlEvents: .TouchUpInside)
+                    goodsInfoView.addSubview(moduleView)
+                    moduleView.snp_makeConstraints(closure: { (make) in
+                        make.left.equalTo(moduleMargin + CGFloat(i) * (itemWidth + moduleMargin * 2))
+                        make.top.equalTo(moduleTitleLabel.snp_bottom).offset(33.pixelToPoint)
+                        make.width.equalTo(itemWidth)
+                        make.height.equalTo(60.pixelToPoint)
+                    })
+                    
+                    if i == 0 {
+                        moduleView.setTitle("模块一", forState: .Normal)
+                    } else if i == 1 {
+                        moduleView.setTitle("模块二", forState: .Normal)
+                    } else if i == 2 {
+                        moduleView.setTitle("模块三", forState: .Normal)
+                    } else if i == 3 {
+                        moduleView.setTitle("模块四", forState: .Normal)
+                    }
+                    moduleButtons.append(moduleView)
+                }
+                configureModuleButtonsSelectedStatus(0)
+                
+            }
+        }
+        
+        
+//        make.bottom.equalTo(goodsInfoView.snp_bottom).offset(-20.pixelToPoint)
+
+
+        
         let titleLabel = UILabel()
         goodsInfoView.addSubview(titleLabel)
         titleLabel.text = self.detail?.name
@@ -135,7 +204,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         titleLabel.snp_makeConstraints { (make) in
             make.left.equalTo(goodsInfoView).offset(24.pixelToPoint)
             make.right.equalTo(goodsInfoView).offset(-24.pixelToPoint)
-            make.top.equalTo(24.pixelToPoint)
+            make.top.equalTo(moduleButtons[0].snp_bottom).offset(24.pixelToPoint)
         }
         
         priceLabel = UILabel()
@@ -208,68 +277,14 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             make.left.right.equalTo(goodsInfoView)
             make.height.equalTo(1)
             make.top.equalTo(deliverLabel.snp_bottom).offset(50.pixelToPoint)
+            make.bottom.equalTo(goodsInfoView).offset(-20.pixelToPoint)
         }
         
-        let moduleTitleLabel = UILabel()
-        
-        goodsInfoView.addSubview(moduleTitleLabel)
-        moduleTitleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(31.pixelToPoint)
-            make.top.equalTo(margin).offset(26.pixelToPoint)
-        }
-        
-        moduleTitleLabel.text = "模块选择"
-        moduleTitleLabel.textColor = UIColor.init(hexString: "#333333")
-        moduleTitleLabel.font = UIFont.systemFontOfSize(16.0)
-        
-        if let products = self.detail?.products {
-            if products.count > 0 {
-                
-                self.products = products
-                if let _ = self.products {
-                    for product in self.products! {
-                        self.prices.append(product.price)
-                    }
-                }
-             
-                let moduleMargin  = 24.pixelToPoint
-                let itemWidth = (Tool.width - CGFloat(products.count) * moduleMargin * 2) / CGFloat(products.count)
-                moduleButtons = [UIButton]()
-                for i in 0 ..< products.count {
-                    let moduleView = UIButton.init(type: .Custom)
-                    moduleView.tag = i
-                    moduleView.layer.borderColor = UIColor.redColor().CGColor
-                    moduleView.layer.borderWidth = 0.3
-                    moduleView.layer.cornerRadius = 5
-                    moduleView.layer.masksToBounds = true
-                    moduleView.addTarget(self, action: #selector(self.switchProduct(_:)), forControlEvents: .TouchUpInside)
-                    goodsInfoView.addSubview(moduleView)
-                    moduleView.snp_makeConstraints(closure: { (make) in
-                        make.left.equalTo(moduleMargin + CGFloat(i) * (itemWidth + moduleMargin * 2))
-                        make.top.equalTo(moduleTitleLabel.snp_bottom).offset(33.pixelToPoint)
-                        make.width.equalTo(itemWidth)
-                        make.height.equalTo(60.pixelToPoint)
-                        make.bottom.equalTo(goodsInfoView.snp_bottom).offset(-20.pixelToPoint)
-                    })
-                    
-                    if i == 0 {
-                        moduleView.setTitle("模块一", forState: .Normal)
-                    } else if i == 1 {
-                        moduleView.setTitle("模块二", forState: .Normal)
-                    } else if i == 2 {
-                        moduleView.setTitle("模块三", forState: .Normal)
-                    } else if i == 3 {
-                        moduleView.setTitle("模块四", forState: .Normal)
-                    }
-                    moduleButtons.append(moduleView)
-                }
-                configureModuleButtonsSelectedStatus(0)
-                self.topBanner.setScrollToIndex(0)
-                self.price = self.prices[0]
+        self.topBanner.setScrollToIndex(0)
+        self.price = self.prices[0]
 
-            }
-        }
-    }
+        
+   }
     
     func switchProduct(btn: UIButton) {
         self.selectedModuleIndex = btn.tag
@@ -309,7 +324,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             make.width.equalTo(Tool.width)
             make.top.equalTo(goodsInfoView.snp_bottom)
             make.bottom.equalTo(scrollView.snp_bottom)
-            make.height.equalTo(1000)
+            make.height.equalTo(0)
         })
     }
     
