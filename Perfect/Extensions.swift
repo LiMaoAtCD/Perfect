@@ -211,7 +211,7 @@ extension String {
     
     var isValidCellPhone: Bool {
         let string: NSString = NSString(string: self)
-        let mobile = "^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|70)\\d{8}$"
+        let mobile = "^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|7[0-9])\\d{8}$"
         let  CM = "^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d)\\d{7}$"
         let  CU = "^1(3[0-2]|5[256]|8[56])\\d{8}$"
         let  CT = "^1((33|53|8[09])[0-9]|349)\\d{7}$"

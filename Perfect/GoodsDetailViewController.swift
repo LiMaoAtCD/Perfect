@@ -189,6 +189,15 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             }
         }
         
+        let margin = UIView()
+        goodsInfoView.addSubview(margin)
+        margin.backgroundColor = UIColor.init(hexString: "#ebebeb")
+        margin.snp_makeConstraints { (make) in
+            make.left.right.equalTo(goodsInfoView)
+            make.height.equalTo(1)
+            make.top.equalTo(moduleButtons[0].snp_bottom).offset(50.pixelToPoint)
+        }
+
         
 //        make.bottom.equalTo(goodsInfoView.snp_bottom).offset(-20.pixelToPoint)
 
@@ -204,7 +213,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         titleLabel.snp_makeConstraints { (make) in
             make.left.equalTo(goodsInfoView).offset(24.pixelToPoint)
             make.right.equalTo(goodsInfoView).offset(-24.pixelToPoint)
-            make.top.equalTo(moduleButtons[0].snp_bottom).offset(24.pixelToPoint)
+            make.top.equalTo(margin.snp_bottom).offset(24.pixelToPoint)
         }
         
         priceLabel = UILabel()
@@ -268,22 +277,11 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         deliverLabel.snp_makeConstraints { (make) in
             make.left.equalTo(deliverTag.snp_right).offset(14.pixelToPoint)
             make.centerY.equalTo(deliverTag)
-        }
-        
-        let margin = UIView()
-        goodsInfoView.addSubview(margin)
-        margin.backgroundColor = UIColor.init(hexString: "#ebebeb")
-        margin.snp_makeConstraints { (make) in
-            make.left.right.equalTo(goodsInfoView)
-            make.height.equalTo(1)
-            make.top.equalTo(deliverLabel.snp_bottom).offset(50.pixelToPoint)
             make.bottom.equalTo(goodsInfoView).offset(-20.pixelToPoint)
         }
         
         self.topBanner.setScrollToIndex(0)
         self.price = self.prices[0]
-
-        
    }
     
     func switchProduct(btn: UIButton) {

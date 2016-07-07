@@ -201,8 +201,22 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
             self?.navigationController?.pushViewController(edit, animated: true)
         }
         cell.deleteView.clickHandler = { [weak self](id, isDefault) in
+            
+            self?.alertDeleteAddress(id, isDefault: isDefault)
+        }
+        
+
+        return cell
+    }
+    
+    func alertDeleteAddress(id: Int64, isDefault: Bool) {
+        
+        let alertController = UIAlertController.init(title: "", message: "确认删除收获地址？", preferredStyle: .Alert)
+        
+        let sureAction = UIAlertAction.init(title: "确认", style: .Default) { (_) in
+            SVProgressHUD.show()
             NetworkHelper.instance.request(.GET, url: URLConstant.deleteLoginMemberDeliveryAddress.contant, parameters: ["id": NSNumber.init(longLong: id),"isDefault": isDefault], completion: { [weak self](result: DataResponse?) in
-                
+                SVProgressHUD.dismiss()
                 self?.addressItems.removeAll()
                 let realm = try! Realm()
                 let toDeleteaddresses = realm.objects(AddressItemsEntity).filter("id == \(id)")
@@ -217,7 +231,7 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
                     self?.addressItems.appendContentsOf(addresses)
                 }
                 
-
+                
                 self?.tableView.reloadData()
                 
                 }, failed: { (errmsg: String?, errcode: Int) in
@@ -225,8 +239,16 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
             })
         }
         
+        let cancelAction = UIAlertAction.init(title: "取消", style: UIAlertActionStyle.Default) { (_) in
+            
+        }
+        
+        alertController.addAction(sureAction)
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
 
-        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

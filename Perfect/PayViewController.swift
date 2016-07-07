@@ -125,10 +125,17 @@ class PayViewController: BaseViewController {
         configurePayView()
         configureTotalView()
         
+        
+        self.price = self.products![self.selectedIndex].price
+        self.productId = self.products![selectedIndex].id
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         let realm = try! Realm()
         let addresses = realm.objects(AddressItemsEntity)
         if !addresses.isEmpty {
-            
             for address in addresses {
                 if address.isDefault {
                     addressItemEntity = address
@@ -139,11 +146,8 @@ class PayViewController: BaseViewController {
                 addressItemEntity = addresses.first
             }
         } else {
-        
+            
         }
-        
-        self.price = self.products![self.selectedIndex].price
-        self.productId = self.products![selectedIndex].id
 
     }
     
@@ -690,6 +694,13 @@ class PayViewController: BaseViewController {
             SVProgressHUD.showErrorWithStatus("请上传定制图片")
             return
         }
+        if addressItemEntity!.invalidated {
+            self.addressLabel.text = "请完善您的收货信息"
+            self.contactLabel.text = ""
+            self.nameLabel.text = ""
+            SVProgressHUD.showErrorWithStatus("您的收获地址已被删除")
+            return
+        }
         
         var payTypeString: String = ""
         if payType == .Offline {
@@ -700,6 +711,7 @@ class PayViewController: BaseViewController {
             payTypeString = "alipay"
         }
 
+        
         
         
         NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmOrder.contant, parameters: [
