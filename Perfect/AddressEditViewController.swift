@@ -35,6 +35,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
                 self.addressString = item.areaFullName ?? ""
                 self.detailAddress = item.contactAddress ?? ""
                 self.id = item.id
+                self.areaID = item.areaId
             }
         }
     }

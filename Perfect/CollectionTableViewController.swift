@@ -114,15 +114,32 @@ class CollectionTableViewController: UITableViewController {
     }
     
     func deleteCollectItem(ID: Int64) {
-        NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberGoodsFavorite.contant, parameters: ["goodsId":NSNumber.init(longLong: ID), "isFavorite": "false"], completion: { (result: DataResponse?) in
+        
+        let alertController = UIAlertController.init(title: "", message: "确定删除此收藏商品？", preferredStyle: .Alert)
+        
+        let sureAction = UIAlertAction.init(title: "确认", style: .Default) { (_) in
+            SVProgressHUD.show()
+            NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberGoodsFavorite.contant, parameters: ["goodsId":NSNumber.init(longLong: ID), "isFavorite": "false"], completion: { (result: DataResponse?) in
                 self.colletionList = self.colletionList.filter({ (item) -> Bool in
                     return item.id != ID
                 })
                 self.tableView.reloadData()
+                SVProgressHUD.dismiss()
             }) { (msg, code) in
                 SVProgressHUD.showErrorWithStatus(msg)
+            }
+
         }
-    }
+        
+        let cancelAction = UIAlertAction.init(title: "取消", style: UIAlertActionStyle.Default) { (_) in
+            
+        }
+        
+        alertController.addAction(sureAction)
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+   }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
