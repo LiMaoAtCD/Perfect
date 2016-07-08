@@ -133,23 +133,31 @@ class AddressChooseViewController: UIViewController,UIPickerViewDelegate, UIPick
             selectionCityRow = row
 
             countys?.removeAll()
-            let countyItems = citys![row].c
-            countys?.appendContentsOf(countyItems)
-            pickerView.reloadComponent(component + 1)
-            self.pickerView(pickerView, didSelectRow: 0, inComponent: component + 1)
-            pickerView.selectRow(0, inComponent: component + 1, animated: true)
-            
-            if countys!.isEmpty {
-                addressString = provinces![selectionProvinceRow].n! + citys![selectionCityRow].n!
-                areaID = citys![selectionCityRow].i
+            if citys!.count > row {
+                let countyItems = citys![row].c
+                countys?.appendContentsOf(countyItems)
+                pickerView.reloadComponent(component + 1)
+                self.pickerView(pickerView, didSelectRow: 0, inComponent: component + 1)
+                pickerView.selectRow(0, inComponent: component + 1, animated: true)
+                
+                if countys!.isEmpty {
+                    addressString = provinces![selectionProvinceRow].n! + citys![selectionCityRow].n!
+                    areaID = citys![selectionCityRow].i
+                }
+            } else {
+                
             }
+        
         } else {
             selectionCountyRow = row
             if countys!.isEmpty {
             } else {
-                addressString = provinces![selectionProvinceRow].n! + citys![selectionCityRow].n! + countys![row].n!
-                areaID = countys![selectionCountyRow].i
-
+                
+                if countys!.count > row {
+                    addressString = provinces![selectionProvinceRow].n! + citys![selectionCityRow].n! + countys![row].n!
+                    areaID = countys![selectionCountyRow].i
+                }
+               
             }
             
         }
