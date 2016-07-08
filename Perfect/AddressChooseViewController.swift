@@ -108,11 +108,24 @@ class AddressChooseViewController: UIViewController,UIPickerViewDelegate, UIPick
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-            return provinces![row].n ?? " "
+            if provinces!.count > row {
+                return provinces![row].n ?? " "
+            } else {
+                return ""
+            }
         } else if component == 1 {
-            return citys![row].n ?? " "
+            if citys!.count > row {
+                return citys![row].n ?? " "
+            } else {
+                return ""
+            }
         } else {
-            return countys![row].n ?? " "
+            
+            if countys!.count > row {
+                return countys![row].n ?? " "
+            } else {
+                return ""
+            }
         }
         
     }
@@ -123,9 +136,12 @@ class AddressChooseViewController: UIViewController,UIPickerViewDelegate, UIPick
             selectionProvinceRow = row
 
             citys?.removeAll()
+            countys?.removeAll()
             let cityitems = provinces![row].c
             citys?.appendContentsOf(cityitems)
             pickerView.reloadComponent(component + 1)
+            pickerView.reloadComponent(component + 2)
+
             self.pickerView(pickerView, didSelectRow: 0, inComponent: component + 1)
             pickerView.selectRow(0, inComponent: component + 1, animated: true)
             
