@@ -27,11 +27,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         hello()
         fetchAreaID()
+        configureReachability()
+        
         return true
     }
     
     func configureSVProgressHUD() {
         SVProgressHUD.setMinimumDismissTimeInterval(1.0)
+    }
+    
+    func configureReachability() {
+        let manager = NetworkReachabilityManager(host: "www.baidu.com")
+        
+        manager?.listener = { status in
+            print("Network Status Changed: \(status)")
+            if status == .NotReachable || status == .Unknown {
+                SVProgressHUD.showErrorWithStatus("网络已经断开，请检查网络设置")
+            } else {
+            
+            }
+        }
+        
+        manager?.startListening()
     }
 
 
