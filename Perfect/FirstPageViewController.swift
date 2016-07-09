@@ -72,6 +72,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             self?.fetchGoods()
         }
         footer.automaticallyHidden = true
+        footer.setTitle("- 没有更多了 -", forState: MJRefreshState.NoMoreData)
         self.collection.mj_footer = footer
     }
     
@@ -357,15 +358,18 @@ class CollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.whiteColor()
         
         mainView = UIView()
         self.addSubview(mainView)
+//        mainView.snp_makeConstraints { (make) in
+//            make.left.equalTo(5.pixelToPoint)
+//            make.right.equalTo(-5.pixelToPoint)
+//            make.top.equalTo(21.pixelToPoint)
+//            make.bottom.equalTo(0)
+//        }
         mainView.snp_makeConstraints { (make) in
-            make.left.equalTo(5.pixelToPoint)
-            make.right.equalTo(-5.pixelToPoint)
-            make.top.equalTo(21.pixelToPoint)
-            make.bottom.equalTo(0)
+            make.edges.equalTo(self)
         }
         mainView.backgroundColor = UIColor.whiteColor()
         mainView.layer.borderColor = UIColor.init(hexString: "#ebebeb").CGColor
@@ -378,16 +382,16 @@ class CollectionViewCell: UICollectionViewCell {
         mainView.addSubview(imageView)
         imageView.snp_makeConstraints { (make) in
             make.left.right.top.equalTo(mainView)
-            make.height.equalTo(imageView.snp_width).multipliedBy(352.0 / 355.0)
+            make.height.equalTo(imageView.snp_width).multipliedBy(390.0 / 375.0)
             make.bottom.equalTo(mainView).offset(-155.pixelToPoint)
         }
-        imageView.layer.borderColor = UIColor.init(hexString: "#ebebeb").CGColor
-        imageView.layer.borderWidth = 0.3
+//        imageView.layer.borderColor = UIColor.init(hexString: "#ebebeb").CGColor
+//        imageView.layer.borderWidth = 0.3
         
         title = UILabel.init()
         mainView.addSubview(title)
-        title.textColor = UIColor.init(hexString: "#333333")
-        title.numberOfLines = 0
+        title.textColor = UIColor.globalDarkColor()
+//        title.numberOfLines = 0
         title.font = UIFont.systemFontOfSize(14)
         title.snp_makeConstraints { (make) in
             make.left.equalTo(16.pixelToPoint)
@@ -520,8 +524,8 @@ class Header: UICollectionReusableView {
         segmentControl = SegmentControlView.init()
         self.addSubview(segmentControl)
         segmentControl.snp_makeConstraints { (make) in
-            make.left.equalTo(45.pixelToPoint)
-            make.right.equalTo(-45.pixelToPoint)
+            make.left.equalTo(0.pixelToPoint)
+            make.right.equalTo(0.pixelToPoint)
             make.top.bottom.equalTo(self)
         }
     }

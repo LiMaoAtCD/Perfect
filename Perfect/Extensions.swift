@@ -266,6 +266,16 @@ extension UIColor {
     class func globalDarkColor() -> UIColor {
         return UIColor.init(hexString: "#3d4756", withAlpha: 1.0)
     }
+    
+    class func globalLightGrayColor() -> UIColor {
+        return UIColor.init(hexString: "#c1c3c7", withAlpha: 1.0)
+    }
+    
+    class func globalSeparatorColor() -> UIColor {
+        return UIColor.init(hexString: "#e3e3e3", withAlpha: 1.0)
+    }
+    
+
 }
 
 
