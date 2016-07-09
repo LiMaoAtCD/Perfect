@@ -353,6 +353,8 @@ class CollectionViewCell: UICollectionViewCell {
                 title.text = newValue!.name
 //                marketPrice.text = newValue!.marketPrice.currency
                 price = newValue!.price
+                detailTitle.text = "浪去特曲 53点啊离开家大量可激发了房间卡"
+                
             }
         }
     }
@@ -405,7 +407,6 @@ class CollectionViewCell: UICollectionViewCell {
             make.top.equalTo(title.snp_bottom).offset(5.pixelToPoint)
         }
         
-        detailTitle.text = "浪去特曲 53点啊离开家大量可激发了房间卡"
         
         priceLabel = UILabel.init()
         self.addSubview(priceLabel)

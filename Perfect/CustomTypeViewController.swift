@@ -121,19 +121,16 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
             if let _ = articles {
                 var imageUrl: [String] = [String]()
                 for item in articles! {
-                    imageUrl.append(item.thumbnail.perfectImageurl(750, h: 236, crop: true))
+                    imageUrl.append(item.thumbnail.perfectImageurl(750, h: 580, crop: true))
                 }
                 
                 cell.banner.imageURLStringsGroup = imageUrl
             }
-           
-            
-          
-            
             return cell
         }else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCell.identifier, forIndexPath: indexPath) as! CollectionViewCell
                 cell.entity = items![indexPath.row]
+                cell.layoutIfNeeded()
                 return cell
         }
     }
@@ -141,9 +138,9 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSizeMake(Tool.width, 236 / 750 * Tool.width)
+            return CGSizeMake(Tool.width, (580 + 85) / 750 * Tool.width)
         }else {
-            return CGSizeMake(Tool.width / 2, Tool.width * 510.0 / 750)
+            return CGSizeMake(Tool.width / 2, Tool.width * 580 / 750)
         }
     }
 
@@ -206,18 +203,39 @@ class FirstDetailCollectionCell: UICollectionViewCell {
 class CustomTypeBannerCell: UICollectionViewCell {
     static let identifier = "CustomTypeBannerCell"
     var banner: SDCycleScrollView!
+    var typeImageView: UIImageView!
+    var customTitleLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.whiteColor()
         
         banner = SDCycleScrollView.init()
         self.addSubview(banner)
         banner.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter
-        banner.currentPageDotColor = UIColor.init(hexString: "#f04848")
+        banner.currentPageDotColor = UIColor.globalRedColor()
         banner.pageDotColor = UIColor.whiteColor()
         banner.snp_makeConstraints { (make) in
-            make.edges.equalTo(self).offset(UIEdgeInsetsMake(0, 0, -20.pixelToPoint, 0))
+            make.edges.equalTo(self).offset(UIEdgeInsetsMake(0, 0, -85.pixelToPoint, 0))
+        }
+        
+        typeImageView = UIImageView.init(image: UIImage.init(named: "type_title_bottom"))
+        self.addSubview(typeImageView)
+        typeImageView.snp_makeConstraints { (make) in
+            make.centerX.equalTo(self)
+            make.bottom.equalTo(self)
+            make.width.equalTo(130.pixelToPoint)
+            make.height.equalTo(78.pixelToPoint)
+        }
+        customTitleLabel = UILabel()
+        customTitleLabel.text = "精选婚宴酒"
+        customTitleLabel.backgroundColor = UIColor.init(white: 1.0, alpha: 0.5)
+        customTitleLabel.textColor = UIColor.globalDarkColor()
+        customTitleLabel.font = UIFont.systemFontOfSize(14.0)
+        self.addSubview(customTitleLabel)
+        customTitleLabel.snp_makeConstraints { (make) in
+            make.center.equalTo(typeImageView)
+            
         }
         
     }
