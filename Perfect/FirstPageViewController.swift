@@ -275,7 +275,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 3 {
-            return CGSizeMake(Tool.width, 124.pixelToPoint)
+            return CGSizeMake(Tool.width, 90.pixelToPoint)
         } else {
             return CGSizeZero
         }
@@ -520,7 +520,9 @@ class Header: UICollectionReusableView {
         segmentControl = SegmentControlView.init()
         self.addSubview(segmentControl)
         segmentControl.snp_makeConstraints { (make) in
-            make.edges.equalTo(self)
+            make.left.equalTo(45.pixelToPoint)
+            make.right.equalTo(-45.pixelToPoint)
+            make.top.bottom.equalTo(self)
         }
     }
     
@@ -533,7 +535,7 @@ class Header: UICollectionReusableView {
 class SegmentControlView : UIView {
     
     var buttons:[UIButton]?
-    
+    var bottomViews: [UIView]?
     var selectionHandler: (Int -> Void)?
     
     var prefixIndex: Int = 0
@@ -541,11 +543,11 @@ class SegmentControlView : UIView {
         willSet{
             for i in 0...2 {
                 if newValue == i {
-                    self.buttons?[i].setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                    self.buttons?[i].backgroundColor = UIColor.init(hexString: "#ee304e")
+                    self.buttons?[i].setTitleColor(UIColor.globalDarkColor(), forState: .Normal)
+                    self.bottomViews?[i].backgroundColor = UIColor.globalRedColor()
                 } else {
-                    self.buttons?[i].setTitleColor(UIColor.init(hexString: "#333333"), forState: .Normal)
-                    self.buttons?[i].backgroundColor = UIColor.whiteColor()
+                    self.buttons?[i].setTitleColor(UIColor.init(hexString: "#e6e7e8"), forState: .Normal)
+                    self.bottomViews?[i].backgroundColor = UIColor.whiteColor()
                 }
             }
         }
@@ -565,29 +567,85 @@ class SegmentControlView : UIView {
         super.init(frame: frame)
         
         buttons = [UIButton]()
-        let buttonMargin: CGFloat = 10.0
-        let buttonWidth = (Tool.width - 6 * buttonMargin) / 3
+        bottomViews = [UIView]()
         
-        for i in 0...2 {
-            let button = UIButton.init(type: .Custom)
-            button.tag = i
-            self.addSubview(button)
-            
-            button.frame = CGRectMake(buttonMargin * ((CGFloat(i) * 2) + 1) + CGFloat(i) * buttonWidth, 3, buttonWidth, frame.size.height - 6)
-            
-            let leftOffset = buttonMargin * ((CGFloat(i) * 2) + 1) + CGFloat(i) * buttonWidth
-            button.snp_makeConstraints(closure: { (make) in
-                make.left.equalTo(self).offset(leftOffset)
-                make.top.equalTo(20.pixelToPoint)
-                make.width.equalTo(buttonWidth)
-                make.bottom.equalTo(-20.pixelToPoint)
-            })
-            
-            button.layer.cornerRadius = 20
-            button.layer.masksToBounds = true
-            button.addTarget(self, action: #selector(self.didClickItem(_:)), forControlEvents: .TouchUpInside)
-            buttons?.append(button)
+        let button0 = UIButton.init(type: .Custom)
+        button0.titleLabel?.font = UIFont.systemFontOfSize(14.0)
+        button0.tag = 0
+        self.addSubview(button0)
+        button0.snp_makeConstraints { (make) in
+            make.left.equalTo(self)
+            make.width.equalTo(120.pixelToPoint)
+            make.height.equalTo(self)
+            make.centerY.equalTo(self)
         }
+        
+        let view0 = UIView()
+        view0.backgroundColor = UIColor.globalRedColor()
+        self.addSubview(view0)
+        view0.snp_makeConstraints { (make) in
+            make.left.right.equalTo(button0)
+            make.height.equalTo(4.pixelToPoint)
+            make.bottom.equalTo(self)
+        }
+        
+        let button1 = UIButton.init(type: .Custom)
+        button1.tag = 1
+        button1.titleLabel?.font = UIFont.systemFontOfSize(14.0)
+
+        self.addSubview(button1)
+        button1.snp_makeConstraints { (make) in
+            make.center.equalTo(self)
+            make.width.equalTo(120.pixelToPoint)
+            make.height.equalTo(self)
+        }
+        
+        
+        let view1 = UIView()
+        view1.backgroundColor = UIColor.globalRedColor()
+        self.addSubview(view1)
+        view1.snp_makeConstraints { (make) in
+            make.left.right.equalTo(button1)
+            make.height.equalTo(4.pixelToPoint)
+            make.bottom.equalTo(self)
+        }
+        
+        let button2 = UIButton.init(type: .Custom)
+        button2.tag = 2
+        button2.titleLabel?.font = UIFont.systemFontOfSize(14.0)
+
+        self.addSubview(button2)
+        button2.snp_makeConstraints { (make) in
+            make.right.equalTo(self)
+            make.width.equalTo(120.pixelToPoint)
+            make.height.equalTo(self)
+            make.centerY.equalTo(self)
+        }
+        
+        let view2 = UIView()
+        view2.backgroundColor = UIColor.globalRedColor()
+        self.addSubview(view2)
+        view2.snp_makeConstraints { (make) in
+            make.left.right.equalTo(button2)
+            make.height.equalTo(4.pixelToPoint)
+            make.bottom.equalTo(self)
+        }
+        
+        button0.addTarget(self, action: #selector(self.didClickItem(_:)), forControlEvents: .TouchUpInside)
+        buttons?.append(button0)
+        
+        button1.addTarget(self, action: #selector(self.didClickItem(_:)), forControlEvents: .TouchUpInside)
+        buttons?.append(button1)
+        
+        button2.addTarget(self, action: #selector(self.didClickItem(_:)), forControlEvents: .TouchUpInside)
+        buttons?.append(button2)
+        
+        bottomViews?.append(view0)
+        bottomViews?.append(view1)
+        bottomViews?.append(view2)
+
+        
+        
     }
     
     func didClickItem(btn: UIButton) {
