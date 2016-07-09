@@ -270,7 +270,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             return CGSizeMake(Tool.width / 2 , 160.pixelToPoint)
 
         }else {
-            return CGSizeMake(Tool.width / 2, Tool.width * 510.0 / 750)
+            return CGSizeMake(Tool.width / 2, Tool.width * 580.0 / 750)
         }
     }
     
@@ -331,14 +331,15 @@ class CollectionViewCell: UICollectionViewCell {
     var mainView: UIView!
     var imageView: UIImageView!
     var title: UILabel!
+    var detailTitle: UILabel!
     var priceLabel: UILabel!
-    var marketPrice: MarketLabel!
+//    var marketPrice: MarketLabel!
     
     var price: Float = 0.0 {
         willSet {
-            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
+            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.globalRedColor()])
+            attributeString.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(14)], range: NSMakeRange(0, 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(14)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
             priceLabel.attributedText = attributeString
         }
         
@@ -350,7 +351,7 @@ class CollectionViewCell: UICollectionViewCell {
                 let url = newValue!.thumbnailId.perfectImageurl(355, h: 352, crop: true)
                 imageView.kf_setImageWithURL(NSURL.init(string: url)!)
                 title.text = newValue!.name
-                marketPrice.text = newValue!.marketPrice.currency
+//                marketPrice.text = newValue!.marketPrice.currency
                 price = newValue!.price
             }
         }
@@ -362,12 +363,6 @@ class CollectionViewCell: UICollectionViewCell {
         
         mainView = UIView()
         self.addSubview(mainView)
-//        mainView.snp_makeConstraints { (make) in
-//            make.left.equalTo(5.pixelToPoint)
-//            make.right.equalTo(-5.pixelToPoint)
-//            make.top.equalTo(21.pixelToPoint)
-//            make.bottom.equalTo(0)
-//        }
         mainView.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
         }
@@ -383,7 +378,7 @@ class CollectionViewCell: UICollectionViewCell {
         imageView.snp_makeConstraints { (make) in
             make.left.right.top.equalTo(mainView)
             make.height.equalTo(imageView.snp_width).multipliedBy(390.0 / 375.0)
-            make.bottom.equalTo(mainView).offset(-155.pixelToPoint)
+//            make.bottom.equalTo(mainView).offset(-155.pixelToPoint)
         }
 //        imageView.layer.borderColor = UIColor.init(hexString: "#ebebeb").CGColor
 //        imageView.layer.borderWidth = 0.3
@@ -395,27 +390,53 @@ class CollectionViewCell: UICollectionViewCell {
         title.font = UIFont.systemFontOfSize(14)
         title.snp_makeConstraints { (make) in
             make.left.equalTo(16.pixelToPoint)
-            make.top.equalTo(imageView.snp_bottom).offset(19.pixelToPoint)
+            make.right.equalTo(-10.pixelToPoint)
+            make.top.equalTo(imageView.snp_bottom).offset(10.pixelToPoint)
         }
+        
+        detailTitle = UILabel.init()
+        detailTitle.numberOfLines = 0
+        mainView.addSubview(detailTitle)
+        detailTitle.textColor = UIColor.globalLightGrayColor()
+        detailTitle.font = UIFont.systemFontOfSize(14)
+        detailTitle.snp_makeConstraints { (make) in
+            make.left.equalTo(16.pixelToPoint)
+            make.right.equalTo(-10.pixelToPoint)
+            make.top.equalTo(title.snp_bottom).offset(5.pixelToPoint)
+        }
+        
+        detailTitle.text = "浪去特曲 53点啊离开家大量可激发了房间卡"
         
         priceLabel = UILabel.init()
         self.addSubview(priceLabel)
-        priceLabel.textColor = UIColor.globalRedColor()
-        priceLabel.font = UIFont.systemFontOfSize(14)
         priceLabel.snp_makeConstraints { (make) in
             make.left.equalTo(title)
-            make.top.equalTo(title.snp_bottom).offset(28.pixelToPoint)
+            make.top.equalTo(detailTitle.snp_bottom).offset(28.pixelToPoint).priority(250)
+            make.bottom.equalTo(self).offset(-15.pixelToPoint)
         }
         
-        marketPrice = MarketLabel.init()
-        self.addSubview(marketPrice)
-        marketPrice.labelColor = UIColor.init(hexString: "#999999")
-        marketPrice.font = UIFont.systemFontOfSize(13)
-        marketPrice.snp_makeConstraints { (make) in
-            make.left.equalTo(priceLabel.snp_right).offset(7)
-            make.baseline.equalTo(priceLabel)
+        let customLabel = UILabel.init()
+        self.addSubview(customLabel)
+        customLabel.text = "立即定制"
+        customLabel.font = UIFont.systemFontOfSize(14)
+        customLabel.textColor =  UIColor.globalRedColor()
+        customLabel.snp_makeConstraints { (make) in
+            make.centerY.equalTo(priceLabel)
+            make.right.equalTo(self).offset(-15.pixelToPoint)
         }
         
+        
+        
+        
+//        marketPrice = MarketLabel.init()
+//        self.addSubview(marketPrice)
+//        marketPrice.labelColor = UIColor.init(hexString: "#999999")
+//        marketPrice.font = UIFont.systemFontOfSize(13)
+//        marketPrice.snp_makeConstraints { (make) in
+//            make.left.equalTo(priceLabel.snp_right).offset(7)
+//            make.baseline.equalTo(priceLabel)
+//        }
+//        
         
         
     }
