@@ -26,7 +26,7 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         imagePicker?.delegate = self
         self.tableView.registerClass(MeCell.self, forCellReuseIdentifier: MeCell.identifier)
         
-        header = UIView.init(frame: CGRectMake(0, 0, Tool.width, 525.pixelToPoint))
+        header = UIView.init(frame: CGRectMake(0, 0, Tool.width, 358.pixelToPoint))
         
         let headerBgImageView = UIImageView()
         headerBgImageView.image = UIImage.init(named: "me_bg")
@@ -40,17 +40,16 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         circle.image = UIImage.init(named: "me_circle")
         header.addSubview(circle)
         circle.snp_makeConstraints { (make) in
-            make.width.height.equalTo(220.pixelToPoint)
-//            make.center.equalTo(header)
-            make.left.equalTo(header).offset(20)
-            make.centerY.equalTo(header).offset(20)
+            make.width.height.equalTo(150.pixelToPoint)
+            make.left.equalTo(header).offset(32.pixelToPoint)
+            make.bottom.equalTo(header).offset(-64.pixelToPoint)
         }
         
         
         
         avatarImageView = UIImageView()
         avatarImageView.userInteractionEnabled = true
-        avatarImageView.layer.cornerRadius = 220.pixelToPoint / 2
+        avatarImageView.layer.cornerRadius = 150.pixelToPoint / 2
         avatarImageView.layer.masksToBounds = true
         
         header.addSubview(avatarImageView)
@@ -69,8 +68,8 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         header.addSubview(nickNameLabel)
         
         nickNameLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(avatarImageView.snp_right).offset(20)
-            make.baseline.equalTo(circle.snp_centerY).offset(-10)
+            make.left.equalTo(avatarImageView.snp_right).offset(33.pixelToPoint)
+            make.baseline.equalTo(circle.snp_centerY).offset(-5)
         }
         
         phoneLabel = UILabel()
@@ -81,22 +80,11 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         
         phoneLabel.snp_makeConstraints { (make) in
             make.left.equalTo(nickNameLabel)
-            make.top.equalTo(nickNameLabel.snp_bottom).offset(20)
+            make.top.equalTo(nickNameLabel.snp_bottom).offset(18.pixelToPoint)
         }
-        
-        
-
         
         self.tableView.tableHeaderView = header
         self.tableView.backgroundColor = UIColor.globalBackGroundColor()
-        
-//        let logout = UIButton.init(type: .Custom)
-//        logout.backgroundColor = UIColor.clearColor()
-//        logout.setTitleColor(UIColor.init(hexString: "#b33333"), forState: .Normal)
-//        logout.addTarget(self, action: #selector(self.logout), forControlEvents: .TouchUpInside)
-//        logout.setTitle("退出登录", forState: .Normal)
-//        logout.frame = CGRectMake(0, 0, Tool.width, 129.pixelToPoint)
-//        self.tableView.tableFooterView = logout
     }
     
     
@@ -116,16 +104,18 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
             }
             
             
-            
-            NetworkHelper.instance.request(.GET, url: URLConstant.appMemberCenterIndex.contant, parameters: ["rows": 0, "page": 1], completion: { [weak self](res: PersonalCenterResponse?) in
+            NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberInfo.contant, parameters: nil, completion: { (result: MemberInfoResponse?) in
                 
-                let memberInfo = res?.retObj?.memberInfo
-                NSUserDefaults.standardUserDefaults().setObject(memberInfo!.avatarImgId.perfectImageurl(200, h: 200, crop: true), forKey: "avatar")
-                self?.avatarImageView.kf_setImageWithURL(NSURL.init(string: memberInfo!.avatarImgId.perfectImageurl(200, h: 200, crop: true))!)
-                self?.nickNameLabel.text = memberInfo?.nick
+                SVProgressHUD.dismiss()
+                if let avatarId = result?.retObj?.avatarId {
+                    NSUserDefaults.standardUserDefaults().setObject(avatarId.perfectImageurl(150, h: 150, crop: true), forKey: "avatar")
+                    self.avatarImageView.kf_setImageWithURL(NSURL.init(string: avatarId.perfectImageurl(150, h: 150, crop: true))!)
+                }
                 
+                self.nickNameLabel.text = result?.retObj?.name
+                self.phoneLabel.text = result?.retObj?.phone
             }) { (errMsg: String?, errCode: Int) in
-                
+                SVProgressHUD.showErrorWithStatus(errMsg ?? "个人信息获取失败")
             }
         } else {
             
@@ -200,7 +190,7 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return section == 0 ? 22.pixelToPoint : 0.01
+        return section == 0 ? 10.pixelToPoint : 0.01
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -255,6 +245,7 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
             
             //上传头像
             self.avatarImageView.image = image
+            SVProgressHUD.showWithStatus("正在上传头像")
             NetworkHelper.instance.uploadImage(image, forType: ["category": "avatar"], completion: { (result: UploadImageResponse?) in
                     let imgId = result?.retObj?.imgId
                     self.updateAvatarID(imgId!)
@@ -265,6 +256,7 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
     }
     
     func updateAvatarID(imageId: Int64) {
+        
         NetworkHelper.instance.request(.GET, url: URLConstant.updateLoginMemberInfo.contant, parameters: ["avatarId": imageId.toNSNumber], completion: { (result: DataResponse?) in
                 self.updateAvatar = true
             }) { (msg, code) in

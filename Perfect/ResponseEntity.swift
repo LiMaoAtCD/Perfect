@@ -442,6 +442,20 @@ class TransformOfUtils {
     }
 }
 
+//"retObj": {
+//    "id": 102,
+//    "birth": "",
+//    "phone": "13568927473",
+//    "username": "13568927473",
+//    "avatarId": 112,
+//    "attributeValue1": null,
+//    "attributeValue2": null,
+//    "attributeValue3": null,
+//    "name": "d大口大口",
+//    "gender": null,
+//    "type": "person"
+//}
+
 
 class MemberInfoEntity: Mappable {
     var phone: String?
@@ -450,9 +464,9 @@ class MemberInfoEntity: Mappable {
     var birth: String?
     var gender: String?
     var name: String?
+    var avatarId: Int64 = 0
     
-    required init?(_ map: Map) {
-    }
+    required init?(_ map: Map) {}
     
     func mapping(map: Map) {
         phone <- map["phone"]
@@ -461,6 +475,7 @@ class MemberInfoEntity: Mappable {
         type <- map["type"]
         birth <- map["birth"]
         gender <- map["gender"]
+        avatarId <- (map["avatarId"], TransformOfUtils.TransformOfInt64())
     }
 }
 
