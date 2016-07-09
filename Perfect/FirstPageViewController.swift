@@ -198,6 +198,22 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             }
             cell.imageView.kf_setImageWithURL(NSURL.init(string: buttonsUrl[indexPath.row])!, placeholderImage: nil , optionsInfo: nil, progressBlock: nil, completionHandler: nil)
             
+            if indexPath.row % 2 == 0 {
+                cell.imageView.snp_remakeConstraints(closure: { (make) in
+                    make.left.equalTo(10.pixelToPoint)
+                    make.top.equalTo(0.pixelToPoint)
+                    make.right.equalTo(-5.pixelToPoint)
+                    make.bottom.equalTo(-10.pixelToPoint)
+                })
+            } else {
+                cell.imageView.snp_remakeConstraints(closure: { (make) in
+                    make.right.equalTo(-10.pixelToPoint)
+                    make.top.equalTo(0.pixelToPoint)
+                    make.left.equalTo(5.pixelToPoint)
+                    make.bottom.equalTo(-10.pixelToPoint)
+                })
+            }
+            
             return cell
             
         } else {
@@ -244,13 +260,13 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSizeMake(Tool.width, Tool.width * (365.0 + 20.0) / 750.0)
+            return CGSizeMake(Tool.width, Tool.width * (374.0 + 10.0) / 750.0)
         
         } else if indexPath.section == 1 {
             return CGSizeMake(Tool.width, 100.pixelToPoint)
 
         } else if indexPath.section == 2 {
-            return CGSizeMake(Tool.width / 2 , 150.pixelToPoint)
+            return CGSizeMake(Tool.width / 2 , 160.pixelToPoint)
 
         }else {
             return CGSizeMake(Tool.width / 2, Tool.width * 510.0 / 750)
@@ -380,7 +396,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         priceLabel = UILabel.init()
         self.addSubview(priceLabel)
-        priceLabel.textColor = UIColor.redColor()
+        priceLabel.textColor = UIColor.globalRedColor()
         priceLabel.font = UIFont.systemFontOfSize(14)
         priceLabel.snp_makeConstraints { (make) in
             make.left.equalTo(title)
@@ -417,10 +433,10 @@ class CollectionViewBannerCell: UICollectionViewCell {
         banner = SDCycleScrollView.init()
         self.addSubview(banner)
         banner.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter
-        banner.currentPageDotColor = UIColor.init(hexString: "#f04848")
+        banner.currentPageDotColor = UIColor.globalRedColor()
         banner.pageDotColor = UIColor.whiteColor()
         banner.snp_makeConstraints { (make) in
-            make.edges.equalTo(self).offset(UIEdgeInsetsMake(0, 0, -20.pixelToPoint, 0))
+            make.edges.equalTo(self).offset(UIEdgeInsetsMake(0, 0, -10.pixelToPoint, 0))
         }
        
     }
@@ -437,14 +453,11 @@ class CollectionViewButtonsCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.whiteColor()
-        
         imageView = UIImageView()
         self.addSubview(imageView)
-        imageView.snp_makeConstraints { (make) in
-            make.edges.equalTo(self)
-        }
-        imageView.layer.borderWidth = 0.3
-        imageView.layer.borderColor = UIColor.init(hexString: "#dadada").CGColor
+//        imageView.snp_makeConstraints { (make) in
+//            make.edges.equalTo(self)
+//        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -458,38 +471,23 @@ class CollectionViewFootCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.whiteColor()
+        let titleImageView = UIImageView.init(image: UIImage.init(named: "first_adtitle"))
+        self.addSubview(titleImageView)
         
-        let title = UILabel()
-        title.text = "定制因你精彩"
-        title.textAlignment = .Center
-        title.font = UIFont.systemFontOfSize(13.0)
-        title.textColor = UIColor.init(hexString: "#d0d0d0")
-        self.addSubview(title)
-        
-        title.snp_makeConstraints { (make) in
+        titleImageView.snp_makeConstraints { (make) in
             make.center.equalTo(self)
+            make.width.equalTo(260.pixelToPoint)
+            make.height.equalTo(74.pixelToPoint)
         }
         
-        let leftMargin = UIView()
-        self.addSubview(leftMargin)
-        leftMargin.backgroundColor = UIColor.init(hexString: "#d0d0d0")
-        leftMargin.snp_makeConstraints { (make) in
-            make.right.equalTo(title.snp_left).offset(-35.pixelToPoint)
-            make.centerY.equalTo(self)
-            make.width.equalTo(61.pixelToPoint)
+        let line = UIView()
+        self.addSubview(line)
+        line.backgroundColor = UIColor.init(hexString: "#e9edf2")
+        line.snp_makeConstraints { (make) in
+            make.top.equalTo(titleImageView.snp_bottom)
+            make.left.right.equalTo(self)
             make.height.equalTo(1.pixelToPoint)
         }
-        
-        let rightMargin = UIView()
-        self.addSubview(rightMargin)
-        rightMargin.backgroundColor = UIColor.init(hexString: "#d0d0d0")
-        rightMargin.snp_makeConstraints { (make) in
-            make.left.equalTo(title.snp_right).offset(35.pixelToPoint)
-            make.centerY.equalTo(self)
-            make.width.equalTo(61.pixelToPoint)
-            make.height.equalTo(1.pixelToPoint)
-        }
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -509,10 +507,18 @@ class Header: UICollectionReusableView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.whiteColor()
         
+        let line = UIView()
+        self.addSubview(line)
+        line.snp_makeConstraints { (make) in
+            make.left.right.equalTo(self)
+            make.height.equalTo(9.pixelToPoint)
+            make.top.equalTo(self).offset(-9.pixelToPoint)
+        }
+        line.backgroundColor = UIColor.init(hexString: "#e9edf2")
+        
+        
         segmentControl = SegmentControlView.init()
         self.addSubview(segmentControl)
-        
-        
         segmentControl.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
         }

@@ -256,11 +256,15 @@ extension Float {
 
 extension UIColor {
     class func globalBackGroundColor() -> UIColor {
-        return UIColor.init(hexString: "#e4ebf0", withAlpha: 1.0)
+        return UIColor.init(hexString: "#e9edf2", withAlpha: 1.0)
     }
     
     class func globalRedColor() -> UIColor {
         return UIColor.init(hexString: "#fe4462", withAlpha: 1.0)
+    }
+    
+    class func globalDarkColor() -> UIColor {
+        return UIColor.init(hexString: "#3d4756", withAlpha: 1.0)
     }
 }
 
