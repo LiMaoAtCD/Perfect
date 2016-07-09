@@ -14,6 +14,7 @@ import Kingfisher
 import SVProgressHUD
 import MJRefresh
 
+
 class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     var collection : UICollectionView!
@@ -31,13 +32,9 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
-        self.navigationController?.navigationBar.translucent = false
-
-        fd_prefersNavigationBarHidden = true
-        edgesForExtendedLayout = UIRectEdge.None
-
+    
+        self.navigationItem.title = "个性化定制平台"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: UIView())
         topBanners = [FirstBannerItem]()
         customButtons = [FirstButtonItem]()
         goodTypes = [FirstGoodsTypeItem]()
@@ -79,7 +76,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     }
     
     func fetchGoods() {
-        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 15, "page": currentPage], completion: { [weak self](product: ProductListResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 20, "page": currentPage], completion: { [weak self](product: ProductListResponse?) in
             self?.collection.mj_footer.hidden = true
             guard let rows = product?.retObj?.rows else {
                 self?.collection.mj_footer.endRefreshingWithNoMoreData()
@@ -87,7 +84,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             }
             
             
-            rows.count == 15 ? self?.collection.mj_footer?.endRefreshing() : self?.collection.mj_footer.endRefreshingWithNoMoreData()
+            rows.count == 20 ? self?.collection.mj_footer?.endRefreshing() : self?.collection.mj_footer.endRefreshingWithNoMoreData()
             
             self?.goods?.appendContentsOf(rows)
             self?.collection.reloadSections(NSIndexSet.init(index: 3))
@@ -132,13 +129,13 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         if section == 0 {
             return 1
         } else if section == 1 {
+            return 1
+        } else if section == 2 {
             if let btns = self.customButtons {
                 return btns.count
             } else {
                 return 0
             }
-        } else if section == 2 {
-            return 1
         } else {
             if let _ = goods {
                 return goods!.count
@@ -179,6 +176,12 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             return cell
             
         } else if indexPath.section == 1 {
+            
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewFootCell.identifier, forIndexPath: indexPath) as! CollectionViewFootCell
+            return cell
+            
+        } else if indexPath.section == 2 {
+            
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewButtonsCell.identifier, forIndexPath: indexPath) as! CollectionViewButtonsCell
             
             var buttonsUrl = [String]()
@@ -192,9 +195,6 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             
             return cell
             
-        } else if indexPath.section == 2 {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewFootCell.identifier, forIndexPath: indexPath) as! CollectionViewFootCell
-            return cell
         } else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCell.identifier, forIndexPath: indexPath) as! CollectionViewCell
             let item = goods![indexPath.row]
@@ -240,10 +240,13 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
             return CGSizeMake(Tool.width, Tool.width * (365.0 + 20.0) / 750.0)
+        
         } else if indexPath.section == 1 {
-            return CGSizeMake(Tool.width / 2 , 150.pixelToPoint)
+            return CGSizeMake(Tool.width, 100.pixelToPoint)
+
         } else if indexPath.section == 2 {
-            return CGSizeMake(Tool.width, 70.pixelToPoint)
+            return CGSizeMake(Tool.width / 2 , 150.pixelToPoint)
+
         }else {
             return CGSizeMake(Tool.width / 2, Tool.width * 510.0 / 750)
         }
@@ -258,7 +261,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
+        if indexPath.section == 2 {
             //MARK: 处理button 点击
             let item = self.customButtons![indexPath.row]
             if let action = item.linkAction {
@@ -449,10 +452,10 @@ class CollectionViewFootCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.whiteColor()
         
         let title = UILabel()
-        title.text = "定制酒-览"
+        title.text = "定制因你精彩"
         title.textAlignment = .Center
         title.font = UIFont.systemFontOfSize(13.0)
         title.textColor = UIColor.init(hexString: "#d0d0d0")

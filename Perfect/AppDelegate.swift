@@ -28,12 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         hello()
         fetchAreaID()
         configureReachability()
+
+        UINavigationBar.appearance().barTintColor = UIColor.globalRedColor()
         
+
+    
         return true
     }
     
     func configureSVProgressHUD() {
         SVProgressHUD.setMinimumDismissTimeInterval(1.0)
+
     }
     
     func configureReachability() {

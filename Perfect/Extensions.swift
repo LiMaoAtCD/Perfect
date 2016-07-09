@@ -24,7 +24,11 @@ extension UIViewController {
         backButton.addTarget(self, action: #selector(UIViewController.pop), forControlEvents: .TouchUpInside)
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(18), NSForegroundColorAttributeName: UIColor.init(hexString: "#333333")]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(18), NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+//        self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
+
+        self.navigationController?.navigationBar.translucent = false
     }
     
     func pop() {
@@ -253,6 +257,10 @@ extension Float {
 extension UIColor {
     class func globalBackGroundColor() -> UIColor {
         return UIColor.init(hexString: "#e4ebf0", withAlpha: 1.0)
+    }
+    
+    class func globalRedColor() -> UIColor {
+        return UIColor.init(hexString: "#fe4462", withAlpha: 1.0)
     }
 }
 
