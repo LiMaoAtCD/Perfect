@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 
-class OrderDetailViewController: BaseViewController {
+class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
 
     var fromList: Bool = false
     
@@ -71,14 +71,12 @@ class OrderDetailViewController: BaseViewController {
             priceTotalLabel.attributedText = attributeString
         }
     }
-
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        self.title = "订单详情"
         
         scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.globalBackGroundColor()
@@ -94,33 +92,25 @@ class OrderDetailViewController: BaseViewController {
         
         if let _ = entity {
             fromList = true
-            setupScrollSubViews()
-            bottomView = UIView()
-            view.addSubview(bottomView)
-            bottomView.snp_makeConstraints { (make) in
-                make.left.right.bottom.equalTo(view)
-                make.height.equalTo(50)
-            }
-            setupBottomViews()
-            
+            self.orderId = entity!.orderId
         } else {
             self.fd_interactivePopDisabled = true
-            SVProgressHUD.show()
-            NetworkHelper.instance.request(.GET, url: URLConstant.appOrderDetail.contant, parameters: ["id": orderId.toNSNumber, "rows":10, "page": 1], completion: { (result: OrderDetailResponse?) in
-                    SVProgressHUD.dismiss()
-                    self.entity = result?.retObj
-                    self.setupScrollSubViews()
-                    self.bottomView = UIView()
-                    self.view.addSubview(self.bottomView)
-                    self.bottomView.snp_makeConstraints { (make) in
-                        make.left.right.bottom.equalTo(self.view)
-                        make.height.equalTo(50)
-                    }
-                    self.setupBottomViews()
-            }) { (msg, code) in
-                SVProgressHUD.showErrorWithStatus(msg)
+        }
+        
+        SVProgressHUD.show()
+        NetworkHelper.instance.request(.GET, url: URLConstant.appOrderDetail.contant, parameters: ["id": orderId.toNSNumber, "rows":10, "page": 1], completion: { (result: OrderDetailResponse?) in
+            SVProgressHUD.dismiss()
+            self.entity = result?.retObj
+            self.setupScrollSubViews()
+            self.bottomView = UIView()
+            self.view.addSubview(self.bottomView)
+            self.bottomView.snp_makeConstraints { (make) in
+                make.left.right.bottom.equalTo(self.view)
+                make.height.equalTo(50)
             }
-
+            self.setupBottomViews()
+        }) { (msg, code) in
+            SVProgressHUD.showErrorWithStatus(msg)
         }
   
         
@@ -460,7 +450,8 @@ class OrderDetailViewController: BaseViewController {
         kefuImageView.snp_makeConstraints { (make) in
             make.left.equalTo(31.pixelToPoint)
             make.centerY.equalTo(bottomView)
-            make.width.height.equalTo(65.pixelToPoint)
+            make.width.equalTo(96.pixelToPoint)
+            make.height.equalTo(81.pixelToPoint)
         }
         
         let contactKefu = UILabel()
@@ -473,25 +464,100 @@ class OrderDetailViewController: BaseViewController {
             make.centerY.equalTo(kefuImageView)
         }
         
-        let bottom_right_button = UIButton.init(type: .Custom)
-        bottomView.addSubview(bottom_right_button)
-        bottom_right_button.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
-        bottom_right_button.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
-        bottom_right_button.snp_makeConstraints { (make) in
-            make.right.equalTo(-42.pixelToPoint)
+        let contactKeFuButton = UIButton()
+        bottomView.addSubview(contactKeFuButton)
+        contactKeFuButton.snp_makeConstraints { (make) in
+            make.left.equalTo(kefuImageView)
+            make.right.equalTo(contactKefu)
+            make.height.equalTo(bottomView)
             make.centerY.equalTo(bottomView)
-            make.width.equalTo(150.pixelToPoint)
         }
         
-        let bottom_left_button = UIButton.init(type: .Custom)
-        bottomView.addSubview(bottom_left_button)
-        bottom_left_button.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
-        bottom_left_button.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
-        bottom_left_button.snp_makeConstraints { (make) in
-            make.right.equalTo(bottom_right_button.snp_left).offset(-39.pixelToPoint)
+        contactKeFuButton.addTarget(self, action: #selector(self.contact), forControlEvents: .TouchUpInside)
+        
+        let button1 = UIButton.init(type: .Custom)
+        bottomView.addSubview(button1)
+        button1.snp_makeConstraints { (make) in
+            make.right.equalTo(-42.pixelToPoint)
             make.centerY.equalTo(bottomView)
-            make.width.equalTo(150.pixelToPoint)
+            make.width.equalTo(128.pixelToPoint)
+            make.height.equalTo(47.pixelToPoint)
         }
+        
+        let button2 = UIButton.init(type: .Custom)
+        bottomView.addSubview(button2)
+        button2.snp_makeConstraints { (make) in
+            make.right.equalTo(button1.snp_left).offset(-42.pixelToPoint)
+            make.centerY.equalTo(bottomView)
+            make.width.equalTo(128.pixelToPoint)
+            make.height.equalTo(47.pixelToPoint)
+        }
+        
+        if let btns = entity!.buttons {
+            if btns.count == 0 {
+                button1.hidden = true
+                button2.hidden = true
+            } else if btns.count == 1 {
+                button1.hidden = false
+                button2.hidden = true
+                if btns.first!.code == "pay" {
+                    button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
+                    button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
+                    button1.tag = DetailType.Pay.rawValue
+                } else if btns.first!.code == "complain" {
+                    button1.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
+                    button1.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
+                    button1.tag = DetailType.Tousu.rawValue
+
+                } else if btns.first!.code == "confirmReceipt" {
+                    button1.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
+                    button1.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
+                    button1.tag = DetailType.Confirm.rawValue
+                }
+            } else if btns.count == 2 {
+                button1.hidden = false
+                button2.hidden = false
+                if btns.first!.code == "pay" {
+                    button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
+                    button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
+                    button1.tag = DetailType.Pay.rawValue
+
+                } else if btns.first!.code == "complain" {
+                    button1.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
+                    button1.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
+                    button1.tag = DetailType.Tousu.rawValue
+
+                } else if btns.first!.code == "confirmReceipt" {
+                    button1.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
+                    button1.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
+                    button1.tag = DetailType.Confirm.rawValue
+
+                }
+                
+                if btns.last!.code == "pay" {
+                    button2.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
+                    button2.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
+                } else if btns.last!.code == "complain" {
+                    button2.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
+                    button2.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
+                } else if btns.last!.code == "comfirmReceipt" {
+                    button2.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
+                    button2.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
+                }
+            } else {
+                button1.hidden = true
+                button2.hidden = true
+            }
+        }
+        //254*93
+    }
+    
+    func contact() {
+        let webview = UIWebView.init()
+        let url = NSURL.init(string: "mqq://im/chat?chat_type=wpa&uin=501863587&version=1&src_type=web")!
+        webview.loadRequest(NSURLRequest.init(URL: url))
+        webview.delegate = self
+        view.addSubview(webview)
 
     }
     
@@ -511,4 +577,10 @@ class OrderDetailViewController: BaseViewController {
     }
     */
 
+}
+
+enum DetailType: Int {
+    case Pay = 1
+    case Confirm = 2
+    case Tousu = 3
 }

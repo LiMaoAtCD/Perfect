@@ -219,7 +219,7 @@
     </object>
     <object type="LMREQUEST" id="z117">
         <attribute name="uuid" type="string">53F64F7F-A5DD-4DB0-940C-D8F0DFDF9984</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appOrderHistory\u2600rows=10\u2600page=1\u2600sessionId=21d6c314-4265-4515-9a98-189d6c66ae17</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appOrderHistory\u2600rows=10\u2600page=1\u2600sessionId=d6cfede6-2c22-4b32-9fe4-30242e9b84d7</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -269,7 +269,7 @@
     </object>
     <object type="LMREQUEST" id="z121">
         <attribute name="uuid" type="string">460CF1C3-A4D9-436C-AAAF-68C6639AADEA</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appOrderDetail\u2600rows=10\u2600page=1\u2600id=54\u2600sessionId=21d6c314-4265-4515-9a98-189d6c66ae17</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appOrderDetail\u2600rows=10\u2600page=1\u2600id=5\u2600sessionId=d6cfede6-2c22-4b32-9fe4-30242e9b84d7</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>

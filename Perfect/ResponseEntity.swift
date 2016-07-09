@@ -240,7 +240,8 @@ class HistoryOrderEntity: Mappable {
 }
 
 class HistoryOrderItem: Mappable {
-    
+    required init?(_ map: Map) {}
+
     var orderStatusTextColor: String?
     var orderStatusName: String?
     var address: HistoryOrderItemAddress?
@@ -257,24 +258,7 @@ class HistoryOrderItem: Mappable {
     var totalPrice: Float = 0.0
     var productId: Int64 = 0
     var customImageId: Int64 = 0
-    
-    
-//    var moduleId: Int64 = 0
-//    var status: Int = 0
-//    var statusName: String?
-//    var moduleName: String?
-//    var image: Int64 = 0
-//    var statusTextColor: String?
-//    var orderNo: String?
-//    var price: Float = 0.0
-//    var fullName: String?
-//    var orderId: Int64 = 0
-//    var totalPrice: Float = 0.0
-//    var orderTime: String?
-    
-    required init?(_ map: Map) {
-        
-    }
+    var buttons: [HistoryOrderItemButtonItem]?
     
     func mapping(map: Map) {
         
@@ -293,8 +277,22 @@ class HistoryOrderItem: Mappable {
         totalPrice <- map["totalPrice"]
         productId <- (map["productId"], TransformOfUtils.TransformOfInt64())
         customImageId <- (map["customImageId"], TransformOfUtils.TransformOfInt64())
+        buttons <- map["buttons"]
     }
 }
+
+class HistoryOrderItemButtonItem: Mappable {
+    required init?(_ map: Map) {}
+    var code: String?
+    var text: String?
+    
+    func mapping(map: Map) {
+        code <- map["code"]
+        text <- map["text"]
+    }
+}
+
+
 
 class HistoryOrderItemAddress: Mappable {
     var areaName: String?
