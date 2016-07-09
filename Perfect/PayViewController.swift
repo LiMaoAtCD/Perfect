@@ -20,19 +20,21 @@ class PayViewController: BaseViewController {
 
     var scrollView: UIScrollView!
     var buyerView: UIView! // 收货信息视图
+    var addAddressView: UIView!
     
     var nameLabel: UILabel!//收货人
     var contactLabel: UILabel!//联系电话
     var addressLabel: UILabel!//地址
+    var addressString: String = ""
     var detailAddress = "" //详细地址
     var contactName = "" {
         willSet {
-            self.nameLabel.text = newValue
+            self.nameLabel?.text = newValue
         }
     }
     var contactPhone = "" {
         willSet {
-            self.contactLabel.text = newValue
+            self.contactLabel?.text = newValue
         }
     }
     
@@ -40,7 +42,8 @@ class PayViewController: BaseViewController {
     var addressItemEntity: AddressItemsEntity? {
         willSet{
             if let _ = newValue {
-                self.addressLabel.text = newValue!.areaFullName! + newValue!.contactAddress!
+                self.addressString = newValue!.areaFullName! + newValue!.contactAddress!
+                self.addressLabel?.text = newValue!.areaFullName! + newValue!.contactAddress!
                 self.contactName = newValue!.contactName!
                 self.contactPhone = newValue!.contactPhone!
                 self.detailAddress = newValue!.contactAddress!
@@ -102,6 +105,33 @@ class PayViewController: BaseViewController {
         }
     }
 
+    func renewViews() {
+        configureBuyerView()
+        configureGoodView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        let realm = try! Realm()
+        let addresses = realm.objects(AddressItemsEntity)
+        if addresses.isEmpty {
+//            for address in addresses {
+//                if address.isDefault {
+//                    addressItemEntity = address
+//                }
+//            }
+//            if let _ = addressItemEntity {
+//            } else {
+//                addressItemEntity = addresses.first
+//            }
+            addressItemEntity = nil
+            renewViews()
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -109,6 +139,8 @@ class PayViewController: BaseViewController {
         self.prices = [Float]()
         self.goodImageIds = [Int64]()
         self.moduleIds = [Int64]()
+        
+        
         
         if let products = goodEntity?.products {
             for product in products {
@@ -118,21 +150,7 @@ class PayViewController: BaseViewController {
             }
         }
 
-
-        configureScrollView()
-        configureBuyerView()
-        configureGoodView()
-        configurePayView()
-        configureTotalView()
         
-        
-        self.price = self.products![self.selectedIndex].price
-        self.productId = self.products![selectedIndex].id
-
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         let realm = try! Realm()
         let addresses = realm.objects(AddressItemsEntity)
         if !addresses.isEmpty {
@@ -149,7 +167,18 @@ class PayViewController: BaseViewController {
             
         }
 
+        configureScrollView()
+        configureBuyerView()
+        configureGoodView()
+        configurePayView()
+        configureTotalView()
+        
+        
+        self.price = self.products![self.selectedIndex].price
+        self.productId = self.products![selectedIndex].id
+
     }
+
     
     //MARK: scrollview
     func configureScrollView() {
@@ -172,91 +201,151 @@ class PayViewController: BaseViewController {
     }
     
     func configureBuyerView() {
-        buyerView = UIView()
-        buyerView.backgroundColor = UIColor.whiteColor()
-        scrollView.addSubview(buyerView)
         
-        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.changeAddress))
-        buyerView.addGestureRecognizer(tap)
-        
-        let titleLabel = UILabel()
-        buyerView.addSubview(titleLabel)
-        titleLabel.text = "收货地址"
-        titleLabel.textColor = UIColor.init(hexString: "#333333")
-        titleLabel.font = UIFont.systemFontOfSize(17)
-        titleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(buyerView).offset(24.pixelToPoint)
-            make.top.equalTo(buyerView).offset(27.pixelToPoint)
-            make.width.lessThanOrEqualTo(80).priority(1000)
+        if let _ = addressItemEntity {
+            addAddressView?.removeFromSuperview()
+            addAddressView = nil
+            
+            buyerView = UIView()
+            buyerView.backgroundColor = UIColor.whiteColor()
+            scrollView.addSubview(buyerView)
+            
+            let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.changeAddress))
+            buyerView.addGestureRecognizer(tap)
+            
+            let titleLabel = UILabel()
+            buyerView.addSubview(titleLabel)
+            titleLabel.text = "收货地址"
+            titleLabel.textColor = UIColor.init(hexString: "#333333")
+            titleLabel.font = UIFont.systemFontOfSize(17)
+            titleLabel.snp_makeConstraints { (make) in
+                make.left.equalTo(buyerView).offset(24.pixelToPoint)
+                make.top.equalTo(buyerView).offset(27.pixelToPoint)
+                make.width.lessThanOrEqualTo(80).priority(1000)
+            }
+            
+            nameLabel = UILabel()
+            buyerView.addSubview(nameLabel)
+            nameLabel.snp_makeConstraints { (make) in
+                make.left.equalTo(titleLabel.snp_right).offset(105.pixelToPoint)
+                make.baseline.equalTo(titleLabel)
+            }
+            nameLabel.text = contactName
+            nameLabel.textColor = UIColor.init(hexString: "#333333")
+            nameLabel.font = UIFont.systemFontOfSize(14)
+            
+            contactLabel = UILabel()
+            buyerView.addSubview(contactLabel)
+            contactLabel.snp_makeConstraints { (make) in
+                make.left.equalTo(nameLabel.snp_right).offset(49.pixelToPoint)
+                make.centerY.equalTo(nameLabel)
+            }
+            contactLabel.text = contactPhone
+            contactLabel.textColor = UIColor.init(hexString: "#333333")
+            contactLabel.font = UIFont.systemFontOfSize(14)
+            
+            addressLabel = UILabel()
+            addressLabel.text = addressString
+            
+            addressLabel.numberOfLines = 0
+            addressLabel.textColor = UIColor.init(hexString: "#333333")
+            addressLabel.font = UIFont.systemFontOfSize(14)
+            buyerView.addSubview(addressLabel)
+            addressLabel.snp_makeConstraints { (make) in
+                make.left.equalTo(nameLabel)
+                make.top.equalTo(nameLabel.snp_bottom).offset(36.pixelToPoint)
+                make.right.equalTo(buyerView.snp_right).offset(-43.pixelToPoint)
+            }
+            
+            buyerView.snp_makeConstraints { (make) in
+                make.left.right.equalTo(view)
+                make.top.equalTo(scrollView).offset(20.pixelToPoint)
+            }
+            
+            let goAddress = UIImageView()
+            goAddress.image = UIImage.init(named: "pay_goAddress")
+            buyerView.addSubview(goAddress)
+            goAddress.snp_makeConstraints { (make) in
+                make.height.equalTo(26.pixelToPoint)
+                make.width.equalTo(20.pixelToPoint)
+                make.top.equalTo(buyerView).offset(27.pixelToPoint)
+                make.right.equalTo(-28.pixelToPoint)
+            }
+            
+            let addressImageView = UIImageView()
+            addressImageView.image = UIImage.init(named: "pay_address")
+            buyerView.addSubview(addressImageView)
+            addressImageView.snp_makeConstraints { (make) in
+                make.height.equalTo(26.pixelToPoint)
+                make.left.right.equalTo(buyerView)
+                make.bottom.equalTo(buyerView)
+                make.top.equalTo(addressLabel.snp_bottom).offset(30.pixelToPoint)
+            }
+
+        } else {
+            buyerView?.removeFromSuperview()
+            buyerView = nil
+            
+            addAddressView = UIView.init()
+            addAddressView.backgroundColor = UIColor.whiteColor()
+            scrollView.addSubview(addAddressView)
+            
+            
+            let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.changeAddress))
+            
+            addAddressView.addGestureRecognizer(tap)
+            
+            addAddressView.snp_makeConstraints(closure: { (make) in
+                make.left.right.equalTo(view)
+                make.top.equalTo(scrollView)
+                make.height.equalTo(95.pixelToPoint)
+            })
+            
+            let tempView = UIView()
+            addAddressView.addSubview(tempView)
+            tempView.snp_makeConstraints(closure: { (make) in
+                make.center.equalTo(addAddressView)
+                
+            })
+            
+            let addButton = UIImageView.init(image: UIImage.init(named: "address_add")!)
+            addAddressView.addSubview(addButton)
+            addButton.snp_makeConstraints(closure: { (make) in
+                make.left.equalTo(tempView)
+                make.height.width.equalTo(32.pixelToPoint)
+                make.centerY.equalTo(tempView)
+            })
+            
+            let addTitle = UILabel()
+            addTitle.text = "添加收件地址"
+            addTitle.textColor = UIColor.globalDarkColor()
+            addAddressView.addSubview(addTitle)
+            addTitle.snp_makeConstraints(closure: { (make) in
+                make.left.equalTo(addButton.snp_right).offset(19.pixelToPoint)
+                make.centerY.equalTo(addButton)
+                make.right.equalTo(tempView)
+            })
         }
         
-        nameLabel = UILabel()
-        buyerView.addSubview(nameLabel)
-        nameLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(titleLabel.snp_right).offset(105.pixelToPoint)
-            make.baseline.equalTo(titleLabel)
-        }
-        nameLabel.text = ""
-        nameLabel.textColor = UIColor.init(hexString: "#333333")
-        nameLabel.font = UIFont.systemFontOfSize(14)
-        
-        contactLabel = UILabel()
-        buyerView.addSubview(contactLabel)
-        contactLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(nameLabel.snp_right).offset(49.pixelToPoint)
-            make.centerY.equalTo(nameLabel)
-        }
-        contactLabel.text = ""
-        contactLabel.textColor = UIColor.init(hexString: "#333333")
-        contactLabel.font = UIFont.systemFontOfSize(14)
-        
-        addressLabel = UILabel()
-        addressLabel.text = "请完善您的收货信息"
-        addressLabel.numberOfLines = 0
-        addressLabel.textColor = UIColor.init(hexString: "#333333")
-        addressLabel.font = UIFont.systemFontOfSize(14)
-        buyerView.addSubview(addressLabel)
-        addressLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(nameLabel)
-            make.top.equalTo(nameLabel.snp_bottom).offset(36.pixelToPoint)
-            make.right.equalTo(buyerView.snp_right).offset(-43.pixelToPoint)
-        }
-        
-        //
-        buyerView.snp_makeConstraints { (make) in
-            make.left.right.equalTo(view)
-            make.top.equalTo(scrollView).offset(20.pixelToPoint)
-        }
-        
-        let goAddress = UIImageView()
-        goAddress.image = UIImage.init(named: "pay_goAddress")
-        buyerView.addSubview(goAddress)
-        goAddress.snp_makeConstraints { (make) in
-            make.height.equalTo(26.pixelToPoint)
-            make.width.equalTo(20.pixelToPoint)
-            make.top.equalTo(buyerView).offset(27.pixelToPoint)
-            make.right.equalTo(-28.pixelToPoint)
-        }
-        
-        let addressImageView = UIImageView()
-        addressImageView.image = UIImage.init(named: "pay_address")
-        buyerView.addSubview(addressImageView)
-        addressImageView.snp_makeConstraints { (make) in
-            make.height.equalTo(26.pixelToPoint)
-            make.left.right.equalTo(buyerView)
-            make.bottom.equalTo(buyerView)
-            make.top.equalTo(addressLabel.snp_bottom).offset(30.pixelToPoint)
-        }
-    }
+   }
     
     func configureGoodView() {
         customView = UIView()
         customView.backgroundColor = UIColor.clearColor()
         scrollView.addSubview(customView)
-        customView.snp_makeConstraints { (make) in
-            make.left.right.equalTo(view)
-            make.top.equalTo(buyerView.snp_bottom)
+        
+        if let _ = addressItemEntity {
+            customView.snp_remakeConstraints { (make) in
+                make.left.right.equalTo(view)
+                make.top.equalTo(buyerView.snp_bottom)
+            }
+        } else {
+            customView.snp_remakeConstraints { (make) in
+                make.left.right.equalTo(view)
+                make.top.equalTo(addAddressView.snp_bottom)
+            }
         }
+   
         
         let title = UILabel()
         title.text = "订单商品"
@@ -629,6 +718,7 @@ class PayViewController: BaseViewController {
         addressVC.selectedHandler = {
             [weak self] item in
             self?.addressItemEntity = item
+            self?.renewViews()
         }
         self.navigationController?.pushViewController(addressVC, animated: true)
     }

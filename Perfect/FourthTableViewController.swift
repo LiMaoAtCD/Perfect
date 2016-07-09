@@ -99,10 +99,10 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
 
         if !updateAvatar {
             
-            if let url = NSUserDefaults.standardUserDefaults().objectForKey("avatar") as? String {
-                self.avatarImageView.kf_setImageWithURL(NSURL.init(string: url)!)
-            }
-            
+//            if let url = NSUserDefaults.standardUserDefaults().objectForKey("avatar") as? String {
+//                self.avatarImageView.kf_setImageWithURL(NSURL.init(string: url)!)
+//            }
+//            
             
             NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberInfo.contant, parameters: nil, completion: { (result: MemberInfoResponse?) in
                 
@@ -259,6 +259,7 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         
         NetworkHelper.instance.request(.GET, url: URLConstant.updateLoginMemberInfo.contant, parameters: ["avatarId": imageId.toNSNumber], completion: { (result: DataResponse?) in
                 self.updateAvatar = true
+                SVProgressHUD.dismiss()
             }) { (msg, code) in
                 SVProgressHUD.showErrorWithStatus(msg)
         }
