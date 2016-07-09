@@ -19,15 +19,14 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate {
         if let _ = self.tabBar.items {
             
             var items = self.tabBar.items!
-            items[0].image = UIImage(named: "tab_main_0")
-            items[0].selectedImage = UIImage(named: "tab_main_1")
-            items[1].image = UIImage(named: "tab_collection_0")
-            items[1].selectedImage = UIImage(named: "tab_collection_1")
-            items[2].image = UIImage(named: "tab_personal_0")
-            items[2].selectedImage = UIImage(named: "tab_personal_1")
+            items[0].image = UIImage(named: "tab_mainpage_1")
+            items[0].selectedImage = UIImage(named: "tab_mainpage_0")
+            items[1].image = UIImage(named: "tab_collect_1")
+            items[1].selectedImage = UIImage(named: "tab_collect_0")
+            items[2].image = UIImage(named: "tab_person_1")
+            items[2].selectedImage = UIImage(named: "tab_person_0")
         }
         self.tabBar.tintColor = UIColor.redColor()
-        self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
 
     }
 

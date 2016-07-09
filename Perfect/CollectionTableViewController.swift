@@ -20,7 +20,7 @@ class CollectionTableViewController: UITableViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(18), NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         colletionList = [CollectProductItem]()
-        self.title = "我的收藏"
+        self.navigationItem.title = "我的收藏"
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 200
         self.tableView.registerClass(CollectCell.self, forCellReuseIdentifier: "CollectCell")

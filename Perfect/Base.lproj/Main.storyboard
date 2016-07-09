@@ -190,12 +190,12 @@
             </objects>
             <point key="canvasLocation" x="-468" y="-460"/>
         </scene>
-        <!--首页-->
+        <!--Navigation Controller-->
         <scene sceneID="TkM-Nk-p6Y">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SfO-gc-2ha" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" id="Lh5-ES-6Dd">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    <tabBarItem key="tabBarItem" title="" id="Lh5-ES-6Dd">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9N5-5f-KKf">
@@ -211,12 +211,12 @@
             </objects>
             <point key="canvasLocation" x="-848" y="192"/>
         </scene>
-        <!--个人中心-->
+        <!--Me Navigation Controller-->
         <scene sceneID="MLM-sn-6H4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="DAk-Yl-Gtx" customClass="MeNavigationController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="个人中心" id="acW-Jo-EoT">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    <tabBarItem key="tabBarItem" title="" id="acW-Jo-EoT">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kwf-g6-DEC">
@@ -262,12 +262,12 @@
             </objects>
             <point key="canvasLocation" x="1196" y="-355"/>
         </scene>
-        <!--我的收藏-->
+        <!--Navigation Controller-->
         <scene sceneID="3O0-kj-ctC">
             <objects>
                 <navigationController id="YQW-J1-meK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的收藏" id="vIY-1W-9Iz">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    <tabBarItem key="tabBarItem" title="" id="vIY-1W-9Iz">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nmC-gW-184">
