@@ -16,10 +16,8 @@ class CollectionTableViewController: UITableViewController {
     var currentPage: Int = 1
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
-        self.navigationController?.navigationBar.translucent = false
 
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(18), NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         colletionList = [CollectProductItem]()
         self.title = "我的收藏"

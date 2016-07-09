@@ -83,8 +83,13 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
                 return
             }
             
+            if rows.count >= 20 {
+                self?.collection.mj_footer?.endRefreshing()
+                self?.currentPage = self!.currentPage + 1
+            } else {
+                self?.collection.mj_footer.endRefreshingWithNoMoreData()
+            }
             
-            rows.count == 20 ? self?.collection.mj_footer?.endRefreshing() : self?.collection.mj_footer.endRefreshingWithNoMoreData()
             
             self?.goods?.appendContentsOf(rows)
             self?.collection.reloadSections(NSIndexSet.init(index: 3))
