@@ -13,10 +13,11 @@ import Async
 
 class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    let items = [["个人信息","修改密码","收货地址管理"],["查看订单","清除缓存"]]
+    let items = [["查看订单","收货地址管理","密码设置"],["个人信息","清除缓存","退出/更换账号"]]
     var header: UIView!
     var avatarImageView: UIImageView!
     var nickNameLabel: UILabel!
+    var phoneLabel: UILabel!
     var imagePicker: UIImagePickerController?
     var updateAvatar: Bool = false
     override func viewDidLoad() {
@@ -40,8 +41,12 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         header.addSubview(circle)
         circle.snp_makeConstraints { (make) in
             make.width.height.equalTo(220.pixelToPoint)
-            make.center.equalTo(header)
+//            make.center.equalTo(header)
+            make.left.equalTo(header).offset(20)
+            make.centerY.equalTo(header).offset(20)
         }
+        
+        
         
         avatarImageView = UIImageView()
         avatarImageView.userInteractionEnabled = true
@@ -64,21 +69,34 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         header.addSubview(nickNameLabel)
         
         nickNameLabel.snp_makeConstraints { (make) in
-            make.centerX.equalTo(avatarImageView)
-            make.top.equalTo(circle.snp_bottom).offset(32.pixelToPoint)
+            make.left.equalTo(avatarImageView.snp_right).offset(20)
+            make.baseline.equalTo(circle.snp_centerY).offset(-10)
         }
+        
+        phoneLabel = UILabel()
+        header.addSubview(phoneLabel)
+        phoneLabel.text = "13432332323"
+        phoneLabel.textColor = UIColor.whiteColor()
+        phoneLabel.font = UIFont.systemFontOfSize(18)
+        
+        phoneLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(nickNameLabel)
+            make.top.equalTo(nickNameLabel.snp_bottom).offset(20)
+        }
+        
+        
 
         
         self.tableView.tableHeaderView = header
         self.tableView.backgroundColor = UIColor.globalBackGroundColor()
         
-        let logout = UIButton.init(type: .Custom)
-        logout.backgroundColor = UIColor.clearColor()
-        logout.setTitleColor(UIColor.init(hexString: "#b33333"), forState: .Normal)
-        logout.addTarget(self, action: #selector(self.logout), forControlEvents: .TouchUpInside)
-        logout.setTitle("退出登录", forState: .Normal)
-        logout.frame = CGRectMake(0, 0, Tool.width, 129.pixelToPoint)
-        self.tableView.tableFooterView = logout
+//        let logout = UIButton.init(type: .Custom)
+//        logout.backgroundColor = UIColor.clearColor()
+//        logout.setTitleColor(UIColor.init(hexString: "#b33333"), forState: .Normal)
+//        logout.addTarget(self, action: #selector(self.logout), forControlEvents: .TouchUpInside)
+//        logout.setTitle("退出登录", forState: .Normal)
+//        logout.frame = CGRectMake(0, 0, Tool.width, 129.pixelToPoint)
+//        self.tableView.tableFooterView = logout
     }
     
     
@@ -96,6 +114,8 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
             if let url = NSUserDefaults.standardUserDefaults().objectForKey("avatar") as? String {
                 self.avatarImageView.kf_setImageWithURL(NSURL.init(string: url)!)
             }
+            
+            
             
             NetworkHelper.instance.request(.GET, url: URLConstant.appMemberCenterIndex.contant, parameters: ["rows": 0, "page": 1], completion: { [weak self](res: PersonalCenterResponse?) in
                 
@@ -139,11 +159,11 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        // Configure the cell...
-        
             let cell = tableView.dequeueReusableCellWithIdentifier(MeCell.identifier, forIndexPath: indexPath) as! MeCell
             cell.title.text = items[indexPath.section][indexPath.row]
+            if indexPath == NSIndexPath.init(forRow: 2, inSection: 1) {
+                cell.title.textColor = UIColor.globalRedColor()
+            }
             return cell
     }
  
@@ -152,27 +172,30 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         if indexPath == NSIndexPath.init(forRow: 0, inSection: 0) {
-            let personal = PeronalViewController.someController(PeronalViewController.self, ofStoryBoard: UIStoryboard.main)
-            personal.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(personal, animated: true)
-        } else if indexPath == NSIndexPath.init(forRow: 1, inSection: 0) {
-            let change = Tool.sb.instantiateViewControllerWithIdentifier("ChangePasswordViewController") as! ChangePasswordViewController
-            change.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(change, animated: true)
-        } else if indexPath == NSIndexPath.init(forRow: 2, inSection: 0) {
-            let addressVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AddressViewController") as! AddressViewController
-            addressVC.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(addressVC, animated: true)
-        } else if indexPath == NSIndexPath.init(forRow: 0, inSection: 1) {
             let orderVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AllOrderViewController") as! AllOrderViewController
             orderVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(orderVC, animated: true)
+            
+        } else if indexPath == NSIndexPath.init(forRow: 1, inSection: 0) {
+            let addressVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AddressViewController") as! AddressViewController
+            addressVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(addressVC, animated: true)
+       } else if indexPath == NSIndexPath.init(forRow: 2, inSection: 0) {
+            let change = Tool.sb.instantiateViewControllerWithIdentifier("ChangePasswordViewController") as! ChangePasswordViewController
+            change.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(change, animated: true)
+        } else if indexPath == NSIndexPath.init(forRow: 0, inSection: 1) {
+            let personal = PeronalViewController.someController(PeronalViewController.self, ofStoryBoard: UIStoryboard.main)
+            personal.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(personal, animated: true)
         } else if indexPath == NSIndexPath.init(forRow: 1, inSection: 1) {
                 //提示清楚缓存
                 SVProgressHUD.showWithStatus("正在清除缓存")
                 Async.main(after: 1.0, block: {
                     SVProgressHUD.showSuccessWithStatus("清除成功")
                 })
+        } else {
+            self.logout()
         }
     }
     
@@ -259,13 +282,12 @@ class MeCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         title = UILabel.init()
         title.textColor = UIColor.init(hexString: "#333333")
-        title.font = UIFont.systemFontOfSize(14.0)
+        title.font = UIFont.systemFontOfSize(15.0)
         self.addSubview(title)
         title.snp_makeConstraints { (make) in
             make.left.equalTo(self).offset(24.pixelToPoint)
             make.centerY.equalTo(self)
         }
-        self.accessoryType = .DisclosureIndicator
     }
     
     required init?(coder aDecoder: NSCoder) {
