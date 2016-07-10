@@ -68,7 +68,7 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         addAddressButon.snp_makeConstraints { (make) in
             make.left.equalTo(footer)
             make.right.equalTo(footer)
-            make.height.equalTo(40)
+            make.height.equalTo(50)
             make.center.equalTo(footer)
         }
         

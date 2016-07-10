@@ -64,7 +64,7 @@ class AddressEditViewController: BaseViewController, UITextViewDelegate {
         }
         finishedButton.backgroundColor = UIColor.whiteColor()
         finishedButton.setTitle("完成", forState: .Normal)
-        finishedButton.setTitleColor(UIColor.init(hexString: "#ee304e"), forState: .Normal)
+        finishedButton.setTitleColor(UIColor.globalRedColor(), forState: .Normal)
         finishedButton.addTarget(self, action: #selector(self.finishEdit), forControlEvents: .TouchUpInside)
     }
     

@@ -32,8 +32,8 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     
     var price: Float = 0.0 {
         willSet {
-            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
+            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.globalRedColor()])
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(0, 1))
             attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
             priceLabel.attributedText = attributeString
         }
@@ -97,7 +97,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         scrollView.addSubview(topBanner)
         
         topBanner.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter
-        topBanner.currentPageDotColor = UIColor.redColor()
+        topBanner.currentPageDotColor = UIColor.globalRedColor()
         topBanner.autoScroll = false
         topBanner.snp_makeConstraints { (make) in
             make.left.right.equalTo(view)
@@ -141,7 +141,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         }
         
         moduleTitleLabel.text = "模块选择"
-        moduleTitleLabel.textColor = UIColor.init(hexString: "#333333")
+        moduleTitleLabel.textColor = UIColor.globalDarkColor()
         moduleTitleLabel.font = UIFont.systemFontOfSize(16.0)
         
         if let products = self.detail?.products {
@@ -160,7 +160,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
                 for i in 0 ..< products.count {
                     let moduleView = UIButton.init(type: .Custom)
                     moduleView.tag = i
-                    moduleView.layer.borderColor = UIColor.redColor().CGColor
+                    moduleView.layer.borderColor = UIColor.globalRedColor().CGColor
                     moduleView.layer.borderWidth = 0.3
                     moduleView.layer.cornerRadius = 5
                     moduleView.layer.masksToBounds = true
@@ -301,7 +301,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         for i in 0 ..< moduleButtons.count {
             if i == index {
                 moduleButtons[i].setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                moduleButtons[i].backgroundColor = UIColor.init(hexString: "#f15353")
+                moduleButtons[i].backgroundColor = UIColor.globalRedColor()
             } else {
                 moduleButtons[i].setTitleColor(UIColor.blackColor(), forState: .Normal)
                 moduleButtons[i].backgroundColor = UIColor.clearColor()

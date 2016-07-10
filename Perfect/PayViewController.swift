@@ -59,9 +59,9 @@ class PayViewController: BaseViewController {
     var priceLabel: UILabel! //商品单价
     var price: Float = 0.0 {
         willSet {
-            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
+            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.globalRedColor()])
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(0, 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
             priceLabel.attributedText = attributeString
             self.totalPrice = newValue * Float(quantity)
         }
@@ -128,6 +128,9 @@ class PayViewController: BaseViewController {
 //            }
             addressItemEntity = nil
             renewViews()
+            self.price = self.products![self.selectedIndex].price
+            self.productId = self.products![selectedIndex].id
+
         }
         
     }
@@ -174,8 +177,6 @@ class PayViewController: BaseViewController {
         configureTotalView()
         
         
-        self.price = self.products![self.selectedIndex].price
-        self.productId = self.products![selectedIndex].id
 
     }
 
@@ -331,31 +332,41 @@ class PayViewController: BaseViewController {
     
     func configureGoodView() {
         customView = UIView()
-        customView.backgroundColor = UIColor.clearColor()
+        customView.backgroundColor = UIColor.whiteColor()
         scrollView.addSubview(customView)
         
         if let _ = addressItemEntity {
             customView.snp_remakeConstraints { (make) in
                 make.left.right.equalTo(view)
-                make.top.equalTo(buyerView.snp_bottom)
+                make.top.equalTo(buyerView.snp_bottom).offset(10.pixelToPoint)
             }
         } else {
             customView.snp_remakeConstraints { (make) in
                 make.left.right.equalTo(view)
-                make.top.equalTo(addAddressView.snp_bottom)
+                make.top.equalTo(addAddressView.snp_bottom).offset(10.pixelToPoint)
             }
         }
    
         
         let title = UILabel()
         title.text = "订单商品"
-        title.textColor = UIColor.init(hexString: "#333333")
+        title.textColor = UIColor.globalDarkColor()
         title.font = UIFont.systemFontOfSize(16)
         customView.addSubview(title)
         title.snp_makeConstraints { (make) in
             make.left.equalTo(customView).offset(24.pixelToPoint)
-            make.centerY.equalTo(customView.snp_top).offset(105.pixelToPoint / 2)
+            make.centerY.equalTo(customView.snp_top).offset(72.pixelToPoint / 2)
             make.width.lessThanOrEqualTo(80).priority(1000)
+        }
+        
+        let line = UIView()
+        customView.addSubview(line)
+        line.backgroundColor = UIColor.globalSeparatorColor()
+        line.snp_makeConstraints { (make) in
+            make.left.equalTo(title)
+            make.right.equalTo(-24.pixelToPoint)
+            make.top.equalTo(title.snp_bottom).offset(8)
+            make.height.equalTo(1.pixelToPoint)
         }
         
         let mainView = UIView()
@@ -364,7 +375,7 @@ class PayViewController: BaseViewController {
         mainView.snp_makeConstraints { (make) in
             make.left.equalTo(title)
             make.right.equalTo(customView).offset(-14)
-            make.top.equalTo(title.snp_bottom).offset(20)
+            make.top.equalTo(line.snp_bottom).offset(19)
             make.bottom.equalTo(customView).offset(-8)
         }
         
@@ -379,7 +390,7 @@ class PayViewController: BaseViewController {
         
         goodsTitle = UILabel.init()
         goodsTitle.numberOfLines = 0
-        goodsTitle.textColor = UIColor.init(hexString: "#333333")
+        goodsTitle.textColor = UIColor.globalDarkColor()
         goodsTitle.font = UIFont.systemFontOfSize(16.0)
         mainView.addSubview(goodsTitle)
         goodsTitle.snp_makeConstraints { (make) in
@@ -400,12 +411,12 @@ class PayViewController: BaseViewController {
         }
         
         let marginView = UIView()
-        marginView.backgroundColor = UIColor.init(hexString:"#e3e3e3")
+        marginView.backgroundColor = UIColor.globalSeparatorColor()
         
         mainView.addSubview(marginView)
         marginView.snp_makeConstraints { (make) in
             make.left.right.equalTo(mainView)
-            make.height.equalTo(0.3)
+            make.height.equalTo(1.pixelToPoint)
             make.top.equalTo(previewImageview.snp_bottom).offset(8)
         }
         
@@ -475,9 +486,10 @@ class PayViewController: BaseViewController {
         
         let changeButton = UIButton.init()
         changeButton.setTitle("更换定制图", forState: .Normal)
+        changeButton.titleLabel?.font = UIFont.systemFontOfSize(14.0)
         changeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        changeButton.setBackgroundImage(UIImage.init(named: "pay_image_change_0"), forState: .Normal)
-        changeButton.setBackgroundImage(UIImage.init(named: "pay_image_change_1"), forState: .Highlighted)
+        changeButton.setBackgroundImage(UIImage.init(named: "detail_custom_0"), forState: .Normal)
+        changeButton.setBackgroundImage(UIImage.init(named: "detail_custom_1"), forState: .Highlighted)
         
         changeButton.addTarget(self, action: #selector(self.custom), forControlEvents: .TouchUpInside)
         mainView.addSubview(changeButton)
@@ -490,7 +502,7 @@ class PayViewController: BaseViewController {
         }
         
         let moduleMarginView = UIView()
-        moduleMarginView.backgroundColor = UIColor.init(hexString:"#e3e3e3")
+        moduleMarginView.backgroundColor = UIColor.globalSeparatorColor()
         mainView.addSubview(moduleMarginView)
         moduleMarginView.snp_makeConstraints { (make) in
             make.left.right.height.equalTo(marginView)
@@ -503,7 +515,7 @@ class PayViewController: BaseViewController {
         moduleChoosenLabel.font = UIFont.systemFontOfSize(15.0)
         moduleChoosenLabel.textColor = UIColor.init(hexString: "333333")
         moduleChoosenLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(mainView).offset(36.pixelToPoint)
+            make.left.equalTo(title)
             make.top.equalTo(moduleMarginView).offset(42.pixelToPoint)
         }
         
@@ -527,8 +539,10 @@ class PayViewController: BaseViewController {
                     moduleView.layer.borderWidth = 0.3
                     moduleView.layer.cornerRadius = 5
                     moduleView.layer.masksToBounds = true
+                    moduleView.titleLabel?.font = UIFont.systemFontOfSize(14.0)
                     moduleView.addTarget(self, action: #selector(self.switchProduct(_:)), forControlEvents: .TouchUpInside)
                     mainView.addSubview(moduleView)
+                    
                     moduleView.snp_makeConstraints(closure: { (make) in
                         make.left.equalTo(moduleMargin + CGFloat(i) * (itemWidth + moduleMargin * 2))
                         make.top.equalTo(moduleChoosenLabel.snp_bottom).offset(33.pixelToPoint)
@@ -572,7 +586,7 @@ class PayViewController: BaseViewController {
         for i in 0 ..< moduleButtons.count {
             if i == index {
                 moduleButtons[i].setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                moduleButtons[i].backgroundColor = UIColor.init(hexString: "#f15353")
+                moduleButtons[i].backgroundColor = UIColor.globalRedColor()
             } else {
                 moduleButtons[i].setTitleColor(UIColor.blackColor(), forState: .Normal)
                 moduleButtons[i].backgroundColor = UIColor.clearColor()
@@ -582,11 +596,11 @@ class PayViewController: BaseViewController {
     
     func configurePayView() {
         let payView = UIView()
-        payView.backgroundColor = UIColor.clearColor()
+        payView.backgroundColor = UIColor.whiteColor()
         scrollView.addSubview(payView)
         payView.snp_makeConstraints { (make) in
             make.left.right.equalTo(customView)
-            make.top.equalTo(customView.snp_bottom)
+            make.top.equalTo(customView.snp_bottom).offset(10.pixelToPoint)
             make.bottom.equalTo(scrollView)
         }
         
@@ -597,8 +611,18 @@ class PayViewController: BaseViewController {
         payView.addSubview(title)
         title.snp_makeConstraints { (make) in
             make.left.equalTo(payView).offset(24.pixelToPoint)
-            make.centerY.equalTo(payView.snp_top).offset(86.pixelToPoint / 2)
+            make.centerY.equalTo(payView.snp_top).offset(72.pixelToPoint / 2)
             make.width.lessThanOrEqualTo(80).priority(1000)
+        }
+        
+        let line = UIView()
+        payView.addSubview(line)
+        line.backgroundColor = UIColor.globalSeparatorColor()
+        line.snp_makeConstraints { (make) in
+            make.left.equalTo(title)
+            make.right.equalTo(-24.pixelToPoint)
+            make.top.equalTo(title.snp_bottom).offset(8)
+            make.height.equalTo(1.pixelToPoint)
         }
         
         let mainView = UIView()
@@ -607,7 +631,7 @@ class PayViewController: BaseViewController {
         mainView.snp_makeConstraints { (make) in
             make.left.equalTo(title)
             make.right.equalTo(customView).offset(-14)
-            make.top.equalTo(title.snp_bottom).offset(20)
+            make.top.equalTo(line.snp_bottom).offset(19)
             make.bottom.equalTo(payView).offset(-47.pixelToPoint)
         }
         
@@ -680,8 +704,8 @@ class PayViewController: BaseViewController {
         bottomView.addSubview(settleButton)
         settleButton.setTitle("结算", forState: .Normal)
         settleButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        settleButton.setBackgroundImage(UIImage.init(named: "pay_submit_1"), forState: .Normal)
-        settleButton.setBackgroundImage(UIImage.init(named: "pay_submit_0"), forState: .Highlighted)
+        settleButton.setBackgroundImage(UIImage.init(named: "detail_custom_1"), forState: .Normal)
+        settleButton.setBackgroundImage(UIImage.init(named: "detail_custom_1"), forState: .Highlighted)
         settleButton.addTarget(self, action: #selector(self.submitOrder), forControlEvents: .TouchUpInside)
         
         settleButton.snp_makeConstraints { (make) in
