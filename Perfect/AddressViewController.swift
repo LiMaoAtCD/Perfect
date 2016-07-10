@@ -48,13 +48,13 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         
         
         
-        let footer = UIView.init(frame: CGRectMake(0, 0, Tool.width, 50))
+        let footer = UIView.init(frame: CGRectMake(0, 0, Tool.width, 40))
         view.addSubview(footer)
         footer.snp_makeConstraints { (make) in
             make.left.right.bottom.equalTo(view)
-            make.height.equalTo(50)
+            make.height.equalTo(40)
         }
-        footer.backgroundColor = UIColor.redColor()
+        footer.backgroundColor = UIColor.globalRedColor()
         
         let addAddressButon = UIButton.init(type: .Custom)
         addAddressButon.setTitle("添加新地址", forState: .Normal)

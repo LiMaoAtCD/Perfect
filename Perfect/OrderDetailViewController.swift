@@ -56,18 +56,18 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
     
     var price: Float = 0.0 {
         willSet {
-            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length - 1))
+            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.globalRedColor()])
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(0, 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length - 1))
             priceLabel.attributedText = attributeString
         }
     }
     
     var totalPrice: Float = 0.0 {
         willSet {
-            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length - 1))
+            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.globalRedColor()])
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(0, 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, NSString.init(string: "\(newValue)").length - 1))
             priceTotalLabel.attributedText = attributeString
         }
     }
@@ -272,8 +272,8 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
         
         priceLabel = UILabel()
         let price: NSString = self.entity!.totalPrice.currency as NSString
-        let attributeString = NSMutableAttributedString.init(string: self.entity!.totalPrice.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#ee304e")])
-        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(10)], range: NSMakeRange(0, 1))
+        let attributeString = NSMutableAttributedString.init(string: self.entity!.totalPrice.currency, attributes: [NSForegroundColorAttributeName: UIColor.globalRedColor()])
+        attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(0, 1))
         attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, price.length - 1))
         priceLabel.attributedText = attributeString
         
@@ -431,9 +431,9 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
         
         priceTotalLabel = UILabel()
         let totalPrice: NSString = self.entity!.totalPrice.currency as NSString
-        let totalPriceAttributeString = NSMutableAttributedString.init(string: totalPrice as String, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#ee304e")])
-        totalPriceAttributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(10)], range: NSMakeRange(0, 1))
-        totalPriceAttributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, totalPrice.length - 1))
+        let totalPriceAttributeString = NSMutableAttributedString.init(string: totalPrice as String, attributes: [NSForegroundColorAttributeName: UIColor.globalRedColor()])
+        totalPriceAttributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(0, 1))
+        totalPriceAttributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, totalPrice.length - 1))
         priceTotalLabel.attributedText = totalPriceAttributeString
         
         priceView.addSubview(priceTotalLabel)
