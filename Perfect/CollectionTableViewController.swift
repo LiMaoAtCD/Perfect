@@ -26,7 +26,7 @@ class CollectionTableViewController: UITableViewController {
         self.tableView.registerClass(CollectCell.self, forCellReuseIdentifier: "CollectCell")
         self.tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = UIColor.globalBackGroundColor()
-        
+        self.tableView.separatorStyle = .None
 //        let footer = MJRefreshAutoNormalFooter.init { [weak self]() -> Void in
 //            self?.fetchMore()
 //        }
@@ -188,10 +188,9 @@ class CollectCell: UITableViewCell {
         mainView.backgroundColor = UIColor.whiteColor()
         self.addSubview(mainView)
         mainView.snp_makeConstraints { (make) in
-            make.left.equalTo(20.pixelToPoint)
-            make.right.equalTo(-20.pixelToPoint)
-            make.top.equalTo(24.pixelToPoint)
-            make.bottom.equalTo(self)
+           
+            make.left.right.top.equalTo(self)
+            make.bottom.equalTo(self).offset(-10.pixelToPoint)
         }
         
         goodImageView = UIImageView()
