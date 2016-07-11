@@ -101,6 +101,8 @@ class ProductItem: Mappable {
     var name: String?
     var id: Int64 = 0
     var thumbnailId: Int64 = 0
+    var fullName: String?
+
     
     required init?(_ map: Map) {
     }
@@ -111,7 +113,7 @@ class ProductItem: Mappable {
         thumbnailId <- (map["thumbnailId"], TransformOfUtils.TransformOfInt64())
         name <- map["name"]
         id <- (map["id"], TransformOfUtils.TransformOfInt64())
-        
+        fullName <- map["fullName"]
     }
 }
 
@@ -686,6 +688,7 @@ class CollectProductItem: Mappable {
     var categoryId: Int64 = 0
     var categoryName: String?
     var name: String?
+    var fullName: String?
     var id: Int64 = 0
     
     required init?(_ map: Map) {
@@ -698,6 +701,7 @@ class CollectProductItem: Mappable {
         categoryId <- (map["categoryId"], TransformOfUtils.TransformOfInt64())
         categoryName <- map["categoryName"]
         name <- map["name"]
+        fullName <- map["fullName"]
         id <- (map["id"], TransformOfUtils.TransformOfInt64())
         
     }
