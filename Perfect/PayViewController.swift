@@ -108,6 +108,7 @@ class PayViewController: BaseViewController {
     func renewViews() {
         configureBuyerView()
         configureGoodView()
+        configurePayView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -117,16 +118,13 @@ class PayViewController: BaseViewController {
         let realm = try! Realm()
         let addresses = realm.objects(AddressItemsEntity)
         if addresses.isEmpty {
-//            for address in addresses {
-//                if address.isDefault {
-//                    addressItemEntity = address
-//                }
-//            }
-//            if let _ = addressItemEntity {
-//            } else {
-//                addressItemEntity = addresses.first
-//            }
+
             addressItemEntity = nil
+            renewViews()
+            self.price = self.products![self.selectedIndex].price
+            self.productId = self.products![selectedIndex].id
+
+        } else {
             renewViews()
             self.price = self.products![self.selectedIndex].price
             self.productId = self.products![selectedIndex].id
@@ -331,6 +329,7 @@ class PayViewController: BaseViewController {
    }
     
     func configureGoodView() {
+        customView?.removeFromSuperview()
         customView = UIView()
         customView.backgroundColor = UIColor.whiteColor()
         scrollView.addSubview(customView)
@@ -594,8 +593,11 @@ class PayViewController: BaseViewController {
         }
     }
     
+    var payView: UIView!
     func configurePayView() {
-        let payView = UIView()
+        
+        payView?.removeFromSuperview()
+        payView = UIView()
         payView.backgroundColor = UIColor.whiteColor()
         scrollView.addSubview(payView)
         payView.snp_makeConstraints { (make) in

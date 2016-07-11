@@ -133,13 +133,16 @@ class ProductDetailEntity: Mappable {
     var intro: String?
     var products: [ProductDetailModuleItem]?
     var discount: Float = 0.0
+    var profile: String?
     required init?(_ map: Map) {
     }
     
     func mapping(map: Map) {
         
-        id <- map["id"]
+        id <- (map["id"], TransformOfUtils.TransformOfInt64())
         deliverMemo <- map["deliverMemo"]
+        profile <- map["profile"]
+
         marketPrice <- map["marketPrice"]
         price <- map["price"]
         merchantName <- map["merchantName"]

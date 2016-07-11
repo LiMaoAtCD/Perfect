@@ -333,7 +333,6 @@ class CollectionViewCell: UICollectionViewCell {
     var title: UILabel!
     var detailTitle: UILabel!
     var priceLabel: UILabel!
-//    var marketPrice: MarketLabel!
     
     var price: Float = 0.0 {
         willSet {
@@ -397,6 +396,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         detailTitle = UILabel.init()
         detailTitle.numberOfLines = 0
+        detailTitle.preferredMaxLayoutWidth = Tool.width / 2
         mainView.addSubview(detailTitle)
         detailTitle.textColor = UIColor.globalLightGrayColor()
         detailTitle.font = UIFont.systemFontOfSize(14)
