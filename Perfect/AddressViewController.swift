@@ -48,11 +48,11 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
         
         
         
-        let footer = UIView.init(frame: CGRectMake(0, 0, Tool.width, 40))
+        let footer = UIView.init(frame: CGRectMake(0, 0, Tool.width, 50))
         view.addSubview(footer)
         footer.snp_makeConstraints { (make) in
             make.left.right.bottom.equalTo(view)
-            make.height.equalTo(40)
+            make.height.equalTo(50)
         }
         footer.backgroundColor = UIColor.globalRedColor()
         
