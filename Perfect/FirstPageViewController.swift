@@ -314,11 +314,11 @@ class CollectionLayout: UICollectionViewFlowLayout {
         super.init()
         self.minimumInteritemSpacing = 0.0
         self.minimumLineSpacing = 0.0
-        if #available(iOS 9.0, *) {
+//        if #available(iOS 9.0, *) {
             self.sectionHeadersPinToVisibleBounds = true
-        } else {
-            // Fallback on earlier versions
-        }
+//        } else {
+//            // Fallback on earlier versions
+//        }
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

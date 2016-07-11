@@ -240,7 +240,8 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        
+        self.updateAvatar = true
+
         picker.dismissViewControllerAnimated(false) {
             
             //上传头像
@@ -251,6 +252,8 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
                     self.updateAvatarID(imgId!)
                 }, failed: { (msg, code) in
                     SVProgressHUD.showErrorWithStatus(msg)
+                    self.updateAvatar = false
+
             })
         }
     }
@@ -258,10 +261,11 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
     func updateAvatarID(imageId: Int64) {
         
         NetworkHelper.instance.request(.GET, url: URLConstant.updateLoginMemberInfo.contant, parameters: ["avatarId": imageId.toNSNumber], completion: { (result: DataResponse?) in
-                self.updateAvatar = true
                 SVProgressHUD.dismiss()
             }) { (msg, code) in
                 SVProgressHUD.showErrorWithStatus(msg)
+                self.updateAvatar = false
+
         }
     }
 
