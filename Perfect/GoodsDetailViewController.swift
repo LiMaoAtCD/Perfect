@@ -21,7 +21,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     var bottomView: UIView!
     var detail: ProductDetailEntity?
     
-    let bottomHeight = 44
+    let bottomHeight = 96.pixelToPoint
     var id: Int64 = 0
     var favorite: Bool = false
     var collectionTitle: UILabel!
@@ -33,8 +33,8 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     var price: Float = 0.0 {
         willSet {
             let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.globalRedColor()])
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(0, 1))
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(0, 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
             priceLabel.attributedText = attributeString
         }
     }
@@ -86,7 +86,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         if let images = self.detail?.images {
             var imageUrls = [String]()
             for imageId in images {
-                let imageurl = imageId.perfectImageurl(664, h: 750, crop: true)
+                let imageurl = imageId.perfectImageurl(680, h: 750, crop: true)
                 imageUrls.append(imageurl)
                 bannerIds.append(imageId)
             }
@@ -104,13 +104,6 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             make.top.equalTo(scrollView)
             make.height.equalTo(topBanner.snp_width).multipliedBy(664.0 / 750)
         }
-        
-        let shadowImageView = UIImageView.init()
-        topBanner.addSubview(shadowImageView)
-        shadowImageView.snp_makeConstraints { (make) in
-            make.left.right.bottom.equalTo(topBanner)
-            make.height.equalTo(9)
-        }
     }
     
     func configureGoodInfoView() {
@@ -122,21 +115,13 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         goodsInfoView.snp_makeConstraints { (make) in
             make.top.equalTo(topBanner.snp_bottom)
             make.left.right.equalTo(topBanner)
-            make.height.equalTo(300)
-        }
-        
-        let shadow = UIImageView.init(image: UIImage.init(named: "detail_shadow"))
-        goodsInfoView.addSubview(shadow)
-        shadow.snp_makeConstraints { (make) in
-            make.top.left.right.equalTo(goodsInfoView)
-            make.height.equalTo(10.pixelToPoint)
         }
         
         let moduleTitleLabel = UILabel()
         
         goodsInfoView.addSubview(moduleTitleLabel)
         moduleTitleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(31.pixelToPoint)
+            make.left.equalTo(30.pixelToPoint)
             make.top.equalTo(goodsInfoView).offset(26.pixelToPoint)
         }
         
@@ -154,11 +139,12 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
                     }
                 }
                 
-                let moduleMargin  = 24.pixelToPoint
+                let moduleMargin  = 30.pixelToPoint
                 let itemWidth = (Tool.width - CGFloat(products.count) * moduleMargin * 2) / CGFloat(products.count)
                 moduleButtons = [UIButton]()
                 for i in 0 ..< products.count {
                     let moduleView = UIButton.init(type: .Custom)
+                    moduleView.titleLabel?.font = UIFont.systemFontOfSize(14.0)
                     moduleView.tag = i
                     moduleView.layer.borderColor = UIColor.globalRedColor().CGColor
                     moduleView.layer.borderWidth = 0.3
@@ -191,11 +177,11 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         
         let margin = UIView()
         goodsInfoView.addSubview(margin)
-        margin.backgroundColor = UIColor.init(hexString: "#ebebeb")
+        margin.backgroundColor = UIColor.globalSeparatorColor()
         margin.snp_makeConstraints { (make) in
             make.left.right.equalTo(goodsInfoView)
-            make.height.equalTo(1)
-            make.top.equalTo(moduleButtons[0].snp_bottom).offset(50.pixelToPoint)
+            make.height.equalTo(10.pixelToPoint)
+            make.top.equalTo(moduleButtons[0].snp_bottom).offset(30.pixelToPoint)
         }
 
         
@@ -207,77 +193,83 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         goodsInfoView.addSubview(titleLabel)
         titleLabel.text = self.detail?.name
         titleLabel.font = UIFont.systemFontOfSize(20)
-        titleLabel.textColor = UIColor.init(hexString: "#333333")
-        titleLabel.numberOfLines = 0
+        titleLabel.textColor = UIColor.globalDarkColor()
+//        titleLabel.numberOfLines = 0
         
         titleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(goodsInfoView).offset(24.pixelToPoint)
-            make.right.equalTo(goodsInfoView).offset(-24.pixelToPoint)
-            make.top.equalTo(margin.snp_bottom).offset(24.pixelToPoint)
+            make.left.equalTo(goodsInfoView).offset(34.pixelToPoint)
+            make.right.equalTo(goodsInfoView).offset(-34.pixelToPoint)
+            make.top.equalTo(margin.snp_bottom).offset(31.pixelToPoint)
         }
         
-        priceLabel = UILabel()
+        let introduceLabel = UILabel()
+        goodsInfoView.addSubview(introduceLabel)
+        introduceLabel.text = self.detail?.name
+        introduceLabel.font = UIFont.systemFontOfSize(14)
+        introduceLabel.textColor = UIColor.globalDarkColor()
+        introduceLabel.numberOfLines = 0
         
+        introduceLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(titleLabel)
+            make.right.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp_bottom).offset(29.pixelToPoint)
+        }
+        
+        introduceLabel.text = "将详情白酒采用高温智取，儿菜等哈看和健康和咖啡机的合法尽快恢复了很快就的咖啡好地方好几番的逆反"
+        
+        priceLabel = UILabel()
         goodsInfoView.addSubview(priceLabel)
         priceLabel.snp_makeConstraints { (make) in
             make.left.equalTo(titleLabel)
-            make.top.equalTo(titleLabel.snp_bottom).offset(35.pixelToPoint)
+            make.top.equalTo(introduceLabel.snp_bottom).offset(30.pixelToPoint)
         }
-        self.price = self.detail?.price ?? 0.00
         
-        let marketPriceLabel: MarketLabel!  = MarketLabel()
-        
-        goodsInfoView.addSubview(marketPriceLabel)
-        marketPriceLabel.text = "市场价" + self.detail!.marketPrice.currency
-        marketPriceLabel.font = UIFont.systemFontOfSize(14)
-        marketPriceLabel.labelColor = UIColor.init(hexString: "#999999")
-        
-        marketPriceLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(priceLabel.snp_right).offset(28.pixelToPoint)
+        let phone_tag = UIImageView()
+        goodsInfoView.addSubview(phone_tag)
+        phone_tag.image = UIImage.init(named: "detail_phone_tag")
+        phone_tag.snp_makeConstraints { (make) in
+            make.left.equalTo(priceLabel.snp_right).offset(29.pixelToPoint)
+            make.width.equalTo(73)
+            make.height.equalTo(14)
             make.centerY.equalTo(priceLabel)
         }
         
-        let homeTag = UIImageView()
-        goodsInfoView.addSubview(homeTag)
-        homeTag.image = UIImage.init(named: "detail_home")
-        homeTag.snp_makeConstraints { (make) in
-            make.height.width.equalTo(33.pixelToPoint)
-            make.left.equalTo(titleLabel)
-            make.top.equalTo(marketPriceLabel.snp_bottom).offset(56.pixelToPoint)
-        }
+        self.price = self.detail?.price ?? 0.00
         
-        let companyLabel: UILabel!  = UILabel()
-        
-        goodsInfoView.addSubview(companyLabel)
-        companyLabel.text = self.detail?.merchantName ?? "无"
-        companyLabel.font = UIFont.systemFontOfSize(14)
-        companyLabel.textColor = UIColor.init(hexString: "#666666")
-        
-        companyLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(homeTag.snp_right).offset(14.pixelToPoint)
-            make.centerY.equalTo(homeTag)
-        }
-        
-        let deliverTag = UIImageView()
-        goodsInfoView.addSubview(deliverTag)
-        deliverTag.image = UIImage.init(named: "detail_deliver")
-        deliverTag.snp_makeConstraints { (make) in
-            make.height.width.equalTo(33.pixelToPoint)
-            make.left.equalTo(homeTag)
-            make.top.equalTo(homeTag.snp_bottom).offset(32.pixelToPoint)
-        }
-        
+
         let deliverLabel: UILabel!  = UILabel()
         
         goodsInfoView.addSubview(deliverLabel)
         deliverLabel.text = self.detail?.deliverMemo ?? "无"
         deliverLabel.font = UIFont.systemFontOfSize(14)
-        deliverLabel.textColor = UIColor.init(hexString: "#666666")
-        
+        deliverLabel.textColor = UIColor.globalLightGrayColor()
+        deliverLabel.numberOfLines = 0
         deliverLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(deliverTag.snp_right).offset(14.pixelToPoint)
-            make.centerY.equalTo(deliverTag)
-            make.bottom.equalTo(goodsInfoView).offset(-20.pixelToPoint)
+            make.left.equalTo(goodsInfoView.snp_left).offset(33.pixelToPoint)
+            make.right.equalTo(goodsInfoView).offset(-33.pixelToPoint)
+            make.top.equalTo(priceLabel.snp_bottom).offset(34.pixelToPoint)
+//            make.height.greaterThanOrEqualTo(20)
+        }
+        
+        let line = UIView()
+        line.backgroundColor = UIColor.globalSeparatorColor()
+        goodsInfoView.addSubview(line)
+        line.snp_makeConstraints { (make) in
+            make.left.equalTo(33.pixelToPoint)
+            make.right.equalTo(-33.pixelToPoint)
+            make.top.equalTo(deliverLabel.snp_bottom).offset(31.pixelToPoint)
+            make.height.equalTo(1.pixelToPoint)
+        }
+        
+        let tagImageView = UIImageView()
+        tagImageView.image = UIImage.init(named: "detail_tag")
+        goodsInfoView.addSubview(tagImageView)
+        tagImageView.snp_makeConstraints { (make) in
+            make.left.equalTo(deliverLabel)
+            make.width.equalTo(166.0)
+            make.height.equalTo(28.pixelToPoint)
+            make.top.equalTo(line.snp_bottom).offset(10)
+            make.bottom.equalTo(goodsInfoView.snp_bottom).offset(-10.pixelToPoint)
         }
         
         self.topBanner.setScrollToIndex(0)
@@ -303,7 +295,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
                 moduleButtons[i].setTitleColor(UIColor.whiteColor(), forState: .Normal)
                 moduleButtons[i].backgroundColor = UIColor.globalRedColor()
             } else {
-                moduleButtons[i].setTitleColor(UIColor.blackColor(), forState: .Normal)
+                moduleButtons[i].setTitleColor(UIColor.globalDarkColor(), forState: .Normal)
                 moduleButtons[i].backgroundColor = UIColor.clearColor()
             }
         }
@@ -379,18 +371,57 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             make.height.equalTo(bottomHeight)
         }
         
+        let service = UIView()
+        service.layer.borderColor = UIColor.init(hexString: "#d8d8d8").CGColor
+        service.layer.borderWidth = 0.3
+        
+        let serviceTap = UITapGestureRecognizer.init(target: self, action: #selector(self.tapBottomItems(_:)))
+        
+        service.tag = 1
+        service.addGestureRecognizer(serviceTap)
+
+
+        bottomView.addSubview(service)
+        service.snp_makeConstraints { (make) in
+            make.top.bottom.equalTo(bottomView)
+            make.left.equalTo(bottomView)
+            make.width.equalTo(bottomView).multipliedBy(1.0 / 3)
+        }
+        
+        let serviceImageview = UIImageView()
+        serviceImageview.image = UIImage.init(named: "detail_kefu")
+        service.addSubview(serviceImageview)
+        serviceImageview.snp_makeConstraints { (make) in
+            make.centerX.equalTo(service)
+            make.width.equalTo(33.pixelToPoint)
+            make.height.equalTo(33.pixelToPoint)
+            make.top.equalTo(service).offset(18.pixelToPoint)
+        }
+        
+        let serviceTitle = UILabel()
+        service.addSubview(serviceTitle)
+        serviceTitle.text = "客服"
+        serviceTitle.textColor = UIColor.init(hexString: "#666666")
+        serviceTitle.font = UIFont.systemFontOfSize(12.0)
+        serviceTitle.textAlignment = .Center
+        serviceTitle.snp_makeConstraints { (make) in
+            make.left.right.equalTo(service)
+            make.bottom.equalTo(-15.pixelToPoint)
+        }
+        
         let collect = UIView()
         
         collect.layer.borderColor = UIColor.init(hexString: "#d8d8d8").CGColor
         collect.layer.borderWidth = 0.3
         bottomView.addSubview(collect)
         collect.snp_makeConstraints { (make) in
-            make.left.top.bottom.equalTo(bottomView)
+            make.top.bottom.equalTo(bottomView)
+            make.left.equalTo(service.snp_right)
             make.width.equalTo(bottomView).multipliedBy(1.0 / 3)
         }
         
         let collectionTap = UITapGestureRecognizer.init(target: self, action: #selector(self.tapBottomItems(_:)))
-
+        
         collect.tag = 0
         collect.addGestureRecognizer(collectionTap)
         
@@ -408,7 +439,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         collect.addSubview(collectionTitle)
         collectionTitle.textColor = UIColor.init(hexString: "#666666")
         collectionTitle.font = UIFont.systemFontOfSize(12.0)
-
+        
         collectionTitle.textAlignment = .Center
         collectionTitle.snp_makeConstraints { (make) in
             make.left.right.equalTo(collect)
@@ -421,48 +452,12 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             collectionTitle.text = "收藏"
         }
         
-        
-        let service = UIView()
-        service.layer.borderColor = UIColor.init(hexString: "#d8d8d8").CGColor
-        service.layer.borderWidth = 0.3
-        
-        let serviceTap = UITapGestureRecognizer.init(target: self, action: #selector(self.tapBottomItems(_:)))
-        
-        service.tag = 1
-        service.addGestureRecognizer(serviceTap)
 
-
-        bottomView.addSubview(service)
-        service.snp_makeConstraints { (make) in
-            make.top.bottom.equalTo(bottomView)
-            make.left.equalTo(collect.snp_right)
-            make.width.equalTo(bottomView).multipliedBy(1.0 / 3)
-        }
-        
-        let serviceImageview = UIImageView()
-        serviceImageview.image = UIImage.init(named: "detail_kefu")
-        service.addSubview(serviceImageview)
-        serviceImageview.snp_makeConstraints { (make) in
-            make.centerX.equalTo(service)
-            make.width.equalTo(33.pixelToPoint)
-            make.height.equalTo(33.pixelToPoint)
-            make.top.equalTo(service).offset(10.pixelToPoint)
-        }
-        
-        let serviceTitle = UILabel()
-        service.addSubview(serviceTitle)
-        serviceTitle.text = "联系客服"
-        serviceTitle.textColor = UIColor.init(hexString: "#666666")
-        serviceTitle.font = UIFont.systemFontOfSize(12.0)
-        serviceTitle.textAlignment = .Center
-        serviceTitle.snp_makeConstraints { (make) in
-            make.left.right.equalTo(service)
-            make.bottom.equalTo(-15.pixelToPoint)
-        }
         
         let okbutton = UIButton.init(type: .Custom)
         bottomView.addSubview(okbutton)
-        okbutton.setTitle("立即定制", forState: .Normal)
+        okbutton.setTitle("开始定制", forState: .Normal)
+        okbutton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
         okbutton.setBackgroundImage(UIImage.init(named: "detail_custom_0"), forState: .Normal)
         okbutton.setBackgroundImage(UIImage.init(named: "detail_custom_1"), forState: .Highlighted)
         okbutton.snp_makeConstraints { (make) in
