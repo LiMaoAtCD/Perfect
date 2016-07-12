@@ -226,9 +226,6 @@ class CollectCell: UITableViewCell {
             make.right.equalTo(-20.pixelToPoint)
         }
         
-        
-        
-        
         priceLabel = UILabel()
         mainView.addSubview(priceLabel)
         priceLabel.snp_makeConstraints { (make) in

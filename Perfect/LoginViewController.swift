@@ -220,7 +220,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     func login() {
         
         if checkValidation() {
-            SVProgressHUD.showWithStatus("")
+            SVProgressHUD.show()
             NetworkHelper.instance.request(.GET, url: URLConstant.memberLogin.contant, parameters: ["username": cellphone,"password": password], completion: { (result: LoginResponse?) in
                 SVProgressHUD.showSuccessWithStatus("登录成功")
                 Async.main(after: 1.0, block: {
