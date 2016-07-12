@@ -89,6 +89,7 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
         nameTextField = UITextField()
         nameTextField.textColor = UIColor.init(hexString: "#333333")
         nameTextField.text = ""
+        nameTextField.placeholder = "请输入姓名"
         nameTextField.font = UIFont.systemFontOfSize(14)
         nameTextField.textAlignment = .Right
         nameTextField.returnKeyType = .Done
@@ -123,6 +124,7 @@ class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSe
         genderLabel = UILabel()
         mainView.addSubview(genderLabel)
         genderLabel.text = ""
+    
         genderLabel.textColor = UIColor.init(hexString: "#333333")
         genderLabel.font = UIFont.systemFontOfSize(14)
         genderLabel.snp_makeConstraints { (make) in
