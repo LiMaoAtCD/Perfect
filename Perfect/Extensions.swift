@@ -96,7 +96,7 @@ extension UIViewController {
         case .showGoodsListByTag:
             let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
             detail.id = id
-            detail.hidesBottomBarWhenPushed = true
+//            detail.hidesBottomBarWhenPushed = true
             currentController.navigationController?.pushViewController(detail, animated: true)
         case .showArticleContent:
             
@@ -114,7 +114,7 @@ extension UIViewController {
         case .showGoodsListByCategory:
             let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
             detail.id = id
-            detail.hidesBottomBarWhenPushed = true
+//            detail.hidesBottomBarWhenPushed = true
             currentController.navigationController?.pushViewController(detail, animated: true)
         
         case .showArticleListByCategory:

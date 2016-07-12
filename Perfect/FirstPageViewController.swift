@@ -395,7 +395,7 @@ class CollectionViewCell: UICollectionViewCell {
         }
         
         detailTitle = UILabel.init()
-        detailTitle.numberOfLines = 0
+        detailTitle.numberOfLines = 2
         detailTitle.preferredMaxLayoutWidth = Tool.width / 2
         mainView.addSubview(detailTitle)
         detailTitle.textColor = UIColor.globalLightGrayColor()
