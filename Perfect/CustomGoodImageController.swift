@@ -23,7 +23,15 @@ class CustomGoodImageController: BaseViewController, UINavigationControllerDeleg
     var image: UIImage? {
         willSet {
             if let image = newValue {
-                self.imageRatio = image.size.width / image.size.height
+                self.imageRatio = image.size.height / image.size.width
+                print(self.imageRatio)
+                self.contentImageView.image = image
+                contentImageView.snp_remakeConstraints { (make) in
+                    make.left.equalTo(115.pixelToPoint)
+                    make.top.equalTo(186.pixelToPoint)
+                    make.centerX.equalTo(view)
+                    make.height.equalTo(contentImageView.snp_width).multipliedBy(self.imageRatio)
+                }
             }
         }
     }
@@ -64,7 +72,7 @@ class CustomGoodImageController: BaseViewController, UINavigationControllerDeleg
         
         contentImageView = UIImageView()
         view.addSubview(contentImageView)
-        contentImageView.snp_makeConstraints { (make) in
+        contentImageView.snp_remakeConstraints { (make) in
             make.left.equalTo(115.pixelToPoint)
             make.top.equalTo(186.pixelToPoint)
             make.centerX.equalTo(view)

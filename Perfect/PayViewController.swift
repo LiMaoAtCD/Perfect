@@ -464,7 +464,11 @@ class PayViewController: BaseViewController {
         
         myGoodImageView = UIImageView()
         mainView.addSubview(myGoodImageView)
-        myGoodImageView.image = UIImage.init(named: "pay_placeholder")
+        if self.customImgId == 0 {
+            myGoodImageView.image = UIImage.init(named: "pay_placeholder")
+        } else {
+            myGoodImageView.kf_setImageWithURL(NSURL.init(string: customImgId.perfectImageurl(200, h: 151, crop: true))!)
+        }
         
         myGoodImageView.snp_makeConstraints { (make) in
             make.left.equalTo(previewImageview)
@@ -782,19 +786,12 @@ class PayViewController: BaseViewController {
     }
     
     func custom() {
-//        let customVC = Tool.sb.instantiateViewControllerWithIdentifier("CustomGoodViewController") as! CustomGoodViewController
-//        customVC.completeHandler = {
-//            [weak self](imgId, image) in
-////            self?.myGoodImageView.image = image
-//            self?.myGoodImageView.kf_setImageWithURL(NSURL.init(string: imgId.perfectImageurl(200, h: 151, crop: true))!)
-//            self?.customImgId = imgId
-//        }
+
         
         let customImageVC = CustomGoodImageController.someController(CustomGoodImageController.self, ofStoryBoard: UIStoryboard.main)
         customImageVC.completeHandler = {
             [weak self](imgId, image) in
             //            self?.myGoodImageView.image = image
-            self?.myGoodImageView.kf_setImageWithURL(NSURL.init(string: imgId.perfectImageurl(200, h: 151, crop: true))!)
             self?.customImgId = imgId
         }
         self.navigationController?.pushViewController(customImageVC, animated: true)
