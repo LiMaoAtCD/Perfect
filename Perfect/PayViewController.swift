@@ -489,7 +489,8 @@ class PayViewController: BaseViewController {
         changeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         changeButton.setBackgroundImage(UIImage.init(named: "detail_custom_0"), forState: .Normal)
         changeButton.setBackgroundImage(UIImage.init(named: "detail_custom_1"), forState: .Highlighted)
-        
+        changeButton.layer.cornerRadius = 10.pixelToPoint
+        changeButton.layer.masksToBounds = true
         changeButton.addTarget(self, action: #selector(self.custom), forControlEvents: .TouchUpInside)
         mainView.addSubview(changeButton)
         
@@ -637,7 +638,7 @@ class PayViewController: BaseViewController {
             make.bottom.equalTo(payView).offset(-47.pixelToPoint)
         }
         
-        let payItemMargin: CGFloat = 20
+        let payItemMargin: CGFloat = 30
         let payItemWidth = ((Tool.width - 2 * 14) - 4 * payItemMargin) / 3
         payTypeViews = [PayTypeView]()
         for i in 0...2 {
@@ -682,11 +683,17 @@ class PayViewController: BaseViewController {
                 payitemView.imageView.image = UIImage.init(named: "pay_offline")
                 payitemView.title.text = "线下"
             } else if i == 1 {
+                payitemView.userInteractionEnabled = false
                 payitemView.imageView.image = UIImage.init(named: "pay_wechat")
                 payitemView.title.text = "微信"
+                payitemView.title.textColor = UIColor.globalLightGrayColor()
             } else {
                 payitemView.imageView.image = UIImage.init(named: "pay_alipay")
                 payitemView.title.text = "支付宝"
+                payitemView.title.textColor = UIColor.globalLightGrayColor()
+                payitemView.userInteractionEnabled = false
+
+
             }
         }
         
@@ -695,6 +702,8 @@ class PayViewController: BaseViewController {
     
     func configureTotalView() {
         bottomView = UIView()
+        bottomView.layer.borderColor = UIColor.globalSeparatorColor().CGColor
+        bottomView.layer.borderWidth = 0.3
         view.addSubview(bottomView)
         bottomView.snp_makeConstraints { (make) in
             make.bottom.left.right.equalTo(view)
@@ -773,14 +782,22 @@ class PayViewController: BaseViewController {
     }
     
     func custom() {
-        let customVC = Tool.sb.instantiateViewControllerWithIdentifier("CustomGoodViewController") as! CustomGoodViewController
-        customVC.completeHandler = {
+//        let customVC = Tool.sb.instantiateViewControllerWithIdentifier("CustomGoodViewController") as! CustomGoodViewController
+//        customVC.completeHandler = {
+//            [weak self](imgId, image) in
+////            self?.myGoodImageView.image = image
+//            self?.myGoodImageView.kf_setImageWithURL(NSURL.init(string: imgId.perfectImageurl(200, h: 151, crop: true))!)
+//            self?.customImgId = imgId
+//        }
+        
+        let customImageVC = CustomGoodImageController.someController(CustomGoodImageController.self, ofStoryBoard: UIStoryboard.main)
+        customImageVC.completeHandler = {
             [weak self](imgId, image) in
-//            self?.myGoodImageView.image = image
+            //            self?.myGoodImageView.image = image
             self?.myGoodImageView.kf_setImageWithURL(NSURL.init(string: imgId.perfectImageurl(200, h: 151, crop: true))!)
             self?.customImgId = imgId
         }
-        self.navigationController?.pushViewController(customVC, animated: true)
+        self.navigationController?.pushViewController(customImageVC, animated: true)
     }
     
 
@@ -897,6 +914,7 @@ class PayTypeView: UIView {
         
         title = UILabel()
         title.userInteractionEnabled = true
+        title.font = UIFont.systemFontOfSize(14.0)
         self.addSubview(title)
         title.snp_makeConstraints { (make) in
             make.centerX.equalTo(imageView)

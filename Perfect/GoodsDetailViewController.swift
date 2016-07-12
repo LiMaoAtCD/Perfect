@@ -215,7 +215,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
             make.top.equalTo(titleLabel.snp_bottom).offset(29.pixelToPoint)
         }
         
-        introduceLabel.text = "将详情白酒采用高温智取，儿菜等哈看和健康和咖啡机的合法尽快恢复了很快就的咖啡好地方好几番的逆反"
+        introduceLabel.text = self.detail?.profile
         
         priceLabel = UILabel()
         goodsInfoView.addSubview(priceLabel)
@@ -312,7 +312,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         webview.snp_makeConstraints(closure: { (make) in
             make.left.right.equalTo(view)
             make.width.equalTo(Tool.width)
-            make.top.equalTo(goodsInfoView.snp_bottom)
+            make.top.equalTo(goodsInfoView.snp_bottom).offset(10.pixelToPoint)
             make.bottom.equalTo(scrollView.snp_bottom)
             make.height.equalTo(0)
         })
