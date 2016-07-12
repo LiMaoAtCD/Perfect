@@ -238,7 +238,7 @@ class CollectCell: UITableViewCell {
 
         mainView.addSubview(deleteButton)
         deleteButton.snp_makeConstraints { (make) in
-            make.right.equalTo(-16.pixelToPoint)
+            make.right.equalTo(-26.pixelToPoint)
             make.bottom.equalTo(-37.pixelToPoint)
             make.width.equalTo(40.pixelToPoint)
             make.height.equalTo(40.pixelToPoint)

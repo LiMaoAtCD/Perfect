@@ -53,6 +53,7 @@
 		DA57ED101CF7D40400A8083A /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ED0F1CF7D40400A8083A /* FourthViewController.swift */; };
 		DABE57C41D23CC6D0004B6D7 /* perfect.paw in Resources */ = {isa = PBXBuildFile; fileRef = DABE57C31D23CC6D0004B6D7 /* perfect.paw */; };
 		DADCEA421D35346A009420B4 /* CustomGoodImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADCEA411D35346A009420B4 /* CustomGoodImageController.swift */; };
+		DADCEA441D35442C009420B4 /* OfflinePayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADCEA431D35442C009420B4 /* OfflinePayViewController.swift */; };
 		DAE24CCC1D0D4BA300B4A2B1 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */; };
 		F417D554CD143DFAA2CFA261 /* Pods_Perfect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */; };
 /* End PBXBuildFile section */
@@ -132,6 +133,7 @@
 		DA57ED111CF7D53F00A8083A /* Perfect-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Perfect-Bridging-Header.h"; sourceTree = "<group>"; };
 		DABE57C31D23CC6D0004B6D7 /* perfect.paw */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = perfect.paw; sourceTree = "<group>"; };
 		DADCEA411D35346A009420B4 /* CustomGoodImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGoodImageController.swift; sourceTree = "<group>"; };
+		DADCEA431D35442C009420B4 /* OfflinePayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflinePayViewController.swift; sourceTree = "<group>"; };
 		DAE24CCB1D0D4BA300B4A2B1 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -386,6 +388,7 @@
 				87CC28C51D1EDB650068DC1D /* ArticleViewController.swift */,
 				DA1A6B2B1D1257F400FD4FB0 /* CustomGoodViewController.swift */,
 				DADCEA411D35346A009420B4 /* CustomGoodImageController.swift */,
+				DADCEA431D35442C009420B4 /* OfflinePayViewController.swift */,
 			);
 			name = First;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				8718901E1D1FF2AA00F11311 /* OrderDetailViewController.swift in Sources */,
 				870F38251CF973CC00AFF1AF /* RegisterViewController.swift in Sources */,
 				870F38291CF9757C00AFF1AF /* BaseViewController.swift in Sources */,
+				DADCEA441D35442C009420B4 /* OfflinePayViewController.swift in Sources */,
 				DA1A6B2C1D1257F400FD4FB0 /* CustomGoodViewController.swift in Sources */,
 				87CC28C61D1EDB650068DC1D /* ArticleViewController.swift in Sources */,
 				870F38201CF9450500AFF1AF /* Utils.swift in Sources */,

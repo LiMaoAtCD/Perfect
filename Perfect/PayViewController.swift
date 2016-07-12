@@ -831,9 +831,6 @@ class PayViewController: BaseViewController {
         } else {
             payTypeString = "alipay"
         }
-
-        
-        
         
         NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmOrder.contant, parameters: [
             "productId":productId.toNSNumber,
@@ -846,9 +843,24 @@ class PayViewController: BaseViewController {
             "payType": payTypeString],
                                        
            completion: { (result: ConfirmOrderResponse?) in
-                let orderDetailVC = OrderDetailViewController.someController(OrderDetailViewController.self, ofStoryBoard: UIStoryboard.main)
-                orderDetailVC.orderId = result!.retObj!.orderId
-            self.navigationController?.pushViewController(orderDetailVC, animated: true)
+            
+            
+//                let orderDetailVC = OrderDetailViewController.someController(OrderDetailViewController.self, ofStoryBoard: UIStoryboard.main)
+//                orderDetailVC.orderId = result!.retObj!.orderId
+//            self.navigationController?.pushViewController(orderDetailVC, animated: true)
+//            
+//            let offVC = OfflinePayViewController.someController
+//            (OfflinePayViewController.self, ofStoryBoard: UIStoryboard.main)
+//            
+//            offVC.or = result!.retObj!.orderId
+//
+//            self.navigationController?.pushViewController(offlineVC, animated: true)
+            
+            let offlineVC = OfflinePayViewController.someController(OfflinePayViewController.self, ofStoryBoard: UIStoryboard.main)
+            
+            offlineVC.orderId = result!.retObj!.orderId
+            self.navigationController?.pushViewController(offlineVC, animated: true)
+            
         }) { (errMsg, errCode) in
             SVProgressHUD.showErrorWithStatus(errMsg)
         }

@@ -60,6 +60,24 @@
             </objects>
             <point key="canvasLocation" x="354" y="1834"/>
         </scene>
+        <!--Offline Pay View Controller-->
+        <scene sceneID="FnH-YF-BDF">
+            <objects>
+                <viewController storyboardIdentifier="OfflinePayViewController" id="MMh-3h-8yr" customClass="OfflinePayViewController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HFR-iI-6FM"/>
+                        <viewControllerLayoutGuide type="bottom" id="7jt-Wl-W6K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uEu-wu-V4s">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aZX-83-xuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="751" y="1753"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="2G9-Di-zGx">
             <objects>

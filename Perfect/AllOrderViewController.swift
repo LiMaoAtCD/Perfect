@@ -23,6 +23,7 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
         item = [HistoryOrderItem]()
 
         tableView = UITableView.init(frame: CGRectZero, style: .Plain)
+        tableView.separatorStyle = .None
         self.view.addSubview(tableView)
         tableView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -183,7 +184,7 @@ class AllOrderCell: UITableViewCell {
         mainView.snp_makeConstraints { (make) in
             make.left.equalTo(21.pixelToPoint)
             make.right.equalTo(-21.pixelToPoint)
-            make.top.equalTo(25.pixelToPoint)
+            make.top.equalTo(10.pixelToPoint)
             make.bottom.equalTo(self)
         }
         //快递区域
