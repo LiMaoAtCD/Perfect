@@ -182,8 +182,8 @@ class ChangePasswordViewController: BaseViewController {
         } else if textfield == passwordTextfield {
             password = textfield.text
             let text = NSString(string: password!)
-            if text.length > 6 {
-                textfield.text = text.substringToIndex(6)
+            if text.length > 16 {
+                textfield.text = text.substringToIndex(16)
                 password = textfield.text
             }
         } else {

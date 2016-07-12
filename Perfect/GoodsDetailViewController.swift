@@ -25,6 +25,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     var id: Int64 = 0
     var favorite: Bool = false
     var collectionTitle: UILabel!
+    var collectImageview: UIImageView!
     
     var priceLabel: UILabel!
     
@@ -339,10 +340,13 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         if tag == 0 {
             //收藏
             if !favorite {
+                SVProgressHUD.show()
                 NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberGoodsFavorite.contant, parameters: ["goodsId": NSNumber.init(longLong: self.id),"isFavorite": "true"], completion: { (result: DataResponse?) in
-                    self.favorite = true
-                    self.collectionTitle.text = "已收藏"
+                    SVProgressHUD.dismiss()
 
+                    self.favorite = true
+                    self.collectionTitle.text = "收藏"
+                    self.collectImageview.image = UIImage.init(named: "detail_collect_1")
                     }, failed: { (errmsg, code) in
                         SVProgressHUD.showErrorWithStatus(errmsg)
                 })
@@ -425,7 +429,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         collect.tag = 0
         collect.addGestureRecognizer(collectionTap)
         
-        let collectImageview = UIImageView()
+        collectImageview = UIImageView()
         collectImageview.image = UIImage.init(named: "detail_collect")
         collect.addSubview(collectImageview)
         collectImageview.snp_makeConstraints { (make) in
@@ -447,8 +451,10 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         }
         
         if self.favorite {
-            collectionTitle.text = "已收藏"
+            collectImageview.image = UIImage.init(named: "detail_collect_1")
+            collectionTitle.text = "收藏"
         } else {
+            collectImageview.image = UIImage.init(named: "detail_collect")
             collectionTitle.text = "收藏"
         }
         

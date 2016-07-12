@@ -64,6 +64,7 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
             self?.fetchGoods()
         }
         footer.automaticallyHidden = true
+        footer.setTitle("- 没有更多了 -", forState: MJRefreshState.NoMoreData)
         self.collectionView.mj_footer = footer
     }
     

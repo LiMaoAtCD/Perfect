@@ -164,8 +164,9 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
                 defaultString = "false"
             }
             
+            SVProgressHUD.show()
             NetworkHelper.instance.request(.GET, url: URLConstant.setLoginMemberDefaultDeliveryAddress.contant, parameters: ["id": NSNumber.init(longLong: id),"isDefault": defaultString], completion: { (result: DataResponse?) in
-                
+                    SVProgressHUD.dismiss()
                     let realm = try! Realm()
                     let addresses = realm.objects(AddressItemsEntity)
                     if !addresses.isEmpty {
@@ -190,7 +191,6 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
                 
                 }, failed: { (msg, code) in
                     SVProgressHUD.showErrorWithStatus(msg ?? "操作失败")
-
             })
         }
         
