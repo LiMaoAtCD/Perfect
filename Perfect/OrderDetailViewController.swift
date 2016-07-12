@@ -86,10 +86,7 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
             make.bottom.equalTo(view).offset(-50)
         }
         
-       
-        
         //从商品详情进入
-        
         if let _ = entity {
             fromList = true
             self.orderId = entity!.orderId
@@ -112,10 +109,6 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
         }) { (msg, code) in
             SVProgressHUD.showErrorWithStatus(msg)
         }
-  
-        
-        
-        
     }
     
     override func pop() {
@@ -503,17 +496,16 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
                 if btns.first!.code == "pay" {
                     button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
                     button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
+                    button1.addTarget(self, action: #selector(self.pay), forControlEvents: .TouchUpInside)
                     button1.tag = DetailType.Pay.rawValue
-                } else if btns.first!.code == "complain" {
-                    button1.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
-                    button1.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
-                    button1.tag = DetailType.Tousu.rawValue
-
-                } else if btns.first!.code == "confirmReceipt" {
+                } else if btns.first!.code == "confirmDelivery" {
                     button1.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
                     button1.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
                     button1.tag = DetailType.Confirm.rawValue
+                } else {
+                
                 }
+
             } else if btns.count == 2 {
                 button1.hidden = false
                 button2.hidden = false
@@ -550,6 +542,17 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
             }
         }
         //254*93
+    }
+    
+    func pay() {
+        
+        let offlineVC = OfflinePayViewController.someController(OfflinePayViewController.self, ofStoryBoard: UIStoryboard.main)
+        
+        offlineVC.orderId = entity!.orderId
+        offlineVC.fromDetail = true
+        
+        self.navigationController?.pushViewController(offlineVC, animated: true)
+
     }
     
     func contact() {

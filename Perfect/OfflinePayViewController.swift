@@ -12,7 +12,7 @@ class OfflinePayViewController: BaseViewController {
     
 
     var orderId: Int64 = 0
-    
+    var fromDetail: Bool = false
     var webView: UIWebView!
     
     override func viewDidLoad() {
@@ -20,9 +20,11 @@ class OfflinePayViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: UIView())
-        self.fd_interactivePopDisabled = true
-
+        if !fromDetail {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: UIView())
+            self.fd_interactivePopDisabled = true
+        }
+       
             
         webView = UIWebView.init()
         
@@ -56,9 +58,14 @@ class OfflinePayViewController: BaseViewController {
     }
     
     func gotoOrder() {
-        let orderDetailVC = OrderDetailViewController.someController(OrderDetailViewController.self, ofStoryBoard: UIStoryboard.main)
-        orderDetailVC.orderId = self.orderId
-        self.navigationController?.pushViewController(orderDetailVC, animated: true)
+        if fromDetail {
+            self.pop()
+        } else {
+            let orderDetailVC = OrderDetailViewController.someController(OrderDetailViewController.self, ofStoryBoard: UIStoryboard.main)
+            orderDetailVC.orderId = self.orderId
+            self.navigationController?.pushViewController(orderDetailVC, animated: true)
+        }
+       
 
     }
 
