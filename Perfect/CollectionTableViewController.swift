@@ -216,13 +216,13 @@ class CollectCell: UITableViewCell {
         }
         
         goodDetailTitleLabel = UILabel()
-        goodDetailTitleLabel.numberOfLines = 0
+        goodDetailTitleLabel.numberOfLines = 2
         goodDetailTitleLabel.font = UIFont.systemFontOfSize(15.0)
         goodDetailTitleLabel.textColor = UIColor.globalLightGrayColor()
         mainView.addSubview(goodDetailTitleLabel)
         goodDetailTitleLabel.snp_makeConstraints { (make) in
             make.left.equalTo(goodTitleLabel)
-            make.top.equalTo(goodTitleLabel.snp_bottom).offset(33.pixelToPoint)
+            make.top.equalTo(goodTitleLabel.snp_bottom).offset(18.pixelToPoint)
             make.right.equalTo(-20.pixelToPoint)
         }
         

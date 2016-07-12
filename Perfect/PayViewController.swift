@@ -651,7 +651,7 @@ class PayViewController: BaseViewController {
             payitemView.backgroundColor = UIColor.whiteColor()
             mainView.addSubview(payitemView)
             payitemView.snp_makeConstraints(closure: { (make) in
-                make.left.equalTo(payItemMargin + (payItemWidth + payItemMargin) * CGFloat(i))
+                make.left.equalTo(20 + payItemMargin + (payItemWidth + payItemMargin) * CGFloat(i))
                 make.width.equalTo(payItemWidth)
                 make.height.equalTo(70)
                 make.top.equalTo(mainView).offset(14)
@@ -801,6 +801,8 @@ class PayViewController: BaseViewController {
     
     func submitOrder() {
         
+ 
+        
         if productId == 0 {
             SVProgressHUD.showErrorWithStatus("未选择模块")
             return
@@ -859,6 +861,7 @@ class PayViewController: BaseViewController {
             let offlineVC = OfflinePayViewController.someController(OfflinePayViewController.self, ofStoryBoard: UIStoryboard.main)
             
             offlineVC.orderId = result!.retObj!.orderId
+            
             self.navigationController?.pushViewController(offlineVC, animated: true)
             
         }) { (errMsg, errCode) in

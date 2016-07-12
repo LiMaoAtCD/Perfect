@@ -20,7 +20,7 @@ let NetWorkImageUrl = "http://192.168.8.109:8099/custwine/dimg/"
 let GoodDetailURL = "http://192.168.8.109:8099/custwine/goods/mobile/"
 
 let avatarUploadURL = "http://192.168.8.109:8099/custwine/dimg/upload"
-let offLineURL = "http://192.168.8.109:8099/offlinePaymentInfo/"
+let offLineURL = "http://192.168.8.109:8099/custwine/offlinePaymentInfo/"
 
 //文章读取地址为： http://服务器地址/article/mobile/id.page
 //例如：

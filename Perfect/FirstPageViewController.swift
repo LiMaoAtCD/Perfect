@@ -350,7 +350,6 @@ class CollectionViewCell: UICollectionViewCell {
                 let url = newValue!.thumbnailId.perfectImageurl(355, h: 352, crop: true)
                 imageView.kf_setImageWithURL(NSURL.init(string: url)!)
                 title.text = newValue!.name
-//                marketPrice.text = newValue!.marketPrice.currency
                 price = newValue!.price
                 detailTitle.text = newValue!.fullName
             }
@@ -387,7 +386,7 @@ class CollectionViewCell: UICollectionViewCell {
         mainView.addSubview(title)
         title.textColor = UIColor.globalDarkColor()
 //        title.numberOfLines = 0
-        title.font = UIFont.systemFontOfSize(14)
+        title.font = UIFont.systemFontOfSize(16)
         title.snp_makeConstraints { (make) in
             make.left.equalTo(16.pixelToPoint)
             make.right.equalTo(-10.pixelToPoint)
@@ -399,7 +398,7 @@ class CollectionViewCell: UICollectionViewCell {
         detailTitle.preferredMaxLayoutWidth = Tool.width / 2
         mainView.addSubview(detailTitle)
         detailTitle.textColor = UIColor.globalLightGrayColor()
-        detailTitle.font = UIFont.systemFontOfSize(14)
+        detailTitle.font = UIFont.systemFontOfSize(15)
         detailTitle.snp_makeConstraints { (make) in
             make.left.equalTo(16.pixelToPoint)
             make.right.equalTo(-10.pixelToPoint)
