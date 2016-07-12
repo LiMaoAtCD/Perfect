@@ -38,6 +38,8 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.fd_interactivePopDisabled = true
+
         self.title = "找回密码"
         scrollView = UIScrollView.init()
         scrollView.alwaysBounceVertical = true
@@ -54,8 +56,10 @@ class ForgetViewController: BaseViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.barTintColor = UIColor.globalRedColor()
+
+//        self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
 
         super.viewWillAppear(animated)
     }

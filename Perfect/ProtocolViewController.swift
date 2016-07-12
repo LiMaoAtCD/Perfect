@@ -15,14 +15,15 @@ class ProtocolViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageFromColor(UIColor.whiteColor()), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
+        
+//        self.navigationController?.navigationBar.shadowImage = UIImage.init(named: "navi_shadow")
+        self.navigationController?.navigationBar.barTintColor = UIColor.globalRedColor()
+        self.navigationController?.navigationBar.translucent = false
         self.title = "注册协议"
+        self.fd_interactivePopDisabled = true
     }
     
     override func viewWillAppear(animated: Bool) {
-   
-        
         super.viewWillAppear(animated)
     }
 

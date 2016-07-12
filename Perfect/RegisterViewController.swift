@@ -80,6 +80,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
 
