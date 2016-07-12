@@ -129,7 +129,7 @@
     </object>
     <object type="LMREQUEST" id="z110">
         <attribute name="uuid" type="string">2E3AB9E6-C3D0-4D2A-8024-EFBD6BBA4BA6</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=getLoginMemberFavoriteGoodsList\u2600page=1\u2600rows=10\u2600sessionId=50532e60-be42-4a52-a9a6-ab7e59dbb44a</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=getLoginMemberFavoriteGoodsList\u2600page=1\u2600rows=10\u2600sessionId=078fa437-5660-47e2-8ca1-97f26a60f9ae</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>

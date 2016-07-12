@@ -69,9 +69,9 @@ class PayViewController: BaseViewController {
     
     var totalPrice: Float = 0.0 {
         willSet {
-            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
+            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.globalRedColor()])
+            attributeString.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(20)], range: NSMakeRange(0, 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(20)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
             totalPriceLabel.attributedText = attributeString
         }
     }
@@ -108,6 +108,7 @@ class PayViewController: BaseViewController {
     func renewViews() {
         configureBuyerView()
         configureGoodView()
+        configurePayView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -117,16 +118,13 @@ class PayViewController: BaseViewController {
         let realm = try! Realm()
         let addresses = realm.objects(AddressItemsEntity)
         if addresses.isEmpty {
-//            for address in addresses {
-//                if address.isDefault {
-//                    addressItemEntity = address
-//                }
-//            }
-//            if let _ = addressItemEntity {
-//            } else {
-//                addressItemEntity = addresses.first
-//            }
+
             addressItemEntity = nil
+            renewViews()
+            self.price = self.products![self.selectedIndex].price
+            self.productId = self.products![selectedIndex].id
+
+        } else {
             renewViews()
             self.price = self.products![self.selectedIndex].price
             self.productId = self.products![selectedIndex].id
@@ -331,6 +329,7 @@ class PayViewController: BaseViewController {
    }
     
     func configureGoodView() {
+        customView?.removeFromSuperview()
         customView = UIView()
         customView.backgroundColor = UIColor.whiteColor()
         scrollView.addSubview(customView)
@@ -594,8 +593,11 @@ class PayViewController: BaseViewController {
         }
     }
     
+    var payView: UIView!
     func configurePayView() {
-        let payView = UIView()
+        
+        payView?.removeFromSuperview()
+        payView = UIView()
         payView.backgroundColor = UIColor.whiteColor()
         scrollView.addSubview(payView)
         payView.snp_makeConstraints { (make) in
@@ -702,7 +704,8 @@ class PayViewController: BaseViewController {
         
         let settleButton = UIButton.init(type: .Custom)
         bottomView.addSubview(settleButton)
-        settleButton.setTitle("结算", forState: .Normal)
+        settleButton.titleLabel?.font = UIFont.boldSystemFontOfSize(18.0)
+        settleButton.setTitle("合计结算", forState: .Normal)
         settleButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         settleButton.setBackgroundImage(UIImage.init(named: "detail_custom_1"), forState: .Normal)
         settleButton.setBackgroundImage(UIImage.init(named: "detail_custom_1"), forState: .Highlighted)
@@ -717,20 +720,10 @@ class PayViewController: BaseViewController {
         bottomView.addSubview(totalPriceLabel)
         totalPriceLabel.snp_makeConstraints { (make) in
             make.centerY.equalTo(settleButton)
-            make.right.equalTo(settleButton.snp_left).offset(-10)
+            make.left.equalTo(bottomView).offset(35.pixelToPoint)
             make.height.equalTo(bottomView)
-            make.width.lessThanOrEqualTo(150).priority(250)
+//            make.width.lessThanOrEqualTo(150).priority(250)
         }
-        
-        
-        let title = UILabel()
-        bottomView.addSubview(title)
-        title.snp_makeConstraints { (make) in
-            make.right.equalTo(totalPriceLabel.snp_left).offset(-20)
-            make.centerY.equalTo(settleButton)
-            make.baseline.equalTo(totalPriceLabel)
-        }
-        title.text = "合计:"
     }
     
     

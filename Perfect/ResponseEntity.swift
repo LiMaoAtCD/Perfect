@@ -101,6 +101,8 @@ class ProductItem: Mappable {
     var name: String?
     var id: Int64 = 0
     var thumbnailId: Int64 = 0
+    var fullName: String?
+
     
     required init?(_ map: Map) {
     }
@@ -111,7 +113,7 @@ class ProductItem: Mappable {
         thumbnailId <- (map["thumbnailId"], TransformOfUtils.TransformOfInt64())
         name <- map["name"]
         id <- (map["id"], TransformOfUtils.TransformOfInt64())
-        
+        fullName <- map["fullName"]
     }
 }
 
@@ -131,13 +133,16 @@ class ProductDetailEntity: Mappable {
     var intro: String?
     var products: [ProductDetailModuleItem]?
     var discount: Float = 0.0
+    var profile: String?
     required init?(_ map: Map) {
     }
     
     func mapping(map: Map) {
         
-        id <- map["id"]
+        id <- (map["id"], TransformOfUtils.TransformOfInt64())
         deliverMemo <- map["deliverMemo"]
+        profile <- map["profile"]
+
         marketPrice <- map["marketPrice"]
         price <- map["price"]
         merchantName <- map["merchantName"]
@@ -686,6 +691,7 @@ class CollectProductItem: Mappable {
     var categoryId: Int64 = 0
     var categoryName: String?
     var name: String?
+    var fullName: String?
     var id: Int64 = 0
     
     required init?(_ map: Map) {
@@ -698,6 +704,7 @@ class CollectProductItem: Mappable {
         categoryId <- (map["categoryId"], TransformOfUtils.TransformOfInt64())
         categoryName <- map["categoryName"]
         name <- map["name"]
+        fullName <- map["fullName"]
         id <- (map["id"], TransformOfUtils.TransformOfInt64())
         
     }

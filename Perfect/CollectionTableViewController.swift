@@ -156,14 +156,15 @@ class CollectCell: UITableViewCell {
     
     var goodImageView: UIImageView!
     var goodTitleLabel: UILabel!
+    var goodDetailTitleLabel: UILabel!
     var priceLabel: UILabel!
     var deleteButton: UIButton!
     var deleteHandler: (Int -> Void)?
     var price: Float = 0.0 {
         willSet {
-            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fd5b59")])
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(12)], range: NSMakeRange(0, 1))
-            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(28)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
+            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.globalRedColor()])
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(0, 1))
+            attributeString.addAttributes([NSFontAttributeName: UIFont.systemFontOfSize(20)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
             priceLabel.attributedText = attributeString
         }
         
@@ -175,6 +176,7 @@ class CollectCell: UITableViewCell {
                 self.price = newValue!.price
                 self.goodTitleLabel.text = newValue!.name
                 self.goodImageView.kf_setImageWithURL(NSURL.init(string: newValue!.thumbnailId.perfectImageurl(200, h: 200, crop: true))!)
+                self.goodDetailTitleLabel.text = newValue!.fullName
             }
         }
     }
@@ -188,7 +190,6 @@ class CollectCell: UITableViewCell {
         mainView.backgroundColor = UIColor.whiteColor()
         self.addSubview(mainView)
         mainView.snp_makeConstraints { (make) in
-           
             make.left.right.top.equalTo(self)
             make.bottom.equalTo(self).offset(-10.pixelToPoint)
         }
@@ -206,13 +207,26 @@ class CollectCell: UITableViewCell {
         goodTitleLabel = UILabel()
         goodTitleLabel.numberOfLines = 0
         goodTitleLabel.font = UIFont.systemFontOfSize(16.0)
-        goodTitleLabel.textColor = UIColor.init(hexString: "#2f2f33")
+        goodTitleLabel.textColor = UIColor.globalDarkColor()
         mainView.addSubview(goodTitleLabel)
         goodTitleLabel.snp_makeConstraints { (make) in
             make.left.equalTo(goodImageView.snp_right).offset(20.pixelToPoint)
-            make.top.equalTo(32.pixelToPoint)
+            make.top.equalTo(40.pixelToPoint)
             make.right.equalTo(-20.pixelToPoint)
         }
+        
+        goodDetailTitleLabel = UILabel()
+        goodDetailTitleLabel.numberOfLines = 0
+        goodDetailTitleLabel.font = UIFont.systemFontOfSize(15.0)
+        goodDetailTitleLabel.textColor = UIColor.globalLightGrayColor()
+        mainView.addSubview(goodDetailTitleLabel)
+        goodDetailTitleLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(goodTitleLabel)
+            make.top.equalTo(goodTitleLabel.snp_bottom).offset(33.pixelToPoint)
+            make.right.equalTo(-20.pixelToPoint)
+        }
+        
+        
         
         
         priceLabel = UILabel()
@@ -224,14 +238,13 @@ class CollectCell: UITableViewCell {
         
         deleteButton = UIButton.init(type: .Custom)
         deleteButton.setImage(UIImage.init(named: "collection_delete_0"), forState: .Normal)
-        deleteButton.setImage(UIImage.init(named: "collection_delete_1"), forState: .Highlighted)
 
         mainView.addSubview(deleteButton)
         deleteButton.snp_makeConstraints { (make) in
-            make.right.equalTo(-19.pixelToPoint)
-            make.bottom.equalTo(-22.pixelToPoint)
-            make.width.equalTo(144.pixelToPoint)
-            make.height.equalTo(72.pixelToPoint)
+            make.right.equalTo(-16.pixelToPoint)
+            make.bottom.equalTo(-37.pixelToPoint)
+            make.width.equalTo(40.pixelToPoint)
+            make.height.equalTo(40.pixelToPoint)
         }
         
         deleteButton.addTarget(self, action: #selector(self.deleteCollect), forControlEvents: .TouchUpInside)
