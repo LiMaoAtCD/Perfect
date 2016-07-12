@@ -11,27 +11,27 @@ import Alamofire
 import AlamofireObjectMapper
 import SwiftyUserDefaults
 import SVProgressHUD
+//101.200.131.198:8090
 
+let url = "http://101.200.131.198:8090/custwine/gw?cmd="
 
-let url = "http://192.168.8.109:8099/custwine/gw?cmd="
+let ArticleURL = "http://101.200.131.198:8090/custwine/article/mobile/"
+let NetWorkImageUrl = "http://101.200.131.198:8090/custwine/dimg/"
+let GoodDetailURL = "http://101.200.131.198:8090/custwine/goods/mobile/"
 
-let ArticleURL = "http://192.168.8.109:8099/custwine/article/mobile/"
-let NetWorkImageUrl = "http://192.168.8.109:8099/custwine/dimg/"
-let GoodDetailURL = "http://192.168.8.109:8099/custwine/goods/mobile/"
-
-let avatarUploadURL = "http://192.168.8.109:8099/custwine/dimg/upload"
-let offLineURL = "http://192.168.8.109:8099/custwine/offlinePaymentInfo/"
+let avatarUploadURL = "http://101.200.131.198:8090/custwine/dimg/upload"
+let offLineURL = "http://101.200.131.198:8090/custwine/offlinePaymentInfo/"
 
 //文章读取地址为： http://服务器地址/article/mobile/id.page
 //例如：
-//http://192.168.8.109:8099/custwine/article/mobile/1.page
+//http://101.200.131.198:8090/custwine/article/mobile/1.page
 
 //图片访问方式为：
 //"http://地址/dimg/id_图片宽_图片最大高_是否裁减(1/0).png
-//示例：http://192.168.8.109:8099/custwine/dimg/1_1_1_0.png"
+//示例：http://101.200.131.198:8090/custwine/dimg/1_1_1_0.png"
 
 
-//示例：http://192.168.8.109:8099/custwine/dimg/upload
+//示例：http://101.200.131.198:8090/custwine/dimg/upload
 //参数：category-图片分类，avatar-头像,custwine-定制酒
 //fileTitle-图片名称
 //fileIntro-图片说明（可不传）
