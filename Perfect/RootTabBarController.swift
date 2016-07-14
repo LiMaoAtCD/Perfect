@@ -26,7 +26,7 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate {
             items[2].image = UIImage(named: "tab_person_1")
             items[2].selectedImage = UIImage(named: "tab_person_0")
         }
-        self.tabBar.tintColor = UIColor.redColor()
+        self.tabBar.tintColor = UIColor.globalRedColor()
 
     }
 

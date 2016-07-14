@@ -305,6 +305,9 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     func configureGoodIntrowebView() {
         
         webview = UIWebView()
+//        webview.scrollView.scrollEnabled = false
+//        webview.scrollView.bouncesZoom = false
+        webview.userInteractionEnabled = false
         scrollView.addSubview(webview)
         let urlString = id.goodDescription
         let url  = NSURL.init(string: urlString)
