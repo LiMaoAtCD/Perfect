@@ -867,7 +867,10 @@ class PayViewController: BaseViewController {
                 
                 self.navigationController?.pushViewController(offlineVC, animated: true)
             } else if payTypeString == "alipay" {
-                
+                let orderString = result!.retObj!.paymentData
+                AlipaySDK.defaultService().payOrder(orderString, fromScheme: "alisdkdemo", callback: { (result: [NSObject : AnyObject]!) in
+                    print(result)
+                })
             }
             
         }) { (errMsg, errCode) in
