@@ -10,7 +10,7 @@ import UIKit
 import SwiftyUserDefaults
 
 struct Util {
-    
+//    
     static var logined: Bool {
         get {
             return Defaults[.logined]
@@ -20,16 +20,8 @@ struct Util {
             Defaults[.logined] = newValue
         }
     }
+
     
-    static var shouldSwitch: Bool {
-        get {
-            return Defaults[.shouldSwitch]
-        }
-        
-        set {
-            Defaults[.shouldSwitch] = newValue
-        }
-    }
 }
 
 

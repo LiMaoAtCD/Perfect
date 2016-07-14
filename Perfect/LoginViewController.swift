@@ -62,7 +62,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     
     func dismiss() {
-        Defaults[.logined] = false
+//        Defaults[.logined] = false
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -226,13 +226,25 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 SVProgressHUD.showSuccessWithStatus("登录成功")
                 Async.main(after: 1.0, block: {
                     
-                    Defaults[.logined] = true
-                    if Defaults[.shouldSwitch] {
+//                    Defaults[.logined] = true
+                    Util.logined = true
+                    let switchTo = Defaults[.shouldSwitch]
+                    if switchTo == 1 {
                         let tab =  Tool.root.viewControllers.first as! RootTabBarController
                         tab.selectedIndex = 2
-                        Defaults[.shouldSwitch] = false
+                        Defaults[.shouldSwitch] = 0
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        return
+                    } else if switchTo == 2 {
+                        let tab =  Tool.root.viewControllers.first as! RootTabBarController
+                        tab.selectedIndex = 1
+                        Defaults[.shouldSwitch] = 0
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        return
+                    } else {
+                        Defaults[.shouldSwitch] = 0
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     }
-                    self.dismissViewControllerAnimated(true, completion: nil)
                 })
             }) { (errMsg: String?, errCode: Int) in
                 SVProgressHUD.showErrorWithStatus(errMsg ?? "登录失败")

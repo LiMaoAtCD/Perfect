@@ -352,6 +352,7 @@ class CollectionViewCell: UICollectionViewCell {
                 title.text = newValue!.name
                 price = newValue!.price
                 detailTitle.text = newValue!.fullName
+                detailTitle.systemLayoutSizeFittingSize(CGSizeMake(Tool.width / 2, 1000))
             }
         }
     }
@@ -423,21 +424,6 @@ class CollectionViewCell: UICollectionViewCell {
             make.centerY.equalTo(priceLabel)
             make.right.equalTo(self).offset(-15.pixelToPoint)
         }
-        
-        
-        
-        
-//        marketPrice = MarketLabel.init()
-//        self.addSubview(marketPrice)
-//        marketPrice.labelColor = UIColor.init(hexString: "#999999")
-//        marketPrice.font = UIFont.systemFontOfSize(13)
-//        marketPrice.snp_makeConstraints { (make) in
-//            make.left.equalTo(priceLabel.snp_right).offset(7)
-//            make.baseline.equalTo(priceLabel)
-//        }
-//        
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

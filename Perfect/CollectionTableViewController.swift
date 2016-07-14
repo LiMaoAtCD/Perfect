@@ -9,6 +9,7 @@
 import UIKit
 import SVProgressHUD
 import MJRefresh
+import SwiftyUserDefaults
 
 class CollectionTableViewController: UITableViewController {
 
@@ -71,14 +72,19 @@ class CollectionTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberFavoriteGoodsList.contant, parameters: ["rows": 20,"page": 1], completion: { [weak self](result: CollectProductResponse?) in
-            self?.colletionList = result?.retObj?.rows
-            self?.tableView.reloadData()
-            self?.currentPage = self!.currentPage + 1
-        }) { (msg, code) in
-            SVProgressHUD.showErrorWithStatus(msg)
-        }
-
+        
+//        if !Util.logined {
+//            let tab =  Tool.root.viewControllers.first as! RootTabBarController
+//            tab.selectedIndex = 0
+//        } else {
+            NetworkHelper.instance.request(.GET, url: URLConstant.getLoginMemberFavoriteGoodsList.contant, parameters: ["rows": 20,"page": 1], completion: { [weak self](result: CollectProductResponse?) in
+                self?.colletionList = result?.retObj?.rows
+                self?.tableView.reloadData()
+                self?.currentPage = self!.currentPage + 1
+            }) { (msg, code) in
+                SVProgressHUD.showErrorWithStatus(msg)
+            }
+//        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -333,8 +333,10 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         var aRect = self.view.frame
         aRect.size.height -= keyboardFrame.size.height
-        let point = CGPointMake(0, activeField.y - keyboardFrame.size.height)
-        scrollView.setContentOffset(point, animated: true)
+        if let _ = activeField {
+            let point = CGPointMake(0, activeField.y - keyboardFrame.size.height)
+            scrollView.setContentOffset(point, animated: true)
+        }
     }
     
     func keyboardWillHide(notification:NSNotification){

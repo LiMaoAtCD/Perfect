@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xdm-L1-QGS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xdm-L1-QGS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -149,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KbB-jR-1BD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-848" y="812"/>
+            <point key="canvasLocation" x="-1048" y="516"/>
         </scene>
         <!--Goods Detail View Controller-->
         <scene sceneID="SyG-cd-z6Z">
@@ -199,9 +199,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="SfO-gc-2ha" kind="relationship" relationship="viewControllers" id="XPx-Fe-LWv"/>
-                        <segue destination="YQW-J1-meK" kind="relationship" relationship="viewControllers" id="qPA-pX-B7a"/>
-                        <segue destination="DAk-Yl-Gtx" kind="relationship" relationship="viewControllers" id="e1N-qw-PYF"/>
+                        <segue destination="SfO-gc-2ha" kind="relationship" relationship="viewControllers" id="05P-eK-NXa"/>
+                        <segue destination="YQW-J1-meK" kind="relationship" relationship="viewControllers" id="yh3-uk-neb"/>
+                        <segue destination="DAk-Yl-Gtx" kind="relationship" relationship="viewControllers" id="bvd-YP-rde"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jpk-P1-m3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -227,7 +227,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4Z-sw-brK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-848" y="192"/>
+            <point key="canvasLocation" x="-994" y="-346"/>
         </scene>
         <!--Me Navigation Controller-->
         <scene sceneID="MLM-sn-6H4">
@@ -248,7 +248,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZG-Kc-Wga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="100" y="192"/>
+            <point key="canvasLocation" x="-108" y="118"/>
         </scene>
         <!--Custom Good Image Controller-->
         <scene sceneID="NQs-Fh-d6b">
@@ -266,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXV-h3-krO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="107" y="240"/>
+            <point key="canvasLocation" x="387" y="378"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="vBX-rM-TCc">
@@ -298,10 +298,10 @@
             </objects>
             <point key="canvasLocation" x="1196" y="-355"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Collection Navigation Controller-->
         <scene sceneID="3O0-kj-ctC">
             <objects>
-                <navigationController id="YQW-J1-meK" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CollectionNavigationController" id="YQW-J1-meK" customClass="CollectionNavigationController" customModule="Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="vIY-1W-9Iz">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
@@ -316,7 +316,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jLV-fN-VJ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="376" y="-355"/>
+            <point key="canvasLocation" x="46" y="-447"/>
         </scene>
         <!--Peronal View Controller-->
         <scene sceneID="1n0-Dx-o0I">

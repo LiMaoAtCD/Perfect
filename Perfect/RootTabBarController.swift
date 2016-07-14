@@ -49,9 +49,15 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         
-        if viewController is MeNavigationController && !Util.logined {
+        if viewController is MeNavigationController && !Defaults[.logined] {
             
-            Defaults[.shouldSwitch] = true
+            Defaults[.shouldSwitch] = 1
+            let login = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginNavigationController") as! LoginNavigationController
+            self.presentViewController(login, animated: true, completion: nil)
+            return false
+            
+        } else if viewController is CollectionNavigationController && !Defaults[.logined] {
+            Defaults[.shouldSwitch] = 2
             let login = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginNavigationController") as! LoginNavigationController
             self.presentViewController(login, animated: true, completion: nil)
             return false

@@ -32,10 +32,10 @@ class FourthViewController: BaseViewController {
         }
         
         
-        if !Util.logined {
-            let nav = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
-            self.presentViewController(nav, animated: true, completion: nil)
-        }
+//        if !Util.logined {
+//            let nav = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
+//            self.presentViewController(nav, animated: true, completion: nil)
+//        }
         
     }
     
