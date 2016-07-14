@@ -694,8 +694,7 @@ class PayViewController: BaseViewController {
             } else {
                 payitemView.imageView.image = UIImage.init(named: "pay_alipay")
                 payitemView.title.text = "支付宝"
-                payitemView.title.textColor = UIColor.globalLightGrayColor()
-                payitemView.userInteractionEnabled = false
+//                payitemView.title.textColor = UIColor.globalLightGrayColor()
 
 
             }
@@ -834,6 +833,7 @@ class PayViewController: BaseViewController {
             payTypeString = "alipay"
         }
         
+        SVProgressHUD.show()
         NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmOrder.contant, parameters: [
             "productId":productId.toNSNumber,
             "quantity":quantity,
@@ -858,11 +858,17 @@ class PayViewController: BaseViewController {
 //
 //            self.navigationController?.pushViewController(offlineVC, animated: true)
             
-            let offlineVC = OfflinePayViewController.someController(OfflinePayViewController.self, ofStoryBoard: UIStoryboard.main)
             
-            offlineVC.orderId = result!.retObj!.orderId
             
-            self.navigationController?.pushViewController(offlineVC, animated: true)
+            if payTypeString == "offline" {
+                let offlineVC = OfflinePayViewController.someController(OfflinePayViewController.self, ofStoryBoard: UIStoryboard.main)
+                
+                offlineVC.orderId = result!.retObj!.orderId
+                
+                self.navigationController?.pushViewController(offlineVC, animated: true)
+            } else if payTypeString == "alipay" {
+                
+            }
             
         }) { (errMsg, errCode) in
             SVProgressHUD.showErrorWithStatus(errMsg)

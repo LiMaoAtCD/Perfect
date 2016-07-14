@@ -417,13 +417,19 @@ class ValidCodeEntity: Mappable {
 //确认下单
 class ConfirmOrderEntity: Mappable {
     
-    var payToken: String?
     var orderId: Int64 = 0
+    var paymentData: String?
+    var paymentMethodCode: String?
+    var orderSn: String?
+    
     required init?(_ map: Map) {}
     
     func mapping(map: Map) {
+        
         orderId <- (map["orderId"], TransformOfUtils.TransformOfInt64())
-        payToken <- map["payToken"]
+        paymentData <- map["paymentData"]
+        paymentMethodCode <- map["paymentMethodCode"]
+        orderSn <- map["orderSn"]
     }
 }
 
