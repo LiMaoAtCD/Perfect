@@ -867,8 +867,9 @@ class PayViewController: BaseViewController {
                 
                 self.navigationController?.pushViewController(offlineVC, animated: true)
             } else if payTypeString == "alipay" {
+                SVProgressHUD.dismiss()
                 let orderString = result!.retObj!.paymentData
-                AlipaySDK.defaultService().payOrder(orderString, fromScheme: "alisdkdemo", callback: { (result: [NSObject : AnyObject]!) in
+                AlipaySDK.defaultService().payOrder(orderString, fromScheme: "perfect", callback: { (result: [NSObject : AnyObject]!) in
                     print(result)
                 })
             }
