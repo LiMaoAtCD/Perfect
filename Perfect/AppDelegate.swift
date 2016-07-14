@@ -14,6 +14,7 @@ import RealmSwift
 import Async
 import SwiftyUserDefaults
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -133,6 +134,49 @@ extension AppDelegate {
         }
     }
     
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        if url.host == "safepay" {
+            AlipaySDK.defaultService().processOrderWithPaymentResult(url, standbyCallback: { (resultDic: [NSObject : AnyObject]!) in
+                
+            })
+        }
+        
+        if url.host == "platformapi" {
+        
+        }
+        
+        return true
+//        //如果极简开发包不可用，会跳转支付宝钱包进行支付，需要将支付宝钱包的支付结果回传给开发包
+//        if ([url.host isEqualToString:@"safepay"]) {
+//            [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+//                //【由于在跳转支付宝客户端支付的过程中，商户app在后台很可能被系统kill了，所以pay接口的callback就会失效，请商户对standbyCallback返回的回调结果进行处理,就是在这个方法里面处理跟callback一样的逻辑】
+//                NSLog(@"result = %@",resultDic);
+//                }];
+//        }
+//        if ([url.host isEqualToString:@"platformapi"]){//支付宝钱包快登授权返回authCode
+//            
+//            [[AlipaySDK defaultService] processAuthResult:url standbyCallback:^(NSDictionary *resultDic) {
+//                //【由于在跳转支付宝客户端支付的过程中，商户app在后台很可能被系统kill了，所以pay接口的callback就会失效，请商户对standbyCallback返回的回调结果进行处理,就是在这个方法里面处理跟callback一样的逻辑】
+//                NSLog(@"result = %@",resultDic);
+//                }];
+//        }
+//        return YES;
+    }
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        if url.host == "safepay" {
+            AlipaySDK.defaultService().processOrderWithPaymentResult(url, standbyCallback: { (resultDic: [NSObject : AnyObject]!) in
+                
+            })
+        }
+        
+        if url.host == "platformapi" {
+            
+        }
+        
+        return true
+    }
 
 }
 

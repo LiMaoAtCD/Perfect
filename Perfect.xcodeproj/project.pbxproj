@@ -40,6 +40,19 @@
 		87A5AA5F1D10C636000A1B41 /* GoodsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */; };
 		87CC28C61D1EDB650068DC1D /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CC28C51D1EDB650068DC1D /* ArticleViewController.swift */; };
 		87FE00CD1D3799BC00ADBCC4 /* CollectionNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FE00CC1D3799BC00ADBCC4 /* CollectionNavigationController.swift */; };
+		87FE00D01D37B0D100ADBCC4 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 87FE00CE1D37B0D100ADBCC4 /* AlipaySDK.bundle */; };
+		87FE00D11D37B0D100ADBCC4 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00CF1D37B0D100ADBCC4 /* AlipaySDK.framework */; };
+		87FE00D31D37B13100ADBCC4 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00D21D37B13100ADBCC4 /* libc++.tbd */; };
+		87FE00D51D37B13800ADBCC4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00D41D37B13800ADBCC4 /* libz.tbd */; };
+		87FE00D71D37B13F00ADBCC4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00D61D37B13F00ADBCC4 /* SystemConfiguration.framework */; };
+		87FE00D91D37B14600ADBCC4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00D81D37B14600ADBCC4 /* CoreTelephony.framework */; };
+		87FE00DB1D37B14D00ADBCC4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00DA1D37B14D00ADBCC4 /* QuartzCore.framework */; };
+		87FE00DD1D37B15400ADBCC4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00DC1D37B15400ADBCC4 /* CoreText.framework */; };
+		87FE00DF1D37B15A00ADBCC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00DE1D37B15A00ADBCC4 /* CoreGraphics.framework */; };
+		87FE00E11D37B16000ADBCC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00E01D37B16000ADBCC4 /* UIKit.framework */; };
+		87FE00E31D37B16600ADBCC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00E21D37B16600ADBCC4 /* Foundation.framework */; };
+		87FE00E51D37B16F00ADBCC4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00E41D37B16F00ADBCC4 /* CFNetwork.framework */; };
+		87FE00E71D37B17500ADBCC4 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FE00E61D37B17500ADBCC4 /* CoreMotion.framework */; };
 		DA1A6B231D124A0B00FD4FB0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1A6B221D124A0B00FD4FB0 /* Extensions.swift */; };
 		DA1A6B251D124A3600FD4FB0 /* MarketLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1A6B241D124A3600FD4FB0 /* MarketLabel.swift */; };
 		DA1A6B2C1D1257F400FD4FB0 /* CustomGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1A6B2B1D1257F400FD4FB0 /* CustomGoodViewController.swift */; };
@@ -112,6 +125,19 @@
 		87A5AA5E1D10C636000A1B41 /* GoodsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsDetailViewController.swift; sourceTree = "<group>"; };
 		87CC28C51D1EDB650068DC1D /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		87FE00CC1D3799BC00ADBCC4 /* CollectionNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionNavigationController.swift; sourceTree = "<group>"; };
+		87FE00CE1D37B0D100ADBCC4 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		87FE00CF1D37B0D100ADBCC4 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		87FE00D21D37B13100ADBCC4 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		87FE00D41D37B13800ADBCC4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		87FE00D61D37B13F00ADBCC4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		87FE00D81D37B14600ADBCC4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		87FE00DA1D37B14D00ADBCC4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		87FE00DC1D37B15400ADBCC4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		87FE00DE1D37B15A00ADBCC4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		87FE00E01D37B16000ADBCC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		87FE00E21D37B16600ADBCC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		87FE00E41D37B16F00ADBCC4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		87FE00E61D37B17500ADBCC4 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		A1C9DE6BB9B54D2E313B99DF /* Pods-Perfect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perfect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perfect/Pods-Perfect.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perfect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA1A6B221D124A0B00FD4FB0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -144,7 +170,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87FE00E71D37B17500ADBCC4 /* CoreMotion.framework in Frameworks */,
+				87FE00E51D37B16F00ADBCC4 /* CFNetwork.framework in Frameworks */,
+				87FE00E31D37B16600ADBCC4 /* Foundation.framework in Frameworks */,
+				87FE00E11D37B16000ADBCC4 /* UIKit.framework in Frameworks */,
+				87FE00DF1D37B15A00ADBCC4 /* CoreGraphics.framework in Frameworks */,
+				87FE00DD1D37B15400ADBCC4 /* CoreText.framework in Frameworks */,
+				87FE00DB1D37B14D00ADBCC4 /* QuartzCore.framework in Frameworks */,
+				87FE00D91D37B14600ADBCC4 /* CoreTelephony.framework in Frameworks */,
+				87FE00D71D37B13F00ADBCC4 /* SystemConfiguration.framework in Frameworks */,
+				87FE00D51D37B13800ADBCC4 /* libz.tbd in Frameworks */,
+				87FE00D31D37B13100ADBCC4 /* libc++.tbd in Frameworks */,
 				F417D554CD143DFAA2CFA261 /* Pods_Perfect.framework in Frameworks */,
+				87FE00D11D37B0D100ADBCC4 /* AlipaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +206,17 @@
 		33F16B85E8BEE8F1CC6FA2D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87FE00E61D37B17500ADBCC4 /* CoreMotion.framework */,
+				87FE00E41D37B16F00ADBCC4 /* CFNetwork.framework */,
+				87FE00E21D37B16600ADBCC4 /* Foundation.framework */,
+				87FE00E01D37B16000ADBCC4 /* UIKit.framework */,
+				87FE00DE1D37B15A00ADBCC4 /* CoreGraphics.framework */,
+				87FE00DC1D37B15400ADBCC4 /* CoreText.framework */,
+				87FE00DA1D37B14D00ADBCC4 /* QuartzCore.framework */,
+				87FE00D81D37B14600ADBCC4 /* CoreTelephony.framework */,
+				87FE00D61D37B13F00ADBCC4 /* SystemConfiguration.framework */,
+				87FE00D41D37B13800ADBCC4 /* libz.tbd */,
+				87FE00D21D37B13100ADBCC4 /* libc++.tbd */,
 				BF9E5424DB7E274389F4126E /* Pods_Perfect.framework */,
 			);
 			name = Frameworks;
@@ -328,6 +377,8 @@
 		DA417B491CF5EDD100F61304 = {
 			isa = PBXGroup;
 			children = (
+				87FE00CE1D37B0D100ADBCC4 /* AlipaySDK.bundle */,
+				87FE00CF1D37B0D100ADBCC4 /* AlipaySDK.framework */,
 				DA417B541CF5EDD100F61304 /* Perfect */,
 				DA417B691CF5EDD100F61304 /* PerfectTests */,
 				DA417B741CF5EDD100F61304 /* PerfectUITests */,
@@ -522,6 +573,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87FE00D01D37B0D100ADBCC4 /* AlipaySDK.bundle in Resources */,
 				878F22871D182AE70074E1A2 /* AddressEditViewController.xib in Resources */,
 				8718902D1D240FEC00F11311 /* BirthdayViewController.xib in Resources */,
 				DA417B601CF5EDD100F61304 /* LaunchScreen.storyboard in Resources */,
@@ -784,6 +836,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Perfect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -800,6 +856,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Perfect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
