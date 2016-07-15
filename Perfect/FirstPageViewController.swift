@@ -351,8 +351,20 @@ class CollectionViewCell: UICollectionViewCell {
                 imageView.kf_setImageWithURL(NSURL.init(string: url)!)
                 title.text = newValue!.name
                 price = newValue!.price
+                
                 detailTitle.text = newValue!.fullName
-                detailTitle.systemLayoutSizeFittingSize(CGSizeMake(Tool.width / 2, 1000))
+                if let text = newValue!.fullName {
+                    let boundingBox = (text as NSString) .boundingRectWithSize(CGSizeMake(Tool.width / 2 - 13, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15)], context: NSStringDrawingContext()).size
+                    let size = CGSizeMake(ceil(boundingBox.width), ceil(boundingBox.height))
+                    detailTitle.snp_remakeConstraints(closure: { (make) in
+                        make.left.equalTo(16.pixelToPoint)
+                        make.right.equalTo(-10.pixelToPoint)
+                        make.top.equalTo(title.snp_bottom).offset(5.pixelToPoint)
+                        make.height.equalTo(size.height + 1)
+                    })
+                    self.setNeedsUpdateConstraints()
+                }
+
             }
         }
     }
