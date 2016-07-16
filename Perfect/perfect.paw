@@ -571,7 +571,7 @@
     </object>
     <object type="LMREQUEST" id="z145">
         <attribute name="uuid" type="string">CE88780D-0C31-4D8B-A921-CB277A5AAB8D</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appQueryGoodsList\u2600qryTagId=1\u2600rows=10\u2600page=1</attribute>
+        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appQueryGoodsList\u2600qryAnyTagId=3\u2600rows=10\u2600page=1</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
