@@ -74,7 +74,7 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
         
         phoneLabel = UILabel()
         header.addSubview(phoneLabel)
-        phoneLabel.text = "13432332323"
+        phoneLabel.text = ""
         phoneLabel.textColor = UIColor.whiteColor()
         phoneLabel.font = UIFont.systemFontOfSize(18)
         
@@ -89,9 +89,23 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
     
     
     func logout() {
-        Util.logined = false
-        let tab =  Tool.root.viewControllers.first as! RootTabBarController
-        tab.selectedIndex = 0
+        
+        let alert = UIAlertController.init(title: "", message: "确认退出登录？", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let cancel = UIAlertAction.init(title: "取消", style: UIAlertActionStyle.Default) { (_) in
+            
+        }
+        
+        let sure = UIAlertAction.init(title: "确定", style: UIAlertActionStyle.Default) { (_) in
+            Util.logined = false
+            let tab =  Tool.root.viewControllers.first as! RootTabBarController
+            tab.selectedIndex = 0
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(sure)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func viewWillAppear(animated: Bool) {

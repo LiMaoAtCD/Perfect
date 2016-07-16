@@ -11,14 +11,14 @@ import SVProgressHUD
 import Async
 class PeronalViewController: BaseViewController, GenderSelectionDelegate, TypeSelectionDelegate, DateSelectionDelegate, UITextFieldDelegate{
 
-    var name: String?
-//        willSet {
-//            if let v = newValue  {
-//                self.nameTextField.text = v
-//            }
-//        }
-//    }
-    
+    var name: String? {
+        willSet {
+            if let v = newValue  {
+                self.nameTextField.text = v
+            }
+        }
+    }
+
     var gender: String? = "" {
         willSet {
             if let v = newValue where v == "male" {
