@@ -55,18 +55,18 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         collection.registerClass(Header.self, forSupplementaryViewOfKind: Header.kind, withReuseIdentifier: Header.identifier)
         collection.hidden = true
         
-        SVProgressHUD.showWithStatus("正在获取商品信息")
-        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryIndexStaticContent.contant, parameters: nil, completion: { [weak self](res: FirstPageResponse?) in
-                SVProgressHUD.dismiss()
-                self?.topBanners = res?.retObj?.topBanners
-                self?.customButtons = res?.retObj?.buttons
-                self?.fetchProductsByGoodTypes(res?.retObj?.types)
-                self?.collection.reloadData()
-                self?.collection.hidden = false
-
-        }) { (errMsg: String?, errCode: Int) in
-            SVProgressHUD.showErrorWithStatus(errMsg)
-        }
+//        SVProgressHUD.showWithStatus("正在获取商品信息")
+//        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryIndexStaticContent.contant, parameters: nil, completion: { [weak self](res: FirstPageResponse?) in
+//                SVProgressHUD.dismiss()
+//                self?.topBanners = res?.retObj?.topBanners
+//                self?.customButtons = res?.retObj?.buttons
+//                self?.fetchProductsByGoodTypes(res?.retObj?.types)
+//                self?.collection.reloadData()
+//                self?.collection.hidden = false
+//
+//        }) { (errMsg: String?, errCode: Int) in
+//            SVProgressHUD.showErrorWithStatus(errMsg)
+//        }
         
         let footer = MJRefreshAutoNormalFooter.init { [weak self]() -> Void in
             self?.fetchGoods()
@@ -74,6 +74,32 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         footer.automaticallyHidden = true
         footer.setTitle("- 没有更多了 -", forState: MJRefreshState.NoMoreData)
         self.collection.mj_footer = footer
+        
+        let header = MJRefreshNormalHeader.init { 
+            [weak self] in
+            self?.fetchData()
+        }
+        self.collection.mj_header = header
+        
+        self.collection.mj_header.beginRefreshing()
+    }
+    
+    func fetchData() {
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryIndexStaticContent.contant, parameters: nil, completion: { [weak self](res: FirstPageResponse?) in
+            SVProgressHUD.dismiss()
+            self?.collection.mj_header.endRefreshing()
+            self?.currentPage = 1
+            self?.topBanners = res?.retObj?.topBanners
+            self?.customButtons = res?.retObj?.buttons
+            self?.fetchProductsByGoodTypes(res?.retObj?.types)
+            self?.collection.reloadData()
+            self?.collection.hidden = false
+        }) { (errMsg: String?, errCode: Int) in
+            SVProgressHUD.showErrorWithStatus(errMsg)
+            self.collection.mj_header.endRefreshing()
+        }
+
     }
     
     func fetchGoods() {
