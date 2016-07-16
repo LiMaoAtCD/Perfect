@@ -670,12 +670,12 @@ class PayViewController: BaseViewController {
                     self.payTypeViews[0].isChecked = false
                     self.payTypeViews[1].isChecked = true
                     self.payTypeViews[2].isChecked = false
-                    self.payType = .Wechat
+                    self.payType = .Alipay
                 case 2:
                     self.payTypeViews[0].isChecked = false
                     self.payTypeViews[1].isChecked = false
                     self.payTypeViews[2].isChecked = true
-                    self.payType = .Alipay
+                    self.payType = .Wechat
                 default:
                     break
                 }
@@ -687,15 +687,14 @@ class PayViewController: BaseViewController {
                 payitemView.imageView.image = UIImage.init(named: "pay_offline")
                 payitemView.title.text = "线下"
             } else if i == 1 {
+                payitemView.imageView.image = UIImage.init(named: "pay_alipay")
+                payitemView.title.text = "支付宝"
+               
+            } else {
                 payitemView.userInteractionEnabled = false
                 payitemView.imageView.image = UIImage.init(named: "pay_wechat")
                 payitemView.title.text = "微信"
                 payitemView.title.textColor = UIColor.globalLightGrayColor()
-            } else {
-                payitemView.imageView.image = UIImage.init(named: "pay_alipay")
-                payitemView.title.text = "支付宝"
-//                payitemView.title.textColor = UIColor.globalLightGrayColor()
-
 
             }
         }
