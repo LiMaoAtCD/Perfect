@@ -133,10 +133,25 @@ class PayViewController: BaseViewController {
         
     }
     
+    func alipayCallback(notification: NSNotification) {
+        let obj = notification.userInfo
+        
+        print(obj)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+//        NSNotificationCenter.defaultCenter().postNotificationName("AliPayCallBack", object: nil, userInfo: resultDic)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.alipayCallback), name: "AliPayCallBack", object: nil)
+
         self.prices = [Float]()
         self.goodImageIds = [Int64]()
         self.moduleIds = [Int64]()
@@ -860,6 +875,8 @@ class PayViewController: BaseViewController {
             
             
             if payTypeString == "offline" {
+                SVProgressHUD.dismiss()
+
                 let offlineVC = OfflinePayViewController.someController(OfflinePayViewController.self, ofStoryBoard: UIStoryboard.main)
                 
                 offlineVC.orderId = result!.retObj!.orderId

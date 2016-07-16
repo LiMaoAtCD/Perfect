@@ -9,6 +9,7 @@
 import UIKit
 import SVProgressHUD
 import Async
+import RealmSwift
 
 
 class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -100,6 +101,14 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
             Util.logined = false
             let tab =  Tool.root.viewControllers.first as! RootTabBarController
             tab.selectedIndex = 0
+            
+            
+            //
+            let realm = try! Realm()
+            let addresses = realm.objects(AddressItemsEntity)
+            try! realm.write({
+                realm.delete(addresses)
+            })
         }
         
         alert.addAction(cancel)

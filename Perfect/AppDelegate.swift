@@ -137,8 +137,7 @@ extension AppDelegate {
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         if url.host == "safepay" {
-            AlipaySDK.defaultService().processOrderWithPaymentResult(url, standbyCallback: { (resultDic: [NSObject : AnyObject]!) in
-                
+            AlipaySDK.defaultService().processOrderWithPaymentResult(url, standbyCallback: { (resultDic: [NSObject : AnyObject]!) in                NSNotificationCenter.defaultCenter().postNotificationName("AliPayCallBack", object: nil, userInfo: resultDic)
             })
         }
         
