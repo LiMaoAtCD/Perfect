@@ -144,8 +144,8 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
         topLabel = UILabel()
         mainView.addSubview(topLabel)
         topLabel.font = UIFont.systemFontOfSize(13)
-        topLabel.text = self.entity?.orderStatusName
-        if let color = self.entity?.orderStatusTextColor {
+        topLabel.text = self.entity?.orderStepName
+        if let color = self.entity?.orderStepTextColor {
             topLabel.textColor = UIColor.init(hexString: color)
         }
         
@@ -486,61 +486,67 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
             make.height.equalTo(47.pixelToPoint)
         }
         
-        if let btns = entity!.buttons {
-            if btns.count == 0 {
-                button1.hidden = true
-                button2.hidden = true
-            } else if btns.count == 1 {
-                button1.hidden = false
-                button2.hidden = true
-                if btns.first!.code == "pay" {
-                    button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
-                    button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
-                    button1.addTarget(self, action: #selector(self.pay), forControlEvents: .TouchUpInside)
-                    button1.tag = DetailType.Pay.rawValue
-                } else if btns.first!.code == "confirmDelivery" {
-                    button1.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
-                    button1.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
-                    button1.tag = DetailType.Confirm.rawValue
-                } else {
-                
-                }
-
-            } else if btns.count == 2 {
-                button1.hidden = false
-                button2.hidden = false
-                if btns.first!.code == "pay" {
-                    button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
-                    button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
-                    button1.tag = DetailType.Pay.rawValue
-
-                } else if btns.first!.code == "complain" {
-                    button1.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
-                    button1.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
-                    button1.tag = DetailType.Tousu.rawValue
-
-                } else if btns.first!.code == "confirmReceipt" {
-                    button1.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
-                    button1.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
-                    button1.tag = DetailType.Confirm.rawValue
-
-                }
-                
-                if btns.last!.code == "pay" {
-                    button2.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
-                    button2.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
-                } else if btns.last!.code == "complain" {
-                    button2.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
-                    button2.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
-                } else if btns.last!.code == "comfirmReceipt" {
-                    button2.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
-                    button2.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
-                }
-            } else {
-                button1.hidden = true
-                button2.hidden = true
-            }
-        }
+        
+        
+        
+        
+        
+        
+//        if let btns = entity!.buttons {
+//            if btns.count == 0 {
+//                button1.hidden = true
+//                button2.hidden = true
+//            } else if btns.count == 1 {
+//                button1.hidden = false
+//                button2.hidden = true
+//                if btns.first!.code == "pay" {
+//                    button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
+//                    button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
+//                    button1.addTarget(self, action: #selector(self.pay), forControlEvents: .TouchUpInside)
+//                    button1.tag = DetailType.Pay.rawValue
+//                } else if btns.first!.code == "confirmDelivery" {
+//                    button1.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
+//                    button1.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
+//                    button1.tag = DetailType.Confirm.rawValue
+//                } else {
+//                
+//                }
+//
+//            } else if btns.count == 2 {
+//                button1.hidden = false
+//                button2.hidden = false
+//                if btns.first!.code == "pay" {
+//                    button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
+//                    button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
+//                    button1.tag = DetailType.Pay.rawValue
+//
+//                } else if btns.first!.code == "complain" {
+//                    button1.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
+//                    button1.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
+//                    button1.tag = DetailType.Tousu.rawValue
+//
+//                } else if btns.first!.code == "confirmReceipt" {
+//                    button1.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
+//                    button1.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
+//                    button1.tag = DetailType.Confirm.rawValue
+//
+//                }
+//                
+//                if btns.last!.code == "pay" {
+//                    button2.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
+//                    button2.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
+//                } else if btns.last!.code == "complain" {
+//                    button2.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
+//                    button2.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
+//                } else if btns.last!.code == "comfirmReceipt" {
+//                    button2.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
+//                    button2.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
+//                }
+//            } else {
+//                button1.hidden = true
+//                button2.hidden = true
+//            }
+//        }
         //254*93
     }
     

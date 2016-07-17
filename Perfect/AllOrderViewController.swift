@@ -149,8 +149,8 @@ class AllOrderCell: UITableViewCell {
     var entity: HistoryOrderItem? {
         willSet {
             if let _ = newValue {
-                topLabel.text = newValue!.orderStatusName
-                if let color = newValue!.orderStatusTextColor {
+                topLabel.text = newValue!.orderStepName
+                if let color = newValue!.orderStepTextColor {
                     topLabel.textColor = UIColor.init(hexString: color)
                 }
                 nameLabel.text = newValue!.address?.consignee

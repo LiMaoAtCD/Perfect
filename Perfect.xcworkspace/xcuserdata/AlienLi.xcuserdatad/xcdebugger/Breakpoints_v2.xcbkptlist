@@ -13,5 +13,53 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Perfect/OrderDetailViewController.swift"
+            timestampString = "490453908.881812"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Perfect.OrderDetailViewController.viewDidLoad () -&gt; ()"
+                  moduleName = "Perfect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AlienLi/Desktop/Perfect/Perfect/OrderDetailViewController.swift"
+                  timestampString = "490453928.0099"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "1488">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Perfect.OrderDetailViewController.(viewDidLoad () -&gt; ()).(closure #2)"
+                  moduleName = "Perfect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AlienLi/Desktop/Perfect/Perfect/OrderDetailViewController.swift"
+                  timestampString = "490453928.010094"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
