@@ -38,6 +38,7 @@ class PayViewController: BaseViewController {
         }
     }
     
+    
     var areaId: Int64 = -1
     var addressItemEntity: AddressItemsEntity? {
         willSet{
@@ -51,6 +52,7 @@ class PayViewController: BaseViewController {
             }
         }
     }
+    
 
     //订单部分
     var customView: UIView!
@@ -104,6 +106,8 @@ class PayViewController: BaseViewController {
             self.previewImageview.kf_setImageWithURL(NSURL.init(string: newValue.perfectImageurl(200, h: 200, crop: true))!)
         }
     }
+    
+    var orderId: Int64 = 0 //订单ID
 
     func renewViews() {
         configureBuyerView()
@@ -131,12 +135,6 @@ class PayViewController: BaseViewController {
 
         }
         
-    }
-    
-    func alipayCallback(notification: NSNotification) {
-        let obj = notification.userInfo
-        
-        print(obj)
     }
     
     deinit {
@@ -188,10 +186,47 @@ class PayViewController: BaseViewController {
         configureGoodView()
         configurePayView()
         configureTotalView()
-        
-        
-
     }
+    
+    //MARK:  支付宝回调
+    func alipayCallback(notification: NSNotification) {
+        let obj = notification.userInfo
+        
+        if let _ = obj {
+            
+        }
+        guard let result = obj else {
+            return
+        }
+        
+        guard let resultStatus = result["resultStatus"] else {
+            return
+        }
+
+        let statusCode = resultStatus as? String
+        if let _ = statusCode {
+            if statusCode! == "9000" {
+                //支付成功 ，跳到订单详情
+                
+                let orderDetailVC = OrderDetailViewController.someController(OrderDetailViewController.self, ofStoryBoard: UIStoryboard.main)
+                orderDetailVC.orderId = self.orderId
+                self.navigationController?.pushViewController(orderDetailVC, animated: true)
+            } else {
+                
+                if let memo = result["memo"] as? String {
+                    SVProgressHUD.showErrorWithStatus(memo)
+                } else {
+                    SVProgressHUD.showErrorWithStatus("支付未成功，请重新支付")
+                }
+            }
+        }
+        
+        
+        
+        print(obj)
+        
+    }
+
 
     
     //MARK: scrollview
@@ -872,7 +907,9 @@ class PayViewController: BaseViewController {
 //
 //            self.navigationController?.pushViewController(offlineVC, animated: true)
             
-            
+            if let id = result?.retObj?.orderId {
+                self.orderId = id
+            }
             
             if payTypeString == "offline" {
                 SVProgressHUD.dismiss()
@@ -889,13 +926,10 @@ class PayViewController: BaseViewController {
                     print(result)
                 })
             }
-            
         }) { (errMsg, errCode) in
             SVProgressHUD.showErrorWithStatus(errMsg)
         }
     }
-    
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
