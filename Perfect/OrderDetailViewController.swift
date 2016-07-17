@@ -473,92 +473,53 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
         button1.snp_makeConstraints { (make) in
             make.right.equalTo(-42.pixelToPoint)
             make.centerY.equalTo(bottomView)
-            make.width.equalTo(128.pixelToPoint)
-            make.height.equalTo(47.pixelToPoint)
+//            make.width.equalTo(128.pixelToPoint)
+//            make.height.equalTo(47.pixelToPoint)
+            make.width.equalTo(84)
+            make.height.equalTo(31)
         }
-        
-        let button2 = UIButton.init(type: .Custom)
-        bottomView.addSubview(button2)
-        button2.snp_makeConstraints { (make) in
-            make.right.equalTo(button1.snp_left).offset(-42.pixelToPoint)
-            make.centerY.equalTo(bottomView)
-            make.width.equalTo(128.pixelToPoint)
-            make.height.equalTo(47.pixelToPoint)
+
+        if let orderStepCode = entity?.orderStepCode {
+            if orderStepCode == "unpaid" {
+                button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
+                button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
+                button1.addTarget(self, action: #selector(self.pay), forControlEvents: .TouchUpInside)
+
+            } else if orderStepCode == "offlinePayPending" {
+                //付款说明的UI
+                button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
+                button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
+                button1.addTarget(self, action: #selector(self.payTip), forControlEvents: .TouchUpInside)
+                
+            } else if orderStepCode == "confirmPending" {
+            
+            }else if orderStepCode == "unshipped" {
+                
+            }else if orderStepCode == "shipped" {
+                button1.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
+                button1.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
+                button1.addTarget(self, action: #selector(self.shipped), forControlEvents: .TouchUpInside)
+            } else if orderStepCode == "receiptConfirmed" {
+                
+            } else {
+            }
         }
-        
-        
-        
-        
-        
-        
-        
-//        if let btns = entity!.buttons {
-//            if btns.count == 0 {
-//                button1.hidden = true
-//                button2.hidden = true
-//            } else if btns.count == 1 {
-//                button1.hidden = false
-//                button2.hidden = true
-//                if btns.first!.code == "pay" {
-//                    button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
-//                    button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
-//                    button1.addTarget(self, action: #selector(self.pay), forControlEvents: .TouchUpInside)
-//                    button1.tag = DetailType.Pay.rawValue
-//                } else if btns.first!.code == "confirmDelivery" {
-//                    button1.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
-//                    button1.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
-//                    button1.tag = DetailType.Confirm.rawValue
-//                } else {
-//                
-//                }
-//
-//            } else if btns.count == 2 {
-//                button1.hidden = false
-//                button2.hidden = false
-//                if btns.first!.code == "pay" {
-//                    button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
-//                    button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
-//                    button1.tag = DetailType.Pay.rawValue
-//
-//                } else if btns.first!.code == "complain" {
-//                    button1.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
-//                    button1.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
-//                    button1.tag = DetailType.Tousu.rawValue
-//
-//                } else if btns.first!.code == "confirmReceipt" {
-//                    button1.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
-//                    button1.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
-//                    button1.tag = DetailType.Confirm.rawValue
-//
-//                }
-//                
-//                if btns.last!.code == "pay" {
-//                    button2.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
-//                    button2.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
-//                } else if btns.last!.code == "complain" {
-//                    button2.setImage(UIImage.init(named: "order_tousu_0"), forState: .Normal)
-//                    button2.setImage(UIImage.init(named: "order_tousu_1"), forState: .Highlighted)
-//                } else if btns.last!.code == "comfirmReceipt" {
-//                    button2.setImage(UIImage.init(named: "order_confirm_0"), forState: .Normal)
-//                    button2.setImage(UIImage.init(named: "order_confirm_1"), forState: .Highlighted)
-//                }
-//            } else {
-//                button1.hidden = true
-//                button2.hidden = true
-//            }
-//        }
-        //254*93
     }
     
     func pay() {
-        
+        //支付。。。。
+    }
+    
+    func payTip() {
         let offlineVC = OfflinePayViewController.someController(OfflinePayViewController.self, ofStoryBoard: UIStoryboard.main)
-        
         offlineVC.orderId = entity!.orderId
         offlineVC.fromDetail = true
-        
         self.navigationController?.pushViewController(offlineVC, animated: true)
-
+    }
+    
+    func shipped() {
+        //确认收货
+        
     }
     
     func contact() {
