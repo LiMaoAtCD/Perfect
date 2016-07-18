@@ -487,8 +487,8 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
 
             } else if orderStepCode == "offlinePayPending" {
                 //付款说明的UI
-                button1.setImage(UIImage.init(named: "order_pay_0"), forState: .Normal)
-                button1.setImage(UIImage.init(named: "order_pay_1"), forState: .Highlighted)
+                button1.setImage(UIImage.init(named: "detail_pay_intro"), forState: .Normal)
+                button1.setImage(UIImage.init(named: "detail_pay_intro"), forState: .Highlighted)
                 button1.addTarget(self, action: #selector(self.payTip), forControlEvents: .TouchUpInside)
                 
             } else if orderStepCode == "confirmPending" {

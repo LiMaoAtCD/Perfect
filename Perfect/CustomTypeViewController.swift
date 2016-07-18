@@ -43,22 +43,6 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         collectionView.registerClass(CustomTypeBannerCell.self, forCellWithReuseIdentifier: CustomTypeBannerCell.identifier)
         
         
-        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryTagId": NSNumber.init(longLong: id), "rows": 20, "page": 1], completion: { [weak self](product: ProductListResponse?) in
-            self?.items = product?.retObj?.rows
-            self?.collectionView.reloadSections(NSIndexSet.init(index: 1))
-            
-        }) { (errMsg: String?, errCode: Int) in
-            SVProgressHUD.showErrorWithStatus(errMsg)
-        }
-        
-        NetworkHelper.instance.request(.GET, url: URLConstant.appArticleList.contant, parameters: ["categoryName": "场景页轮播"], completion: { (result: ArticleResponse?) in
-            
-                self.articles = result?.retObj?.rows
-                self.collectionView.reloadSections(NSIndexSet.init(index: 0))
-            }) { (msg, code) in
-                SVProgressHUD.showErrorWithStatus(msg)
-
-        }
         
         let footer = MJRefreshAutoNormalFooter.init { [weak self]() -> Void in
             self?.fetchGoods()
@@ -66,6 +50,37 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         footer.automaticallyHidden = true
         footer.setTitle("- 没有更多了 -", forState: MJRefreshState.NoMoreData)
         self.collectionView.mj_footer = footer
+        
+        let header = MJRefreshNormalHeader.init {
+            [weak self] in
+            self?.fetchData()
+        }
+        self.collectionView.mj_header = header
+        
+        self.collectionView.mj_header.beginRefreshing()
+    }
+    
+    func fetchData() {
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryTagId": NSNumber.init(longLong: id), "rows": 20, "page": 1], completion: { [weak self](product: ProductListResponse?) in
+            self?.items = product?.retObj?.rows
+            self?.collectionView.reloadSections(NSIndexSet.init(index: 1))
+            self?.collectionView.mj_header.endRefreshing()
+            
+        }) { (errMsg: String?, errCode: Int) in
+            SVProgressHUD.showErrorWithStatus(errMsg)
+            self.collectionView.mj_header.endRefreshing()
+        }
+        
+        NetworkHelper.instance.request(.GET, url: URLConstant.appArticleList.contant, parameters: ["categoryName": "场景页轮播"], completion: { (result: ArticleResponse?) in
+            
+            self.articles = result?.retObj?.rows
+            self.collectionView.reloadSections(NSIndexSet.init(index: 0))
+        }) { (msg, code) in
+            SVProgressHUD.showErrorWithStatus(msg)
+            
+        }
+
     }
     
     func fetchGoods() {
