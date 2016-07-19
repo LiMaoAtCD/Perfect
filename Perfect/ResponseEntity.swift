@@ -72,10 +72,12 @@ class FirstButtonItem: Mappable{
     
     var imageId: Int64 = 0
     var linkAction: String?
+    var name: String?
     
     func mapping(map: Map) {
         imageId <- (map["imageId"], TransformOfUtils.TransformOfInt64())
         linkAction <- map["linkAction"]
+        name <- map["name"]
     }
 }
 

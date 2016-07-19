@@ -223,7 +223,7 @@ class CollectCell: UITableViewCell {
         
         goodDetailTitleLabel = UILabel()
         goodDetailTitleLabel.numberOfLines = 2
-        goodDetailTitleLabel.font = UIFont.systemFontOfSize(15.0)
+        goodDetailTitleLabel.font = UIFont.systemFontOfSize(14.0)
         goodDetailTitleLabel.textColor = UIColor.globalLightGrayColor()
         mainView.addSubview(goodDetailTitleLabel)
         goodDetailTitleLabel.snp_makeConstraints { (make) in

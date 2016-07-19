@@ -22,9 +22,6 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     var customButtons: [FirstButtonItem]?
     var goodTypes: [FirstGoodsTypeItem]?
     var goods: [ProductItem]?
-//    var leftGoods: [ProductItem]?
-//    var centerGoods: [ProductItem]?
-//    var rightGoods: [ProductItem]?
 
     var selectionSection = 0 //  当前选中的分类
     var currentPage: Int = 1
@@ -313,7 +310,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             //MARK: 处理button 点击
             let item = self.customButtons![indexPath.row]
             if let action = item.linkAction {
-                UIViewController.gotoAction(action, from: self)
+                UIViewController.gotoAction(action, from: self, title: item.name)
             }
             
         } else if indexPath.section == 3 {
@@ -380,7 +377,7 @@ class CollectionViewCell: UICollectionViewCell {
                 
                 detailTitle.text = newValue!.fullName
                 if let text = newValue!.fullName {
-                    let boundingBox = (text as NSString) .boundingRectWithSize(CGSizeMake(Tool.width / 2 - 13, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15)], context: NSStringDrawingContext()).size
+                    let boundingBox = (text as NSString) .boundingRectWithSize(CGSizeMake(Tool.width / 2 - 13, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(14)], context: NSStringDrawingContext()).size
                     let size = CGSizeMake(ceil(boundingBox.width), ceil(boundingBox.height))
                     detailTitle.snp_remakeConstraints(closure: { (make) in
                         make.left.equalTo(16.pixelToPoint)
@@ -437,7 +434,7 @@ class CollectionViewCell: UICollectionViewCell {
         detailTitle.preferredMaxLayoutWidth = Tool.width / 2
         mainView.addSubview(detailTitle)
         detailTitle.textColor = UIColor.globalLightGrayColor()
-        detailTitle.font = UIFont.systemFontOfSize(15)
+        detailTitle.font = UIFont.systemFontOfSize(14)
         detailTitle.snp_makeConstraints { (make) in
             make.left.equalTo(16.pixelToPoint)
             make.right.equalTo(-10.pixelToPoint)

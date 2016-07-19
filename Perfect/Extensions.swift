@@ -83,6 +83,50 @@ extension String {
 }
 
 extension UIViewController {
+    class func gotoAction(linkAction: String,from currentController: UIViewController, title: String?) {
+        if linkAction == "" {
+            print("找服务端")
+            return
+        }
+        let actionType = linkAction.actionType
+        let id = linkAction.actionID
+        let type = ActionType(rawValue: actionType)!
+        switch type {
+        case .showGoodsListByTag:
+            let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
+            detail.id = id
+            detail.title = title
+            //            detail.hidesBottomBarWhenPushed = true
+            currentController.navigationController?.pushViewController(detail, animated: true)
+        case .showArticleContent:
+            
+            let articleVC = ArticleViewController.someController(ArticleViewController.self, ofStoryBoard: UIStoryboard.main)
+            articleVC.hidesBottomBarWhenPushed = true
+            articleVC.id = id
+            currentController.navigationController?.pushViewController(articleVC, animated: true)
+        case .showGoodsDetail:
+            
+            let detail = GoodsDetailViewController.someController(GoodsDetailViewController.self, ofStoryBoard: UIStoryboard.main)
+            detail.id = id
+            detail.hidesBottomBarWhenPushed = true
+            currentController.navigationController?.pushViewController(detail, animated: true)
+            
+        case .showGoodsListByCategory:
+            let detail = CustomTypeViewController.someController(CustomTypeViewController.self, ofStoryBoard: UIStoryboard.main)
+            detail.id = id
+            //            detail.hidesBottomBarWhenPushed = true
+            currentController.navigationController?.pushViewController(detail, animated: true)
+            
+        case .showArticleListByCategory:
+            break
+        case .openUri:
+            break
+        case .openUrl:
+            break
+        }
+
+    }
+    
     class func gotoAction(linkAction: String, from currentController: UIViewController) {
     
         if linkAction == "" {
