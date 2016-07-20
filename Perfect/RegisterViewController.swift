@@ -43,7 +43,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         self.title = "注册"
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(18), NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         //背景
         let imageview = UIImageView()
@@ -109,7 +109,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         cellphoneTextfield = UITextField()
         cellphoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
+        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7),NSFontAttributeName: UIFont.systemFontOfSize(14)])
         cellphoneTextfield.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
         cellphoneTextfield.keyboardType = .NumberPad
         cellphoneTextfield.delegate = self
@@ -143,7 +143,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
 
         passwordTextfield = UITextField()
-        passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "密码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
+        passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "密码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7),NSFontAttributeName: UIFont.systemFontOfSize(14)])
         passwordTextfield.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
 
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
@@ -178,7 +178,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         verifyTextField = UITextField()
         verifyTextField.delegate = self
         verifyTextField.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        verifyTextField.attributedPlaceholder = NSAttributedString.init(string: "验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
+        verifyTextField.attributedPlaceholder = NSAttributedString.init(string: "验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7), NSFontAttributeName: UIFont.systemFontOfSize(14)])
         verifyTextField.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
         verifyTextField.keyboardType = .NumberPad
 
@@ -235,10 +235,10 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         let agree: NSString = "同意注册协议"
         let attributeString = NSMutableAttributedString.init(string: "同意注册协议", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
         attributeString.addAttributes([NSForegroundColorAttributeName:
-            UIColor.init(hexString: "#fefefe", withAlpha: 0.7)],
+            UIColor.init(hexString: "#fefefe", withAlpha: 0.7),NSFontAttributeName: UIFont.systemFontOfSize(14)],
                                       range: NSMakeRange(0, 2))
         attributeString.addAttributes([NSForegroundColorAttributeName:
-            UIColor.init(hexString: "#66b389", withAlpha: 0.7)],
+            UIColor.init(hexString: "#66b389", withAlpha: 0.7),NSFontAttributeName: UIFont.systemFontOfSize(14)],
                                       range: NSMakeRange(2, agree.length - 2))
         protocolLabel.attributedText = attributeString
 
@@ -252,6 +252,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         let enterpriseLabel = UILabel()
         enterpriseLabel.text = "企业"
+        enterpriseLabel.font =  UIFont.systemFontOfSize(12)
         enterpriseLabel.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
         scrollView.addSubview(enterpriseLabel)
         enterpriseLabel.snp_makeConstraints { (make) in
@@ -271,6 +272,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         
         let personalLabel = UILabel()
         personalLabel.text = " 个人  /"
+        personalLabel.font =  UIFont.systemFontOfSize(12)
         personalLabel.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
 
         scrollView.addSubview(personalLabel)

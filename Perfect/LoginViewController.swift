@@ -30,7 +30,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "登录"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName: UIColor.lightGrayColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(18), NSForegroundColorAttributeName: UIColor.whiteColor()]
 
         setupViews()
         
@@ -103,7 +103,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
         cellphoneTextfield = UITextField()
         cellphoneTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
+        cellphoneTextfield.attributedPlaceholder = NSAttributedString.init(string: "手机号", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7), NSFontAttributeName: UIFont.systemFontOfSize(14)])
         cellphoneTextfield.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
         cellphoneTextfield.keyboardType = .NumberPad
         view.addSubview(cellphoneTextfield)
@@ -138,7 +138,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         passwordTextfield = UITextField()
         passwordTextfield.secureTextEntry = true
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
-        passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "密码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7)])
+        passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "密码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7),  NSFontAttributeName: UIFont.systemFontOfSize(14)])
         passwordTextfield.textColor = UIColor.whiteColor()
         view.addSubview(passwordTextfield)
         
@@ -193,7 +193,8 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
         forgetpasswordButton = UIButton.init(type: .Custom)
         forgetpasswordButton.setTitle("忘记密码", forState: .Normal)
-        forgetpasswordButton.setTitleColor(UIColor.init(hexString: "#fefefe", withAlpha: 0.7), forState: .Normal)
+        forgetpasswordButton.setTitleColor(UIColor.init(hexString: "#fefefe", withAlpha: 0.5), forState: .Normal)
+        forgetpasswordButton.titleLabel?.font = UIFont.systemFontOfSize(13)
         forgetpasswordButton.addTarget(self, action: #selector(self.forget), forControlEvents: .TouchUpInside)
         view.addSubview(forgetpasswordButton)
         forgetpasswordButton.snp_makeConstraints { (make) in
