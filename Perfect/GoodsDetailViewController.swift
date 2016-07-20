@@ -160,15 +160,17 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
                         make.height.equalTo(60.pixelToPoint)
                     })
                     
-                    if i == 0 {
-                        moduleView.setTitle("模块一", forState: .Normal)
-                    } else if i == 1 {
-                        moduleView.setTitle("模块二", forState: .Normal)
-                    } else if i == 2 {
-                        moduleView.setTitle("模块三", forState: .Normal)
-                    } else if i == 3 {
-                        moduleView.setTitle("模块四", forState: .Normal)
-                    }
+                    moduleView.setTitle(products[i].name, forState: .Normal)
+                    
+//                    if i == 0 {
+//                        moduleView.setTitle("模块一", forState: .Normal)
+//                    } else if i == 1 {
+//                        moduleView.setTitle("模块二", forState: .Normal)
+//                    } else if i == 2 {
+//                        moduleView.setTitle("模块三", forState: .Normal)
+//                    } else if i == 3 {
+//                        moduleView.setTitle("模块四", forState: .Normal)
+//                    }
                     moduleButtons.append(moduleView)
                 }
                 configureModuleButtonsSelectedStatus(0)

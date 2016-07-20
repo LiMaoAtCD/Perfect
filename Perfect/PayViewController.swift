@@ -605,17 +605,19 @@ class PayViewController: BaseViewController {
                         make.bottom.equalTo(mainView.snp_bottom).offset(-20.pixelToPoint)
                     })
                     
-                    if i == 0 {
-                        moduleView.setTitle("模块一", forState: .Normal)
-                    } else if i == 1 {
-                        moduleView.setTitle("模块二", forState: .Normal)
-                    } else if i == 2 {
-                        moduleView.setTitle("模块三", forState: .Normal)
-                    } else if i == 3 {
-                        moduleView.setTitle("模块四", forState: .Normal)
-                    } else if i == 4 {
-                        moduleView.setTitle("模块五", forState: .Normal)
-                    }
+                    moduleView.setTitle(products[i].name, forState: .Normal)
+
+//                    if i == 0 {
+//                        moduleView.setTitle("模块一", forState: .Normal)
+//                    } else if i == 1 {
+//                        moduleView.setTitle("模块二", forState: .Normal)
+//                    } else if i == 2 {
+//                        moduleView.setTitle("模块三", forState: .Normal)
+//                    } else if i == 3 {
+//                        moduleView.setTitle("模块四", forState: .Normal)
+//                    } else if i == 4 {
+//                        moduleView.setTitle("模块五", forState: .Normal)
+//                    }
                     moduleButtons.append(moduleView)
                 }
                 configureModuleButtonsSelectedStatus(self.selectedIndex)

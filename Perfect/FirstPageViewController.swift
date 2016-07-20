@@ -591,7 +591,9 @@ class SegmentControlView : UIView {
                     self.buttons?[i].setTitleColor(UIColor.globalDarkColor(), forState: .Normal)
                     self.bottomViews?[i].backgroundColor = UIColor.globalRedColor()
                 } else {
-                    self.buttons?[i].setTitleColor(UIColor.init(hexString: "#e6e7e8"), forState: .Normal)
+//                    self.buttons?[i].setTitleColor(UIColor.init(hexString: "#e6e7e8"), forState: .Normal)
+                    self.buttons?[i].setTitleColor(UIColor.globalLightGrayColor(), forState: .Normal)
+
                     self.bottomViews?[i].backgroundColor = UIColor.whiteColor()
                 }
             }
