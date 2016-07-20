@@ -871,7 +871,7 @@ class PayViewController: BaseViewController {
             self.addressLabel.text = "请完善您的收货信息"
             self.contactLabel.text = ""
             self.nameLabel.text = ""
-            SVProgressHUD.showErrorWithStatus("您的收获地址已被删除")
+            SVProgressHUD.showErrorWithStatus("您的收货地址已被删除")
             return
         }
         

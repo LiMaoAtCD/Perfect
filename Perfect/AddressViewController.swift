@@ -211,7 +211,7 @@ class AddressViewController: BaseViewController,UITableViewDataSource, UITableVi
     
     func alertDeleteAddress(id: Int64, isDefault: Bool) {
         
-        let alertController = UIAlertController.init(title: "", message: "确认删除收获地址？", preferredStyle: .Alert)
+        let alertController = UIAlertController.init(title: "", message: "确认删除收货地址？", preferredStyle: .Alert)
         
         let sureAction = UIAlertAction.init(title: "确认", style: .Default) { (_) in
             SVProgressHUD.show()
