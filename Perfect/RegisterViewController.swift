@@ -102,7 +102,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         userTagImageView.image = UIImage.init(named: "login_user")
         scrollView.addSubview(userTagImageView)
         userTagImageView.snp_makeConstraints { (make) in
-            make.left.equalTo(88.pixelToPoint)
+            make.left.equalTo(64.pixelToPoint)
             make.width.height.equalTo(43.pixelToPoint)
             make.top.equalTo(icon.snp_bottom).offset(180.pixelToPoint)
         }
