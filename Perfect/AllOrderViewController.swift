@@ -40,8 +40,14 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
         NetworkHelper.instance.request(.GET, url: URLConstant.appOrderHistory.contant, parameters: ["rows": 20, "page": 1], completion: { (result: HistoryOrderResponse?) in
                 if let _ = result?.retObj?.rows {
                     self.item = result?.retObj?.rows!
+                    if self.item.count >= 20 {
+                        self.tableView.mj_footer.endRefreshing()
+                        self.currentPage = self.currentPage + 1
+                    } else {
+                        self.tableView.mj_footer.endRefreshingWithNoMoreData()
+                    }
+                    
                     self.tableView.reloadData()
-                    self.currentPage = self.currentPage + 1
                 }
             }) { (errmsg, errcode) in
                 SVProgressHUD.showErrorWithStatus(errmsg ?? "订单列表获取失败")
@@ -72,8 +78,8 @@ class AllOrderViewController: BaseViewController, UITableViewDelegate, UITableVi
                 self.tableView.mj_footer.endRefreshingWithNoMoreData()
             } else {
                 self.tableView.mj_footer.endRefreshing()
+                self.currentPage = self.currentPage + 1
             }
-            self.currentPage = self.currentPage + 1
         }) { (errmsg, errcode) in
             SVProgressHUD.showErrorWithStatus(errmsg ?? "订单列表获取失败")
         }
