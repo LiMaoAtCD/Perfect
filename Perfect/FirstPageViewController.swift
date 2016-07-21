@@ -51,20 +51,6 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         collection.registerClass(CollectionViewFootCell.self, forCellWithReuseIdentifier: CollectionViewFootCell.identifier)
         collection.registerClass(Header.self, forSupplementaryViewOfKind: Header.kind, withReuseIdentifier: Header.identifier)
         collection.hidden = true
-        
-//        SVProgressHUD.showWithStatus("正在获取商品信息")
-//        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryIndexStaticContent.contant, parameters: nil, completion: { [weak self](res: FirstPageResponse?) in
-//                SVProgressHUD.dismiss()
-//                self?.topBanners = res?.retObj?.topBanners
-//                self?.customButtons = res?.retObj?.buttons
-//                self?.fetchProductsByGoodTypes(res?.retObj?.types)
-//                self?.collection.reloadData()
-//                self?.collection.hidden = false
-//
-//        }) { (errMsg: String?, errCode: Int) in
-//            SVProgressHUD.showErrorWithStatus(errMsg)
-//        }
-        
         let footer = MJRefreshAutoNormalFooter.init { [weak self]() -> Void in
             self?.fetchGoods()
         }
@@ -92,6 +78,9 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             self?.fetchProductsByGoodTypes(res?.retObj?.types)
             self?.collection.reloadData()
             self?.collection.hidden = false
+            
+            
+            
         }) { (errMsg: String?, errCode: Int) in
             SVProgressHUD.showErrorWithStatus(errMsg)
             self.collection.mj_header.endRefreshing()
@@ -140,8 +129,15 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
         
         NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryCategoryId":NSNumber.init(longLong: self.goodTypes![self.selectionSection].id),"rows": 20, "page": currentPage], completion: { [weak self](product: ProductListResponse?) in
                 self?.goods = product?.retObj?.rows
+            
+                if self?.goods?.count >= 20 {
+                    self?.currentPage = self!.currentPage + 1
+                    self?.collection.mj_footer.resetNoMoreData()
+                } else {
+                    self?.collection.mj_footer.endRefreshingWithNoMoreData()
+                }
                 self?.collection.reloadSections(NSIndexSet.init(index: 3))
-                self?.currentPage = self!.currentPage + 1
+
             }) { (errMsg: String?, errCode: Int) in
                 SVProgressHUD.showErrorWithStatus(errMsg)
         }

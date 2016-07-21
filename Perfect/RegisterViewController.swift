@@ -90,7 +90,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     func setupViews() {
         //图标
         let icon = UIImageView()
-        icon.image = UIImage.init(named: "login_logo")
+        icon.image = UIImage.init(named: "icon")
         scrollView.addSubview(icon)
         icon.snp_makeConstraints { (make) in
             make.centerX.equalTo(view)
