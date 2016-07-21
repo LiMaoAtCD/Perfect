@@ -89,7 +89,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             make.bottom.equalTo(self.snp_topLayoutGuideTop).offset(430.pixelToPoint)
         }
         
-        icon.image = UIImage.init(named: "login_logo")
+        icon.image = UIImage.init(named: "icon")
         
         
         let userTagImageView = UIImageView()

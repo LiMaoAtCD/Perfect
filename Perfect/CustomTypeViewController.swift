@@ -63,6 +63,13 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         
         NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryTagId": NSNumber.init(longLong: id), "rows": 20, "page": 1], completion: { [weak self](product: ProductListResponse?) in
             self?.items = product?.retObj?.rows
+            
+            if self?.items?.count >= 20 {
+                self?.currentPage = self!.currentPage + 1
+                self?.collectionView.mj_footer.resetNoMoreData()
+            } else {
+                self?.collectionView.mj_footer.endRefreshingWithNoMoreData()
+            }
             self?.collectionView.reloadSections(NSIndexSet.init(index: 1))
             self?.collectionView.mj_header.endRefreshing()
             
@@ -86,7 +93,7 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
         NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryTagId": NSNumber.init(longLong: id), "rows": 20, "page": 1], completion: { [weak self](product: ProductListResponse?) in
             
             guard let rows = product?.retObj?.rows else {
-                self?.collectionView.mj_footer.endRefreshing()
+                self?.collectionView.mj_footer.endRefreshingWithNoMoreData()
                 return
             }
             
