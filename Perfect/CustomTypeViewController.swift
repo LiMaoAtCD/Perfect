@@ -83,7 +83,7 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
     }
     
     func fetchGoods() {
-        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryAnyTagId": NSNumber.init(longLong: id), "rows": 20, "page": 1], completion: { [weak self](product: ProductListResponse?) in
+        NetworkHelper.instance.request(.GET, url: URLConstant.appQueryGoodsList.contant, parameters: ["qryTagId": NSNumber.init(longLong: id), "rows": 20, "page": 1], completion: { [weak self](product: ProductListResponse?) in
             
             guard let rows = product?.retObj?.rows else {
                 self?.collectionView.mj_footer.endRefreshing()
