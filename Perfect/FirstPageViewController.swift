@@ -192,7 +192,8 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             var imageUrls = [String]()
             if let _ = topBanners {
                 for item in topBanners! {
-                    let imageurl = item.imageId.perfectImageurl(375, h: 183, crop: true)
+//                    首页轮播图：374*750
+                    let imageurl = item.imageId.perfectImageurl(750, h: 374, crop: true)
                     imageUrls.append(imageurl)
                 }
             }
@@ -212,7 +213,8 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
             var buttonsUrl = [String]()
             if let _ = customButtons {
                 for item in customButtons! {
-                    let imageurl = item.imageId.perfectImageurl(374, h: 150, crop: true)
+//                    定制4个小图片：160*360
+                    let imageurl = item.imageId.perfectImageurl(360, h: 160, crop: true)
                     buttonsUrl.append(imageurl)
                 }
             }
@@ -281,7 +283,7 @@ class FirstPageViewController: BaseViewController, SDCycleScrollViewDelegate,UIC
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
             return CGSizeMake(Tool.width, Tool.width * (374.0 + 10.0) / 750.0)
-        
+        //374*750
         } else if indexPath.section == 1 {
             return CGSizeMake(Tool.width, 100.pixelToPoint)
 
@@ -366,7 +368,8 @@ class CollectionViewCell: UICollectionViewCell {
     var entity: ProductItem? {
         willSet{
             if let _ = newValue {
-                let url = newValue!.thumbnailId.perfectImageurl(355, h: 352, crop: true)
+//                商品缩略图片： 390*372
+                let url = newValue!.thumbnailId.perfectImageurl(372, h: 390, crop: true)
                 imageView.kf_setImageWithURL(NSURL.init(string: url)!)
                 title.text = newValue!.name
                 price = newValue!.price

@@ -143,7 +143,9 @@ class CustomTypeViewController: BaseViewController, UICollectionViewDelegateFlow
             if let _ = articles {
                 var imageUrl: [String] = [String]()
                 for item in articles! {
+//                    定制页轮播图：580高*750宽
                     imageUrl.append(item.thumbnail.perfectImageurl(750, h: 580, crop: true))
+                    
                 }
                 
                 cell.banner.imageURLStringsGroup = imageUrl

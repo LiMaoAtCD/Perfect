@@ -87,6 +87,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         if let images = self.detail?.images {
             var imageUrls = [String]()
             for imageId in images {
+//                商品详情页轮播：680*750
                 let imageurl = imageId.perfectImageurl(680, h: 750, crop: true)
                 imageUrls.append(imageurl)
                 bannerIds.append(imageId)
