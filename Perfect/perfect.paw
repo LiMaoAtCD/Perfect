@@ -86,7 +86,7 @@
     </object>
     <object type="LMREQUEST" id="z105">
         <attribute name="uuid" type="string">15624243-54B4-49DF-BE8C-A6E82EC0C42F</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8087/custwine/gw?cmd=memberLogin\u2600username=13568927473\u2600password=111111</attribute>
+        <attribute name="url" type="string">http://118.123.209.6:8080/custwine/gw?cmd=memberLogin\u2600username=13568927473\u2600password=111111</attribute>
         <attribute name="timeoutinterval" type="float">30</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
@@ -546,7 +546,7 @@
     </object>
     <object type="LMREQUEST" id="z143">
         <attribute name="uuid" type="string">010447EE-014C-4122-A8E2-F8843B1A3379</attribute>
-        <attribute name="url" type="string">http://101.200.131.198:8090/custwine/gw?cmd=appGoodsDetail\u2600id=1\u2600sessionId=b232ed73-261e-4889-8aae-ce0f66de0473</attribute>
+        <attribute name="url" type="string">http://118.123.209.6:8087/custwine/gw?cmd=appGoodsDetail\u2600id=1\u2600sessionId=2c4c83b0-cc2d-4e47-a4b0-66fa38d657ec</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
