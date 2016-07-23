@@ -524,7 +524,7 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
     
     func contact() {
         let webview = UIWebView.init()
-        let url = NSURL.init(string: "mqq://im/chat?chat_type=wpa&uin=501863587&version=1&src_type=web")!
+        let url = NSURL.init(string: "mqq://im/chat?chat_type=wpa&uin=2881876374&version=1&src_type=web")!
         webview.loadRequest(NSURLRequest.init(URL: url))
         webview.delegate = self
         view.addSubview(webview)
