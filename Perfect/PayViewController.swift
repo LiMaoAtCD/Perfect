@@ -153,7 +153,7 @@ class PayViewController: BaseViewController {
         self.prices = [Float]()
         self.goodImageIds = [Int64]()
         self.moduleIds = [Int64]()
-        
+        self.quantity = self.mininumber
         
         
         if let products = goodEntity?.products {

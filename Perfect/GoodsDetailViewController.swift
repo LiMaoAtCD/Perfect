@@ -44,6 +44,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
     var bannerIds: [Int64] = [Int64]()
     var prices: [Float] = [Float]()
     var moduleButtons: [UIButton]!
+    var miniQuantity: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,9 +55,11 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         NetworkHelper.instance.request(.GET, url: URLConstant.appGoodsDetail.contant, parameters: ["id": NSNumber.init(longLong: id)], completion: { [weak self](response: ProductDetailResponse?) in
                 SVProgressHUD.dismiss()
                 self?.detail = response?.retObj
+                self?.miniQuantity = response?.retObj?.minQuantity ?? 1
                 self?.favorite = response!.retObj!.favorite
                 self?.title = response?.retObj?.name
                 self?.updateViews()
+            
             }) { (errMsg: String?, errCode: Int) in
                 SVProgressHUD.showErrorWithStatus(errMsg ?? "商品信息获取失败")
         }
@@ -473,6 +476,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         let payment = Tool.sb.instantiateViewControllerWithIdentifier("PayViewController") as! PayViewController
         payment.goodEntity = detail
         payment.selectedIndex = self.selectedModuleIndex
+        payment.mininumber = self.miniQuantity
         self.navigationController?.pushViewController(payment, animated: true)
 
     }

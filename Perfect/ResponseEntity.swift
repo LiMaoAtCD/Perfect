@@ -136,6 +136,8 @@ class ProductDetailEntity: Mappable {
     var products: [ProductDetailModuleItem]?
     var discount: Float = 0.0
     var profile: String?
+    var minQuantity: Int = 1
+    
     required init?(_ map: Map) {
     }
     
@@ -154,6 +156,7 @@ class ProductDetailEntity: Mappable {
         intro <- map["intro"]
         discount <- map["discount"]
         products <- map["products"]
+        minQuantity <- map["minQuantity"]
 
     }
 }
