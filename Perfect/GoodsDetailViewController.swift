@@ -55,7 +55,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
                 SVProgressHUD.dismiss()
                 self?.detail = response?.retObj
                 self?.favorite = response!.retObj!.favorite
-            
+                self?.title = response?.retObj?.name
                 self?.updateViews()
             }) { (errMsg: String?, errCode: Int) in
                 SVProgressHUD.showErrorWithStatus(errMsg ?? "商品信息获取失败")
@@ -104,7 +104,7 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
         topBanner.snp_makeConstraints { (make) in
             make.left.right.equalTo(view)
             make.top.equalTo(scrollView)
-            make.height.equalTo(topBanner.snp_width).multipliedBy(664.0 / 750)
+            make.height.equalTo(topBanner.snp_width).multipliedBy(750.0 / 680)
         }
     }
     
@@ -162,16 +162,6 @@ class GoodsDetailViewController: BaseViewController, UIWebViewDelegate {
                     })
                     
                     moduleView.setTitle(products[i].name, forState: .Normal)
-                    
-//                    if i == 0 {
-//                        moduleView.setTitle("模块一", forState: .Normal)
-//                    } else if i == 1 {
-//                        moduleView.setTitle("模块二", forState: .Normal)
-//                    } else if i == 2 {
-//                        moduleView.setTitle("模块三", forState: .Normal)
-//                    } else if i == 3 {
-//                        moduleView.setTitle("模块四", forState: .Normal)
-//                    }
                     moduleButtons.append(moduleView)
                 }
                 configureModuleButtonsSelectedStatus(0)

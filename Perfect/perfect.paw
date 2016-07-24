@@ -546,7 +546,7 @@
     </object>
     <object type="LMREQUEST" id="z143">
         <attribute name="uuid" type="string">010447EE-014C-4122-A8E2-F8843B1A3379</attribute>
-        <attribute name="url" type="string">http://118.123.209.6:8087/custwine/gw?cmd=appGoodsDetail\u2600id=1\u2600sessionId=2c4c83b0-cc2d-4e47-a4b0-66fa38d657ec</attribute>
+        <attribute name="url" type="string">http://118.123.209.6:8080/gw?cmd=appGoodsDetail\u2600id=102\u2600sessionId=2c4c83b0-cc2d-4e47-a4b0-66fa38d657ec</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
