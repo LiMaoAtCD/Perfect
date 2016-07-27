@@ -778,5 +778,15 @@ class ArticleItem: Mappable {
     }
 }
 
+class CouponEntity: Mappable {
+    var couponDiscount: Float = 0.0
+    required init?(_ map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        couponDiscount <- map["couponDiscount"]
+   }
+}
+
 
 

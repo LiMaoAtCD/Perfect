@@ -268,6 +268,21 @@ class ArticleResponse: DataResponse {
     }
 }
 
+//MARK: 折扣码
+
+class CouponResponse: DataResponse {
+    var retObj: CouponEntity?
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        retObj <- map["retObj"]
+    }
+}
+
 
 
 

@@ -67,6 +67,7 @@ enum URLConstant: String {
     case setLoginMemberGoodsFavorite = "setLoginMemberGoodsFavorite"
     case getLoginMemberFavoriteGoodsList = "getLoginMemberFavoriteGoodsList"
     case appArticleList = "appArticleList"
+    case appVerifyCouponCode = "appVerifyCouponCode"
     var contant: String {
         return url + self.rawValue
     }

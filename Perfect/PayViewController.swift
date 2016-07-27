@@ -16,7 +16,7 @@ enum PayType: Int {
     case Alipay = 2
 }
 
-class PayViewController: BaseViewController {
+class PayViewController: BaseViewController,UITextFieldDelegate {
 
     var scrollView: UIScrollView!
     var buyerView: UIView! // 收货信息视图
@@ -71,12 +71,11 @@ class PayViewController: BaseViewController {
     
     var totalPrice: Float = 0.0 {
         willSet {
-            let attributeString = NSMutableAttributedString.init(string: newValue.currency, attributes: [NSForegroundColorAttributeName: UIColor.globalRedColor()])
-            attributeString.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(20)], range: NSMakeRange(0, 1))
-            attributeString.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(20)], range: NSMakeRange(1, (newValue.currency as NSString).length - 1))
-            totalPriceLabel.attributedText = attributeString
+            totalPriceLabel.text = newValue.currency
         }
     }
+    
+    var totalPriceAfterCoupon: Float = 0.0
     
     var numberTextField: UITextField! //商品数量输入框
     var mininumber = 1   //最小数量
@@ -84,6 +83,7 @@ class PayViewController: BaseViewController {
     var myGoodImageView: UIImageView!
     //支付信息
     var payTypeViews: [PayTypeView]!
+    
     //底部合计
     var bottomView: UIView!
     var totalPriceLabel = UILabel()
@@ -108,11 +108,19 @@ class PayViewController: BaseViewController {
     }
     
     var orderId: Int64 = 0 //订单ID
+    
+    var couponString: String = ""
+    var couponView: UIView!
+    var couponTextfield: UITextField!
+    var couponButton: UIButton!
+    var activeField: UITextField!
+
 
     func renewViews() {
         configureBuyerView()
         configureGoodView()
         configurePayView()
+        configureCouponView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -185,7 +193,19 @@ class PayViewController: BaseViewController {
         configureBuyerView()
         configureGoodView()
         configurePayView()
+        configureCouponView()
         configureTotalView()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(self.dismissKeyboard))
+        self.scrollView.addGestureRecognizer(tap)
+
+    }
+    
+    func dismissKeyboard() {
+        self.couponTextfield.resignFirstResponder()
+        activeField = nil
     }
     
     //MARK:  支付宝回调
@@ -220,11 +240,6 @@ class PayViewController: BaseViewController {
                 }
             }
         }
-        
-        
-        
-        print(obj)
-        
     }
 
 
@@ -606,18 +621,6 @@ class PayViewController: BaseViewController {
                     })
                     
                     moduleView.setTitle(products[i].name, forState: .Normal)
-
-//                    if i == 0 {
-//                        moduleView.setTitle("模块一", forState: .Normal)
-//                    } else if i == 1 {
-//                        moduleView.setTitle("模块二", forState: .Normal)
-//                    } else if i == 2 {
-//                        moduleView.setTitle("模块三", forState: .Normal)
-//                    } else if i == 3 {
-//                        moduleView.setTitle("模块四", forState: .Normal)
-//                    } else if i == 4 {
-//                        moduleView.setTitle("模块五", forState: .Normal)
-//                    }
                     moduleButtons.append(moduleView)
                 }
                 configureModuleButtonsSelectedStatus(self.selectedIndex)
@@ -660,7 +663,6 @@ class PayViewController: BaseViewController {
         payView.snp_makeConstraints { (make) in
             make.left.right.equalTo(customView)
             make.top.equalTo(customView.snp_bottom).offset(10.pixelToPoint)
-            make.bottom.equalTo(scrollView)
         }
         
         let title = UILabel()
@@ -754,6 +756,102 @@ class PayViewController: BaseViewController {
         payTypeViews[payType.rawValue].isChecked = true
     }
     
+    func configureCouponView() {
+        couponView?.removeFromSuperview()
+        couponView = UIView()
+        couponView.backgroundColor = UIColor.whiteColor()
+        scrollView.addSubview(couponView)
+        couponView.snp_makeConstraints { (make) in
+            make.left.right.equalTo(customView)
+            make.top.equalTo(payView.snp_bottom).offset(10.pixelToPoint)
+            make.bottom.equalTo(scrollView)
+
+        }
+        
+        couponTextfield = UITextField()
+        couponTextfield.delegate = self
+        couponView.addSubview(couponTextfield)
+        couponTextfield.addTarget(self, action: #selector(self.textfieldValueChanged(_:)), forControlEvents: .EditingChanged)
+        couponTextfield.snp_makeConstraints { (make) in
+            make.left.equalTo(couponView).offset(14)
+            make.top.equalTo(14.0)
+            make.height.equalTo(35)
+            make.bottom.equalTo(-14.0)
+        }
+        couponTextfield.placeholder = "请输入您的优惠码"
+        
+        couponButton = UIButton.init(type: .Custom)
+        couponView.addSubview(couponButton)
+        couponButton.backgroundColor = UIColor.globalRedColor()
+        couponButton.snp_makeConstraints { (make) in
+            make.left.equalTo(couponTextfield.snp_right).offset(20)
+            make.width.equalTo(80)
+            make.height.equalTo(35)
+            make.right.equalTo(couponView).offset(-14)
+            make.centerY.equalTo(couponView.snp_centerY)
+        }
+        couponButton.setTitle("获取优惠", forState: .Normal)
+        couponButton.addTarget(self, action: #selector(self.fetchCoupon), forControlEvents: .TouchUpInside)
+        couponButton.titleLabel?.font = UIFont.systemFontOfSize(14.0)
+        couponButton.layer.cornerRadius = 5.0
+        couponButton.layer.masksToBounds = true
+        
+        
+    }
+    
+    
+    
+    func fetchCoupon() {
+        SVProgressHUD.show()
+        NetworkHelper.instance.request(.GET, url: URLConstant.appVerifyCouponCode.contant, parameters: ["code":self.couponString,"num": quantity,"price": NSNumber.init(float: totalPrice)], completion: { (result: CouponResponse?) in
+                SVProgressHUD.dismiss()
+                let discout = result?.retObj?.couponDiscount
+                self.totalPriceAfterCoupon = self.totalPrice -  (discout ?? 0.0)
+                if self.totalPriceAfterCoupon < 0.1 {
+                    
+                } else {
+                    self.totalPriceLabel.text = "￥\(self.totalPrice)-\((discout ?? 0.0))=\(self.totalPriceAfterCoupon)"
+                }
+            }) { (msg, code) in
+                SVProgressHUD.showErrorWithStatus(msg)
+        }
+    }
+    
+    func textfieldValueChanged(textfield: UITextField) {
+        self.couponString = textfield.text ?? ""
+    }
+    
+    func keyboardWillShow(notification:NSNotification){
+        
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
+        
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.scrollView.contentInset = contentInset
+        
+        var aRect = self.view.frame
+        aRect.size.height -= keyboardFrame.size.height
+        if let _ = activeField {
+            let point = CGPointMake(0, -activeField.y + keyboardFrame.size.height + 120)
+            scrollView.setContentOffset(point, animated: true)
+        }
+    }
+    
+    func keyboardWillHide(notification:NSNotification){
+        
+        let contentInset:UIEdgeInsets = UIEdgeInsetsZero
+        self.scrollView.contentInset = contentInset
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        activeField = textField
+        return true
+    }
+
+
+    
     func configureTotalView() {
         bottomView = UIView()
         bottomView.layer.borderColor = UIColor.globalSeparatorColor().CGColor
@@ -780,6 +878,8 @@ class PayViewController: BaseViewController {
         }
         
         totalPriceLabel = UILabel()
+        totalPriceLabel.textColor = UIColor.globalRedColor()
+        totalPriceLabel.font = UIFont.systemFontOfSize(20.0)
         bottomView.addSubview(totalPriceLabel)
         totalPriceLabel.snp_makeConstraints { (make) in
             make.centerY.equalTo(settleButton)
