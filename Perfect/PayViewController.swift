@@ -11,9 +11,9 @@ import RealmSwift
 import SVProgressHUD
 
 enum PayType: Int {
-    case Offline = 0
+    case Offline = 2
     case Wechat = 1
-    case Alipay = 2
+    case Alipay = 0
 }
 
 class PayViewController: BaseViewController,UITextFieldDelegate {
@@ -738,17 +738,17 @@ class PayViewController: BaseViewController,UITextFieldDelegate {
             self.payTypeViews.append(payitemView)
             
             if i == 0 {
-                payitemView.imageView.image = UIImage.init(named: "pay_offline")
-                payitemView.title.text = "线下"
-            } else if i == 1 {
                 payitemView.imageView.image = UIImage.init(named: "pay_alipay")
                 payitemView.title.text = "支付宝"
-               
-            } else {
+            } else if i == 1 {
                 payitemView.userInteractionEnabled = false
                 payitemView.imageView.image = UIImage.init(named: "pay_wechat")
                 payitemView.title.text = "微信"
                 payitemView.title.textColor = UIColor.globalLightGrayColor()
+            } else {
+             
+                payitemView.imageView.image = UIImage.init(named: "pay_offline")
+                payitemView.title.text = "线下"
 
             }
         }

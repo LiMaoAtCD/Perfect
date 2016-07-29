@@ -137,6 +137,8 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
         passwordTextfield = UITextField()
         passwordTextfield.secureTextEntry = true
+        passwordTextfield.delegate = self
+        passwordTextfield.returnKeyType = .Go
         passwordTextfield.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         passwordTextfield.attributedPlaceholder = NSAttributedString.init(string: "密码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7),  NSFontAttributeName: UIFont.systemFontOfSize(14)])
         passwordTextfield.textColor = UIColor.whiteColor()
@@ -287,6 +289,13 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 password = textfield.text
             }
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.login()
+        
+        return true
     }
 
 
