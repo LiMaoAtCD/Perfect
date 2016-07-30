@@ -180,7 +180,8 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         verifyTextField.addTarget(self, action: #selector(self.textFieldDidEditChanged(_:)), forControlEvents: .EditingChanged)
         verifyTextField.attributedPlaceholder = NSAttributedString.init(string: "验证码", attributes: [NSForegroundColorAttributeName: UIColor.init(hexString: "#fefefe", withAlpha: 0.7), NSFontAttributeName: UIFont.systemFontOfSize(14)])
         verifyTextField.textColor = UIColor.init(hexString: "#fefefe", withAlpha: 0.7)
-        verifyTextField.keyboardType = .NumberPad
+        verifyTextField.keyboardType = .Default
+        verifyTextField.returnKeyType = .Go
 
         scrollView.addSubview(verifyTextField)
         
@@ -508,6 +509,12 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
                 password = textfield.text
             }
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        register()
+        return true
     }
     
     func verify() {
