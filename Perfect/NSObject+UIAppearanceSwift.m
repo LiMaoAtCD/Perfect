@@ -10,10 +10,10 @@
 
 @implementation NSObject (UIAppearanceSwift)
 
-+ (instancetype)appearanceWhenContainedWithin:(Class<UIAppearanceContainer>)containerClass {
-    if ([self conformsToProtocol:@protocol(UIAppearance)]) {
-        return [(id<UIAppearance>)self appearanceWhenContainedIn:containerClass, nil];
-    }
-    return nil;
-}
+//+ (instancetype)appearanceWhenContainedWithin:(Class<UIAppearanceContainer>)containerClass {
+//    if ([self conformsToProtocol:@protocol(UIAppearance)]) {
+//        return [(id<UIAppearance>)self appearanceWhenContainedIn:containerClass, nil];
+//    }
+//    return nil;
+//}
 @end

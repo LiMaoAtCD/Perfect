@@ -75,7 +75,6 @@ class PayViewController: BaseViewController,UITextFieldDelegate {
         }
     }
     
-    var totalPriceAfterCoupon: Float = 0.0
     
     var numberTextField: UITextField! //商品数量输入框
     var mininumber = 1   //最小数量
@@ -739,7 +738,7 @@ class PayViewController: BaseViewController,UITextFieldDelegate {
             
             if i == 0 {
                 payitemView.imageView.image = UIImage.init(named: "pay_offline")
-                payitemView.title.text = "线下"
+                payitemView.title.text = "银行转账"
             } else if i == 1 {
                 payitemView.imageView.image = UIImage.init(named: "pay_alipay")
                 payitemView.title.text = "支付宝"
@@ -806,12 +805,7 @@ class PayViewController: BaseViewController,UITextFieldDelegate {
         NetworkHelper.instance.request(.GET, url: URLConstant.appVerifyCouponCode.contant, parameters: ["code":self.couponString,"num": quantity,"price": NSNumber.init(float: totalPrice)], completion: { (result: CouponResponse?) in
                 SVProgressHUD.dismiss()
                 let discout = result?.retObj?.couponDiscount
-                self.totalPriceAfterCoupon = self.totalPrice -  (discout ?? 0.0)
-                if self.totalPriceAfterCoupon < 0.1 {
-                    
-                } else {
-                    self.totalPriceLabel.text = "￥\(self.totalPrice)-\((discout ?? 0.0))=\(self.totalPriceAfterCoupon)"
-                }
+                self.totalPrice = self.totalPrice -  (discout ?? 0.0)
             }) { (msg, code) in
                 SVProgressHUD.showErrorWithStatus(msg)
         }
