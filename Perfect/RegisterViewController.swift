@@ -355,7 +355,26 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
                     Defaults[.password] = self.password
                     SVProgressHUD.showSuccessWithStatus("注册成功")
                     Async.main(after: 1.0, block: { 
-                        self.navigationController?.popViewControllerAnimated(true)
+//                        self.navigationController?.popViewControllerAnimated(true)
+                        Util.logined = true
+                        let switchTo = Defaults[.shouldSwitch]
+                        if switchTo == 1 {
+                            let tab =  Tool.root.viewControllers.first as! RootTabBarController
+                            tab.selectedIndex = 2
+                            Defaults[.shouldSwitch] = 0
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                            return
+                        } else if switchTo == 2 {
+                            let tab =  Tool.root.viewControllers.first as! RootTabBarController
+                            tab.selectedIndex = 1
+                            Defaults[.shouldSwitch] = 0
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                            return
+                        } else {
+                            Defaults[.shouldSwitch] = 0
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+
                     })
                 }, failed: { (errMsg: String?, errCode: Int) in
                     SVProgressHUD.showErrorWithStatus(errMsg ?? "注册失败")
