@@ -987,22 +987,10 @@ class PayViewController: BaseViewController,UITextFieldDelegate {
             "contactName": contactName,
             "contactPhone": contactPhone,
             "customImgId": customImgId.toNSNumber,
-            "payType": payTypeString],
-                                       
+            "payType": payTypeString,
+            "couponCode": couponString,
+            "price": NSNumber.init(float: self.totalPrice)],
            completion: { (result: ConfirmOrderResponse?) in
-            
-            
-//                let orderDetailVC = OrderDetailViewController.someController(OrderDetailViewController.self, ofStoryBoard: UIStoryboard.main)
-//                orderDetailVC.orderId = result!.retObj!.orderId
-//            self.navigationController?.pushViewController(orderDetailVC, animated: true)
-//            
-//            let offVC = OfflinePayViewController.someController
-//            (OfflinePayViewController.self, ofStoryBoard: UIStoryboard.main)
-//            
-//            offVC.or = result!.retObj!.orderId
-//
-//            self.navigationController?.pushViewController(offlineVC, animated: true)
-            
             if let id = result?.retObj?.orderId {
                 self.orderId = id
             }
