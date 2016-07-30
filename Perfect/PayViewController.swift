@@ -718,17 +718,20 @@ class PayViewController: BaseViewController,UITextFieldDelegate {
                     self.payTypeViews[0].isChecked = true
                     self.payTypeViews[1].isChecked = false
                     self.payTypeViews[2].isChecked = false
-                    self.payType = .Offline
+                    self.payType = .Alipay
+
                 case 1:
                     self.payTypeViews[0].isChecked = false
                     self.payTypeViews[1].isChecked = true
                     self.payTypeViews[2].isChecked = false
-                    self.payType = .Alipay
+                    self.payType = .Wechat
+
                 case 2:
                     self.payTypeViews[0].isChecked = false
                     self.payTypeViews[1].isChecked = false
                     self.payTypeViews[2].isChecked = true
-                    self.payType = .Wechat
+                    self.payType = .Offline
+
                 default:
                     break
                 }
