@@ -99,6 +99,7 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
             SVProgressHUD.dismiss()
             self.entity = result?.retObj
             self.setupScrollSubViews()
+            self.bottomView.removeFromSuperview()
             self.bottomView = UIView()
             self.view.addSubview(self.bottomView)
             self.bottomView.snp_makeConstraints { (make) in
@@ -121,6 +122,7 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
     }
 
     func setupScrollSubViews() {
+        mainView.removeFromSuperview()
         mainView = UIView()
         mainView.backgroundColor = UIColor.whiteColor()
         
@@ -519,7 +521,33 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
     
     func shipped() {
         //确认收货
-        
+        NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmReceipt.contant, parameters: ["orderId": orderId.toNSNumber], completion: { (result: DataResponse?) in
+                //  重新加载本页面
+                self.refetchOrderStatus()
+            
+            
+            }) { (msg, code) in
+                SVProgressHUD.showErrorWithStatus(msg)
+        }
+    }
+    
+    func refetchOrderStatus() {
+        SVProgressHUD.show()
+        NetworkHelper.instance.request(.GET, url: URLConstant.appOrderDetail.contant, parameters: ["id": orderId.toNSNumber, "rows":10, "page": 1], completion: { (result: OrderDetailResponse?) in
+            SVProgressHUD.dismiss()
+            self.entity = result?.retObj
+            self.setupScrollSubViews()
+            self.bottomView = UIView()
+            self.view.addSubview(self.bottomView)
+            self.bottomView.snp_makeConstraints { (make) in
+                make.left.right.bottom.equalTo(self.view)
+                make.height.equalTo(50)
+            }
+            self.setupBottomViews()
+        }) { (msg, code) in
+            SVProgressHUD.showErrorWithStatus(msg)
+        }
+
     }
     
     func contact() {
