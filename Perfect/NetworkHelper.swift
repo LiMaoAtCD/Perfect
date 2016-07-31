@@ -13,14 +13,14 @@ import SwiftyUserDefaults
 import SVProgressHUD
 //101.200.131.198:8090
 
-let url = "http://118.123.209.6/gw?cmd="
+let url = "http://118.123.209.6:8080/gw?cmd="
 
-let ArticleURL = "http://118.123.209.6/article/mobile/"
-let NetWorkImageUrl = "http://118.123.209.6/dimg/"
-let GoodDetailURL = "http://118.123.209.6/goods/mobile/"
+let ArticleURL = "http://118.123.209.6:8080/article/mobile/"
+let NetWorkImageUrl = "http://118.123.209.6:8080/dimg/"
+let GoodDetailURL = "http://118.123.209.6:8080/goods/mobile/"
 
-let avatarUploadURL = "http://118.123.209.6/dimg/upload"
-let offLineURL = "http://118.123.209.6/offlinePaymentInfo/"
+let avatarUploadURL = "http://118.123.209.6:8080/dimg/upload"
+let offLineURL = "http://118.123.209.6:8080/offlinePaymentInfo/"
 
 //文章读取地址为： http://服务器地址/article/mobile/id.page
 //例如：
