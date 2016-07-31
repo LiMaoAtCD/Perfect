@@ -1002,7 +1002,7 @@ class PayViewController: BaseViewController,UITextFieldDelegate {
             "customImgId": customImgId.toNSNumber,
             "payType": payTypeString,
             "couponCode": couponString,
-            "price": NSNumber.init(float: self.totalPrice)],
+            "price": NSNumber.init(float: (self.totalPrice - self.CouponDisCountPrice))],
            completion: { (result: ConfirmOrderResponse?) in
             if let id = result?.retObj?.orderId {
                 self.orderId = id
