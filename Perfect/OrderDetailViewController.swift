@@ -99,7 +99,7 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
             SVProgressHUD.dismiss()
             self.entity = result?.retObj
             self.setupScrollSubViews()
-            self.bottomView.removeFromSuperview()
+            self.bottomView?.removeFromSuperview()
             self.bottomView = UIView()
             self.view.addSubview(self.bottomView)
             self.bottomView.snp_makeConstraints { (make) in
@@ -122,7 +122,7 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
     }
 
     func setupScrollSubViews() {
-        mainView.removeFromSuperview()
+        mainView?.removeFromSuperview()
         mainView = UIView()
         mainView.backgroundColor = UIColor.whiteColor()
         
