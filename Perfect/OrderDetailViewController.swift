@@ -523,8 +523,11 @@ class OrderDetailViewController: BaseViewController,UIWebViewDelegate {
         //确认收货
         NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmReceipt.contant, parameters: ["orderId": orderId.toNSNumber], completion: { (result: DataResponse?) in
                 //  重新加载本页面
-                self.refetchOrderStatus()
-            
+//                self.refetchOrderStatus()
+                SVProgressHUD.showSuccessWithStatus("确认收货成功")
+                Async.main(after: 1.0, block: {
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
             
             }) { (msg, code) in
                 SVProgressHUD.showErrorWithStatus(msg)
