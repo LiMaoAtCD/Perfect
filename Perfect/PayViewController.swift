@@ -73,12 +73,22 @@ class PayViewController: BaseViewController,UITextFieldDelegate {
         willSet {
             totalPriceLabel.text = newValue.currency
         }
+        
+        didSet{
+            self.CouponDisCountPrice = 0.0
+        }
+    }
+    
+    var CouponDisCountPrice: Float = 0.0 {
+        willSet {
+            totalPriceLabel.text = (self.totalPrice - newValue).currency
+        }
     }
     
     
     var numberTextField: UITextField! //商品数量输入框
     var mininumber = 1   //最小数量
-    var payType: PayType = .Offline
+    var payType: PayType = .Alipay
     var myGoodImageView: UIImageView!
     //支付信息
     var payTypeViews: [PayTypeView]!
@@ -803,11 +813,12 @@ class PayViewController: BaseViewController,UITextFieldDelegate {
     
     
     func fetchCoupon() {
+        self.couponTextfield.resignFirstResponder()
         SVProgressHUD.show()
         NetworkHelper.instance.request(.GET, url: URLConstant.appVerifyCouponCode.contant, parameters: ["code":self.couponString,"num": quantity,"price": NSNumber.init(float: totalPrice)], completion: { (result: CouponResponse?) in
-                SVProgressHUD.dismiss()
+                SVProgressHUD.showSuccessWithStatus("优惠码验证成功")
                 let discout = result?.retObj?.couponDiscount
-                self.totalPrice = self.totalPrice -  (discout ?? 0.0)
+                self.CouponDisCountPrice = discout ?? 0.00
             }) { (msg, code) in
                 SVProgressHUD.showErrorWithStatus(msg)
         }
