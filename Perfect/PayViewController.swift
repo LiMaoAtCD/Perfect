@@ -992,6 +992,7 @@ class PayViewController: BaseViewController,UITextFieldDelegate {
         }
         
         SVProgressHUD.show()
+        let price = self.totalPrice - self.CouponDisCountPrice
         NetworkHelper.instance.request(.GET, url: URLConstant.appConfirmOrder.contant, parameters: [
             "productId":productId.toNSNumber,
             "quantity":quantity,
@@ -1002,7 +1003,7 @@ class PayViewController: BaseViewController,UITextFieldDelegate {
             "customImgId": customImgId.toNSNumber,
             "payType": payTypeString,
             "couponCode": couponString,
-            "price": NSNumber.init(float: (self.totalPrice - self.CouponDisCountPrice))],
+            "price": NSNumber.init(float: price)],
            completion: { (result: ConfirmOrderResponse?) in
             if let id = result?.retObj?.orderId {
                 self.orderId = id
