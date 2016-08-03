@@ -63,6 +63,9 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     func dismiss() {
 //        Defaults[.logined] = false
+        Defaults[.shouldSwitch] = 0
+
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
