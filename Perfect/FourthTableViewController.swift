@@ -10,6 +10,7 @@ import UIKit
 import SVProgressHUD
 import Async
 import RealmSwift
+import SwiftyUserDefaults
 
 
 class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -102,13 +103,16 @@ class FourthTableViewController: UITableViewController,AvatarDelegate, UIImagePi
             let tab =  Tool.root.viewControllers.first as! RootTabBarController
             tab.selectedIndex = 0
             
-            
+            Defaults[.sessionID] = ""
+
             //
             let realm = try! Realm()
             let addresses = realm.objects(AddressItemsEntity)
             try! realm.write({
                 realm.delete(addresses)
             })
+            
+            
         }
         
         alert.addAction(cancel)
